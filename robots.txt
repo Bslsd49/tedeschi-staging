@@ -1,0 +1,3 @@
+# STAGING — non indicizzare nulla
+User-agent: *
+Disallow: /

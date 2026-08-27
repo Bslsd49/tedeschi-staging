@@ -1,0 +1,147 @@
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.u-center {
+  text-align: center;
+}
+.u-center p {
+  margin-inline: auto;
+}
+
+.u-flow > * + * {
+  margin-top: var(--sp-4);
+}
+
+.u-mt-2 { margin-top: var(--sp-2); }
+.u-mt-4 { margin-top: var(--sp-4); }
+.u-mt-5 { margin-top: var(--sp-5); }
+.u-mt-6 { margin-top: var(--sp-6); }
+.u-mt-7 { margin-top: var(--sp-7); }
+.u-mt-8 { margin-top: var(--sp-8); }
+.u-mb-4 { margin-bottom: var(--sp-4); }
+.u-mb-5 { margin-bottom: var(--sp-5); }
+.u-mb-6 { margin-bottom: var(--sp-6); }
+
+.u-max-60 { max-width: 60ch; }
+.u-max-50 { max-width: 50ch; }
+.u-max-26r { max-width: 26rem; }
+.u-max-52r { max-width: 52rem; }
+.u-just-center { justify-content: center; }
+.u-fs-300 { font-size: var(--fs-300); }
+.u-fs-700 { font-size: var(--fs-700); }
+
+/* badge demo in versione statica (scheda cantiere) */
+.u-badge-inline {
+  position: static !important;
+  display: inline-block;
+}
+
+/* dati sintetici scheda cantiere */
+.dati-scheda {
+  padding-block: var(--sp-5);
+}
+.dati-scheda dd {
+  font-size: var(--fs-600);
+}
+
+/* sezione centrata a piena altezza (404) */
+.u-schermo-centro {
+  min-height: 70vh;
+  display: grid;
+  align-items: center;
+}
+.titolo-gigante {
+  font-size: var(--fs-hero);
+  font-stretch: 122%;
+  text-transform: uppercase;
+  line-height: 0.98;
+}
+.titolo-gigante em {
+  font-style: normal;
+  color: var(--c-giallo);
+}
+
+/* griglia elenco competenze fuori dal footer */
+.griglia-elenco {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--sp-5);
+}
+
+/* striscia segnaletica orizzontale come separatore */
+.u-stripe {
+  height: 8px;
+  background: var(--stripes);
+  border: none;
+}
+
+/* split due colonne testo+media */
+.split {
+  display: grid;
+  gap: var(--sp-7);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .split {
+    grid-template-columns: 1fr 1fr;
+  }
+  .split--inverso > :first-child {
+    order: 2;
+  }
+}
+.split__media {
+  border-radius: var(--radius-lg);
+  overflow: clip;
+}
+.split__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85) contrast(1.04);
+}
+
+/* elenco con spunte tecniche */
+.checklist {
+  list-style: none;
+  display: grid;
+  gap: var(--sp-3);
+}
+.checklist li {
+  position: relative;
+  padding-left: 2rem;
+}
+.checklist li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.42em;
+  width: 0.9rem;
+  height: 0.5rem;
+  border-left: 3px solid var(--c-giallo);
+  border-bottom: 3px solid var(--c-giallo);
+  transform: rotate(-45deg);
+}
+
+/* reveal on scroll: lo stato nascosto si attiva SOLO quando GSAP è pronto
+   (html.reveal-pronto, aggiunta da main.js un attimo prima del batch) */
+html.reveal-pronto [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+}
+html.reveal-pronto [data-reveal].is-visibile {
+  opacity: 1;
+  transform: none;
+}

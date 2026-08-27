@@ -1,0 +1,124 @@
+/* ============================================================
+   TOKENS — design system "Tedeschi" v1.1 (ARC Agency)
+   Direzione: dark totale industriale, giallo cantiere dominante,
+   tipografia condensed gigante. Riferimento visivo approvato da
+   Mattia (recupero-italia) + giallo macchina del logo cliente.
+   ============================================================ */
+
+:root {
+  /* --- superfici (dark-first) */
+  --c-fondo: #0a0a0c;          /* nero quasi puro — fondo pagina */
+  --c-superficie: #131316;     /* card e pannelli */
+  --c-superficie-2: #1a1a1f;   /* sezioni elevate, hover card */
+  --c-bordo: #2a2a31;          /* bordi su dark */
+  --c-bordo-forte: #3a3a42;
+
+  /* --- colori storici (usati da print e trattamenti foto) */
+  --c-catrame: #0a0a0c;
+  --c-asfalto: #131316;
+  --c-ferro: #2a2a31;
+  --c-grigio: #a9a9af;
+  --c-cemento: #2a2a31;        /* ex-bordo chiaro, ora mappa sul bordo dark */
+  --c-cemento-chiaro: #1a1a1f;
+  --c-carta: #f2f2f0;
+  --c-bianco: #ffffff;
+  --c-sabbia: #b9a88c;
+  --c-terra: #6e5f4b;
+
+  /* --- accento cantiere */
+  --c-giallo: #ffcc00;         /* giallo segnaletico pieno (12.9:1 su fondo) */
+  --c-giallo-scuro: #ffcc00;   /* su dark il giallo pieno è già AA ovunque */
+  --c-giallo-hover: #ffd83d;
+
+  /* --- ruoli */
+  --c-testo: #f2f2f0;
+  --c-testo-secondario: #a9a9af;      /* 8.2:1 su fondo, 7.5:1 su superficie */
+  --c-testo-inverso: #0a0a0c;         /* testo su giallo */
+  --c-testo-inverso-sec: #a9a9af;
+  --c-errore: #ff6b61;
+  --c-errore-fondo: #2a1513;
+  --c-ok: #7ddc8a;
+  --c-ok-fondo: #12241a;
+  --c-focus: #ffcc00;
+  --c-whatsapp: #25d366;
+  --c-nero-stampa: #000;
+  --c-grigio-stampa: #444;
+
+  /* --- tipografia */
+  --font-display: 'Archivo', 'Archivo-fallback', sans-serif;
+  --font-brand: 'Tedeschi', 'Archivo', 'Archivo-fallback', sans-serif; /* lettering proprietario, fallback Archivo su glifi assenti */
+  --font-testo: 'Inter', 'Inter-fallback', system-ui, sans-serif;
+
+  /* display CONDENSED per i titoli giganti (asse wdth del variable font) */
+  --stretch-display: 78%;
+  --stretch-wide: 110%;
+
+  --fs-hero: clamp(1.7rem, 9.5vw, 7.75rem);     /* H1 home, calibrato sul lettering Tedeschi (9em la riga più larga) */
+  --fs-900: clamp(2.6rem, 7vw, 5.5rem);         /* H1 interne */
+  --fs-800: clamp(2rem, 4.6vw, 3.4rem);         /* H2 sezione */
+  --fs-700: clamp(1.6rem, 3vw, 2.3rem);
+  --fs-600: clamp(1.25rem, 2.1vw, 1.5rem);
+  --fs-500: 1.15rem;
+  --fs-400: 1rem;
+  --fs-300: 0.875rem;
+  --fs-200: 0.75rem;
+
+  --lh-stretto: 0.94;
+  --lh-titoli: 1.05;
+  --lh-testo: 1.65;
+
+  --ls-kicker: 0.22em;
+  --ls-nav: 0.08em;
+
+  /* --- spazio */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4.5rem;
+  --sp-9: 6rem;
+  --sez: clamp(4rem, 9vw, 7.5rem);
+  --sez-sm: clamp(2.5rem, 6vw, 4.5rem);
+
+  /* --- layout */
+  --container: 1240px;
+  --container-wide: 1600px;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --header-h: 4.5rem;
+
+  /* --- dettagli */
+  --radius: 2px;               /* squadrato, da segnaletica */
+  --radius-lg: 4px;
+  --border: 1px solid var(--c-bordo);
+  --border-scuro: 1px solid var(--c-bordo);
+  --shadow-1: 0 2px 10px rgb(0 0 0 / 0.5);
+  --shadow-2: 0 16px 40px -12px rgb(0 0 0 / 0.7);
+  --shadow-accent: 0 10px 28px -10px rgb(255 204 0 / 0.45);
+
+  /* --- strisce segnaletiche */
+  --stripes: repeating-linear-gradient(
+    -45deg,
+    var(--c-giallo) 0 10px,
+    var(--c-fondo) 10px 20px
+  );
+
+  /* --- grana sottile */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+
+  /* --- motion */
+  --dur-1: 160ms;
+  --dur-2: 320ms;
+  --dur-3: 640ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.6, 0, 0.2, 1);
+  --ease-benna: cubic-bezier(0.6, 0.05, 0.15, 1); /* easing firma: partenza decisa, arrivo smorzato */
+
+  /* --- z-index */
+  --z-header: 100;
+  --z-nav-mobile: 110;
+  --z-cookie: 120;
+  --z-skip: 130;
+}
