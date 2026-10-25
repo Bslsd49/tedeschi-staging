@@ -243,95 +243,216 @@ if (filtri) {
   applica(true);
 }
 
-/* ============ form: validazione accessibile + anti-spam + invio ============ */
+/* ============ CTA "Parliamo del tuo intervento": conserva la provenienza ============ */
+/* Le CTA di pagina portano già ?rif=; quelle comuni (header, menu mobile) prendono
+   il titolo della pagina da body[data-rif], così Contatti sa da dove arriva la richiesta. */
+(() => {
+  const rifPagina = document.body.dataset.rif || '';
+  if (!rifPagina) return;
+  document.querySelectorAll('[data-cta-intervento][data-provenienza]').forEach((a) => {
+    const u = new URL(a.getAttribute('href'), location.origin);
+    if (!u.searchParams.get('rif')) u.searchParams.set('rif', rifPagina);
+    a.setAttribute('href', u.pathname + u.search + u.hash);
+  });
+})();
+
+/* ============ Contatti: una pagina, quattro sezioni, riferimento conservato (tav. 34-38, 45) ============ */
+(() => {
+  const sezioni = document.querySelectorAll('[data-sezione-contatto]');
+  if (!sezioni.length) return;
+  const params = new URLSearchParams(location.search);
+  const rif = (params.get('rif') || '').trim();
+  const intento = (params.get('intento') || '').trim();
+  const ancora = (location.hash || '').replace('#', '');
+
+  // riferimento della richiesta: mostrato, modificabile, scritto nel campo nascosto del modulo
+  document.querySelectorAll('[data-riferimento]').forEach((box) => {
+    const sez = box.closest('[data-sezione-contatto]');
+    const valore = box.querySelector('[data-rif-valore]');
+    const input = box.querySelector('[data-rif-input]');
+    const btn = box.querySelector('[data-rif-modifica]');
+    const campo = sez?.querySelector('[data-campo-rif]');
+    const isMateriali = sez?.dataset.sezioneContatto === 'materiali';
+    let testo = '';
+    if (sez && (sez.id === ancora || (!ancora && sez.id === 'intervento'))) {
+      testo = isMateriali ? [rif, intento].filter(Boolean).join(' / ') : rif;
+    }
+    const applica = (t) => {
+      testo = t.trim();
+      valore.textContent = testo || 'Non specificato';
+      valore.classList.toggle('riferimento__valore--vuoto', !testo);
+      if (campo) campo.value = testo;
+    };
+    applica(testo);
+    btn?.addEventListener('click', () => {
+      const inModifica = !input.hidden;
+      if (inModifica) {
+        applica(input.value);
+        input.hidden = true;
+        valore.hidden = false;
+        btn.textContent = 'Modifica';
+      } else {
+        input.value = testo;
+        input.hidden = false;
+        valore.hidden = true;
+        btn.textContent = 'Conferma';
+        input.focus();
+      }
+    });
+    input?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); btn.click(); } });
+  });
+
+  // materiali: recapito e aiuto variabili secondo il contesto (Centro / Fornitura / non specificato)
+  const sezMat = document.getElementById('materiali');
+  if (sezMat) {
+    const contesto = /fornitura/i.test(rif) ? 'fornitura' : 'centro';
+    sezMat.querySelectorAll('[data-recapito-contesto]').forEach((el) => { el.hidden = el.dataset.recapitoContesto !== contesto; });
+    const aiuto = sezMat.querySelector('[data-aiuto]');
+    if (aiuto) {
+      if (/acquist/i.test(intento) || contesto === 'fornitura') aiuto.textContent = 'Indica il materiale, l\'impiego e la quantità richiesta.';
+      else if (!rif && !intento) aiuto.textContent = 'Descrivi il materiale e l\'informazione che cerchi.';
+    }
+  }
+
+  // selettore: evidenzia la sezione corrente
+  const evidenzia = () => {
+    const h = (location.hash || '').replace('#', '');
+    document.querySelectorAll('[data-selettore-motivo] [data-motivo]').forEach((a) => a.classList.toggle('is-attiva', a.dataset.motivo === h));
+  };
+  evidenzia();
+  window.addEventListener('hashchange', evidenzia);
+})();
+
+/* ============ form: validazione (tav. 45), anti-spam, invio con stati ============ */
 document.querySelectorAll('form[data-form]').forEach((form) => {
   const campoT = form.querySelector('[name="_t"]');
   if (campoT) campoT.value = String(Math.floor(Date.now() / 1000));
+  const campoRitorno = form.querySelector('[name="_ritorno"]');
+  if (campoRitorno) campoRitorno.value = location.pathname; // il modulo rientra sulla pagina da cui è partito
   const mode = form.dataset.formMode || 'php';
   const endpoint = form.dataset.formEndpoint || '';
   const emailDest = form.dataset.formEmail || '';
+  const modulo = form.dataset.modulo || form.getAttribute('name') || 'contatto';
   const inizio = Date.now();
 
-  const messaggi = {
-    valueMissing: 'Questo campo è obbligatorio.',
-    typeMismatchEmail: 'Inserisci un indirizzo email valido.',
-    typeMismatchTel: 'Inserisci un numero di telefono valido.',
+  const testi = {
+    nome: 'Inserisci il tuo nome e cognome.',
+    recapito: 'Indica almeno un recapito: email o telefono.',
+    emailNonValida: 'Inserisci un indirizzo email valido.',
+    richiesta: modulo === 'collaborazione' ? 'Descrivi la tua proposta.' : modulo === 'candidatura' ? 'Scrivi il tuo messaggio.' : 'Descrivi la tua richiesta.',
+    ok: modulo === 'collaborazione' ? 'Abbiamo ricevuto la tua proposta di collaborazione.' : modulo === 'candidatura' ? 'Candidatura inviata. Grazie per esserti presentato.' : 'Abbiamo ricevuto la tua richiesta.',
+    fallito: 'La richiesta non è stata inviata. Riprova.',
+    incerto: 'Non riusciamo a confermare l\'invio. Puoi verificarlo tramite il recapito indicato qui sotto.',
+    allegato: 'L\'allegato non è stato caricato. Puoi riprovare o rimuoverlo e inviare il modulo senza allegato.',
+    inCorso: 'Invio in corso…',
   };
 
-  function mostraErrore(campo, msg) {
-    const wrap = campo.closest('.form-field, .form-consenso');
-    const errEl = form.querySelector(`[data-error-for="${campo.name}"]`);
-    wrap?.classList.toggle('has-errore', Boolean(msg));
-    if (errEl) {
-      errEl.textContent = msg || '';
-      errEl.hidden = !msg;
-    }
-    campo.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  const riepilogo = form.querySelector('[data-form-riepilogo]');
+  const live = form.querySelector('[data-form-live]');
+  const submit = form.querySelector('[data-form-submit]');
+  const submitLabel = form.querySelector('[data-form-submit-label]');
+  const labelOriginale = submitLabel?.textContent || '';
+  const boxOk = form.querySelector('[data-form-ok]');
+  const boxFallito = form.querySelector('[data-form-fallito]');
+
+  function mostraErrore(nome, msg) {
+    const campo = form.querySelector(`[name="${nome}"]`);
+    const errEl = form.querySelector(`[data-error-for="${nome}"]`);
+    campo?.closest('.form-field')?.classList.toggle('has-errore', Boolean(msg));
+    if (errEl) { errEl.textContent = msg || ''; errEl.hidden = !msg; }
+    campo?.setAttribute('aria-invalid', msg ? 'true' : 'false');
   }
 
   function valida() {
-    let primoErrore = null;
-    form.querySelectorAll('input:not([type=hidden]):not(.hp), textarea, select').forEach((campo) => {
-      if (campo.closest('.form-honeypot')) return;
-      let msg = '';
-      if (campo.validity.valueMissing) msg = messaggi.valueMissing;
-      else if (campo.validity.typeMismatch && campo.type === 'email') msg = messaggi.typeMismatchEmail;
-      mostraErrore(campo, msg);
-      if (msg && !primoErrore) primoErrore = campo;
-    });
-    if (primoErrore) {
-      primoErrore.focus();
-      return false;
+    const errori = [];
+    const nome = form.querySelector('[name="nome"]');
+    if (nome && !nome.value.trim()) errori.push(['nome', testi.nome]); else mostraErrore('nome', '');
+    const email = form.querySelector('[name="email"]');
+    const tel = form.querySelector('[name="telefono"]');
+    const haEmail = Boolean(email?.value.trim());
+    const haTel = Boolean(tel?.value.trim());
+    if (!haEmail && !haTel) {
+      errori.push(['email', testi.recapito]);
+      mostraErrore('telefono', testi.recapito);
+    } else {
+      mostraErrore('telefono', '');
+      if (haEmail && email.validity.typeMismatch) errori.push(['email', testi.emailNonValida]); else mostraErrore('email', '');
     }
-    return true;
+    const richiesta = form.querySelector('[name="richiesta"], [name="descrizione"]');
+    if (richiesta && !richiesta.value.trim()) errori.push([richiesta.name, testi.richiesta]); else if (richiesta) mostraErrore(richiesta.name, '');
+    errori.forEach(([n, m]) => mostraErrore(n, m));
+    return errori;
+  }
+
+  function statoInvio(attivo) {
+    if (!submit) return;
+    submit.disabled = attivo;
+    submit.classList.toggle('is-loading', attivo);
+    if (submitLabel) submitLabel.textContent = attivo ? testi.inCorso : labelOriginale;
+  }
+
+  function esito(tipo, msg) {
+    if (boxOk) { boxOk.hidden = tipo !== 'ok'; if (tipo === 'ok') boxOk.textContent = msg; }
+    if (boxFallito) { boxFallito.hidden = tipo === 'ok'; if (tipo !== 'ok') boxFallito.textContent = msg; }
+    if (live) live.textContent = msg;
+    (tipo === 'ok' ? boxOk : boxFallito)?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   }
 
   form.setAttribute('novalidate', '');
   form.addEventListener('submit', async (e) => {
-    // honeypot + time-trap: bot fermati in silenzio
-    const hp = form.querySelector('.form-honeypot input');
-    if ((hp && hp.value) || Date.now() - inizio < 3000) {
-      e.preventDefault();
-      return;
-    }
-    if (!valida()) {
-      e.preventDefault();
-      const live = form.querySelector('[data-form-live]');
-      if (live) live.textContent = 'Il modulo contiene errori: controlla i campi evidenziati.';
-      return;
-    }
-
-    if (mode === 'php' || mode === 'netlify') return; // POST nativo (contact.php o Netlify Forms)
-
     e.preventDefault();
-    const submit = form.querySelector('[type=submit]');
-    submit?.classList.add('is-loading');
-    const dati = Object.fromEntries(new FormData(form).entries());
+    // honeypot + time-trap: i bot si fermano in silenzio
+    const hp = form.querySelector('.form-honeypot input');
+    if ((hp && hp.value) || Date.now() - inizio < 3000) return;
 
+    const errori = valida();
+    if (errori.length) {
+      if (riepilogo) { riepilogo.hidden = false; riepilogo.focus(); }
+      if (live) live.textContent = 'Controlla i campi indicati.';
+      form.querySelector(`[name="${errori[0][0]}"]`)?.focus();
+      return;
+    }
+    if (riepilogo) riepilogo.hidden = true;
+    if (submit?.disabled) return; // niente invii duplicati durante la richiesta
+
+    const dati = Object.fromEntries(new FormData(form).entries());
+    statoInvio(true);
+
+    if (mode === 'php' || mode === 'netlify') {
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(String(res.status));
+        esito('ok', testi.ok);
+        form.reset();
+      } catch {
+        esito('fallito', testi.fallito);
+      } finally {
+        statoInvio(false);
+      }
+      return;
+    }
     if (mode === 'webhook' && endpoint) {
       try {
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(dati),
-        });
+        const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dati) });
         if (!res.ok) throw new Error(String(res.status));
-        location.href = '/grazie/';
+        esito('ok', testi.ok);
+        form.reset();
       } catch {
-        submit?.classList.remove('is-loading');
-        const live = form.querySelector('[data-form-live]');
-        if (live) live.textContent = "Invio non riuscito. Riprova, oppure chiamaci o scrivici via email.";
+        esito('fallito', testi.fallito);
+      } finally {
+        statoInvio(false);
       }
-    } else {
-      // mailto: si apre il client di posta con i dati già compilati (staging senza backend)
-      const corpo = Object.entries(dati)
-        .filter(([k]) => !['_hp', 'consenso', '_t', '_ritorno', 'form-name'].includes(k))
-        .map(([k, v]) => `${k}: ${v}`)
-        .join('\n');
-      const oggetto = `Richiesta dal sito — ${dati.modulo || 'contatto'}`;
-      location.href = `mailto:${emailDest}?subject=${encodeURIComponent(oggetto)}&body=${encodeURIComponent(corpo)}`;
-      submit?.classList.remove('is-loading');
+      return;
     }
+    // mailto: si apre il client di posta con i dati compilati. L'esito è incerto per
+    // definizione (tav. 45, 06): si mostra il recapito e si conservano i dati.
+    const corpo = Object.entries(dati)
+      .filter(([k, v]) => !['_hp', '_t', '_ritorno', 'form-name', 'consenso', 'modulo'].includes(k) && String(v).trim())
+      .map(([k, v]) => `${k}: ${v}`)
+      .join('\n');
+    const oggetto = `Richiesta dal sito — ${modulo}${dati.riferimento ? ' / ' + dati.riferimento : ''}`;
+    location.href = `mailto:${emailDest}?subject=${encodeURIComponent(oggetto)}&body=${encodeURIComponent(corpo)}`;
+    setTimeout(() => { statoInvio(false); esito('incerto', testi.incerto); }, 1200);
   });
 });
 

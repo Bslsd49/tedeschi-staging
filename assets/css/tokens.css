@@ -53,7 +53,7 @@
   --stretch-display: 78%;
   --stretch-wide: 110%;
 
-  --fs-hero: clamp(1.7rem, 9.5vw, 7.75rem);     /* H1 home, calibrato sul lettering Tedeschi (9em la riga più larga) */
+  --fs-hero: clamp(1.7rem, 8.4vw, 6.75rem);      /* H1 home, calibrato sul lettering Tedeschi (9em la riga più larga) */
   --fs-900: clamp(2.6rem, 7vw, 5.5rem);         /* H1 interne */
   --fs-800: clamp(2rem, 4.6vw, 3.4rem);         /* H2 sezione */
   --fs-700: clamp(1.6rem, 3vw, 2.3rem);

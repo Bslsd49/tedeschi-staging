@@ -26,3 +26,22 @@ ErrorDocument 404 /404.html
   AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
 </IfModule>
 
+# Riorganizzazione wireframe 03 (Impresa unica, Operatività, Contatti a sezioni)
+RewriteEngine On
+Redirect 301 /impresa/chi-siamo/ /impresa/
+Redirect 301 /impresa/storia/ /impresa/#storia
+Redirect 301 /impresa/persone-e-metodo/ /impresa/#persone-e-metodo
+Redirect 301 /impresa/qualita-sicurezza-certificazioni/ /impresa/#qualita
+Redirect 301 /impresa/ambiente-e-recupero/ /impresa/#responsabilita-ambientale
+Redirect 301 /impresa/lavora-con-noi/ /lavora-con-noi/
+Redirect 301 /competenze/demolizione-e-recupero/recupero-materiali-inerti/ /operativita/centro-di-recupero/#conferimento
+Redirect 301 /mezzi-e-tecnologie/ /operativita/
+Redirect 301 /mezzi-e-tecnologie/parco-macchine/ /operativita/parco-macchine/
+Redirect 301 /mezzi-e-tecnologie/tecnologie-di-precisione/ /operativita/tecnologie-di-precisione/
+Redirect 301 /mezzi-e-tecnologie/logistica-e-autonomia-operativa/ /operativita/logistica-e-autonomia-operativa/
+Redirect 301 /mezzi-e-tecnologie/centro-di-recupero/ /operativita/centro-di-recupero/
+Redirect 301 /contatti/parliamo-del-tuo-intervento/ /contatti/#intervento
+Redirect 301 /contatti/richiesta-informazioni/ /contatti/#intervento
+Redirect 301 /contatti/contatti-generali/ /contatti/#amministrazione
+Redirect 301 /contatti/sede-e-indicazioni/ /contatti/#amministrazione
+

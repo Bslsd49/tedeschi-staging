@@ -32,10 +32,13 @@
   <link rel="preload" href="/assets/fonts/archivo-expanded-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=321240c8">
-  <link rel="stylesheet" href="/assets/css/base.css?v=321240c8">
-  <link rel="stylesheet" href="/assets/css/components.css?v=321240c8">
-  <link rel="stylesheet" href="/assets/css/utilities.css?v=321240c8">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=cc8f6672">
+  <link rel="stylesheet" href="/assets/css/base.css?v=cc8f6672">
+  <link rel="stylesheet" href="/assets/css/components.css?v=cc8f6672">
+  <link rel="stylesheet" href="/assets/css/utilities.css?v=cc8f6672">
+  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=cc8f6672">
+  <link rel="stylesheet" href="/assets/css/w03-competenze.css?v=cc8f6672">
+  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=cc8f6672">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -69,7 +72,7 @@
       },
       "areaServed": {
         "@type": "AdministrativeArea",
-        "name": "Cremona e province limitrofe"
+        "name": "Cremona, in Lombardia"
       }
     },
     {
@@ -85,7 +88,7 @@
 </script>
 
 </head>
-<body>
+<body data-rif="Aggiornamenti dai cantieri">
   <a class="skip-link" href="#contenuto">Salta al contenuto</a>
 
   <header class="site-header" data-header>
@@ -103,12 +106,11 @@
           </button>
           <div class="site-nav__panel">
             <ul class="site-nav__dropdown">
-              <li><a href="/impresa/chi-siamo/">Chi siamo</a></li>
-              <li><a href="/impresa/storia/">Storia</a></li>
-              <li><a href="/impresa/persone-e-metodo/">Persone e metodo</a></li>
-              <li><a href="/impresa/qualita-sicurezza-certificazioni/">Qualità, sicurezza e certificazioni</a></li>
-              <li><a href="/impresa/ambiente-e-recupero/">Ambiente e recupero</a></li>
-              <li><a href="/impresa/lavora-con-noi/">Lavora con noi</a></li>
+              <li><a href="/impresa/#storia">Storia</a></li>
+              <li><a href="/impresa/#persone-e-metodo">Persone e metodo</a></li>
+              <li><a href="/impresa/#formazione">Formazione e competenze condivise</a></li>
+              <li><a href="/impresa/#qualita">Qualità, sicurezza e certificazioni</a></li>
+              <li><a href="/impresa/#responsabilita-ambientale">Responsabilità ambientale</a></li>
             </ul>
           </div>
         </li>
@@ -119,6 +121,16 @@
           </button>
           <div class="site-nav__panel site-nav__panel--mega">
             <div class="mega">
+              <div class="mega__col">
+                <a class="mega__hub" href="/competenze/coordinamento-progettuale/">Coordinamento Progettuale</a>
+                <ul class="mega__list">
+                  <li><a class="mega__link" href="/competenze/coordinamento-progettuale/#architettoniche">Progettazioni architettoniche</a></li>
+                  <li><a class="mega__link" href="/competenze/coordinamento-progettuale/#strutturali">Progettazioni strutturali</a></li>
+                  <li><a class="mega__link" href="/competenze/coordinamento-progettuale/#termotecniche-acustiche">Progettazioni termotecniche e acustiche</a></li>
+                  <li><a class="mega__link" href="/competenze/coordinamento-progettuale/#impianti-elettrici">Progettazioni di impianti elettrici</a></li>
+                  <li><a class="mega__link" href="/competenze/coordinamento-progettuale/#ambientali">Progettazioni ambientali</a></li>
+                </ul>
+              </div>
               <div class="mega__col">
                 <a class="mega__hub" href="/competenze/terra-e-preparazione/">Terra e preparazione</a>
                 <ul class="mega__list">
@@ -141,7 +153,7 @@
                 <ul class="mega__list">
                   <li><a class="mega__link" href="/competenze/demolizione-e-recupero/demolizioni/">Demolizioni</a></li>
                   <li><a class="mega__link" href="/competenze/demolizione-e-recupero/trasporto-rifiuti/">Trasporto rifiuti</a></li>
-                  <li><a class="mega__link" href="/competenze/demolizione-e-recupero/recupero-materiali-inerti/">Recupero materiali inerti</a></li>
+                  <li><a class="mega__link" href="/operativita/centro-di-recupero/#conferimento">Recupero materiali inerti</a></li>
                   <li><a class="mega__link" href="/competenze/demolizione-e-recupero/fornitura-inerti-e-conglomerati/">Fornitura inerti e conglomerati</a></li>
                 </ul>
               </div>
@@ -160,16 +172,16 @@
           <a class="site-nav__link" href="/cantieri/">Cantieri</a>
         </li>
         <li class="site-nav__item has-children" data-nav-item>
-          <a class="site-nav__link" href="/mezzi-e-tecnologie/">Mezzi e tecnologie</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Mezzi e tecnologie">
+          <a class="site-nav__link" href="/operativita/">Operatività</a>
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Operatività">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
           <div class="site-nav__panel">
             <ul class="site-nav__dropdown">
-              <li><a href="/mezzi-e-tecnologie/parco-macchine/">Parco macchine</a></li>
-              <li><a href="/mezzi-e-tecnologie/tecnologie-di-precisione/">Tecnologie di precisione</a></li>
-              <li><a href="/mezzi-e-tecnologie/logistica-e-autonomia-operativa/">Logistica e autonomia operativa</a></li>
-              <li><a href="/mezzi-e-tecnologie/centro-di-recupero/">Centro di Recupero</a></li>
+              <li><a href="/operativita/parco-macchine/">Parco macchine</a></li>
+              <li><a href="/operativita/tecnologie-di-precisione/">Tecnologie di precisione</a></li>
+              <li><a href="/operativita/logistica-e-autonomia-operativa/">Logistica e autonomia operativa</a></li>
+              <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
             </ul>
           </div>
         </li>
@@ -182,7 +194,15 @@
       </ul>
     </nav>
 
-    <a class="btn btn--accent site-header__cta" href="/contatti/parliamo-del-tuo-intervento/">Richiedi preventivo</a>
+    <nav class="site-header__rapidi" aria-label="Accessi rapidi">
+      <ul>
+      <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
+      <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
+      <li><a href="/documentazione/">Documentazione</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn btn--accent site-header__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza>Parliamo del tuo intervento</a>
 
     <button class="site-header__burger" type="button" data-nav-open aria-expanded="false" aria-controls="nav-mobile" aria-label="Apri il menu">
       <span class="site-header__burger-bar" aria-hidden="true"></span>
@@ -203,12 +223,11 @@
               </button>
             </div>
             <ul class="nav-mobile__sub" hidden>
-              <li><a href="/impresa/chi-siamo/">Chi siamo</a></li>
-              <li><a href="/impresa/storia/">Storia</a></li>
-              <li><a href="/impresa/persone-e-metodo/">Persone e metodo</a></li>
-              <li><a href="/impresa/qualita-sicurezza-certificazioni/">Qualità, sicurezza e certificazioni</a></li>
-              <li><a href="/impresa/ambiente-e-recupero/">Ambiente e recupero</a></li>
-              <li><a href="/impresa/lavora-con-noi/">Lavora con noi</a></li>
+              <li><a href="/impresa/#storia">Storia</a></li>
+              <li><a href="/impresa/#persone-e-metodo">Persone e metodo</a></li>
+              <li><a href="/impresa/#formazione">Formazione e competenze condivise</a></li>
+              <li><a href="/impresa/#qualita">Qualità, sicurezza e certificazioni</a></li>
+              <li><a href="/impresa/#responsabilita-ambientale">Responsabilità ambientale</a></li>
             </ul>
           </li>
           <li class="nav-mobile__item">
@@ -219,6 +238,16 @@
               </button>
             </div>
             <ul class="nav-mobile__sub" hidden>
+              <li class="nav-mobile__group">
+                <a class="nav-mobile__group-link" href="/competenze/coordinamento-progettuale/">Coordinamento Progettuale</a>
+                <ul>
+                  <li><a href="/competenze/coordinamento-progettuale/#architettoniche">Progettazioni architettoniche</a></li>
+                  <li><a href="/competenze/coordinamento-progettuale/#strutturali">Progettazioni strutturali</a></li>
+                  <li><a href="/competenze/coordinamento-progettuale/#termotecniche-acustiche">Progettazioni termotecniche e acustiche</a></li>
+                  <li><a href="/competenze/coordinamento-progettuale/#impianti-elettrici">Progettazioni di impianti elettrici</a></li>
+                  <li><a href="/competenze/coordinamento-progettuale/#ambientali">Progettazioni ambientali</a></li>
+                </ul>
+              </li>
               <li class="nav-mobile__group">
                 <a class="nav-mobile__group-link" href="/competenze/terra-e-preparazione/">Terra e preparazione</a>
                 <ul>
@@ -241,7 +270,7 @@
                 <ul>
                   <li><a href="/competenze/demolizione-e-recupero/demolizioni/">Demolizioni</a></li>
                   <li><a href="/competenze/demolizione-e-recupero/trasporto-rifiuti/">Trasporto rifiuti</a></li>
-                  <li><a href="/competenze/demolizione-e-recupero/recupero-materiali-inerti/">Recupero materiali inerti</a></li>
+                  <li><a href="/operativita/centro-di-recupero/#conferimento">Recupero materiali inerti</a></li>
                   <li><a href="/competenze/demolizione-e-recupero/fornitura-inerti-e-conglomerati/">Fornitura inerti e conglomerati</a></li>
                 </ul>
               </li>
@@ -260,16 +289,16 @@
           </li>
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
-              <a class="nav-mobile__link" href="/mezzi-e-tecnologie/">Mezzi e tecnologie</a>
-              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Mezzi e tecnologie">
+              <a class="nav-mobile__link" href="/operativita/">Operatività</a>
+              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Operatività">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
             </div>
             <ul class="nav-mobile__sub" hidden>
-              <li><a href="/mezzi-e-tecnologie/parco-macchine/">Parco macchine</a></li>
-              <li><a href="/mezzi-e-tecnologie/tecnologie-di-precisione/">Tecnologie di precisione</a></li>
-              <li><a href="/mezzi-e-tecnologie/logistica-e-autonomia-operativa/">Logistica e autonomia operativa</a></li>
-              <li><a href="/mezzi-e-tecnologie/centro-di-recupero/">Centro di Recupero</a></li>
+              <li><a href="/operativita/parco-macchine/">Parco macchine</a></li>
+              <li><a href="/operativita/tecnologie-di-precisione/">Tecnologie di precisione</a></li>
+              <li><a href="/operativita/logistica-e-autonomia-operativa/">Logistica e autonomia operativa</a></li>
+              <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
             </ul>
           </li>
           <li class="nav-mobile__item">
@@ -280,7 +309,14 @@
           </li>
         </ul>
       </nav>
-      <a class="btn btn--accent nav-mobile__cta" href="/contatti/parliamo-del-tuo-intervento/">Parliamo del tuo intervento</a>
+      <nav class="nav-mobile__rapidi" aria-label="Accessi rapidi del menu">
+        <ul>
+        <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
+        <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
+        <li><a href="/documentazione/">Documentazione</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn--accent nav-mobile__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza>Parliamo del tuo intervento</a>
       <div class="nav-mobile__contatti">
         <a href="tel:+39037226760">+39 0372 26760</a>
         <a href="mailto:info@impresatedeschi.it">info@impresatedeschi.it</a>
@@ -334,9 +370,6 @@
 
     
 
-
-
-
 <div class="hero-interna">
   <div class="container hero-interna__content">
     <p class="hero-interna__kicker">Approfondimenti</p>
@@ -344,27 +377,56 @@
       <path class="quota-cad__linea" d="M2 7 H158 M2 2 V12 M158 2 V12" fill="none" stroke="currentColor" stroke-width="1.5"/>
     </svg>
     <h1 class="hero-interna__title">Aggiornamenti dai cantieri</h1>
-    <p class="hero-interna__sub">Il dietro le quinte operativo. Cosa succede in cantiere prima, durante e dopo, raccontato da chi ci sta dentro.</p>
   </div>
 </div>
 
 
-<section class="sezione">
-  <div class="container">
-    
-<div class="section-heading" data-reveal>
-  <p class="section-heading__num" aria-hidden="true">01/</p>
-  <h2 class="section-heading__title">Gli articoli di questa categoria</h2>
-</div>
 
+<section class="sezione--sm tema-cemento" aria-labelledby="app-argomenti">
+  <div class="container">
+    <div class="section-heading w3o-etichetta" data-reveal>
+      <h2 class="section-heading__num" id="app-argomenti">02/ <span class="section-heading__etichetta">Argomenti</span></h2>
+    </div>
+    <ul class="griglia griglia--2 w3o-lista">
+      <li data-reveal>
+        <a class="motivo-card w3o-accesso" href="/approfondimenti/articoli-e-competenze/">
+          <h3 class="motivo-card__titolo">Articoli e competenze <span class="w3o-accesso__freccia" aria-hidden="true">→</span></h3>
+          <span class="motivo-card__testo">Filtro dell’archivio nella stessa pagina.</span>
+        </a>
+      </li>
+      <li data-reveal>
+        <a class="motivo-card w3o-accesso" href="/approfondimenti/vita-di-impresa/">
+          <h3 class="motivo-card__titolo">Persone e Impresa <span class="w3o-accesso__freccia" aria-hidden="true">→</span></h3>
+          <span class="motivo-card__testo">Filtro dell’archivio nella stessa pagina.</span>
+        </a>
+      </li>
+      <li data-reveal>
+        <a class="motivo-card w3o-accesso is-attiva" href="/approfondimenti/aggiornamenti-dai-cantieri/" aria-current="page">
+          <h3 class="motivo-card__titolo">Aggiornamenti dai cantieri <span class="w3o-accesso__freccia" aria-hidden="true">→</span></h3>
+          <span class="motivo-card__testo">Filtro dell’archivio nella stessa pagina.</span>
+        </a>
+      </li>
+      <li data-reveal>
+        <a class="motivo-card w3o-accesso" href="/approfondimenti/press-e-territorio/">
+          <h3 class="motivo-card__titolo">Territorio <span class="w3o-accesso__freccia" aria-hidden="true">→</span></h3>
+          <span class="motivo-card__testo">Filtro dell’archivio nella stessa pagina.</span>
+        </a>
+      </li>
+    </ul>
+    <p class="u-mt-5" data-reveal>
+<a class="link-freccia" href="/approfondimenti/">Tutti gli articoli<span aria-hidden="true"> →</span></a>
+</p>
+  </div>
+</section><section class="sezione--sm" aria-labelledby="app-contributi">
+  <div class="container">
+    <div class="section-heading w3o-etichetta" data-reveal>
+      <h2 class="section-heading__num" id="app-contributi">03/ <span class="section-heading__etichetta">Contributi</span></h2>
+    </div>
     <div class="layout-blog">
       <div class="layout-blog__main">
         <div class="griglia griglia--2">
-          <article class="card card--articolo" data-reveal>
+          <article class="card card--articolo" data-reveal data-categoria="aggiornamenti-dai-cantieri">
   <a class="card__link" href="/approfondimenti/demolire-senza-fermare-la-produzione/">
-    <div class="card__media">
-      <picture><source type="image/avif" srcset="/assets/img/demolizioni-demolizione-7-1024x768-1-480w.avif 480w, /assets/img/demolizioni-demolizione-7-1024x768-1-800w.avif 800w, /assets/img/demolizioni-demolizione-7-1024x768-1-1024w.avif 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="/assets/img/demolizioni-demolizione-7-1024x768-1-480w.webp 480w, /assets/img/demolizioni-demolizione-7-1024x768-1-800w.webp 800w, /assets/img/demolizioni-demolizione-7-1024x768-1-1024w.webp 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="/assets/img/demolizioni-demolizione-7-1024x768-1-480w.jpeg" alt="Demolire senza fermare la produzione" loading="lazy" decoding="async" class="card__img" width="1024" height="768" srcset="/assets/img/demolizioni-demolizione-7-1024x768-1-480w.jpeg 480w, /assets/img/demolizioni-demolizione-7-1024x768-1-800w.jpeg 800w, /assets/img/demolizioni-demolizione-7-1024x768-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"></picture>
-    </div>
     <div class="card__body">
       <p class="card__meta">
         <span class="tag">Aggiornamenti dai cantieri</span>
@@ -377,11 +439,8 @@
   </a>
 </article>
 
-          <article class="card card--articolo" data-reveal>
+          <article class="card card--articolo" data-reveal data-categoria="aggiornamenti-dai-cantieri">
   <a class="card__link" href="/approfondimenti/come-si-prepara-un-cantiere-di-movimento-terra/">
-    <div class="card__media">
-      <picture><source type="image/avif" srcset="/assets/img/movimento-terra-p4300694-1024x768-1-480w.avif 480w, /assets/img/movimento-terra-p4300694-1024x768-1-800w.avif 800w, /assets/img/movimento-terra-p4300694-1024x768-1-1024w.avif 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="/assets/img/movimento-terra-p4300694-1024x768-1-480w.webp 480w, /assets/img/movimento-terra-p4300694-1024x768-1-800w.webp 800w, /assets/img/movimento-terra-p4300694-1024x768-1-1024w.webp 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="/assets/img/movimento-terra-p4300694-1024x768-1-480w.jpeg" alt="Come si prepara un cantiere di movimento terra" loading="lazy" decoding="async" class="card__img" width="1024" height="768" srcset="/assets/img/movimento-terra-p4300694-1024x768-1-480w.jpeg 480w, /assets/img/movimento-terra-p4300694-1024x768-1-800w.jpeg 800w, /assets/img/movimento-terra-p4300694-1024x768-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"></picture>
-    </div>
     <div class="card__body">
       <p class="card__meta">
         <span class="tag">Aggiornamenti dai cantieri</span>
@@ -396,22 +455,24 @@
 
         </div>
       </div>
-      <aside class="sidebar" aria-label="Contenuti correlati del blog">
+      
+<aside class="sidebar" aria-label="Contenuti correlati del blog">
 
   <div class="widget widget--cta" data-reveal>
     <p class="widget__kicker">Hai un intervento in vista?</p>
     <p class="widget__titolo-cta">Raccontacelo, ti diciamo come lo affronteremmo noi.</p>
-    <a class="btn btn--accent" href="/contatti/parliamo-del-tuo-intervento/">Chiedi un preventivo</a>
+    
+<a class="btn btn--accent" href="/contatti/?rif=Approfondimenti#intervento" data-cta-intervento data-rif="Approfondimenti">Parliamo del tuo intervento</a>
+
     <a class="widget__tel" href="tel:+39037226760">oppure chiama +39 0372 26760</a>
   </div>
-
   <nav class="widget" aria-label="Categorie del blog">
     <p class="widget__titolo">Categorie</p>
     <ul class="widget__lista">
       <li><a href="/approfondimenti/articoli-e-competenze/">Articoli e competenze <span class="widget__conta">12</span></a></li>
-      <li><a href="/approfondimenti/vita-di-impresa/">Vita d'impresa <span class="widget__conta">2</span></a></li>
+      <li><a href="/approfondimenti/vita-di-impresa/">Persone e Impresa <span class="widget__conta">2</span></a></li>
       <li><a href="/approfondimenti/aggiornamenti-dai-cantieri/">Aggiornamenti dai cantieri <span class="widget__conta">2</span></a></li>
-      <li><a href="/approfondimenti/press-e-territorio/">Press e territorio <span class="widget__conta">2</span></a></li>
+      <li><a href="/approfondimenti/press-e-territorio/">Territorio <span class="widget__conta">2</span></a></li>
     </ul>
   </nav>
 
@@ -448,9 +509,9 @@
       <li><a href="/competenze/demolizione-e-recupero/demolizioni/">Demolizioni</a></li>
       <li><a href="/competenze/infrastrutture-e-superfici/asfaltature/">Asfaltature</a></li>
       <li><a href="/competenze/ambiente-e-completamento/bonifiche-ambientali/">Bonifiche ambientali</a></li>
-      <li><a href="/competenze/demolizione-e-recupero/recupero-materiali-inerti/">Recupero materiali inerti</a></li>
+      <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
     </ul>
-    <p class="widget__extra"><a href="/competenze/">Tutte le 14 competenze →</a></p>
+    <p class="widget__extra"><a href="/competenze/">Tutte le competenze →</a></p>
   </nav>
 
   <div class="widget" data-reveal>
@@ -459,130 +520,56 @@
       <li><a href="/assets/documenti/press-macchine-edili-settembre-2012.pdf">Macchine Edili — servizio 2012 (PDF)</a></li>
       <li><a href="/assets/documenti/press-la-provincia-21-03-2013.pdf">La Provincia — 21.03.2013 (PDF)</a></li>
     </ul>
-    <p class="widget__extra"><a href="/approfondimenti/press-e-territorio/">La rassegna completa →</a></p>
+    <p class="widget__extra"><a href="/approfondimenti/press-e-territorio/">Territorio →</a></p>
   </div>
 
 </aside>
 
     </div>
-    <p class="u-mt-6"><a class="btn btn--ghost" href="/approfondimenti/">Tutti gli approfondimenti</a></p>
   </div>
 </section>
 
-<section class="sezione sezione--sm tema-cemento">
-  <div class="container u-flow">
-    <p class="lead u-max-60">Qui raccontiamo il metodo. I risultati sono nella sezione <a href="/cantieri/">cantieri</a>, con una selezione di interventi, e nella pagina <a href="/mezzi-e-tecnologie/">mezzi e tecnologie</a> trovi le macchine che li hanno resi possibili.</p>
-    <p>Hai un cantiere in vista? <a href="/contatti/parliamo-del-tuo-intervento/">Parliamone</a>, si comincia sempre da un sopralluogo.</p>
-  </div>
-</section>
-
-    <section class="cta-band" aria-labelledby="cta-band-title">
-  <div class="container cta-band__inner">
-    <div class="cta-band__text">
-      <p class="cta-band__kicker" aria-hidden="true">— dal 1966</p>
-      <h2 class="cta-band__title" id="cta-band-title">Hai un intervento da pianificare?</h2>
-      <p class="cta-band__sub">Raccontacelo: scavo, demolizione, pavimentazione o bonifica. Ti diciamo come lo affronteremmo noi.</p>
-    </div>
-    <div class="cta-band__actions">
-      <a class="btn btn--accent btn--big" href="/contatti/parliamo-del-tuo-intervento/">Parliamo del tuo intervento</a>
-      <a class="cta-band__tel" href="tel:+39037226760">oppure chiama +39 0372 26760</a>
-    </div>
-  </div>
-</section>
 
   </main>
 
   <footer class="site-footer">
   <div class="container">
-    <div class="site-footer__top">
+    <div class="site-footer__top site-footer__top--w03">
       <div class="site-footer__brand">
         <img class="site-footer__logo-img" src="/assets/static/logo-tedeschi-dark.png" alt="Impresa Tedeschi — Edilizia &amp; Ambiente" width="181" height="95" loading="lazy">
-        <p class="site-footer__claim">Dal 1966 diamo forma alla terra.</p>
-        <p class="site-footer__since">Impresa familiare di movimento terra e costruzioni.<br>Cremona, dal 1966.</p>
-      </div>
-
-      <nav class="site-footer__col" aria-label="Impresa — link a piè di pagina">
-        <p class="site-footer__title">Impresa</p>
-        <ul>
-          <li><a href="/impresa/chi-siamo/">Chi siamo</a></li>
-          <li><a href="/impresa/storia/">Storia</a></li>
-          <li><a href="/impresa/persone-e-metodo/">Persone e metodo</a></li>
-          <li><a href="/impresa/qualita-sicurezza-certificazioni/">Qualità e certificazioni</a></li>
-          <li><a href="/impresa/ambiente-e-recupero/">Ambiente e recupero</a></li>
-          <li><a href="/impresa/lavora-con-noi/">Lavora con noi</a></li>
-          <li><a href="/cantieri/">Cantieri</a></li>
-          <li><a href="/mezzi-e-tecnologie/">Mezzi e tecnologie</a></li>
-          <li><a href="/approfondimenti/">Approfondimenti</a></li>
-          <li><a href="/documentazione/">Documentazione</a></li>
-        </ul>
-      </nav>
-
-      <nav class="site-footer__col site-footer__col--competenze" aria-label="Competenze — link a piè di pagina">
-        <p class="site-footer__title">Competenze</p>
-        <div class="site-footer__competenze">
-          <div class="site-footer__hub">
-            <a class="site-footer__hub-link" href="/competenze/terra-e-preparazione/">Terra e preparazione</a>
-            <ul>
-              <li><a href="/competenze/terra-e-preparazione/movimento-terra/">Movimento terra</a></li>
-              <li><a href="/competenze/terra-e-preparazione/drenaggio-terreni/">Drenaggio terreni</a></li>
-              <li><a href="/competenze/terra-e-preparazione/parchi-e-sistemazioni-a-verde/">Parchi e sistemazioni a verde</a></li>
-            </ul>
-          </div>
-          <div class="site-footer__hub">
-            <a class="site-footer__hub-link" href="/competenze/infrastrutture-e-superfici/">Infrastrutture e superfici</a>
-            <ul>
-              <li><a href="/competenze/infrastrutture-e-superfici/urbanizzazioni/">Urbanizzazioni</a></li>
-              <li><a href="/competenze/infrastrutture-e-superfici/asfaltature/">Asfaltature</a></li>
-              <li><a href="/competenze/infrastrutture-e-superfici/pavimentazioni-industriali-e-civili/">Pavimentazioni industriali e civili</a></li>
-              <li><a href="/competenze/infrastrutture-e-superfici/pavimentazioni-ecologiche/">Pavimentazioni ecologiche</a></li>
-            </ul>
-          </div>
-          <div class="site-footer__hub">
-            <a class="site-footer__hub-link" href="/competenze/demolizione-e-recupero/">Demolizione e recupero</a>
-            <ul>
-              <li><a href="/competenze/demolizione-e-recupero/demolizioni/">Demolizioni</a></li>
-              <li><a href="/competenze/demolizione-e-recupero/trasporto-rifiuti/">Trasporto rifiuti</a></li>
-              <li><a href="/competenze/demolizione-e-recupero/recupero-materiali-inerti/">Recupero materiali inerti</a></li>
-              <li><a href="/competenze/demolizione-e-recupero/fornitura-inerti-e-conglomerati/">Fornitura inerti e conglomerati</a></li>
-            </ul>
-          </div>
-          <div class="site-footer__hub">
-            <a class="site-footer__hub-link" href="/competenze/ambiente-e-completamento/">Ambiente e completamento</a>
-            <ul>
-              <li><a href="/competenze/ambiente-e-completamento/bonifiche-ambientali/">Bonifiche ambientali</a></li>
-              <li><a href="/competenze/ambiente-e-completamento/trattamenti-deumidificanti/">Trattamenti deumidificanti</a></li>
-              <li><a href="/competenze/ambiente-e-completamento/finiture-ambienti/">Finiture ambienti</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      <div class="site-footer__col">
-        <p class="site-footer__title">Contatti</p>
         <address class="site-footer__nap">
           <p>TEDESCHI S.R.L.</p>
           <p class="nap-riga"><svg class="nap-icona" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><a href="https://www.google.com/maps/search/?api=1&amp;query=Impresa+Tedeschi+Via+degli+Artigiani+4+26100+Cremona" target="_blank" rel="noopener">Via degli Artigiani 4, 26100 Cremona (CR)</a></p>
           <p class="nap-riga"><svg class="nap-icona" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.3 11.3 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.3 11.3 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg><a href="tel:+39037226760">+39 0372 26760</a></p>
           <p class="nap-riga"><svg class="nap-icona" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm8 7L4 6v2l8 5 8-5V6Z"/></svg><a href="mailto:info@impresatedeschi.it">info@impresatedeschi.it</a></p>
+          <p class="site-footer__piva">P.IVA 01328780190</p>
         </address>
-        <p class="site-footer__title site-footer__title--gap">Certificazioni</p>
-        <ul class="site-footer__badges">
-          <li><a class="badge-cert" href="/documentazione/"><span class="badge-cert__sigla">SOA</span> N. 61745.3.00</a></li>
-          <li><a class="badge-cert" href="/documentazione/"><span class="badge-cert__sigla">ISO 9001</span> Cert. C2025-06440</a></li>
-          <li><a class="badge-cert" href="/documentazione/"><span class="badge-cert__sigla">ISO 45001</span> Cert. C2023-05347</a></li>
-          <li><a class="badge-cert" href="/documentazione/"><span class="badge-cert__sigla">Albo Cat. 9</span> Categoria 9</a></li>
-        </ul>
       </div>
+
+      <nav class="site-footer__col" aria-label="Servizi — link a piè di pagina">
+        <p class="site-footer__title">Servizi</p>
+        <ul>
+          <li><a href="/contatti/#amministrazione">Amministrazione, fornitori</a></li>
+          <li><a href="/documentazione/">Documentazione</a></li>
+          <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
+          <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
+          <li><a href="/documentazione/">Documentazione</a></li>
+        </ul>
+      </nav>
+
+      <nav class="site-footer__col" aria-label="Informative — link a piè di pagina">
+        <p class="site-footer__title">Informative</p>
+        <ul>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/cookie-policy/">Cookie Policy</a></li>
+          <li><a href="/preferenze-cookie/" data-apri-preferenze>Preferenze cookie</a></li>
+          <li><a href="/accessibilita/">Accessibilità</a></li>
+        </ul>
+      </nav>
     </div>
 
     <div class="site-footer__legal">
-      <p>© 2026 TEDESCHI S.R.L. — P.IVA 01328780190</p>
-      <ul class="site-footer__legal-links">
-        <li><a href="/privacy-policy/">Privacy Policy</a></li>
-        <li><a href="/cookie-policy/">Cookie Policy</a></li>
-        <li><a href="/preferenze-cookie/">Preferenze cookie</a></li>
-        <li><a href="/accessibilita/">Accessibilità</a></li>
-      </ul>
+      <p>© 2026 TEDESCHI S.R.L.</p>
       <p class="site-footer__credit">Made with ❤️ by <a href="https://arcaagency.it" target="_blank" rel="noopener">ARCA Agency</a></p>
     </div>
   </div>
@@ -628,6 +615,6 @@
   })();
 </script>
 
-  <script type="module" src="/assets/js/main.js?v=321240c8"></script>
+  <script type="module" src="/assets/js/main.js?v=cc8f6672"></script>
 </body>
 </html>

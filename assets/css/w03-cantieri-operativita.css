@@ -1,0 +1,102 @@
+/* ============ WIREFRAME 03 — Cantieri, Operatività, Approfondimenti ============
+   Pagine: /cantieri/ e schede, /operativita/ e sottopagine, /approfondimenti/,
+   categorie e articoli. Solo classi w3o-*, nessuna modifica ai componenti condivisi. */
+
+/* etichetta di sezione senza titolo ("02/ FILTRI"): resta un vero h2,
+   più compatta del numero-gigante dei titoli di sezione */
+.w3o-etichetta {
+  margin-bottom: var(--sp-5);
+}
+.w3o-etichetta .section-heading__num {
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  margin-bottom: 0;
+}
+
+/* testo d'apertura sotto la hero */
+.w3o-apertura {
+  max-width: 68ch;
+}
+
+/* filtri cantieri: il reset è un collegamento testuale, non un bottone */
+.w3o-filtri {
+  align-items: end;
+}
+.w3o-filtri .filtri__reset {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid var(--c-bordo-forte);
+  border-radius: 0;
+  transition: color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+.w3o-filtri .filtri__reset:hover {
+  color: var(--c-giallo);
+  border-color: var(--c-giallo);
+}
+
+/* card di accesso (Operatività, argomenti di Approfondimenti) */
+.w3o-accesso {
+  height: 100%;
+  align-content: start;
+}
+.w3o-accesso .motivo-card__titolo {
+  margin: 0;
+}
+.w3o-accesso__freccia {
+  color: var(--c-giallo);
+  font-weight: 700;
+}
+
+/* griglia di card come elenco: solo azzeramento dello stile lista */
+.w3o-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.w3o-lista > li {
+  display: grid;
+}
+
+/* elenco di collegamenti pertinenti */
+.w3o-collegamenti {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--sp-3);
+}
+.w3o-cta {
+  margin-top: var(--sp-6);
+}
+
+/* riga di identificazione dell'opera e badge demo */
+.w3o-identificazione {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-3);
+  align-items: center;
+}
+
+/* recapiti del Centro: due colonne su schermi larghi */
+.w3o-recapiti {
+  display: grid;
+  gap: 0 var(--sp-6);
+}
+@media (min-width: 720px) {
+  .w3o-recapiti {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* articolo: sezioni del modello */
+.w3o-articolo__media {
+  margin: 0 0 var(--sp-6);
+}
+.w3o-articolo__dati {
+  color: var(--c-testo-secondario);
+}

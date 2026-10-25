@@ -1,0 +1,79 @@
+/* Wireframe 03 — agente home-impresa (Home, Impresa, Lavora con noi, Documentazione) */
+
+/* Home 06 / Capacità operativa: tre blocchi con i collegamenti verso Operatività */
+.blocco-operativo {
+  border: 1px solid var(--c-bordo-forte);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+}
+.blocco-operativo__titolo {
+  font-size: var(--fs-500);
+}
+.blocco-operativo__link {
+  list-style: none;
+  padding: 0;
+  margin-top: auto;
+  display: grid;
+  gap: var(--sp-2);
+}
+
+/* Impresa 05 / credenziali come elenco verificabile */
+.elenco-credenziali {
+  list-style: none;
+  padding: 0;
+}
+
+/* Documentazione 02 / modello ripetibile */
+.elenco-documenti {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-5);
+}
+.documento {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+  padding: var(--sp-5);
+  border: 1px solid var(--c-bordo-forte);
+  border-radius: var(--radius-lg);
+}
+@media (min-width: 700px) {
+  .documento {
+    grid-template-columns: 12rem 1fr;
+    align-items: start;
+  }
+  .documento > .documento__body:only-child {
+    grid-column: 1 / -1;
+  }
+}
+.documento__media {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--c-bordo-forte);
+  position: relative;
+}
+.documento__media img,
+.documento__media picture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.documento__titolo {
+  font-size: var(--fs-600, var(--fs-500));
+}
+.documento__meta {
+  color: var(--c-testo-secondario);
+}
+.documento__azioni {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3) var(--sp-5);
+}

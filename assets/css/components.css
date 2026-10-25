@@ -2373,3 +2373,305 @@ body.lightbox-aperta {
 .hero-interna__title {
   font-size: calc(var(--fs-900) * 0.84);
 }
+
+/* ============ WIREFRAME 03 (Mattia) — componenti condivisi ============ */
+/* etichetta di sezione "01 / APERTURA" */
+.section-heading__etichetta {
+  font-family: var(--font-testo);
+  font-size: var(--fs-200);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-testo-secondario);
+  margin-left: 0.4em;
+}
+/* riquadro tratteggiato: contenuto reale da inserire, non testo definitivo */
+.da-completare {
+  border: 1.5px dashed var(--c-bordo-forte);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  display: grid;
+  gap: var(--sp-2);
+  color: var(--c-testo-secondario);
+  background: rgb(255 255 255 / 0.02);
+}
+.da-completare--immagine {
+  min-height: 14rem;
+  align-content: center;
+}
+.da-completare__tipo {
+  font-size: var(--fs-200);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-giallo);
+}
+.da-completare__titolo {
+  color: var(--c-testo);
+  font-size: var(--fs-500);
+}
+.da-completare__testo {
+  font-size: var(--fs-300);
+  max-width: 60ch;
+}
+/* collegamento nel testo o titolo cliccabile */
+.link-freccia {
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--c-bordo-forte);
+  transition: color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+.link-freccia:hover {
+  color: var(--c-giallo);
+  border-color: var(--c-giallo);
+}
+/* indice interno con ancore */
+.indice-ancore ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4);
+  padding: 0;
+}
+.indice-ancore a {
+  display: inline-block;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--c-bordo-forte);
+  border-radius: 999px;
+  font-size: var(--fs-300);
+  text-decoration: none;
+  transition: border-color var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out);
+}
+.indice-ancore a:hover {
+  border-color: var(--c-giallo);
+  color: var(--c-giallo);
+}
+/* sezioni con ancora: aria sotto l'header sticky */
+[id] {
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+/* recapito reale o segnaposto */
+.recapito {
+  display: grid;
+  gap: 0.2rem;
+  padding: var(--sp-3) 0;
+  border-bottom: var(--border);
+}
+.recapito__label {
+  font-size: var(--fs-200);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-testo-secondario);
+}
+.recapito__valore {
+  font-size: var(--fs-500);
+  font-weight: 600;
+  text-decoration: none;
+}
+.recapito__valore--segnaposto {
+  color: var(--c-testo-secondario);
+  font-weight: 400;
+  border: 1px dashed var(--c-bordo-forte);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius);
+  width: fit-content;
+}
+/* accessi rapidi nell'header (desktop) e nel menu mobile */
+.site-header__rapidi {
+  display: none;
+}
+.site-header__rapidi ul {
+  display: flex;
+  list-style: none;
+  gap: var(--sp-4);
+  padding: 0;
+  margin: 0;
+}
+.site-header__rapidi a {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-testo-secondario);
+  text-decoration: none;
+  transition: color var(--dur-2) var(--ease-out);
+}
+.site-header__rapidi a:hover {
+  color: var(--c-giallo);
+}
+@media (min-width: 1520px) {
+  .site-header__rapidi {
+    display: flex;
+    margin-left: auto;
+    margin-right: var(--sp-3);
+  }
+}
+/* etichetta lunga "Parliamo del tuo intervento": compatta fra 1120 e 1519px */
+@media (min-width: 1120px) and (max-width: 1519px) {
+  .site-header__cta.btn {
+    font-size: 0.64rem;
+    padding: 0.7em 0.9em;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .site-nav__link {
+    padding: 0.55rem 0.35rem;
+  }
+}
+.nav-mobile__rapidi {
+  padding: var(--sp-3) 0 0;
+  border-top: var(--border);
+}
+.nav-mobile__rapidi ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+.nav-mobile__rapidi a {
+  display: block;
+  padding: 0.45rem 0;
+  color: var(--c-testo-secondario);
+  text-decoration: none;
+  font-size: var(--fs-300);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+/* contatti: selettore del motivo e sezioni */
+.motivo-card {
+  display: grid;
+  gap: var(--sp-2);
+  padding: var(--sp-5);
+  border: 1px solid var(--c-bordo-forte);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: border-color var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out);
+}
+.motivo-card:hover {
+  border-color: var(--c-giallo);
+  transform: translateY(-1px);
+}
+.motivo-card.is-attiva {
+  border-color: var(--c-giallo);
+}
+.motivo-card__titolo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-500);
+}
+.motivo-card__testo {
+  color: var(--c-testo-secondario);
+  font-size: var(--fs-300);
+}
+.contatti-sezione__cambia {
+  margin-bottom: var(--sp-4);
+}
+.contatti-sezione__cambia a {
+  font-size: var(--fs-300);
+  color: var(--c-testo-secondario);
+}
+.riferimento {
+  margin-top: var(--sp-6);
+  padding: var(--sp-4) var(--sp-5);
+  border: 1px solid var(--c-bordo-forte);
+  border-left: 3px solid var(--c-giallo);
+  border-radius: var(--radius);
+}
+.riferimento__riga {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+}
+.riferimento__label {
+  color: var(--c-testo-secondario);
+}
+.riferimento__valore--vuoto {
+  color: var(--c-testo-secondario);
+  font-weight: 400;
+}
+.riferimento__input {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+.riferimento__modifica {
+  background: none;
+  border: 1px solid var(--c-bordo-forte);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  color: var(--c-testo);
+  font-size: var(--fs-200);
+  cursor: pointer;
+}
+.split--form {
+  align-items: start;
+}
+.contatti-recapiti__titolo {
+  font-size: var(--fs-500);
+  margin-bottom: var(--sp-2);
+}
+.contatti-recapiti__domanda {
+  margin-top: var(--sp-4);
+  color: var(--c-testo-secondario);
+}
+/* modulo: note, stati (tav. 45) */
+.form-nota {
+  grid-column: 1 / -1;
+  color: var(--c-testo-secondario);
+  font-size: var(--fs-300);
+}
+.form-field__opz {
+  color: var(--c-testo-secondario);
+  font-weight: 400;
+  font-size: var(--fs-200);
+  margin-left: 0.4em;
+}
+.form-field__aiuto {
+  color: var(--c-testo-secondario);
+  font-size: var(--fs-300);
+  margin-bottom: 0.4rem;
+}
+.form-privacy {
+  color: var(--c-testo-secondario);
+  font-size: var(--fs-300);
+}
+.form-stato {
+  padding: var(--sp-4) var(--sp-5);
+  border-radius: var(--radius);
+  border: 1px solid var(--c-bordo-forte);
+}
+.form-stato--ok {
+  border-color: var(--c-giallo);
+}
+.form-nota-esito {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-200);
+}
+.form--w03 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+.form--w03 .form-field--full,
+.form--w03 .form-nota,
+.form--w03 .form-esito,
+.form--w03 .form-privacy {
+  grid-column: 1 / -1;
+}
+@media (max-width: 640px) {
+  .form--w03 {
+    grid-template-columns: 1fr;
+  }
+}
+/* footer essenziale (tav. 03) */
+.site-footer__top--w03 {
+  grid-template-columns: 1.4fr 1fr 1fr;
+}
+.site-footer__piva {
+  color: var(--c-testo-secondario);
+  font-size: var(--fs-200);
+  margin-top: var(--sp-2);
+}
+@media (max-width: 800px) {
+  .site-footer__top--w03 {
+    grid-template-columns: 1fr;
+  }
+}

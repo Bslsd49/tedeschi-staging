@@ -1,0 +1,87 @@
+/* ============ WIREFRAME 03 — Competenze, Coordinamento, aree, lavorazioni ============
+   Pagine: /competenze/, /competenze/coordinamento-progettuale/, pagine d'area, lavorazioni.
+   Solo classi w3c-*, nessuna modifica ai componenti condivisi. */
+
+/* etichetta di sezione senza titolo ("02/ INFORMAZIONI SPECIFICHE"): numero e testo
+   restano un vero h2, ma più compatti del numero-gigante dei titoli di sezione */
+.w3c-etichetta {
+  margin-bottom: var(--sp-5);
+}
+.w3c-etichetta .section-heading__num {
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  margin-bottom: 0;
+}
+
+/* /competenze/: blocchi d'area. Coordinamento a tutta larghezza, poi 2×2 (righe piene) */
+.w3c-aree {
+  display: grid;
+  gap: var(--sp-5);
+}
+@media (min-width: 900px) {
+  .w3c-aree {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .w3c-aree > .w3c-area:first-child {
+    grid-column: 1 / -1;
+  }
+}
+.w3c-area {
+  display: grid;
+  align-content: start;
+  gap: var(--sp-3);
+  padding: var(--sp-6) var(--sp-5);
+  border: 1px solid var(--c-bordo-forte);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--dur-2) var(--ease-out);
+}
+.w3c-area:hover {
+  border-color: var(--c-giallo);
+}
+.w3c-area__eyebrow {
+  font-family: var(--font-brand, var(--font-display));
+  font-weight: 800;
+  color: var(--c-giallo);
+  font-size: var(--fs-300);
+}
+.w3c-area__eyebrow .section-heading__etichetta {
+  font-weight: 400;
+}
+.w3c-area__titolo {
+  font-size: var(--fs-700);
+  line-height: 1.1;
+}
+.w3c-area__titolo a {
+  text-decoration: none;
+  transition: color var(--dur-2) var(--ease-out);
+}
+.w3c-area__titolo a:hover {
+  color: var(--c-giallo);
+}
+.w3c-area__frase {
+  color: var(--c-testo-secondario);
+  max-width: 60ch;
+}
+.w3c-area__lista {
+  list-style: none;
+  padding: 0;
+  margin: var(--sp-2) 0 0;
+  display: grid;
+  gap: var(--sp-3);
+}
+
+/* Coordinamento: le due frasi sui ruoli, in evidenza */
+.w3c-ruoli {
+  margin-top: var(--sp-6);
+  padding: var(--sp-5);
+  border: 1px solid var(--c-bordo-forte);
+  border-left: 3px solid var(--c-giallo);
+  border-radius: var(--radius);
+  display: grid;
+  gap: var(--sp-2);
+  font-weight: 600;
+}
+
+/* lavorazione: foto reale e riquadro della prova pertinente affiancati */
+.w3c-prova {
+  align-items: start;
+}
