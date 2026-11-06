@@ -33,13 +33,13 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/tedeschi.woff2" crossorigin>
   <link rel="preload" as="image" href="/assets/video/poster-hero.jpg" fetchpriority="high">
 
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=ddf024a9">
-  <link rel="stylesheet" href="/assets/css/base.css?v=ddf024a9">
-  <link rel="stylesheet" href="/assets/css/components.css?v=ddf024a9">
-  <link rel="stylesheet" href="/assets/css/utilities.css?v=ddf024a9">
-  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=ddf024a9">
-  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=ddf024a9">
-  <link rel="stylesheet" href="/assets/css/pagine-home-impresa.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=1cad0145">
+  <link rel="stylesheet" href="/assets/css/base.css?v=1cad0145">
+  <link rel="stylesheet" href="/assets/css/components.css?v=1cad0145">
+  <link rel="stylesheet" href="/assets/css/utilities.css?v=1cad0145">
+  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=1cad0145">
+  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=1cad0145">
+  <link rel="stylesheet" href="/assets/css/pagine-home-impresa.css?v=1cad0145">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -694,29 +694,37 @@
         testo.inert = !aperta;
       });
     };
-    // su mobile il pannello aperto sopra si chiude: il tasto toccato non deve scappare via
-    const tieniFermo = (btn) => {
+    // da 900px lo stage ha un'altezza sola, quella del pannello più lungo: la foto non si ridimensiona
+    // e quello che sta sotto non si muove mentre le tendine si scambiano
+    const fissaStage = () => {
+      if (!largo.matches || !aree.classList.contains('is-attivo')) { aree.style.minHeight = ''; return; }
+      const piena = righe.reduce((m, r) => Math.max(m, r.querySelector('.area__interno').scrollHeight), 0);
+      const chiuse = righe.reduce((t, r) => t + r.querySelector('.area__h').offsetHeight + 1, 1);
+      aree.style.minHeight = `${Math.ceil(piena + chiuse)}px`;
+    };
+    // sotto i 900px, se si chiude un pannello sopra il tasto, si chiude di colpo e lo scroll si corregge
+    // una volta sola prima del disegno: compensare a ogni frame durante l'animazione fa tremare la pagina
+    const chiudiSopra = (sopra, btn) => {
       const y0 = btn.getBoundingClientRect().top;
-      const fine = performance.now() + 750;
-      const passo = () => {
-        const d = btn.getBoundingClientRect().top - y0;
-        if (Math.abs(d) > 0.5) window.scrollBy({ top: d, behavior: 'instant' });
-        if (performance.now() < fine) requestAnimationFrame(passo);
-      };
-      requestAnimationFrame(passo);
+      sopra.classList.add('area--secca');
+      applica();
+      const d = btn.getBoundingClientRect().top - y0;
+      if (Math.abs(d) > 0.5) window.scrollBy({ top: d, behavior: 'instant' });
+      requestAnimationFrame(() => requestAnimationFrame(() => sopra.classList.remove('area--secca')));
     };
     righe.forEach((riga, i) => {
       const btn = riga.querySelector('.area__toggle');
       btn.addEventListener('click', () => {
         if (!aree.classList.contains('is-attivo')) return;
+        const prima = corrente;
         if (i === corrente) {
           if (largo.matches) return; // da 900px in su un'area resta sempre aperta (lo stage ha sempre una foto)
           corrente = -1;
         } else {
           corrente = i;
         }
-        if (!largo.matches) tieniFermo(btn);
-        applica();
+        if (!largo.matches && prima >= 0 && prima < i) chiudiSopra(righe[prima], btn);
+        else applica();
       });
       btn.addEventListener('keydown', (e) => {
         const passo = { ArrowDown: 1, ArrowUp: -1 }[e.key];
@@ -725,12 +733,15 @@
         righe[(i + passo + righe.length) % righe.length].querySelector('.area__toggle').focus();
       });
     });
+    const tutto = () => { applica(); fissaStage(); };
     largo.addEventListener('change', () => {
       if (corrente < 0) corrente = 0;
-      applica();
+      tutto();
     });
-    document.addEventListener('tedeschi:motion', applica);
-    applica();
+    document.addEventListener('tedeschi:motion', tutto);
+    addEventListener('resize', fissaStage, { passive: true });
+    document.fonts?.ready.then(fissaStage);
+    tutto();
   }
 
   const filmato = document.querySelector('[data-filmato]');
@@ -844,6 +855,6 @@
   <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina">Inizio</button>
   <div class="cursore-orbita" data-cursore aria-hidden="true"></div>
   <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
-  <script type="module" src="/assets/js/main.js?v=ddf024a9"></script>
+  <script type="module" src="/assets/js/main.js?v=1cad0145"></script>
 </body>
 </html>
