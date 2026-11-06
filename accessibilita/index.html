@@ -7,9 +7,9 @@
   <meta name="description" content="L&#39;impegno del sito Impresa Tedeschi verso le WCAG 2.1 AA: contrasti, tastiera, riduzione del movimento. Segnalaci ogni barriera.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://tedeschi.arcaagency.it/accessibilita/">
-  <meta name="theme-color" content="#0a0a0c">
+  <meta name="theme-color" content="#000000">
   <meta name="generator" content="Eleventy">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}}(document)</script>
   <meta name="author" content="TEDESCHI S.R.L.">
   <meta property="og:locale" content="it_IT">
   <meta property="og:site_name" content="Impresa Tedeschi">
@@ -28,17 +28,19 @@
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="preload" href="/assets/fonts/tedeschi.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/archivo-expanded-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+  <link rel="preload" as="style" href="https://use.typekit.net/hlp3tzz.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://use.typekit.net/hlp3tzz.css"></noscript>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/tedeschi.woff2" crossorigin>
 
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/base.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/components.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/utilities.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/w03-competenze.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=cc8f6672">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/base.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/components.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/utilities.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/pagine-operativita-contatti.css?v=ddf024a9">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -88,8 +90,9 @@
 </script>
 
 </head>
-<body data-rif="Accessibilità">
+<body class="pagina-servizio" data-rif="Accessibilità">
   <a class="skip-link" href="#contenuto">Salta al contenuto</a>
+  <div class="progresso-pagina" aria-hidden="true"></div>
 
   <header class="site-header" data-header>
   <div class="site-header__inner container">
@@ -101,7 +104,7 @@
       <ul class="site-nav__list">
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/impresa/">Impresa</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Impresa">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
           <div class="site-nav__panel">
@@ -116,7 +119,7 @@
         </li>
         <li class="site-nav__item has-children has-mega" data-nav-item>
           <a class="site-nav__link" href="/competenze/">Competenze</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Competenze">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
           <div class="site-nav__panel site-nav__panel--mega">
@@ -173,7 +176,7 @@
         </li>
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/operativita/">Operatività</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Operatività">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
           <div class="site-nav__panel">
@@ -202,7 +205,7 @@
       </ul>
     </nav>
 
-    <a class="btn btn--accent site-header__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza>Parliamo del tuo intervento</a>
+    <a class="btn btn--accent site-header__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza><span>Parliamo del tuo intervento</span></a>
 
     <button class="site-header__burger" type="button" data-nav-open aria-expanded="false" aria-controls="nav-mobile" aria-label="Apri il menu">
       <span class="site-header__burger-bar" aria-hidden="true"></span>
@@ -211,14 +214,14 @@
     </button>
   </div>
 </header>
-<div id="nav-mobile" class="nav-mobile" hidden>
+<section id="nav-mobile" class="nav-mobile" aria-label="Menu mobile" hidden>
     <div class="nav-mobile__inner">
       <nav aria-label="Navigazione principale mobile">
         <ul class="nav-mobile__list">
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/impresa/">Impresa</a>
-              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Impresa">
+              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
             </div>
@@ -233,7 +236,7 @@
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/competenze/">Competenze</a>
-              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Competenze">
+              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
             </div>
@@ -290,7 +293,7 @@
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/operativita/">Operatività</a>
-              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Operatività">
+              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
             </div>
@@ -316,13 +319,13 @@
         <li><a href="/documentazione/">Documentazione</a></li>
         </ul>
       </nav>
-      <a class="btn btn--accent nav-mobile__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza>Parliamo del tuo intervento</a>
+      <a class="btn btn--accent btn--big nav-mobile__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza><span>Parliamo del tuo intervento</span></a>
       <div class="nav-mobile__contatti">
         <a href="tel:+39037226760">+39 0372 26760</a>
         <a href="mailto:info@impresatedeschi.it">info@impresatedeschi.it</a>
       </div>
     </div>
-  </div>
+  </section>
 
 
   <main id="contenuto">
@@ -359,31 +362,46 @@
 }
 </script>
 
-    <section class="sezione--sm">
-  <div class="container">
-    <div class="prose u-max-60">
-      <h1>Accessibilità</h1>
-      <p class="testo-secondario">Ultimo aggiornamento 2026-10-25</p>
+    
+
+<div class="hero-interna">
+  <div class="container hero-interna__content">
+    <h1 class="hero-interna__title" data-split="words">Accessibilità</h1>
+    <p class="hero-interna__sub body-reveal">Ultimo aggiornamento 2026-11-06</p>
+  </div>
+</div>
+
+
+<section class="sez sez--sm pg-legale">
+  <div class="container pg-legale__griglia">
+    <nav class="pg-legale__indice" aria-label="Indice della pagina Accessibilità">
+      <ul class="lista-voci lista-voci--colonna">
+        <li><a class="voce" href="#fatto">Cosa abbiamo fatto</a></li>
+        <li><a class="voce" href="#limiti">Limiti noti</a></li>
+        <li><a class="voce" href="#segnalazioni">Segnalazioni</a></li>
+      </ul>
+    </nav>
+    <div class="prose pg-prose">
       <p class="lead">Un sito che parla di cantieri deve essere percorribile da tutti, senza barriere. Questo sito è progettato con l'obiettivo di rispettare le Linee guida WCAG 2.1, livello AA.</p>
 
-      <h2>Cosa abbiamo fatto</h2>
+      <h2 id="fatto">Cosa abbiamo fatto</h2>
       <ul class="checklist">
         <li>Contrasti di colore conformi al livello AA, verificati sui token del design system</li>
         <li>Navigazione completa da tastiera, con indicatore di focus sempre visibile e link "salta al contenuto"</li>
         <li>Struttura semantica, landmark, un solo H1 per pagina e gerarchia dei titoli corretta</li>
         <li>Testi alternativi in italiano per le immagini significative</li>
         <li>Moduli con etichette esplicite, messaggi di errore chiari e annunciati alle tecnologie assistive</li>
-        <li>Rispetto della preferenza di sistema "riduci movimento", con tutte le animazioni disattivate</li>
+        <li>Rispetto della preferenza di sistema "riduci movimento", con le animazioni disattivate, e tasto "Movimento attivo / Movimento ridotto" sempre disponibile in basso a sinistra</li>
         <li>Dimensioni dei bersagli touch adeguate e testo ridimensionabile senza perdita di contenuto</li>
         <li>Niente contenuti lampeggianti, niente limiti di tempo, niente autoplay</li>
       </ul>
 
-      <h2>Limiti noti</h2>
+      <h2 id="limiti">Limiti noti</h2>
       <ul>
         <li>Alcuni PDF storici scaricabili (rassegna stampa, elenco attrezzature) sono scansioni e potrebbero non essere pienamente accessibili agli screen reader. Se ti serve il contenuto in un formato alternativo, scrivici e te lo forniamo.</li>
       </ul>
 
-      <h2>Segnalazioni</h2>
+      <h2 id="segnalazioni">Segnalazioni</h2>
       <p>Se incontri una barriera su questo sito, segnalacela, la sistemiamo. Scrivi a <a href="mailto:info@impresatedeschi.it">info@impresatedeschi.it</a> indicando la pagina e il problema incontrato, oppure chiama lo <a href="tel:+39037226760">+39 0372 26760</a>.</p>
     </div>
   </div>
@@ -409,7 +427,6 @@
         <p class="site-footer__title">Servizi</p>
         <ul>
           <li><a href="/contatti/#amministrazione">Amministrazione, fornitori</a></li>
-          <li><a href="/documentazione/">Documentazione</a></li>
           <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
           <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
           <li><a href="/documentazione/">Documentazione</a></li>
@@ -474,6 +491,10 @@
   })();
 </script>
 
-  <script type="module" src="/assets/js/main.js?v=cc8f6672"></script>
+  <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
+  <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina">Inizio</button>
+  <div class="cursore-orbita" data-cursore aria-hidden="true"></div>
+  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
+  <script type="module" src="/assets/js/main.js?v=ddf024a9"></script>
 </body>
 </html>

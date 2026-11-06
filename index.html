@@ -7,9 +7,9 @@
   <meta name="description" content="Movimento terra, demolizioni, urbanizzazioni e pavimentazioni a Cremona, in Lombardia. Dal 1966 entriamo nella complessità e troviamo la soluzione.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://tedeschi.arcaagency.it/">
-  <meta name="theme-color" content="#0a0a0c">
+  <meta name="theme-color" content="#000000">
   <meta name="generator" content="Eleventy">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}}(document)</script>
   <meta name="author" content="TEDESCHI S.R.L.">
   <meta property="og:locale" content="it_IT">
   <meta property="og:site_name" content="Impresa Tedeschi">
@@ -17,28 +17,29 @@
   <meta property="og:title" content="Impresa Tedeschi — Movimento terra e demolizioni, Cremona">
   <meta property="og:description" content="Movimento terra, demolizioni, urbanizzazioni e pavimentazioni a Cremona, in Lombardia. Dal 1966 entriamo nella complessità e troviamo la soluzione.">
   <meta property="og:url" content="https://tedeschi.arcaagency.it/">
-  <meta property="og:image" content="https://tedeschi.arcaagency.it/assets/static/og-default.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image" content="https://tedeschi.arcaagency.it/assets/img/cantiere-04-piazzale-01-1600w.jpeg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Impresa Tedeschi — Movimento terra e demolizioni, Cremona">
   <meta name="twitter:description" content="Movimento terra, demolizioni, urbanizzazioni e pavimentazioni a Cremona, in Lombardia. Dal 1966 entriamo nella complessità e troviamo la soluzione.">
-  <meta name="twitter:image" content="https://tedeschi.arcaagency.it/assets/static/og-default.jpg">
+  <meta name="twitter:image" content="https://tedeschi.arcaagency.it/assets/img/cantiere-04-piazzale-01-1600w.jpeg">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="preload" href="/assets/fonts/tedeschi.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/archivo-expanded-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+  <link rel="preload" as="style" href="https://use.typekit.net/hlp3tzz.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://use.typekit.net/hlp3tzz.css"></noscript>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/tedeschi.woff2" crossorigin>
+  <link rel="preload" as="image" href="/assets/video/poster-hero.jpg" fetchpriority="high">
 
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/base.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/components.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/utilities.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/w03-competenze.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=cc8f6672">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/base.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/components.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/utilities.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/pagine-home-impresa.css?v=ddf024a9">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -88,8 +89,9 @@
 </script>
 
 </head>
-<body data-rif="">
+<body data-rif="Home">
   <a class="skip-link" href="#contenuto">Salta al contenuto</a>
+  <div class="progresso-pagina" aria-hidden="true"></div>
 
   <header class="site-header" data-header>
   <div class="site-header__inner container">
@@ -101,7 +103,7 @@
       <ul class="site-nav__list">
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/impresa/">Impresa</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Impresa">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
           <div class="site-nav__panel">
@@ -116,7 +118,7 @@
         </li>
         <li class="site-nav__item has-children has-mega" data-nav-item>
           <a class="site-nav__link" href="/competenze/">Competenze</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Competenze">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
           <div class="site-nav__panel site-nav__panel--mega">
@@ -173,7 +175,7 @@
         </li>
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/operativita/">Operatività</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Operatività">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
           <div class="site-nav__panel">
@@ -202,7 +204,7 @@
       </ul>
     </nav>
 
-    <a class="btn btn--accent site-header__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza>Parliamo del tuo intervento</a>
+    <a class="btn btn--accent site-header__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza><span>Parliamo del tuo intervento</span></a>
 
     <button class="site-header__burger" type="button" data-nav-open aria-expanded="false" aria-controls="nav-mobile" aria-label="Apri il menu">
       <span class="site-header__burger-bar" aria-hidden="true"></span>
@@ -211,14 +213,14 @@
     </button>
   </div>
 </header>
-<div id="nav-mobile" class="nav-mobile" hidden>
+<section id="nav-mobile" class="nav-mobile" aria-label="Menu mobile" hidden>
     <div class="nav-mobile__inner">
       <nav aria-label="Navigazione principale mobile">
         <ul class="nav-mobile__list">
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/impresa/">Impresa</a>
-              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Impresa">
+              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
             </div>
@@ -233,7 +235,7 @@
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/competenze/">Competenze</a>
-              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Competenze">
+              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
             </div>
@@ -290,7 +292,7 @@
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/operativita/">Operatività</a>
-              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Operatività">
+              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
             </div>
@@ -316,294 +318,443 @@
         <li><a href="/documentazione/">Documentazione</a></li>
         </ul>
       </nav>
-      <a class="btn btn--accent nav-mobile__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza>Parliamo del tuo intervento</a>
+      <a class="btn btn--accent btn--big nav-mobile__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza><span>Parliamo del tuo intervento</span></a>
       <div class="nav-mobile__contatti">
         <a href="tel:+39037226760">+39 0372 26760</a>
         <a href="mailto:info@impresatedeschi.it">info@impresatedeschi.it</a>
       </div>
     </div>
-  </div>
+  </section>
 
 
   <main id="contenuto">
     
-<section class="hero hero--video">
+<link rel="preload" href="/assets/fonts/tedeschi.woff2" as="font" type="font/woff2" crossorigin>
+<section class="hero hero--video hero--regia" aria-labelledby="home-titolo">
   <div class="hero__media" aria-hidden="true">
+    <img class="hero__fotogramma" src="/assets/video/poster-hero.jpg" alt="" width="1280" height="720" fetchpriority="high" decoding="async">
     <video class="hero__video" autoplay muted loop playsinline preload="metadata" width="1280" height="720" data-hero-video>
       <source src="/assets/video/hero-loop.mp4" type="video/mp4">
     </video>
     <div class="hero__overlay"></div>
   </div>
-  <div class="container hero__content">
+  <div class="hero__griglia" aria-hidden="true"></div>
+  <div class="hero__contenuto">
     <p class="kicker hero__kicker">Movimento terra, demolizioni, urbanizzazioni e pavimentazioni. Da Cremona, in Lombardia.</p>
-    <h1 class="hero__title" data-hero-title>
+    <h1 class="hero__title hero__title--brand" id="home-titolo">
       <span class="hero__riga"><span class="hero__riga-inner">Tutto è</span></span>
       <span class="hero__riga"><span class="hero__riga-inner">cominciato</span></span>
-      <span class="hero__riga"><span class="hero__riga-inner">dalla <em>terra</em></span></span>
+      <span class="hero__riga hero__riga--gialla"><span class="hero__riga-inner"><span class="hero__parola">dalla</span> <span class="hero__parola">terra</span></span></span>
     </h1>
-    <div class="hero__actions">
+    <div class="hero__base">
       
-<a class="btn btn--accent btn--big" href="/contatti/#intervento" data-cta-intervento>Parliamo del tuo intervento</a>
+<a class="btn btn--accent btn--big" href="/contatti/#intervento" data-cta-intervento><span>Parliamo del tuo intervento</span></a>
 
+      <a class="hero__cue" href="#apertura" aria-label="Scorri al testo di apertura"><i aria-hidden="true"></i></a>
     </div>
   </div>
-  <p class="hero__scroll" aria-hidden="true">↓</p>
 </section>
 
-<section class="sezione">
+<section class="sez apertura" id="apertura">
   <div class="container">
     <p class="section-heading__num" aria-hidden="true">01/ <span class="section-heading__etichetta">APERTURA</span></p>
-    <div class="prose u-flow u-mt-4" data-reveal>
-      <p class="lead">Nel 1966 non c’era ancora una storia da raccontare. C’era terra da muovere, un lavoro da portare a termine e la responsabilità di farlo bene. TEDESCHI è nata misurandosi con la realtà: il peso della materia, la fatica delle giornate, gli imprevisti che obbligano a capire in fretta e la soddisfazione di vedere il risultato prendere forma. Da allora, ogni cantiere ha aggiunto uno strato di esperienza; ogni progetto ha aggiunto conoscenza; ogni risultato ha consolidato un metodo.</p>
-      <p>Il movimento terra è diventato demolizione, infrastruttura, pavimentazione, bonifica e recupero dei materiali, non per il desiderio di fare sempre più cose, ma per la necessità di dare risposte sempre più concrete. Intorno al duro lavoro sono cresciuti persone, mezzi, tecnologie e una grande organizzazione, ma al centro è rimasta la stessa attitudine delle origini: entrare nella complessità, comprenderla e trovare la soluzione. Un’arte concreta, affinata nel tempo, che oggi permette a persone, esperienza e strumenti di muoversi sotto un’unica direzione. La nostra capacità prende forma lì, dove la materia incontra l’ingegno e la fatica diventa un risultato nel quale continuiamo a riconoscerci.</p>
-      <p>
-<a class="link-freccia" href="/impresa/#storia">Storia<span aria-hidden="true"> →</span></a>
-</p>
+    <div class="apertura__griglia">
+      <p class="intro-lead apertura__lead" data-split="words">Nel 1966 non c’era ancora <span>una storia da raccontare.</span></p>
+      <div class="apertura__testo">
+        <p data-reveal>C’era terra da muovere, un lavoro da portare a termine e la responsabilità di farlo bene. TEDESCHI è nata misurandosi con la realtà: il peso della materia, la fatica delle giornate, gli imprevisti che obbligano a capire in fretta e la soddisfazione di vedere il risultato prendere forma. Da allora, ogni cantiere ha aggiunto uno strato di esperienza; ogni progetto ha aggiunto conoscenza; ogni risultato ha consolidato un metodo.</p>
+        <p data-reveal>Il movimento terra è diventato demolizione, infrastruttura, pavimentazione, bonifica e recupero dei materiali, non per il desiderio di fare sempre più cose, ma per la necessità di dare risposte sempre più concrete. Intorno al duro lavoro sono cresciuti persone, mezzi, tecnologie e una grande organizzazione, ma al centro è rimasta la stessa attitudine delle origini: entrare nella complessità, comprenderla e trovare la soluzione. Un’arte concreta, affinata nel tempo, che oggi permette a persone, esperienza e strumenti di muoversi sotto un’unica direzione. La nostra capacità prende forma lì, dove la materia incontra l’ingegno e la fatica diventa un risultato nel quale continuiamo a riconoscerci.</p>
+        
+<ul class="lista-voci lista-voci--fisse">
+  <li><a class="voce" href="/impresa/#storia">Storia</a></li>
+</ul>
+
+      </div>
     </div>
   </div>
 </section>
-<section class="sezione tema-scuro">
+
+
+<div class="ticker ticker--parole" aria-hidden="true">
+  <div class="ticker__track"><span>Movimento terra</span><b></b><span>Demolizioni</span><b></b><span>Urbanizzazioni</span><b></b><span>Pavimentazioni</span><b></b><span>Movimento terra</span><b></b><span>Demolizioni</span><b></b><span>Urbanizzazioni</span><b></b><span>Pavimentazioni</span><b></b><span>Movimento terra</span><b></b><span>Demolizioni</span><b></b><span>Urbanizzazioni</span><b></b><span>Pavimentazioni</span><b></b><span>Movimento terra</span><b></b><span>Demolizioni</span><b></b><span>Urbanizzazioni</span><b></b><span>Pavimentazioni</span><b></b><span>Movimento terra</span><b></b><span>Demolizioni</span><b></b><span>Urbanizzazioni</span><b></b><span>Pavimentazioni</span><b></b><span>Movimento terra</span><b></b><span>Demolizioni</span><b></b><span>Urbanizzazioni</span><b></b><span>Pavimentazioni</span><b></b><span>Movimento terra</span><b></b><span>Demolizioni</span><b></b><span>Urbanizzazioni</span><b></b><span>Pavimentazioni</span><b></b><span>Movimento terra</span><b></b><span>Demolizioni</span><b></b><span>Urbanizzazioni</span><b></b><span>Pavimentazioni</span><b></b><span>Movimento terra</span><b></b><span>Demolizioni</span><b></b><span>Urbanizzazioni</span><b></b><span>Pavimentazioni</span><b></b><span>Movimento terra</span><b></b><span>Demolizioni</span><b></b><span>Urbanizzazioni</span><b></b><span>Pavimentazioni</span><b></b>
+  </div>
+</div>
+
+<section class="sez sez--inchiostro sez-aree">
   <div class="container">
-    
+    <div class="testa-sez">
+      
 <div class="section-heading" data-reveal>
   <p class="section-heading__num" aria-hidden="true">02/ <span class="section-heading__etichetta">SCEGLI L’ESIGENZA</span></p>
   <h2 class="section-heading__title">Da dove comincia il tuo intervento?</h2>
 </div>
 
-    <p class="lead u-max-60" data-reveal>Ogni lavoro nasce da una condizione concreta. Non è necessario conoscere già il nome tecnico della lavorazione: è sufficiente riconoscere il punto dal quale partire. Le quattro aree operative aiutano a individuare il percorso più vicino alla propria esigenza e ad approfondire soltanto ciò che serve. Se non sai ancora quale strada prendere, puoi raccontarci la situazione.</p>
-    <div class="griglia griglia--2 u-mt-6">
-      <article class="card card--hub" data-reveal>
-        <a class="card__link" href="/competenze/terra-e-preparazione/">
-          <div class="card__media">
-            <picture><source type="image/avif" srcset="/assets/img/movimento-terra-5-1024x531-1-480w.avif 480w, /assets/img/movimento-terra-5-1024x531-1-800w.avif 800w, /assets/img/movimento-terra-5-1024x531-1-1024w.avif 1024w" sizes="(min-width: 900px) 50vw, 100vw"><source type="image/webp" srcset="/assets/img/movimento-terra-5-1024x531-1-480w.webp 480w, /assets/img/movimento-terra-5-1024x531-1-800w.webp 800w, /assets/img/movimento-terra-5-1024x531-1-1024w.webp 1024w" sizes="(min-width: 900px) 50vw, 100vw"><img src="/assets/img/movimento-terra-5-1024x531-1-480w.jpeg" alt="Terra e preparazione" loading="lazy" decoding="async" class="card__img" width="1024" height="531" srcset="/assets/img/movimento-terra-5-1024x531-1-480w.jpeg 480w, /assets/img/movimento-terra-5-1024x531-1-800w.jpeg 800w, /assets/img/movimento-terra-5-1024x531-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 50vw, 100vw"></picture>
-            <span class="card__num" aria-hidden="true">01/</span>
+      <p class="testa-sez__testo" data-reveal>Ogni lavoro nasce da una condizione concreta. Non è necessario conoscere già il nome tecnico della lavorazione: è sufficiente riconoscere il punto dal quale partire. Le quattro aree operative aiutano a individuare il percorso più vicino alla propria esigenza e ad approfondire soltanto ciò che serve. Se non sai ancora quale strada prendere, puoi raccontarci la situazione.</p>
+    </div>
+    <div class="aree" data-aree>
+      <article class="area is-aperta" data-area>
+        <h3 class="area__h">
+          <button class="area__toggle" type="button" aria-expanded="true" aria-controls="area-terra-e-preparazione">
+            <span class="area__num" aria-hidden="true">01</span>
+            <span class="area__nome">Terra e preparazione</span>
+            <span class="area__piu" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="area__pannello" id="area-terra-e-preparazione">
+          <div class="area__interno">
+            <figure class="area__foto">
+              <picture><source type="image/webp" srcset="/assets/img/cantiere-02-digestori-02-480w-q66.webp 480w, /assets/img/cantiere-02-digestori-02-800w-q66.webp 800w, /assets/img/cantiere-02-digestori-02-1200w-q66.webp 1200w, /assets/img/cantiere-02-digestori-02-1600w-q66.webp 1600w" sizes="(min-width: 900px) 46vw, 100vw"><img src="/assets/img/cantiere-02-digestori-02-480w.jpeg" alt="Escavatore cingolato giallo scava la terra accanto a due digestori a cupola" loading="lazy" decoding="async" class="area__img" width="1600" height="1067" srcset="/assets/img/cantiere-02-digestori-02-480w.jpeg 480w, /assets/img/cantiere-02-digestori-02-800w.jpeg 800w, /assets/img/cantiere-02-digestori-02-1200w.jpeg 1200w, /assets/img/cantiere-02-digestori-02-1600w.jpeg 1600w" sizes="(min-width: 900px) 46vw, 100vw"></picture>
+              <figcaption class="area__eti" aria-hidden="true"><b>01 / 04</b> Terra e preparazione</figcaption>
+            </figure>
+            <div class="area__testo" data-area-testo>
+              <p>Quando il lavoro comincia da ciò che sta sotto: terreno, acqua, quote e forma dello spazio.</p>
+              <ul class="lista-voci">
+                <li><a class="voce" href="/competenze/terra-e-preparazione/movimento-terra/">Movimento terra</a></li>
+                <li><a class="voce" href="/competenze/terra-e-preparazione/drenaggio-terreni/">Drenaggio terreni</a></li>
+                <li><a class="voce" href="/competenze/terra-e-preparazione/parchi-e-sistemazioni-a-verde/">Parchi e sistemazioni a verde</a></li>
+              </ul>
+              <a class="voce voce--accent area__apri" href="/competenze/terra-e-preparazione/">Terra e preparazione<span aria-hidden="true"> →</span></a>
+            </div>
           </div>
-          <div class="card__body">
-            <h3 class="card__title">Terra e preparazione</h3>
-            <p class="card__text">Quando il lavoro comincia da ciò che sta sotto: terreno, acqua, quote e forma dello spazio.</p>
-            <span class="card__arrow" aria-hidden="true">→</span>
-          </div>
-        </a>
+        </div>
       </article>
-      <article class="card card--hub" data-reveal>
-        <a class="card__link" href="/competenze/infrastrutture-e-superfici/">
-          <div class="card__media">
-            <picture><source type="image/avif" srcset="/assets/img/asfaltature-img-0940-1024x576-1-480w.avif 480w, /assets/img/asfaltature-img-0940-1024x576-1-800w.avif 800w, /assets/img/asfaltature-img-0940-1024x576-1-1024w.avif 1024w" sizes="(min-width: 900px) 50vw, 100vw"><source type="image/webp" srcset="/assets/img/asfaltature-img-0940-1024x576-1-480w.webp 480w, /assets/img/asfaltature-img-0940-1024x576-1-800w.webp 800w, /assets/img/asfaltature-img-0940-1024x576-1-1024w.webp 1024w" sizes="(min-width: 900px) 50vw, 100vw"><img src="/assets/img/asfaltature-img-0940-1024x576-1-480w.jpeg" alt="Infrastrutture e superfici" loading="lazy" decoding="async" class="card__img" width="1024" height="576" srcset="/assets/img/asfaltature-img-0940-1024x576-1-480w.jpeg 480w, /assets/img/asfaltature-img-0940-1024x576-1-800w.jpeg 800w, /assets/img/asfaltature-img-0940-1024x576-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 50vw, 100vw"></picture>
-            <span class="card__num" aria-hidden="true">02/</span>
+      <article class="area" data-area>
+        <h3 class="area__h">
+          <button class="area__toggle" type="button" aria-expanded="true" aria-controls="area-infrastrutture-e-superfici">
+            <span class="area__num" aria-hidden="true">02</span>
+            <span class="area__nome">Infrastrutture e superfici</span>
+            <span class="area__piu" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="area__pannello" id="area-infrastrutture-e-superfici">
+          <div class="area__interno">
+            <figure class="area__foto">
+              <picture><source type="image/webp" srcset="/assets/img/cantiere-08-condotte-10-480w-q66.webp 480w, /assets/img/cantiere-08-condotte-10-800w-q66.webp 800w, /assets/img/cantiere-08-condotte-10-1200w-q66.webp 1200w, /assets/img/cantiere-08-condotte-10-1600w-q66.webp 1600w" sizes="(min-width: 900px) 46vw, 100vw"><img src="/assets/img/cantiere-08-condotte-10-480w.jpeg" alt="Tubo arancione sospeso alla benna viene posato nella trincea da operai in maglia arancione" loading="lazy" decoding="async" class="area__img" width="1600" height="1066" srcset="/assets/img/cantiere-08-condotte-10-480w.jpeg 480w, /assets/img/cantiere-08-condotte-10-800w.jpeg 800w, /assets/img/cantiere-08-condotte-10-1200w.jpeg 1200w, /assets/img/cantiere-08-condotte-10-1600w.jpeg 1600w" sizes="(min-width: 900px) 46vw, 100vw"></picture>
+              <figcaption class="area__eti" aria-hidden="true"><b>02 / 04</b> Infrastrutture e superfici</figcaption>
+            </figure>
+            <div class="area__testo" data-area-testo>
+              <p>Quando occorre costruire ciò che collega, sostiene o completa uno spazio destinato a essere utilizzato.</p>
+              <ul class="lista-voci">
+                <li><a class="voce" href="/competenze/infrastrutture-e-superfici/urbanizzazioni/">Urbanizzazioni</a></li>
+                <li><a class="voce" href="/competenze/infrastrutture-e-superfici/asfaltature/">Asfaltature</a></li>
+                <li><a class="voce" href="/competenze/infrastrutture-e-superfici/pavimentazioni-industriali-e-civili/">Pavimentazioni industriali e civili</a></li>
+                <li><a class="voce" href="/competenze/infrastrutture-e-superfici/pavimentazioni-ecologiche/">Pavimentazioni ecologiche</a></li>
+              </ul>
+              <a class="voce voce--accent area__apri" href="/competenze/infrastrutture-e-superfici/">Infrastrutture e superfici<span aria-hidden="true"> →</span></a>
+            </div>
           </div>
-          <div class="card__body">
-            <h3 class="card__title">Infrastrutture e superfici</h3>
-            <p class="card__text">Quando occorre costruire ciò che collega, sostiene o completa uno spazio destinato a essere utilizzato.</p>
-            <span class="card__arrow" aria-hidden="true">→</span>
-          </div>
-        </a>
+        </div>
       </article>
-      <article class="card card--hub" data-reveal>
-        <a class="card__link" href="/competenze/demolizione-e-recupero/">
-          <div class="card__media">
-            <picture><source type="image/avif" srcset="/assets/img/demolizioni-3-1024x768-1-480w.avif 480w, /assets/img/demolizioni-3-1024x768-1-800w.avif 800w, /assets/img/demolizioni-3-1024x768-1-1024w.avif 1024w" sizes="(min-width: 900px) 50vw, 100vw"><source type="image/webp" srcset="/assets/img/demolizioni-3-1024x768-1-480w.webp 480w, /assets/img/demolizioni-3-1024x768-1-800w.webp 800w, /assets/img/demolizioni-3-1024x768-1-1024w.webp 1024w" sizes="(min-width: 900px) 50vw, 100vw"><img src="/assets/img/demolizioni-3-1024x768-1-480w.jpeg" alt="Demolizione e recupero" loading="lazy" decoding="async" class="card__img" width="1024" height="768" srcset="/assets/img/demolizioni-3-1024x768-1-480w.jpeg 480w, /assets/img/demolizioni-3-1024x768-1-800w.jpeg 800w, /assets/img/demolizioni-3-1024x768-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 50vw, 100vw"></picture>
-            <span class="card__num" aria-hidden="true">03/</span>
+      <article class="area" data-area>
+        <h3 class="area__h">
+          <button class="area__toggle" type="button" aria-expanded="true" aria-controls="area-demolizione-e-recupero">
+            <span class="area__num" aria-hidden="true">03</span>
+            <span class="area__nome">Demolizione e recupero</span>
+            <span class="area__piu" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="area__pannello" id="area-demolizione-e-recupero">
+          <div class="area__interno">
+            <figure class="area__foto">
+              <picture><source type="image/webp" srcset="/assets/img/cantiere-03-demolizione-03-480w-q66.webp 480w, /assets/img/cantiere-03-demolizione-03-800w-q66.webp 800w, /assets/img/cantiere-03-demolizione-03-1200w-q66.webp 1200w, /assets/img/cantiere-03-demolizione-03-1600w-q66.webp 1600w" sizes="(min-width: 900px) 46vw, 100vw"><img src="/assets/img/cantiere-03-demolizione-03-480w.jpeg" alt="Escavatore gommato giallo con martellone demolitore che frantuma il calcestruzzo, nuvola di polvere" loading="lazy" decoding="async" class="area__img" width="1600" height="1066" srcset="/assets/img/cantiere-03-demolizione-03-480w.jpeg 480w, /assets/img/cantiere-03-demolizione-03-800w.jpeg 800w, /assets/img/cantiere-03-demolizione-03-1200w.jpeg 1200w, /assets/img/cantiere-03-demolizione-03-1600w.jpeg 1600w" sizes="(min-width: 900px) 46vw, 100vw"></picture>
+              <figcaption class="area__eti" aria-hidden="true"><b>03 / 04</b> Demolizione e recupero</figcaption>
+            </figure>
+            <div class="area__testo" data-area-testo>
+              <p>Quando è necessario rimuovere con controllo e riconoscere ciò che può tornare a essere risorsa.</p>
+              <ul class="lista-voci">
+                <li><a class="voce" href="/competenze/demolizione-e-recupero/demolizioni/">Demolizioni</a></li>
+                <li><a class="voce" href="/competenze/demolizione-e-recupero/trasporto-rifiuti/">Trasporto rifiuti</a></li>
+                <li><a class="voce" href="/operativita/centro-di-recupero/#conferimento">Recupero materiali inerti</a></li>
+                <li><a class="voce" href="/competenze/demolizione-e-recupero/fornitura-inerti-e-conglomerati/">Fornitura inerti e conglomerati</a></li>
+              </ul>
+              <a class="voce voce--accent area__apri" href="/competenze/demolizione-e-recupero/">Demolizione e recupero<span aria-hidden="true"> →</span></a>
+            </div>
           </div>
-          <div class="card__body">
-            <h3 class="card__title">Demolizione e recupero</h3>
-            <p class="card__text">Quando è necessario rimuovere con controllo e riconoscere ciò che può tornare a essere risorsa.</p>
-            <span class="card__arrow" aria-hidden="true">→</span>
-          </div>
-        </a>
+        </div>
       </article>
-      <article class="card card--hub" data-reveal>
-        <a class="card__link" href="/competenze/ambiente-e-completamento/">
-          <div class="card__media">
-            <picture><source type="image/avif" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.avif 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.avif 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.avif 1024w" sizes="(min-width: 900px) 50vw, 100vw"><source type="image/webp" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.webp 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.webp 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.webp 1024w" sizes="(min-width: 900px) 50vw, 100vw"><img src="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.jpeg" alt="Ambiente e completamento" loading="lazy" decoding="async" class="card__img" width="1024" height="768" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.jpeg 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.jpeg 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 50vw, 100vw"></picture>
-            <span class="card__num" aria-hidden="true">04/</span>
+      <article class="area" data-area>
+        <h3 class="area__h">
+          <button class="area__toggle" type="button" aria-expanded="true" aria-controls="area-ambiente-e-completamento">
+            <span class="area__num" aria-hidden="true">04</span>
+            <span class="area__nome">Ambiente e completamento</span>
+            <span class="area__piu" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="area__pannello" id="area-ambiente-e-completamento">
+          <div class="area__interno">
+            <figure class="area__foto">
+              <picture><source type="image/avif" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.avif 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.avif 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.avif 1024w" sizes="(min-width: 900px) 46vw, 100vw"><source type="image/webp" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.webp 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.webp 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.webp 1024w" sizes="(min-width: 900px) 46vw, 100vw"><img src="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.jpeg" alt="Ambiente e completamento" loading="lazy" decoding="async" class="area__img" width="1024" height="768" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.jpeg 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.jpeg 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 46vw, 100vw"></picture>
+              <figcaption class="area__eti" aria-hidden="true"><b>04 / 04</b> Ambiente e completamento</figcaption>
+            </figure>
+            <div class="area__testo" data-area-testo>
+              <p>Quando un luogo deve essere risanato, recuperato o accompagnato fino alla sua nuova funzione.</p>
+              <ul class="lista-voci">
+                <li><a class="voce" href="/competenze/ambiente-e-completamento/bonifiche-ambientali/">Bonifiche ambientali</a></li>
+                <li><a class="voce" href="/competenze/ambiente-e-completamento/trattamenti-deumidificanti/">Trattamenti deumidificanti</a></li>
+                <li><a class="voce" href="/competenze/ambiente-e-completamento/finiture-ambienti/">Finiture ambienti</a></li>
+              </ul>
+              <a class="voce voce--accent area__apri" href="/competenze/ambiente-e-completamento/">Ambiente e completamento<span aria-hidden="true"> →</span></a>
+            </div>
           </div>
-          <div class="card__body">
-            <h3 class="card__title">Ambiente e completamento</h3>
-            <p class="card__text">Quando un luogo deve essere risanato, recuperato o accompagnato fino alla sua nuova funzione.</p>
-            <span class="card__arrow" aria-hidden="true">→</span>
-          </div>
-        </a>
+        </div>
       </article>
     </div>
-    <p class="u-mt-6">
-<a class="btn btn--accent btn--big" href="/contatti/#intervento" data-cta-intervento>Parliamo del tuo intervento</a>
+    <p class="sez-aree__cta">
+<a class="btn btn--accent btn--big" href="/contatti/#intervento" data-cta-intervento><span>Parliamo del tuo intervento</span></a>
 </p>
   </div>
 </section>
-<section class="sezione">
+<section class="sez oggi">
   <div class="container">
     <p class="section-heading__num" aria-hidden="true">03/ <span class="section-heading__etichetta">TEDESCHI OGGI</span></p>
-    <div class="griglia griglia--2 u-mt-4">
-      <div class="u-flow" data-reveal>
-        <h2 class="section-heading__title">Capacità coordinata</h2>
-        <p>Le squadre conoscono il proprio compito e l’organizzazione mantiene unito ciò che accade sul campo. È qui che la capacità di TEDESCHI diventa coordinata: nel raccordo fra chi prepara il lavoro, chi lo esegue e chi ne segue l’avanzamento. Per questo tempi, ruoli e responsabilità trovano una direzione fluida e comune, capace di unire singolo passaggio opera nel suo complesso.</p>
+    <div class="oggi__griglia">
+      <div class="oggi__blocco oggi__blocco--primo">
+        <h2 class="statement__titolo oggi__titolo">Capacità coordinata</h2>
+        <p data-reveal>Le squadre conoscono il proprio compito e l’organizzazione mantiene unito ciò che accade sul campo. È qui che la capacità di TEDESCHI diventa coordinata: nel raccordo fra chi prepara il lavoro, chi lo esegue e chi ne segue l’avanzamento. Per questo tempi, ruoli e responsabilità trovano una direzione fluida e comune, capace di unire ogni singolo passaggio all’opera nel suo complesso.</p>
       </div>
-      <div class="u-flow" data-reveal>
-        <h2 class="section-heading__title">Valore trasversale</h2>
-        <p>Ci sono interventi che richiedono grandi squadre, molti mezzi e una pianificazione articolata. Altri chiedono poche persone, strumenti precisi e la stessa attenzione. Per TEDESCHI, la dimensione del lavoro cambia la configurazione delle risorse, non la responsabilità con cui viene affrontato. Ogni richiesta viene osservata per ciò che realmente necessita, costruendo una risposta proporzionata e concreta. Perché anche un lavoro circoscritto può rappresentare l’inizio di una relazione positiva; e perché fare bene non dipende dalla grandezza del cantiere, ma dalla cura con cui ci si assume il risultato.</p>
+      <div class="oggi__blocco">
+        <figure class="oggi__foto mask-reveal">
+          <picture><source type="image/webp" srcset="/assets/img/cantiere-01-silos-06-480w-q66.webp 480w, /assets/img/cantiere-01-silos-06-800w-q66.webp 800w, /assets/img/cantiere-01-silos-06-1200w-q66.webp 1200w, /assets/img/cantiere-01-silos-06-1600w-q66.webp 1600w" sizes="(min-width: 900px) 46vw, 100vw"><img src="/assets/img/cantiere-01-silos-06-480w.jpeg" alt="Due operai in maglia arancione e casco bianco consultano i disegni di progetto su un tavolo giallo davanti alle casseforme" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/cantiere-01-silos-06-480w.jpeg 480w, /assets/img/cantiere-01-silos-06-800w.jpeg 800w, /assets/img/cantiere-01-silos-06-1200w.jpeg 1200w, /assets/img/cantiere-01-silos-06-1600w.jpeg 1600w" sizes="(min-width: 900px) 46vw, 100vw"></picture>
+        </figure>
+        <h2 class="statement__titolo oggi__titolo">Valore trasversale</h2>
+        <p data-reveal>Ci sono interventi che richiedono grandi squadre, molti mezzi e una pianificazione articolata. Altri chiedono poche persone, strumenti precisi e la stessa attenzione. Per TEDESCHI, la dimensione del lavoro cambia la configurazione delle risorse, non la responsabilità con cui viene affrontato. Ogni richiesta viene osservata per ciò che realmente necessita, costruendo una risposta proporzionata e concreta. Perché anche un lavoro circoscritto può rappresentare l’inizio di una relazione positiva; e perché fare bene non dipende dalla grandezza del cantiere, ma dalla cura con cui ci si assume il risultato.</p>
+        <p class="oggi__cta">
+<a class="btn btn--accent btn--big" href="/contatti/#intervento" data-cta-intervento><span>Parliamo del tuo intervento</span></a>
+</p>
       </div>
     </div>
-    <p class="u-mt-6">
-<a class="btn btn--accent btn--big" href="/contatti/#intervento" data-cta-intervento>Parliamo del tuo intervento</a>
-</p>
   </div>
 </section>
-<section class="sezione tema-cemento">
+<section class="capitolo sez capitolo--inchiostro persone" data-capitolo>
   <div class="container">
-    <div class="split">
-      <div class="u-flow">
-        
-<div class="section-heading" data-reveal>
-  <p class="section-heading__num" aria-hidden="true">04/ <span class="section-heading__etichetta">PERSONE E METODO</span></p>
-  <h2 class="section-heading__title">Da dove nascono le soluzioni</h2>
-</div>
-
+    <div class="capitolo__rule" aria-hidden="true"><span>04/ Persone e metodo</span><span>TEDESCHI</span></div>
+    <div class="persone__griglia">
+      <figure class="capitolo__foto">
+        <div class="capitolo__finestra mask-reveal" data-parallax="40">
+          <picture><source type="image/webp" srcset="/assets/img/cantiere-12-capannone-07-480w-q66.webp 480w, /assets/img/cantiere-12-capannone-07-800w-q66.webp 800w, /assets/img/cantiere-12-capannone-07-1200w-q66.webp 1200w, /assets/img/cantiere-12-capannone-07-1600w-q66.webp 1600w" sizes="(min-width: 900px) 54vw, 100vw"><img src="/assets/img/cantiere-12-capannone-07-480w.jpeg" alt="Squadra di operai con casco controlla le casseforme di un pilastro" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/cantiere-12-capannone-07-480w.jpeg 480w, /assets/img/cantiere-12-capannone-07-800w.jpeg 800w, /assets/img/cantiere-12-capannone-07-1200w.jpeg 1200w, /assets/img/cantiere-12-capannone-07-1600w.jpeg 1600w" sizes="(min-width: 900px) 54vw, 100vw"></picture>
+        </div>
+        <span class="capitolo__numero" aria-hidden="true" data-parallax="-30">04</span>
+      </figure>
+      <div class="persone__copy">
+        <h2 class="capitolo__titolo">Da dove nascono le soluzioni</h2>
         <p data-reveal>Prima si osserva. Poi si mette ordine. La pianificazione prepara il lavoro, ma il cantiere è materia viva: può cambiare, mostrare condizioni inattese e richiedere decisioni rapide. Il metodo TEDESCHI si misura anche in questi momenti. Riconosciamo il problema, ne condividiamo le conseguenze e coinvolgiamo chi può intervenire, mentre il lavoro procede. Una direzione presente e persone abituate a collaborare permettono di agire con lucidità, senza lasciare che una difficoltà perda tempo passando da una responsabilità all’altra. È così che affrontiamo le complessità e troviamo la strada per continuare ad avanzare.</p>
-        <p>
-<a class="link-freccia" href="/impresa/#persone-e-metodo">Persone e metodo<span aria-hidden="true"> →</span></a>
-</p>
-      </div>
-      <div class="split__media" data-reveal>
-        <picture><source type="image/avif" srcset="/assets/img/demolizioni-demolizione-7-1024x768-1-480w.avif 480w, /assets/img/demolizioni-demolizione-7-1024x768-1-800w.avif 800w, /assets/img/demolizioni-demolizione-7-1024x768-1-1024w.avif 1024w" sizes="(min-width: 900px) 50vw, 100vw"><source type="image/webp" srcset="/assets/img/demolizioni-demolizione-7-1024x768-1-480w.webp 480w, /assets/img/demolizioni-demolizione-7-1024x768-1-800w.webp 800w, /assets/img/demolizioni-demolizione-7-1024x768-1-1024w.webp 1024w" sizes="(min-width: 900px) 50vw, 100vw"><img src="/assets/img/demolizioni-demolizione-7-1024x768-1-480w.jpeg" alt="Squadra e mezzi Impresa Tedeschi al lavoro in cantiere" loading="lazy" decoding="async" width="1024" height="768" srcset="/assets/img/demolizioni-demolizione-7-1024x768-1-480w.jpeg 480w, /assets/img/demolizioni-demolizione-7-1024x768-1-800w.jpeg 800w, /assets/img/demolizioni-demolizione-7-1024x768-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 50vw, 100vw"></picture>
+        
+<ul class="lista-voci lista-voci--fisse">
+  <li><a class="voce" href="/impresa/#persone-e-metodo">Persone e metodo</a></li>
+</ul>
+
       </div>
     </div>
   </div>
 </section>
-<section class="sezione">
+<section class="sez cantieri-home">
   <div class="container">
-    
+    <div class="testa-sez">
+      
 <div class="section-heading" data-reveal>
   <p class="section-heading__num" aria-hidden="true">05/ <span class="section-heading__etichetta">CANTIERI SELEZIONATI</span></p>
   <h2 class="section-heading__title">Le opere non necessitano di aggettivi.</h2>
 </div>
 
-    <p class="u-max-60" data-reveal>Le opere hanno condizioni di partenza, vincoli, scelte e risultati. Nei cantieri selezionati mostriamo quale problema era necessario affrontare, quale intervento è stato costruito e che cosa è cambiato al termine del lavoro. Le fotografie riportano la materia e le fasi; i dati permettono di comprenderne la dimensione reale. È questo che dà sostanza al nostro modo di lavorare. Siamo convinti che l’autorevolezza nasca da ciò che viene realizzato e dimostrato ogni giorno.</p>
-    <div class="griglia griglia--3 griglia--bento u-mt-6">
-      
-<article class="card card--cantiere" data-reveal data-area="Infrastrutture e superfici" data-settore="Industriale">
-  <a class="card__link" href="/cantieri/piazzale-asfaltatura-polo-logistico/">
-    <div class="card__media">
-      <picture><source type="image/avif" srcset="/assets/img/asfaltature-img-0940-1024x576-1-480w.avif 480w, /assets/img/asfaltature-img-0940-1024x576-1-800w.avif 800w, /assets/img/asfaltature-img-0940-1024x576-1-1024w.avif 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="/assets/img/asfaltature-img-0940-1024x576-1-480w.webp 480w, /assets/img/asfaltature-img-0940-1024x576-1-800w.webp 800w, /assets/img/asfaltature-img-0940-1024x576-1-1024w.webp 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="/assets/img/asfaltature-img-0940-1024x576-1-480w.jpeg" alt="Piazzale e asfaltatura per polo logistico — provincia di Cremona" loading="lazy" decoding="async" class="card__img" width="1024" height="576" srcset="/assets/img/asfaltature-img-0940-1024x576-1-480w.jpeg 480w, /assets/img/asfaltature-img-0940-1024x576-1-800w.jpeg 800w, /assets/img/asfaltature-img-0940-1024x576-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">DEMO — in attesa delle referenze reali</span>
+      <p class="testa-sez__testo" data-reveal>Le opere hanno condizioni di partenza, vincoli, scelte e risultati. Nei cantieri selezionati mostriamo quale problema era necessario affrontare, quale intervento è stato costruito e che cosa è cambiato al termine del lavoro. Le fotografie riportano la materia e le fasi; i dati permettono di comprenderne la dimensione reale. È questo che dà sostanza al nostro modo di lavorare. Siamo convinti che l’autorevolezza nasca da ciò che viene realizzato e dimostrato ogni giorno.</p>
     </div>
-    <div class="card__body">
-      <p class="card__meta">
-        <span class="tag">Provincia di Cremona</span>
-        <span class="tag">Industriale</span>
-      </p>
-      <h3 class="card__title">Piazzale e asfaltatura per polo logistico — provincia di Cremona</h3>
-      <p class="card__text">Un piazzale dimensionato sui carichi veri, dal sottofondo al tappeto.</p>
-      <span class="card__arrow" aria-hidden="true">→</span>
-    </div>
-  </a>
-</article>
-
-      
-<article class="card card--cantiere" data-reveal data-area="Demolizione e recupero" data-settore="Industriale">
-  <a class="card__link" href="/cantieri/demolizione-fabbricato-industriale/">
-    <div class="card__media">
-      <picture><source type="image/avif" srcset="/assets/img/demolizioni-3-1024x768-1-480w.avif 480w, /assets/img/demolizioni-3-1024x768-1-800w.avif 800w, /assets/img/demolizioni-3-1024x768-1-1024w.avif 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="/assets/img/demolizioni-3-1024x768-1-480w.webp 480w, /assets/img/demolizioni-3-1024x768-1-800w.webp 800w, /assets/img/demolizioni-3-1024x768-1-1024w.webp 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="/assets/img/demolizioni-3-1024x768-1-480w.jpeg" alt="Demolizione controllata di fabbricato industriale — Cremona" loading="lazy" decoding="async" class="card__img" width="1024" height="768" srcset="/assets/img/demolizioni-3-1024x768-1-480w.jpeg 480w, /assets/img/demolizioni-3-1024x768-1-800w.jpeg 800w, /assets/img/demolizioni-3-1024x768-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">DEMO — in attesa delle referenze reali</span>
-    </div>
-    <div class="card__body">
-      <p class="card__meta">
-        <span class="tag">Cremona città</span>
-        <span class="tag">Industriale</span>
-      </p>
-      <h3 class="card__title">Demolizione controllata di fabbricato industriale — Cremona</h3>
-      <p class="card__text">Abbattimento in sicurezza certificata, con le macerie avviate a recupero.</p>
-      <span class="card__arrow" aria-hidden="true">→</span>
-    </div>
-  </a>
-</article>
-
-      
-<article class="card card--cantiere" data-reveal data-area="Ambiente e completamento" data-settore="Ambientale">
-  <a class="card__link" href="/cantieri/bonifica-sito-produttivo-dismesso/">
-    <div class="card__media">
-      <picture><source type="image/avif" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.avif 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.avif 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.avif 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.webp 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.webp 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.webp 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.jpeg" alt="Bonifica ambientale di sito produttivo dismesso — provincia di Cremona" loading="lazy" decoding="async" class="card__img" width="1024" height="768" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.jpeg 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.jpeg 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">DEMO — in attesa delle referenze reali</span>
-    </div>
-    <div class="card__body">
-      <p class="card__meta">
-        <span class="tag">Provincia di Cremona</span>
-        <span class="tag">Ambientale</span>
-      </p>
-      <h3 class="card__title">Bonifica ambientale di sito produttivo dismesso — provincia di Cremona</h3>
-      <p class="card__text">Rimozione, trasporto e destino certificato dei materiali, in Categoria 9.</p>
-      <span class="card__arrow" aria-hidden="true">→</span>
-    </div>
-  </a>
-</article>
-
-    </div>
-    <div class="u-mt-6">
-      
-<div class="da-completare da-completare--dato" role="note" data-da-completare>
-  <span class="da-completare__tipo">Dato da confermare</span>
-  <strong class="da-completare__titolo">Titolo reale del cantiere</strong><p class="da-completare__testo">Fotografia + problema affrontato + risultato documentato. Da completare.</p>
-</div>
-
+    <div class="griglia-cantieri">
+      <article class="card card--cantiere" data-reveal>
+        <a class="card__link" href="/cantieri/cantiere-01-opere-calcestruzzo-impianto-silos/">
+          <div class="card__media">
+            <picture><source type="image/webp" srcset="/assets/img/cantiere-01-silos-01-480w-q66.webp 480w, /assets/img/cantiere-01-silos-01-800w-q66.webp 800w, /assets/img/cantiere-01-silos-01-1200w-q66.webp 1200w, /assets/img/cantiere-01-silos-01-1600w-q66.webp 1600w" sizes="(min-width: 1000px) 56vw, 100vw"><img src="/assets/img/cantiere-01-silos-01-480w.jpeg" alt="Impianto con grandi silos metallici, in primo piano casseforme e ferri d'armatura di un'opera in calcestruzzo" loading="lazy" decoding="async" class="card__img" width="1600" height="1066" srcset="/assets/img/cantiere-01-silos-01-480w.jpeg 480w, /assets/img/cantiere-01-silos-01-800w.jpeg 800w, /assets/img/cantiere-01-silos-01-1200w.jpeg 1200w, /assets/img/cantiere-01-silos-01-1600w.jpeg 1600w" sizes="(min-width: 1000px) 56vw, 100vw"></picture>
+            <span class="card__demo">Titolo e dati da confermare</span>
+            <span class="card__scopri" aria-hidden="true">Scopri</span>
+          </div>
+          <div class="card__body">
+            <p class="card__meta"><span class="tag">Infrastrutture e superfici</span><span class="tag">Industriale</span>
+            </p>
+            <h3 class="card__title">Opere in calcestruzzo e sottoservizi per impianto con silos</h3>
+          </div>
+        </a>
+      </article>
+      <article class="card card--cantiere" data-reveal>
+        <a class="card__link" href="/cantieri/cantiere-02-scavi-tubazioni-impianto-digestori/">
+          <div class="card__media">
+            <picture><source type="image/webp" srcset="/assets/img/cantiere-02-digestori-02-480w-q66.webp 480w, /assets/img/cantiere-02-digestori-02-800w-q66.webp 800w, /assets/img/cantiere-02-digestori-02-1200w-q66.webp 1200w, /assets/img/cantiere-02-digestori-02-1600w-q66.webp 1600w" sizes="(min-width: 1000px) 40vw, (min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-02-digestori-02-480w.jpeg" alt="Escavatore cingolato giallo scava la terra accanto a due digestori a cupola" loading="lazy" decoding="async" class="card__img" width="1600" height="1067" srcset="/assets/img/cantiere-02-digestori-02-480w.jpeg 480w, /assets/img/cantiere-02-digestori-02-800w.jpeg 800w, /assets/img/cantiere-02-digestori-02-1200w.jpeg 1200w, /assets/img/cantiere-02-digestori-02-1600w.jpeg 1600w" sizes="(min-width: 1000px) 40vw, (min-width: 600px) 50vw, 100vw"></picture>
+            <span class="card__demo">Titolo e dati da confermare</span>
+            <span class="card__scopri" aria-hidden="true">Scopri</span>
+          </div>
+          <div class="card__body">
+            <p class="card__meta"><span class="tag">Terra e preparazione</span><span class="tag">Agricolo</span>
+            </p>
+            <h3 class="card__title">Scavi e posa di tubazioni presso un impianto con digestori</h3>
+          </div>
+        </a>
+      </article>
+      <article class="card card--cantiere" data-reveal>
+        <a class="card__link" href="/cantieri/cantiere-05-percorsi-pavimentazioni-edificio-storico/">
+          <div class="card__media">
+            <picture><source type="image/webp" srcset="/assets/img/cantiere-05-edificio-storico-10-480w-q66.webp 480w, /assets/img/cantiere-05-edificio-storico-10-800w-q66.webp 800w, /assets/img/cantiere-05-edificio-storico-10-1200w-q66.webp 1200w, /assets/img/cantiere-05-edificio-storico-10-1600w-q66.webp 1600w" sizes="(min-width: 1000px) 40vw, (min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-05-edificio-storico-10-480w.jpeg" alt="Edificio storico in mattoni con ampia struttura vetrata e scala metallica, circondato dal verde" loading="lazy" decoding="async" class="card__img" width="1600" height="1066" srcset="/assets/img/cantiere-05-edificio-storico-10-480w.jpeg 480w, /assets/img/cantiere-05-edificio-storico-10-800w.jpeg 800w, /assets/img/cantiere-05-edificio-storico-10-1200w.jpeg 1200w, /assets/img/cantiere-05-edificio-storico-10-1600w.jpeg 1600w" sizes="(min-width: 1000px) 40vw, (min-width: 600px) 50vw, 100vw"></picture>
+            <span class="card__demo">Titolo e dati da confermare</span>
+            <span class="card__scopri" aria-hidden="true">Scopri</span>
+          </div>
+          <div class="card__body">
+            <p class="card__meta"><span class="tag">Infrastrutture e superfici</span><span class="tag">Civile</span>
+            </p>
+            <h3 class="card__title">Percorsi e pavimentazioni esterne di un edificio storico recuperato</h3>
+          </div>
+        </a>
+      </article>
     </div>
   </div>
 </section>
-<section class="sezione tema-scuro">
+<section class="sez sez--inchiostro capacita">
   <div class="container">
-    
+    <div class="testa-sez">
+      
 <div class="section-heading" data-reveal>
   <p class="section-heading__num" aria-hidden="true">06/ <span class="section-heading__etichetta">CAPACITÀ OPERATIVA</span></p>
   <h2 class="section-heading__title">L’esperienza che dona forza</h2>
 </div>
 
-    <p class="lead u-max-60" data-reveal>Un macchinario è solo potenziale inespresso finché non incontra la competenza di persone qualificate. A fare la differenza è il modo in cui viene impiegato: la lettura del terreno, il controllo della lavorazione, l’attenzione a ciò che accade intorno. Per TEDESCHI, la capacità operativa si misura in questo rapporto fra strumenti e mestiere. Il valore non consiste nell’avere tutto, ma nel saper riconoscere ciò che serve e trasformarlo in una risposta operativa coerente.</p>
-    <div class="griglia griglia--3 u-mt-6 blocchi-operativi">
-      <article class="blocco-operativo u-flow" data-reveal>
-        <h3 class="blocco-operativo__titolo">Macchinari e Tecnologie</h3>
+      <p class="testa-sez__testo" data-reveal>Un macchinario è solo potenziale inespresso finché non incontra la competenza di persone qualificate. A fare la differenza è il modo in cui viene impiegato: la lettura del terreno, il controllo della lavorazione, l’attenzione a ciò che accade intorno. Per TEDESCHI, la capacità operativa si misura in questo rapporto fra strumenti e mestiere. Il valore non consiste nell’avere tutto, ma nel saper riconoscere ciò che serve e trasformarlo in una risposta operativa coerente.</p>
+    </div>
+    <figure class="filmato" data-filmato>
+      <div class="filmato__riquadro mask-reveal" data-filmato-riquadro>
+        <img class="filmato__poster" src="/assets/video/poster-video.jpg" alt="Vista aerea del cantiere Ex Armaguerra a Cremona, fotogramma del video" width="1600" height="900" loading="lazy" decoding="async">
+        <a class="btn btn--accent btn--big filmato__play" href="/assets/video/tedeschi-ex-armaguerra.mp4" data-no-transizione data-filmato-play><span>Riproduci</span></a>
+      </div>
+      <figcaption class="filmato__didascalia">
+        <span>Ex Armaguerra, Cremona — il cantiere raccontato</span>
+        <span>3 min 51 s</span>
+      </figcaption>
+    </figure>
+    <div class="capacita__blocchi">
+      <article class="capacita__blocco" data-reveal>
+        <span class="capacita__n" aria-hidden="true">01</span>
+        <h3 class="capacita__titolo">Macchinari e Tecnologie</h3>
         <p>Un parco macchine diversificato e tecnologie di precisione per tradurre progetti, quote e misurazioni nelle lavorazioni sul campo. Qui puoi conoscere gli strumenti e osservarli nel loro impiego.</p>
-        <ul class="blocco-operativo__link">
-          <li>
-<a class="link-freccia" href="/operativita/parco-macchine/">Parco macchine<span aria-hidden="true"> →</span></a>
-</li>
-          <li>
-<a class="link-freccia" href="/operativita/tecnologie-di-precisione/">Tecnologie di precisione<span aria-hidden="true"> →</span></a>
-</li>
-        </ul>
+        
+<ul class="lista-voci lista-voci--colonna">
+  <li><a class="voce" href="/operativita/parco-macchine/">Parco macchine</a></li>
+  <li><a class="voce" href="/operativita/tecnologie-di-precisione/">Tecnologie di precisione</a></li>
+</ul>
+
       </article>
-      <article class="blocco-operativo u-flow" data-reveal>
-        <h3 class="blocco-operativo__titolo">Logistica e autonomia operativa</h3>
+      <article class="capacita__blocco" data-reveal>
+        <span class="capacita__n" aria-hidden="true">02</span>
+        <h3 class="capacita__titolo">Logistica e autonomia operativa</h3>
         <p>La capacità di organizzare trasporti, attrezzature e configurazioni senza perdere continuità tra una fase e la successiva.</p>
-        <ul class="blocco-operativo__link">
-          <li>
-<a class="link-freccia" href="/operativita/logistica-e-autonomia-operativa/">Logistica e autonomia operativa<span aria-hidden="true"> →</span></a>
-</li>
-        </ul>
+        
+<ul class="lista-voci lista-voci--colonna">
+  <li><a class="voce" href="/operativita/logistica-e-autonomia-operativa/">Logistica e autonomia operativa</a></li>
+</ul>
+
       </article>
-      <article class="blocco-operativo u-flow" data-reveal>
-        <h3 class="blocco-operativo__titolo">Centro di Recupero</h3>
+      <article class="capacita__blocco" data-reveal>
+        <span class="capacita__n" aria-hidden="true">03</span>
+        <h3 class="capacita__titolo">Centro di Recupero</h3>
         <p>Il punto nel quale il lavoro sui materiali prosegue oltre il cantiere. Consulta le attività del Centro, le condizioni di accesso e i riferimenti per la tua richiesta.</p>
-        <ul class="blocco-operativo__link">
-          <li>
-<a class="link-freccia" href="/operativita/centro-di-recupero/">Centro di Recupero<span aria-hidden="true"> →</span></a>
-</li>
-        </ul>
+        
+<ul class="lista-voci lista-voci--colonna">
+  <li><a class="voce" href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
+</ul>
+
       </article>
     </div>
   </div>
 </section>
-<section class="sezione">
-  <div class="container u-flow">
+<section class="sez contatto-finale">
+  <div class="container">
     
 <div class="section-heading" data-reveal>
   <p class="section-heading__num" aria-hidden="true">07/ <span class="section-heading__etichetta">CONTATTO FINALE</span></p>
   <h2 class="section-heading__title">Ogni soluzione comincia da qualcosa che ci racconti</h2>
 </div>
 
-    <p class="lead u-max-60" data-reveal>Prima di prendere forma, ogni intervento è un contesto da comprendere. Raccontaci che cosa deve cambiare, quali condizioni conosci e quale risultato vuoi raggiungere. Non partiremo da una risposta già pronta, ma dalle domande necessarie per leggere correttamente il lavoro. Da lì potremo individuare competenze, risorse e direzione. Perché il primo passo di una buona soluzione è comprendere davvero il problema che deve risolvere.</p>
-    <p class="u-mt-5">
-<a class="btn btn--accent btn--big" href="/contatti/#intervento" data-cta-intervento>Parliamo del tuo intervento</a>
-</p>
+    <div class="contatto-finale__riga">
+      <p data-reveal>Prima di prendere forma, ogni intervento è un contesto da comprendere. Raccontaci che cosa deve cambiare, quali condizioni conosci e quale risultato vuoi raggiungere. Non partiremo da una risposta già pronta, ma dalle domande necessarie per leggere correttamente il lavoro. Da lì potremo individuare competenze, risorse e direzione. Perché il primo passo di una buona soluzione è comprendere davvero il problema che deve risolvere.</p>
+      
+<a class="btn btn--accent btn--big" href="/contatti/#intervento" data-cta-intervento><span>Parliamo del tuo intervento</span></a>
+
+    </div>
   </div>
-</section>
+</section><script type="module">
+  const html = document.documentElement;
+  const aree = document.querySelector('[data-aree]');
+  if (aree) {
+    const righe = [...aree.querySelectorAll('[data-area]')];
+    const largo = matchMedia('(min-width: 900px)');
+    let corrente = 0;
+    const applica = () => {
+      const attivo = html.classList.contains('motion-on');
+      aree.classList.toggle('is-attivo', attivo);
+      righe.forEach((riga, i) => {
+        const btn = riga.querySelector('.area__toggle');
+        const testo = riga.querySelector('[data-area-testo]');
+        const aperta = !attivo || i === corrente;
+        riga.classList.toggle('is-aperta', attivo && i === corrente);
+        btn.setAttribute('aria-expanded', String(aperta));
+        btn.tabIndex = attivo ? 0 : -1;
+        testo.inert = !aperta;
+      });
+    };
+    // su mobile il pannello aperto sopra si chiude: il tasto toccato non deve scappare via
+    const tieniFermo = (btn) => {
+      const y0 = btn.getBoundingClientRect().top;
+      const fine = performance.now() + 750;
+      const passo = () => {
+        const d = btn.getBoundingClientRect().top - y0;
+        if (Math.abs(d) > 0.5) window.scrollBy({ top: d, behavior: 'instant' });
+        if (performance.now() < fine) requestAnimationFrame(passo);
+      };
+      requestAnimationFrame(passo);
+    };
+    righe.forEach((riga, i) => {
+      const btn = riga.querySelector('.area__toggle');
+      btn.addEventListener('click', () => {
+        if (!aree.classList.contains('is-attivo')) return;
+        if (i === corrente) {
+          if (largo.matches) return; // da 900px in su un'area resta sempre aperta (lo stage ha sempre una foto)
+          corrente = -1;
+        } else {
+          corrente = i;
+        }
+        if (!largo.matches) tieniFermo(btn);
+        applica();
+      });
+      btn.addEventListener('keydown', (e) => {
+        const passo = { ArrowDown: 1, ArrowUp: -1 }[e.key];
+        if (!passo) return;
+        e.preventDefault();
+        righe[(i + passo + righe.length) % righe.length].querySelector('.area__toggle').focus();
+      });
+    });
+    largo.addEventListener('change', () => {
+      if (corrente < 0) corrente = 0;
+      applica();
+    });
+    document.addEventListener('tedeschi:motion', applica);
+    applica();
+  }
+
+  const filmato = document.querySelector('[data-filmato]');
+  if (filmato) {
+    const play = filmato.querySelector('[data-filmato-play]');
+    play.addEventListener('click', (e) => {
+      e.preventDefault();
+      const riquadro = filmato.querySelector('[data-filmato-riquadro]');
+      const video = document.createElement('video');
+      video.className = 'filmato__video';
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = 'auto';
+      video.poster = filmato.querySelector('.filmato__poster').src;
+      video.src = play.getAttribute('href');
+      video.setAttribute('aria-label', filmato.querySelector('figcaption span').textContent);
+      riquadro.appendChild(video);
+      riquadro.classList.add('is-aperto');
+      play.remove();
+      video.focus({ preventScroll: true });
+      video.play().catch(() => {});
+    });
+  }
+</script>
 
   </main>
 
@@ -625,7 +776,6 @@
         <p class="site-footer__title">Servizi</p>
         <ul>
           <li><a href="/contatti/#amministrazione">Amministrazione, fornitori</a></li>
-          <li><a href="/documentazione/">Documentazione</a></li>
           <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
           <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
           <li><a href="/documentazione/">Documentazione</a></li>
@@ -690,6 +840,10 @@
   })();
 </script>
 
-  <script type="module" src="/assets/js/main.js?v=cc8f6672"></script>
+  <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
+  <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina">Inizio</button>
+  <div class="cursore-orbita" data-cursore aria-hidden="true"></div>
+  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
+  <script type="module" src="/assets/js/main.js?v=ddf024a9"></script>
 </body>
 </html>

@@ -7,9 +7,9 @@
   <meta name="description" content="Il parco macchine di Impresa Tedeschi, le dotazioni e il loro impiego nelle lavorazioni. Consulta il documento del parco e parliamo del tuo intervento.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://tedeschi.arcaagency.it/operativita/parco-macchine/">
-  <meta name="theme-color" content="#0a0a0c">
+  <meta name="theme-color" content="#000000">
   <meta name="generator" content="Eleventy">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}}(document)</script>
   <meta name="author" content="TEDESCHI S.R.L.">
   <meta property="og:locale" content="it_IT">
   <meta property="og:site_name" content="Impresa Tedeschi">
@@ -18,8 +18,6 @@
   <meta property="og:description" content="Il parco macchine di Impresa Tedeschi, le dotazioni e il loro impiego nelle lavorazioni. Consulta il documento del parco e parliamo del tuo intervento.">
   <meta property="og:url" content="https://tedeschi.arcaagency.it/operativita/parco-macchine/">
   <meta property="og:image" content="https://tedeschi.arcaagency.it/assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.jpeg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Parco macchine | Impresa Tedeschi, Cremona">
   <meta name="twitter:description" content="Il parco macchine di Impresa Tedeschi, le dotazioni e il loro impiego nelle lavorazioni. Consulta il documento del parco e parliamo del tuo intervento.">
@@ -28,18 +26,20 @@
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="preload" href="/assets/fonts/tedeschi.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/archivo-expanded-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" type="image/avif" imagesrcset="/assets/img/parco-macchine-movimento-terra-4-1024x768-1-480w.avif 480w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-800w.avif 800w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.avif 1024w" imagesizes="100vw">
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+  <link rel="preload" as="style" href="https://use.typekit.net/hlp3tzz.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://use.typekit.net/hlp3tzz.css"></noscript>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/tedeschi.woff2" crossorigin>
+  <link rel="preload" as="image" type="image/avif" imagesrcset="/assets/img/parco-macchine-movimento-terra-4-1024x768-1-480w.avif 480w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-800w.avif 800w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.avif 1024w" imagesizes="(min-width: 601px) 58vw, 95vw">
 
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/base.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/components.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/utilities.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/w03-competenze.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=cc8f6672">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/base.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/components.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/utilities.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/evoluzione.css?v=ddf024a9">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -91,6 +91,7 @@
 </head>
 <body data-rif="Parco macchine">
   <a class="skip-link" href="#contenuto">Salta al contenuto</a>
+  <div class="progresso-pagina" aria-hidden="true"></div>
 
   <header class="site-header" data-header>
   <div class="site-header__inner container">
@@ -102,7 +103,7 @@
       <ul class="site-nav__list">
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/impresa/">Impresa</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Impresa">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
           <div class="site-nav__panel">
@@ -117,7 +118,7 @@
         </li>
         <li class="site-nav__item has-children has-mega" data-nav-item>
           <a class="site-nav__link" href="/competenze/">Competenze</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Competenze">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
           <div class="site-nav__panel site-nav__panel--mega">
@@ -174,7 +175,7 @@
         </li>
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link is-active" href="/operativita/">Operatività</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Operatività">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
           <div class="site-nav__panel">
@@ -203,7 +204,7 @@
       </ul>
     </nav>
 
-    <a class="btn btn--accent site-header__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza>Parliamo del tuo intervento</a>
+    <a class="btn btn--accent site-header__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza><span>Parliamo del tuo intervento</span></a>
 
     <button class="site-header__burger" type="button" data-nav-open aria-expanded="false" aria-controls="nav-mobile" aria-label="Apri il menu">
       <span class="site-header__burger-bar" aria-hidden="true"></span>
@@ -212,14 +213,14 @@
     </button>
   </div>
 </header>
-<div id="nav-mobile" class="nav-mobile" hidden>
+<section id="nav-mobile" class="nav-mobile" aria-label="Menu mobile" hidden>
     <div class="nav-mobile__inner">
       <nav aria-label="Navigazione principale mobile">
         <ul class="nav-mobile__list">
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/impresa/">Impresa</a>
-              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Impresa">
+              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
             </div>
@@ -234,7 +235,7 @@
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/competenze/">Competenze</a>
-              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Competenze">
+              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
             </div>
@@ -291,7 +292,7 @@
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/operativita/">Operatività</a>
-              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Operatività">
+              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
             </div>
@@ -317,13 +318,13 @@
         <li><a href="/documentazione/">Documentazione</a></li>
         </ul>
       </nav>
-      <a class="btn btn--accent nav-mobile__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza>Parliamo del tuo intervento</a>
+      <a class="btn btn--accent btn--big nav-mobile__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza><span>Parliamo del tuo intervento</span></a>
       <div class="nav-mobile__contatti">
         <a href="tel:+39037226760">+39 0372 26760</a>
         <a href="mailto:info@impresatedeschi.it">info@impresatedeschi.it</a>
       </div>
     </div>
-  </div>
+  </section>
 
 
   <main id="contenuto">
@@ -374,19 +375,16 @@
 
 
 <div class="hero-interna hero-interna--img">
-  <div class="hero-interna__media" aria-hidden="true">
-    <picture><source type="image/avif" srcset="/assets/img/parco-macchine-movimento-terra-4-1024x768-1-480w.avif 480w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-800w.avif 800w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.avif 1024w" sizes="100vw"><source type="image/webp" srcset="/assets/img/parco-macchine-movimento-terra-4-1024x768-1-480w.webp 480w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-800w.webp 800w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.webp 1024w" sizes="100vw"><img src="/assets/img/parco-macchine-movimento-terra-4-1024x768-1-480w.jpeg" alt="Escavatore cingolato del parco macchine Impresa Tedeschi al lavoro" loading="eager" decoding="async" fetchpriority="high" class="hero-interna__img" width="1024" height="768" srcset="/assets/img/parco-macchine-movimento-terra-4-1024x768-1-480w.jpeg 480w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-800w.jpeg 800w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.jpeg 1024w" sizes="100vw"></picture>
+  <div class="hero-interna__media" aria-hidden="true" data-parallax="40">
+    <picture><source type="image/avif" srcset="/assets/img/parco-macchine-movimento-terra-4-1024x768-1-480w.avif 480w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-800w.avif 800w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.avif 1024w" sizes="(min-width: 601px) 58vw, 95vw"><source type="image/webp" srcset="/assets/img/parco-macchine-movimento-terra-4-1024x768-1-480w.webp 480w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-800w.webp 800w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.webp 1024w" sizes="(min-width: 601px) 58vw, 95vw"><img src="/assets/img/parco-macchine-movimento-terra-4-1024x768-1-480w.jpeg" alt="Escavatore cingolato del parco macchine Impresa Tedeschi al lavoro" loading="eager" decoding="async" fetchpriority="high" class="hero-interna__img" width="1024" height="768" srcset="/assets/img/parco-macchine-movimento-terra-4-1024x768-1-480w.jpeg 480w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-800w.jpeg 800w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.jpeg 1024w" sizes="(min-width: 601px) 58vw, 95vw"></picture>
     <div class="hero-interna__overlay"></div>
   </div>
   <div class="container hero-interna__content">
-    <p class="hero-interna__kicker">Operatività</p>
-    <svg class="quota-cad" viewBox="0 0 160 14" width="160" height="14" aria-hidden="true" focusable="false">
-      <path class="quota-cad__linea" d="M2 7 H158 M2 2 V12 M158 2 V12" fill="none" stroke="currentColor" stroke-width="1.5"/>
-    </svg>
-    <h1 class="hero-interna__title">Parco macchine</h1>
+    <p class="hero-interna__kicker body-reveal">Operatività</p>
+    <h1 class="hero-interna__title" data-split="words">Parco macchine</h1>
   </div>
 </div>
-<section class="sezione--sm" aria-labelledby="pm-apertura">
+<section class="sez sez--carta pm-sez" id="pm-apertura-sez" aria-labelledby="pm-apertura">
   <div class="container">
     <div class="section-heading w3o-etichetta" data-reveal>
       <h2 class="section-heading__num" id="pm-apertura">01/ <span class="section-heading__etichetta">Apertura</span></h2>
@@ -411,7 +409,187 @@
 
     </div>
   </div>
-</section><section class="sezione--sm tema-cemento" aria-labelledby="pm-dotazioni">
+</section><section class="evo" id="evoluzione-mezzi" aria-labelledby="evo-titolo" data-evo>
+  <script type="application/json" data-evo-dati>{"_nota":"Modulo 'L'evoluzione dei mezzi' (parco macchine). Testi delle 4 ere VERBATIM dal sito modello di Mattia. 'anno' è il numero grande a schermo e sul righello: lo schizzo di Mattia dice 1960/1980/1990/2000, il modello dice 1960/1980/2000/OGGI. Basta cambiare la riga 'anno'. 'dati' sono i due campi tecnici facoltativi (lettura '00/000' dello schizzo): se 'valore' è vuoto non si mostrano, mai inventarli.","kicker":"L’evoluzione del parco macchine","titolo":"LA FORZA SI EVOLVE","sottotitolo":"Quattro epoche, un movimento continuo. Scorri per scomporre e ricomporre il tempo.","didascalia":"Evoluzione tecnologica · Ricostruzioni illustrative. I modelli rappresentano le epoche, non l’inventario aziendale.","pulsanti":{"esplora":"Esplora i componenti","ricomponi":"Ricomponi il mezzo","avanti":"Vai all’era successiva","fine":"Continua la pagina","scegli":"Scegli un’epoca"},"fasi":{"scomporre":"Scomporre la forza","ricomporre":"Ricomporre il futuro","anatomia":"Anatomia del mezzo"},"etichette":[{"parte":"cabina","testo":"Cabina"},{"parte":"motore","testo":"Unità di potenza"},{"parte":"cingoli","testo":"Cingoli e rotazione"},{"parte":"braccio","testo":"Braccio"},{"parte":"benna","testo":"Benna"},{"parte":"minuteria","testo":"Minuteria"}],"ere":[{"id":"1960","anno":"1960","nome":"Anni ’60","breve":"La meccanica","kicker":"La forza meccanica","titolo":"La forza prende forma.","testo":"Acciaio, cavi e leve. La potenza meccanica incontra l’esperienza di chi conosce la terra.","paesaggio":"cava","alt":"Ricostruzione illustrativa di un escavatore a cavi degli anni Sessanta","mezzo":"/assets/static/evoluzione-mezzi/escavatore-1960.webp","pezzi":"/assets/static/evoluzione-mezzi/pezzi-1960.webp","dati":[{"etichetta":"","valore":""},{"etichetta":"","valore":""}]},{"id":"1980","anno":"1980","nome":"Anni ’80","breve":"L’idraulica","kicker":"Il controllo idraulico","titolo":"La forza diventa controllo.","testo":"L’idraulica trasforma il gesto: movimenti più continui, una risposta più precisa, nuove possibilità di lavoro.","paesaggio":"capannoni","alt":"Ricostruzione illustrativa di un escavatore idraulico degli anni Ottanta","mezzo":"/assets/static/evoluzione-mezzi/escavatore-1980.webp","pezzi":"/assets/static/evoluzione-mezzi/pezzi-1980.webp","dati":[{"etichetta":"","valore":""},{"etichetta":"","valore":""}]},{"id":"2000","anno":"2000","nome":"Primi 2000","breve":"L’elettronica","kicker":"La precisione elettronica","titolo":"La macchina impara a leggere.","testo":"L’elettronica entra a bordo. Controlli e sensori mettono in relazione potenza, precisione ed efficienza.","paesaggio":"alberi","alt":"Ricostruzione illustrativa di un escavatore con controlli elettronici dei primi anni Duemila","mezzo":"/assets/static/evoluzione-mezzi/escavatore-2000.webp","pezzi":"/assets/static/evoluzione-mezzi/pezzi-2000.webp","dati":[{"etichetta":"","valore":""},{"etichetta":"","valore":""}]},{"id":"oggi","anno":"OGGI","nome":"Oggi","breve":"L’intelligenza","kicker":"L’intelligenza connessa","titolo":"L’ingegno muove il futuro.","testo":"Sistemi digitali, connessioni e nuove motorizzazioni aprono la strada a un movimento terra sempre più consapevole.","paesaggio":"citta","alt":"Ricostruzione illustrativa di un escavatore connesso di oggi","mezzo":"/assets/static/evoluzione-mezzi/escavatore-oggi.webp","pezzi":"/assets/static/evoluzione-mezzi/pezzi-oggi.webp","dati":[{"etichetta":"","valore":""},{"etichetta":"","valore":""}]}],"minuteria":"/assets/static/evoluzione-mezzi/minuteria.webp","scena":{"_nota":"Geometria dell'esploso, unità = larghezza del mezzo completo (1.0, altezza 2/3). 'box' = dove sta il pezzo nel mezzo assemblato (frazioni dell'immagine completa), 'uv' = ritaglio nello sprite dei pezzi, 'esplodi' = spostamento a esplosione piena, 'ruota' = gradi a esplosione piena, 'spessore' = volume finto. 'etichetta' = direzione e distanza (px) del testo dal pezzo.","parti":["cingoli","motore","cabina","braccio","avambraccio","benna"],"esplodi":{"cingoli":{"pos":[0,-0.12,0.04],"rot":[9,0,0],"spessore":0.03,"etichetta":[0,1,54]},"motore":{"pos":[-0.2,0,0.1],"rot":[0,-22,-4],"spessore":0.045,"etichetta":[-1,-0.6,70]},"cabina":{"pos":[-0.03,0.13,0.18],"rot":[5,18,0],"spessore":0.04,"etichetta":[-1,-1,60]},"braccio":{"pos":[0.05,0.07,-0.14],"rot":[0,-12,4],"spessore":0.03,"etichetta":[0.2,-1,58]},"avambraccio":{"pos":[0.17,0.04,0.08],"rot":[0,16,9],"spessore":0.03,"etichetta":[1,-0.3,54]},"benna":{"pos":[0.16,-0.1,0.2],"rot":[-9,26,12],"spessore":0.05,"etichetta":[1,0.8,56]}},"box":{"1960":{"cingoli":[0.065,0.538,0.57,0.304],"motore":[0.12,0.398,0.3,0.343],"cabina":[0.34,0.362,0.18,0.337],"braccio":[0.42,0.014,0.38,0.551],"avambraccio":[0.77,0.221,0.14,0.398],"benna":[0.71,0.537,0.2,0.285]},"1980":{"cingoli":[0.065,0.551,0.57,0.279],"motore":[0.12,0.413,0.3,0.314],"cabina":[0.34,0.379,0.18,0.302],"braccio":[0.42,0.033,0.38,0.513],"avambraccio":[0.77,0.264,0.14,0.313],"benna":[0.71,0.53,0.2,0.299]},"2000":{"cingoli":[0.065,0.532,0.57,0.315],"motore":[0.12,0.419,0.3,0.301],"cabina":[0.34,0.384,0.18,0.291],"braccio":[0.42,0.075,0.38,0.431],"avambraccio":[0.77,0.239,0.14,0.363],"benna":[0.71,0.542,0.2,0.275]},"oggi":{"cingoli":[0.065,0.529,0.57,0.321],"motore":[0.12,0.42,0.3,0.3],"cabina":[0.34,0.379,0.18,0.301],"braccio":[0.42,0.026,0.38,0.529],"avambraccio":[0.77,0.195,0.14,0.451],"benna":[0.71,0.549,0.2,0.262]}},"uv":{"1960":{"cingoli":[0.0078,0.6553,0.5384,0.2871],"motore":[0.0189,0.0811,0.3424,0.3916],"cabina":[0.3809,0.0488,0.2344,0.4385],"braccio":[0.6504,0.0127,0.334,0.4844],"avambraccio":[0.543,0.498,0.168,0.4775],"benna":[0.7025,0.5273,0.2884,0.4111]},"1980":{"cingoli":[0.0059,0.668,0.5547,0.2715],"motore":[0.0104,0.1182,0.3477,0.3643],"cabina":[0.3887,0.0723,0.2448,0.4102],"braccio":[0.6549,0.0322,0.3411,0.4609],"avambraccio":[0.5332,0.5068,0.1953,0.4365],"benna":[0.7311,0.5459,0.263,0.3936]},"2000":{"cingoli":[0.0137,0.6885,0.4753,0.2627],"motore":[0.0234,0.1211,0.3353,0.3369],"cabina":[0.3783,0.0635,0.2546,0.4121],"braccio":[0.6471,0.0879,0.3411,0.3867],"avambraccio":[0.4674,0.5029,0.1816,0.4707],"benna":[0.6816,0.54,0.3021,0.416]},"oggi":{"cingoli":[0.0052,0.6504,0.5182,0.292],"motore":[0.0078,0.1289,0.3529,0.3525],"cabina":[0.3743,0.0479,0.2689,0.4502],"braccio":[0.6562,0.0293,0.3398,0.4727],"avambraccio":[0.5371,0.5127,0.1426,0.459],"benna":[0.7005,0.5752,0.2917,0.3818]}},"minuteriaUv":[[0.0163,0.0225,0.2298,0.2275],[0.2819,0.0273,0.2051,0.2227],[0.5456,0.0137,0.1556,0.2363],[0.765,0.0215,0.2194,0.2285],[0.0234,0.25,0.2207,0.2471],[0.3001,0.25,0.1562,0.2354],[0.5404,0.25,0.1667,0.2393],[0.8112,0.25,0.1393,0.2461],[0.0163,0.5117,0.2272,0.2383],[0.2741,0.5186,0.2174,0.2314],[0.5293,0.5039,0.1966,0.2461],[0.7767,0.5,0.1947,0.25],[0.0241,0.75,0.2253,0.2109],[0.2754,0.75,0.2057,0.2158],[0.5482,0.75,0.151,0.2207],[0.7708,0.75,0.2038,0.2188]]}}</script>
+
+  <div class="evo-sticky" data-evo-sticky>
+    <div class="evo-paesaggi" data-evo-paesaggi aria-hidden="true">
+      <div class="evo-paesaggio is-attivo" data-evo-paesaggio="0"><svg class="evo-p evo-p--cava" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+  <g class="evo-p__l"><path d="M0 440C140 330 360 300 560 372S900 322 1120 384 1400 330 1600 392V600H0Z"/></g>
+  <g class="evo-p__m"><path d="M520 440l60-46h180l44-34h150l40-30h210l50 36h130l56 74Z"/><path d="M1160 442l230-110 10 8-230 110Z"/><path d="M1372 322h60v38l-30 18-30-18Z"/><path d="M1476 440V356h44v84Z"/><path d="M60 440C120 404 220 392 330 414S470 400 520 440Z"/></g>
+  <g class="evo-p__v"><path d="M1040 456c30-26 70-30 110-12s64 18 96 6l28 22H1040Z"/><path d="M1300 462c26-20 60-24 92-10s48 12 72 2l22 18h-186Z"/><path d="M700 464c60-30 150-34 230-10l30 12H700Z"/></g>
+</svg></div>
+      <div class="evo-paesaggio" data-evo-paesaggio="1"><svg class="evo-p evo-p--capannoni" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+  <g class="evo-p__l"><path d="M0 440C300 400 600 410 900 430S1300 398 1600 436V600H0Z"/><path d="M1086 218h26v222h-26Z"/><path d="M1080 212h38v12h-38Z"/><path d="M1500 300a30 30 0 0 1 60 0v30h-60Z"/><path d="M1522 330h16v110h-16Z"/></g>
+  <g class="evo-p__m"><path d="M480 448V336l54-44 18 44 54-44 18 44 54-44 18 44 54-44 18 44 54-44 18 44 54-44 18 44v112Z"/><path d="M1100 448V380l46-36 16 36 46-36 16 36 46-36 16 36 46-36 16 36v68Z"/><path d="M1420 448V330a38 38 0 0 1 76 0v118Z"/><path d="M1510 448V340a34 34 0 0 1 68 0v108Z"/><path d="M940 448V392h140v56Z"/></g>
+  <g class="evo-p__v"><rect x="1240" y="408" width="8" height="48"/><rect x="1320" y="408" width="8" height="48"/><rect x="1400" y="408" width="8" height="48"/><rect x="1480" y="408" width="8" height="48"/><rect x="1240" y="420" width="248" height="4"/><rect x="1240" y="436" width="248" height="4"/><path d="M760 456h300v10H760Z"/></g>
+</svg></div>
+      <div class="evo-paesaggio" data-evo-paesaggio="2"><svg class="evo-p evo-p--alberi" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+  <g class="evo-p__l"><circle cx="1160" cy="286" r="84"/><path d="M0 446C260 396 560 412 860 430S1300 396 1600 444V600H0Z"/></g>
+  <g class="evo-p__m"><path d="M300 448V282a26 72 0 0 1 52 0v166Z"/><path d="M372 448V256a30 84 0 0 1 60 0v192Z"/><path d="M452 448V292a24 64 0 0 1 48 0v156Z"/><path d="M520 448V270a28 78 0 0 1 56 0v178Z"/><circle cx="900" cy="364" r="56"/><rect x="892" y="410" width="16" height="38"/><circle cx="1010" cy="346" r="64"/><rect x="1001" y="400" width="18" height="48"/><circle cx="1330" cy="376" r="46"/><rect x="1324" y="412" width="12" height="36"/><circle cx="1420" cy="362" r="54"/><rect x="1412" y="406" width="16" height="42"/></g>
+  <g class="evo-p__v"><path d="M1100 456c40-18 80-22 120-10s80 14 120 2 80-20 120-6 80 18 120 4l20 10h-500Z"/><path d="M760 460c14-14 30-14 44 0Z"/><path d="M820 462c12-12 26-12 38 0Z"/><path d="M700 462c10-10 22-10 32 0Z"/></g>
+</svg></div>
+      <div class="evo-paesaggio" data-evo-paesaggio="3"><svg class="evo-p evo-p--citta" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+  <g class="evo-p__l"><path d="M100 448V300h70v148Zm90 0V220h50v228Zm70 0V280h100v168Zm130 0V170h60v278Zm90 0V250h80v198Zm120 0V130h40v318Zm70 0V300h120v148Zm160 0V220h70v228Zm110 0V280h90v168Zm130 0V200h50v248Zm80 0V320h100v128Zm140 0V260h60v188Z"/><rect x="698" y="90" width="4" height="40"/></g>
+  <g class="evo-p__m"><path d="M40 452V380h130v72Zm180 0V330h80v122Zm1030 0V350h100v102Zm140 0V320h70v132Zm110 0V280h50v172Z"/><rect x="1120" y="170" width="8" height="282"/><rect x="960" y="176" width="340" height="7"/><rect x="955" y="183" width="18" height="44"/><rect x="1230" y="183" width="5" height="110"/><rect x="1224" y="290" width="16" height="14"/><rect x="620" y="150" width="8" height="302"/><rect x="510" y="156" width="290" height="7"/><rect x="505" y="163" width="16" height="40"/><rect x="720" y="163" width="5" height="130"/><rect x="714" y="290" width="16" height="14"/></g>
+  <g class="evo-p__v"><rect x="960" y="420" width="640" height="5"/><rect x="1000" y="410" width="6" height="40"/><rect x="1160" y="410" width="6" height="40"/><rect x="1320" y="410" width="6" height="40"/><rect x="1480" y="410" width="6" height="40"/><rect x="960" y="440" width="640" height="3"/></g>
+</svg></div>
+    </div>
+    <div class="evo-orizzonte" aria-hidden="true"></div>
+
+    <div class="evo-anno" aria-hidden="true">
+      <span class="evo-anno__rullo" data-evo-rullo><b class="evo-anno__v" data-evo-anno="0">1960</b><b class="evo-anno__v" data-evo-anno="1">1980</b><b class="evo-anno__v" data-evo-anno="2">2000</b><b class="evo-anno__v" data-evo-anno="3">OGGI</b></span>
+    </div>
+
+    <div class="evo-area" data-evo-area>
+      <img class="evo-primo" data-evo-primo src="/assets/static/evoluzione-mezzi/escavatore-1960.webp" width="1536" height="1024" alt="Ricostruzione illustrativa di un escavatore a cavi degli anni Sessanta" loading="lazy" decoding="async">
+    </div>
+
+    <div class="evo-etichette" data-evo-etichette aria-hidden="true">
+      <div class="evo-eti" data-evo-eti="cabina">
+        <svg class="evo-eti__linea" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="0" y2="0"/></svg>
+        <span class="evo-eti__testo">Cabina</span>
+      </div>
+      <div class="evo-eti" data-evo-eti="motore">
+        <svg class="evo-eti__linea" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="0" y2="0"/></svg>
+        <span class="evo-eti__testo">Unità di potenza</span>
+      </div>
+      <div class="evo-eti" data-evo-eti="cingoli">
+        <svg class="evo-eti__linea" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="0" y2="0"/></svg>
+        <span class="evo-eti__testo">Cingoli e rotazione</span>
+      </div>
+      <div class="evo-eti" data-evo-eti="braccio">
+        <svg class="evo-eti__linea" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="0" y2="0"/></svg>
+        <span class="evo-eti__testo">Braccio</span>
+      </div>
+      <div class="evo-eti" data-evo-eti="benna">
+        <svg class="evo-eti__linea" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="0" y2="0"/></svg>
+        <span class="evo-eti__testo">Benna</span>
+      </div>
+      <div class="evo-eti" data-evo-eti="minuteria">
+        <svg class="evo-eti__linea" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="0" y2="0"/></svg>
+        <span class="evo-eti__testo">Minuteria</span>
+      </div>
+    </div>
+
+    <header class="evo-testa">
+      <p class="evo-kicker">L’evoluzione del parco macchine</p>
+      <h2 class="evo-titolo" id="evo-titolo">LA FORZA SI EVOLVE</h2>
+      <p class="evo-fase" data-evo-fase aria-hidden="true">01 / 04 · La forza meccanica</p>
+    </header>
+
+    <div class="evo-narrativa" data-evo-narrativa>
+      <article class="evo-copia is-attiva" data-evo-copia="0">
+        <p class="evo-copia__kicker">La forza meccanica</p>
+        <h3 class="evo-copia__titolo" data-evo-parole>La forza prende forma.</h3>
+        <p class="evo-copia__testo" data-evo-parole>Acciaio, cavi e leve. La potenza meccanica incontra l’esperienza di chi conosce la terra.</p>
+      </article>
+      <article class="evo-copia" data-evo-copia="1" inert>
+        <p class="evo-copia__kicker">Il controllo idraulico</p>
+        <h3 class="evo-copia__titolo" data-evo-parole>La forza diventa controllo.</h3>
+        <p class="evo-copia__testo" data-evo-parole>L’idraulica trasforma il gesto: movimenti più continui, una risposta più precisa, nuove possibilità di lavoro.</p>
+      </article>
+      <article class="evo-copia" data-evo-copia="2" inert>
+        <p class="evo-copia__kicker">La precisione elettronica</p>
+        <h3 class="evo-copia__titolo" data-evo-parole>La macchina impara a leggere.</h3>
+        <p class="evo-copia__testo" data-evo-parole>L’elettronica entra a bordo. Controlli e sensori mettono in relazione potenza, precisione ed efficienza.</p>
+      </article>
+      <article class="evo-copia" data-evo-copia="3" inert>
+        <p class="evo-copia__kicker">L’intelligenza connessa</p>
+        <h3 class="evo-copia__titolo" data-evo-parole>L’ingegno muove il futuro.</h3>
+        <p class="evo-copia__testo" data-evo-parole>Sistemi digitali, connessioni e nuove motorizzazioni aprono la strada a un movimento terra sempre più consapevole.</p>
+      </article>
+    </div>
+
+    <div class="evo-strumenti">
+      <button type="button" class="evo-btn evo-btn--esplora" data-evo-esplora aria-pressed="false"><svg class="evo-ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-evo-esplora-testo>Esplora i componenti</span></button>
+    </div>
+
+    <button type="button" class="evo-avanti" data-evo-avanti aria-label="Vai all’era successiva">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M5 12h13M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <p class="evo-didascalia">Evoluzione tecnologica · Ricostruzioni illustrative. I modelli rappresentano le epoche, non l’inventario aziendale.</p>
+
+    <nav class="evo-nav" aria-label="Scegli un’epoca">
+      <div class="evo-righello" aria-hidden="true"><i data-evo-barra></i><b data-evo-cursore></b></div>
+      <ol class="evo-ere">
+        <li><button type="button" class="evo-era" data-evo-era="0" aria-pressed="true"><span class="evo-era__n" aria-hidden="true">01</span><strong class="evo-era__nome">Anni ’60</strong><span class="evo-era__breve">La meccanica</span></button></li>
+        <li><button type="button" class="evo-era" data-evo-era="1" aria-pressed="false"><span class="evo-era__n" aria-hidden="true">02</span><strong class="evo-era__nome">Anni ’80</strong><span class="evo-era__breve">L’idraulica</span></button></li>
+        <li><button type="button" class="evo-era" data-evo-era="2" aria-pressed="false"><span class="evo-era__n" aria-hidden="true">03</span><strong class="evo-era__nome">Primi 2000</strong><span class="evo-era__breve">L’elettronica</span></button></li>
+        <li><button type="button" class="evo-era" data-evo-era="3" aria-pressed="false"><span class="evo-era__n" aria-hidden="true">04</span><strong class="evo-era__nome">Oggi</strong><span class="evo-era__breve">L’intelligenza</span></button></li>
+      </ol>
+    </nav>
+    <p class="evo-sr" aria-live="polite" data-evo-stato></p>
+  </div><ol class="evo-storyboard" data-evo-storyboard>
+    <li class="evo-scena">
+      <div class="evo-scena__quadro">
+        <svg class="evo-p evo-p--cava evo-scena__p" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+  <g class="evo-p__l"><path d="M0 440C140 330 360 300 560 372S900 322 1120 384 1400 330 1600 392V600H0Z"/></g>
+  <g class="evo-p__m"><path d="M520 440l60-46h180l44-34h150l40-30h210l50 36h130l56 74Z"/><path d="M1160 442l230-110 10 8-230 110Z"/><path d="M1372 322h60v38l-30 18-30-18Z"/><path d="M1476 440V356h44v84Z"/><path d="M60 440C120 404 220 392 330 414S470 400 520 440Z"/></g>
+  <g class="evo-p__v"><path d="M1040 456c30-26 70-30 110-12s64 18 96 6l28 22H1040Z"/><path d="M1300 462c26-20 60-24 92-10s48 12 72 2l22 18h-186Z"/><path d="M700 464c60-30 150-34 230-10l30 12H700Z"/></g>
+</svg>
+        <img class="evo-scena__mezzo" src="/assets/static/evoluzione-mezzi/escavatore-1960.webp" width="1536" height="1024" alt="Ricostruzione illustrativa di un escavatore a cavi degli anni Sessanta" loading="lazy" decoding="async">
+        <span class="evo-scena__anno" aria-hidden="true">1960</span>
+      </div>
+      <div class="evo-scena__testo">
+        <p class="evo-copia__kicker">La forza meccanica</p>
+        <h3 class="evo-copia__titolo">La forza prende forma.</h3>
+        <p class="evo-copia__testo">Acciaio, cavi e leve. La potenza meccanica incontra l’esperienza di chi conosce la terra.</p>
+      </div>
+    </li>
+    <li class="evo-scena">
+      <div class="evo-scena__quadro">
+        <svg class="evo-p evo-p--capannoni evo-scena__p" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+  <g class="evo-p__l"><path d="M0 440C300 400 600 410 900 430S1300 398 1600 436V600H0Z"/><path d="M1086 218h26v222h-26Z"/><path d="M1080 212h38v12h-38Z"/><path d="M1500 300a30 30 0 0 1 60 0v30h-60Z"/><path d="M1522 330h16v110h-16Z"/></g>
+  <g class="evo-p__m"><path d="M480 448V336l54-44 18 44 54-44 18 44 54-44 18 44 54-44 18 44 54-44 18 44 54-44 18 44v112Z"/><path d="M1100 448V380l46-36 16 36 46-36 16 36 46-36 16 36 46-36 16 36v68Z"/><path d="M1420 448V330a38 38 0 0 1 76 0v118Z"/><path d="M1510 448V340a34 34 0 0 1 68 0v108Z"/><path d="M940 448V392h140v56Z"/></g>
+  <g class="evo-p__v"><rect x="1240" y="408" width="8" height="48"/><rect x="1320" y="408" width="8" height="48"/><rect x="1400" y="408" width="8" height="48"/><rect x="1480" y="408" width="8" height="48"/><rect x="1240" y="420" width="248" height="4"/><rect x="1240" y="436" width="248" height="4"/><path d="M760 456h300v10H760Z"/></g>
+</svg>
+        <img class="evo-scena__mezzo" src="/assets/static/evoluzione-mezzi/escavatore-1980.webp" width="1536" height="1024" alt="Ricostruzione illustrativa di un escavatore idraulico degli anni Ottanta" loading="lazy" decoding="async">
+        <span class="evo-scena__anno" aria-hidden="true">1980</span>
+      </div>
+      <div class="evo-scena__testo">
+        <p class="evo-copia__kicker">Il controllo idraulico</p>
+        <h3 class="evo-copia__titolo">La forza diventa controllo.</h3>
+        <p class="evo-copia__testo">L’idraulica trasforma il gesto: movimenti più continui, una risposta più precisa, nuove possibilità di lavoro.</p>
+      </div>
+    </li>
+    <li class="evo-scena">
+      <div class="evo-scena__quadro">
+        <svg class="evo-p evo-p--alberi evo-scena__p" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+  <g class="evo-p__l"><circle cx="1160" cy="286" r="84"/><path d="M0 446C260 396 560 412 860 430S1300 396 1600 444V600H0Z"/></g>
+  <g class="evo-p__m"><path d="M300 448V282a26 72 0 0 1 52 0v166Z"/><path d="M372 448V256a30 84 0 0 1 60 0v192Z"/><path d="M452 448V292a24 64 0 0 1 48 0v156Z"/><path d="M520 448V270a28 78 0 0 1 56 0v178Z"/><circle cx="900" cy="364" r="56"/><rect x="892" y="410" width="16" height="38"/><circle cx="1010" cy="346" r="64"/><rect x="1001" y="400" width="18" height="48"/><circle cx="1330" cy="376" r="46"/><rect x="1324" y="412" width="12" height="36"/><circle cx="1420" cy="362" r="54"/><rect x="1412" y="406" width="16" height="42"/></g>
+  <g class="evo-p__v"><path d="M1100 456c40-18 80-22 120-10s80 14 120 2 80-20 120-6 80 18 120 4l20 10h-500Z"/><path d="M760 460c14-14 30-14 44 0Z"/><path d="M820 462c12-12 26-12 38 0Z"/><path d="M700 462c10-10 22-10 32 0Z"/></g>
+</svg>
+        <img class="evo-scena__mezzo" src="/assets/static/evoluzione-mezzi/escavatore-2000.webp" width="1536" height="1024" alt="Ricostruzione illustrativa di un escavatore con controlli elettronici dei primi anni Duemila" loading="lazy" decoding="async">
+        <span class="evo-scena__anno" aria-hidden="true">2000</span>
+      </div>
+      <div class="evo-scena__testo">
+        <p class="evo-copia__kicker">La precisione elettronica</p>
+        <h3 class="evo-copia__titolo">La macchina impara a leggere.</h3>
+        <p class="evo-copia__testo">L’elettronica entra a bordo. Controlli e sensori mettono in relazione potenza, precisione ed efficienza.</p>
+      </div>
+    </li>
+    <li class="evo-scena">
+      <div class="evo-scena__quadro">
+        <svg class="evo-p evo-p--citta evo-scena__p" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+  <g class="evo-p__l"><path d="M100 448V300h70v148Zm90 0V220h50v228Zm70 0V280h100v168Zm130 0V170h60v278Zm90 0V250h80v198Zm120 0V130h40v318Zm70 0V300h120v148Zm160 0V220h70v228Zm110 0V280h90v168Zm130 0V200h50v248Zm80 0V320h100v128Zm140 0V260h60v188Z"/><rect x="698" y="90" width="4" height="40"/></g>
+  <g class="evo-p__m"><path d="M40 452V380h130v72Zm180 0V330h80v122Zm1030 0V350h100v102Zm140 0V320h70v132Zm110 0V280h50v172Z"/><rect x="1120" y="170" width="8" height="282"/><rect x="960" y="176" width="340" height="7"/><rect x="955" y="183" width="18" height="44"/><rect x="1230" y="183" width="5" height="110"/><rect x="1224" y="290" width="16" height="14"/><rect x="620" y="150" width="8" height="302"/><rect x="510" y="156" width="290" height="7"/><rect x="505" y="163" width="16" height="40"/><rect x="720" y="163" width="5" height="130"/><rect x="714" y="290" width="16" height="14"/></g>
+  <g class="evo-p__v"><rect x="960" y="420" width="640" height="5"/><rect x="1000" y="410" width="6" height="40"/><rect x="1160" y="410" width="6" height="40"/><rect x="1320" y="410" width="6" height="40"/><rect x="1480" y="410" width="6" height="40"/><rect x="960" y="440" width="640" height="3"/></g>
+</svg>
+        <img class="evo-scena__mezzo" src="/assets/static/evoluzione-mezzi/escavatore-oggi.webp" width="1536" height="1024" alt="Ricostruzione illustrativa di un escavatore connesso di oggi" loading="lazy" decoding="async">
+        <span class="evo-scena__anno" aria-hidden="true">OGGI</span>
+      </div>
+      <div class="evo-scena__testo">
+        <p class="evo-copia__kicker">L’intelligenza connessa</p>
+        <h3 class="evo-copia__titolo">L’ingegno muove il futuro.</h3>
+        <p class="evo-copia__testo">Sistemi digitali, connessioni e nuove motorizzazioni aprono la strada a un movimento terra sempre più consapevole.</p>
+      </div>
+    </li>
+    <li class="evo-scena evo-scena--nota"><p class="evo-didascalia">Evoluzione tecnologica · Ricostruzioni illustrative. I modelli rappresentano le epoche, non l’inventario aziendale.</p></li>
+  </ol>
+</section>
+<section class="sez sez--inchiostro pm-sez" id="pm-dotazioni-sez" aria-labelledby="pm-dotazioni">
   <div class="container">
     <div class="section-heading w3o-etichetta" data-reveal>
       <h2 class="section-heading__num" id="pm-dotazioni">02/ <span class="section-heading__etichetta">Dotazioni e utilità</span></h2>
@@ -425,7 +603,7 @@
 
     </div>
   </div>
-</section><section class="sezione--sm" aria-labelledby="pm-applicazione">
+</section><section class="sez sez--carta pm-sez" id="pm-applicazione-sez" aria-labelledby="pm-applicazione">
   <div class="container">
     <div class="section-heading w3o-etichetta" data-reveal>
       <h2 class="section-heading__num" id="pm-applicazione">03/ <span class="section-heading__etichetta">Applicazione</span></h2>
@@ -438,11 +616,9 @@
 </div>
 
     </div>
-    <p class="u-mt-5" data-reveal>
-<a class="link-freccia" href="/documentazione/">Titolo del documento del parco<span aria-hidden="true"> →</span></a>
-</p>
+    <p class="u-mt-5" data-reveal><a class="voce" href="/assets/documenti/parco-attrezzature-1.pdf" target="_blank" rel="noopener">Parco attrezzature, apri il documento</a></p>
   </div>
-</section><section class="sezione--sm tema-cemento" aria-labelledby="pm-collegamenti">
+</section><section class="sez sez--inchiostro sez--taglio-inv pm-sez" id="pm-collegamenti-sez" aria-labelledby="pm-collegamenti">
   <div class="container">
     <div class="section-heading w3o-etichetta" data-reveal>
       <h2 class="section-heading__num" id="pm-collegamenti">04/ <span class="section-heading__etichetta">Collegamenti</span></h2>
@@ -453,7 +629,7 @@
 </li>
     </ul>
     <p class="w3o-cta" data-reveal>
-<a class="btn btn--accent btn--big" href="/contatti/?rif=Parco%20macchine#intervento" data-cta-intervento data-rif="Parco macchine">Parliamo del tuo intervento</a>
+<a class="btn btn--accent btn--big" href="/contatti/?rif=Parco%20macchine#intervento" data-cta-intervento data-rif="Parco macchine"><span>Parliamo del tuo intervento</span></a>
 </p>
   </div>
 </section>
@@ -478,7 +654,6 @@
         <p class="site-footer__title">Servizi</p>
         <ul>
           <li><a href="/contatti/#amministrazione">Amministrazione, fornitori</a></li>
-          <li><a href="/documentazione/">Documentazione</a></li>
           <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
           <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
           <li><a href="/documentazione/">Documentazione</a></li>
@@ -543,6 +718,11 @@
   })();
 </script>
 
-  <script type="module" src="/assets/js/main.js?v=cc8f6672"></script>
+  <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
+  <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina">Inizio</button>
+  <div class="cursore-orbita" data-cursore aria-hidden="true"></div>
+  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
+  <script type="module" src="/assets/js/main.js?v=ddf024a9"></script>
+  <script type="module" src="/assets/js/evoluzione.js?v=ddf024a9"></script>
 </body>
 </html>

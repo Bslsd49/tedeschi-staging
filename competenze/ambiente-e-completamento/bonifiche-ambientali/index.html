@@ -7,9 +7,9 @@
   <meta name="description" content="Bonifiche ambientali a Cremona. Organizziamo e svolgiamo le attività affidate a TEDESCHI, dando seguito sul campo a quanto stabilito.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://tedeschi.arcaagency.it/competenze/ambiente-e-completamento/bonifiche-ambientali/">
-  <meta name="theme-color" content="#0a0a0c">
+  <meta name="theme-color" content="#000000">
   <meta name="generator" content="Eleventy">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}}(document)</script>
   <meta name="author" content="TEDESCHI S.R.L.">
   <meta property="og:locale" content="it_IT">
   <meta property="og:site_name" content="Impresa Tedeschi">
@@ -18,8 +18,6 @@
   <meta property="og:description" content="Bonifiche ambientali a Cremona. Organizziamo e svolgiamo le attività affidate a TEDESCHI, dando seguito sul campo a quanto stabilito.">
   <meta property="og:url" content="https://tedeschi.arcaagency.it/competenze/ambiente-e-completamento/bonifiche-ambientali/">
   <meta property="og:image" content="https://tedeschi.arcaagency.it/assets/img/bonifiche-ambientali-2-1024x768-1-1024w.jpeg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Bonifiche ambientali a Cremona | Impresa Tedeschi">
   <meta name="twitter:description" content="Bonifiche ambientali a Cremona. Organizziamo e svolgiamo le attività affidate a TEDESCHI, dando seguito sul campo a quanto stabilito.">
@@ -28,18 +26,20 @@
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="preload" href="/assets/fonts/tedeschi.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/archivo-expanded-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" type="image/avif" imagesrcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.avif 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.avif 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.avif 1024w" imagesizes="100vw">
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+  <link rel="preload" as="style" href="https://use.typekit.net/hlp3tzz.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://use.typekit.net/hlp3tzz.css"></noscript>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/tedeschi.woff2" crossorigin>
+  <link rel="preload" as="image" type="image/avif" imagesrcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.avif 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.avif 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.avif 1024w" imagesizes="(min-width: 601px) 58vw, 95vw">
 
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/base.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/components.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/utilities.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/w03-competenze.css?v=cc8f6672">
-  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=cc8f6672">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/base.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/components.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/utilities.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=ddf024a9">
+  <link rel="stylesheet" href="/assets/css/pagine-competenze.css?v=ddf024a9">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -89,8 +89,9 @@
 </script>
 
 </head>
-<body data-rif="Bonifiche ambientali">
+<body class="pg-comp" data-rif="Bonifiche ambientali">
   <a class="skip-link" href="#contenuto">Salta al contenuto</a>
+  <div class="progresso-pagina" aria-hidden="true"></div>
 
   <header class="site-header" data-header>
   <div class="site-header__inner container">
@@ -102,7 +103,7 @@
       <ul class="site-nav__list">
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/impresa/">Impresa</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Impresa">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
           <div class="site-nav__panel">
@@ -117,7 +118,7 @@
         </li>
         <li class="site-nav__item has-children has-mega" data-nav-item>
           <a class="site-nav__link is-active" href="/competenze/">Competenze</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Competenze">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
           <div class="site-nav__panel site-nav__panel--mega">
@@ -174,7 +175,7 @@
         </li>
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/operativita/">Operatività</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Operatività">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
           <div class="site-nav__panel">
@@ -203,7 +204,7 @@
       </ul>
     </nav>
 
-    <a class="btn btn--accent site-header__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza>Parliamo del tuo intervento</a>
+    <a class="btn btn--accent site-header__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza><span>Parliamo del tuo intervento</span></a>
 
     <button class="site-header__burger" type="button" data-nav-open aria-expanded="false" aria-controls="nav-mobile" aria-label="Apri il menu">
       <span class="site-header__burger-bar" aria-hidden="true"></span>
@@ -212,14 +213,14 @@
     </button>
   </div>
 </header>
-<div id="nav-mobile" class="nav-mobile" hidden>
+<section id="nav-mobile" class="nav-mobile" aria-label="Menu mobile" hidden>
     <div class="nav-mobile__inner">
       <nav aria-label="Navigazione principale mobile">
         <ul class="nav-mobile__list">
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/impresa/">Impresa</a>
-              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Impresa">
+              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
             </div>
@@ -234,7 +235,7 @@
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/competenze/">Competenze</a>
-              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Competenze">
+              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
             </div>
@@ -291,7 +292,7 @@
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/operativita/">Operatività</a>
-              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Apri il sottomenu Operatività">
+              <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
             </div>
@@ -317,13 +318,13 @@
         <li><a href="/documentazione/">Documentazione</a></li>
         </ul>
       </nav>
-      <a class="btn btn--accent nav-mobile__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza>Parliamo del tuo intervento</a>
+      <a class="btn btn--accent btn--big nav-mobile__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza><span>Parliamo del tuo intervento</span></a>
       <div class="nav-mobile__contatti">
         <a href="tel:+39037226760">+39 0372 26760</a>
         <a href="mailto:info@impresatedeschi.it">info@impresatedeschi.it</a>
       </div>
     </div>
-  </div>
+  </section>
 
 
   <main id="contenuto">
@@ -380,86 +381,99 @@
 
     
 <div class="hero-interna hero-interna--img">
-  <div class="hero-interna__media" aria-hidden="true">
-    <picture><source type="image/avif" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.avif 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.avif 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.avif 1024w" sizes="100vw"><source type="image/webp" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.webp 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.webp 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.webp 1024w" sizes="100vw"><img src="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.jpeg" alt="Bonifiche ambientali — cantiere Impresa Tedeschi" loading="eager" decoding="async" fetchpriority="high" class="hero-interna__img" width="1024" height="768" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.jpeg 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.jpeg 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.jpeg 1024w" sizes="100vw"></picture>
+  <div class="hero-interna__media" aria-hidden="true" data-parallax="40">
+    <picture><source type="image/avif" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.avif 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.avif 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.avif 1024w" sizes="(min-width: 601px) 58vw, 95vw"><source type="image/webp" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.webp 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.webp 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.webp 1024w" sizes="(min-width: 601px) 58vw, 95vw"><img src="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.jpeg" alt="Vasca di scavo perimetrata da un telo, con terreno da trattare e mezzi sullo sfondo" loading="eager" decoding="async" fetchpriority="high" class="hero-interna__img" width="1024" height="768" srcset="/assets/img/bonifiche-ambientali-2-1024x768-1-480w.jpeg 480w, /assets/img/bonifiche-ambientali-2-1024x768-1-800w.jpeg 800w, /assets/img/bonifiche-ambientali-2-1024x768-1-1024w.jpeg 1024w" sizes="(min-width: 601px) 58vw, 95vw"></picture>
     <div class="hero-interna__overlay"></div>
   </div>
   <div class="container hero-interna__content">
-    <p class="hero-interna__kicker">Ambiente e completamento</p>
-    <svg class="quota-cad" viewBox="0 0 160 14" width="160" height="14" aria-hidden="true" focusable="false">
-      <path class="quota-cad__linea" d="M2 7 H158 M2 2 V12 M158 2 V12" fill="none" stroke="currentColor" stroke-width="1.5"/>
-    </svg>
-    <h1 class="hero-interna__title">Bonifiche ambientali</h1>
+    <p class="hero-interna__kicker body-reveal">Ambiente e completamento</p>
+    <h1 class="hero-interna__title" data-split="words">Bonifiche ambientali</h1>
   </div>
 </div>
-<section class="sezione--sm" aria-labelledby="lav-cosa">
+
+<section class="comp-sez sez" data-capitolo aria-labelledby="lav-cosa">
   <div class="container">
-    <div class="section-heading w3c-etichetta" data-reveal>
+    <div class="capitolo__rule comp-rule">
       <h2 class="section-heading__num" id="lav-cosa">01/ <span class="section-heading__etichetta">Cosa riguarda il lavoro</span></h2>
+      <span aria-hidden="true">Bonifiche ambientali</span>
     </div>
-    <div class="prose u-max-60" data-reveal>
-      <p class="lead">Un’area da bonificare richiede di conoscere ciò che contiene e le condizioni su cui intervenire. Gli accertamenti danno una base concreta a questa conoscenza; le indicazioni dell’intervento definiscono il lavoro da eseguire. È qui che si colloca il nostro compito: organizzare e svolgere le attività affidate a TEDESCHI, dando seguito sul campo a quanto è stato stabilito. La precisione comincia anche da questo confine, tra ciò che deve essere accertato e ciò su cui siamo chiamati ad agire.</p>
+    <div class="comp-griglia">
+      <span class="comp-numero" aria-hidden="true" data-parallax="-50">01</span>
+      <div class="comp-editoriale">
+        <p class="comp-lede" data-reveal>Un’area da bonificare richiede di conoscere ciò che contiene e le condizioni su cui intervenire.</p>
+        <p class="comp-testo" data-reveal>Gli accertamenti danno una base concreta a questa conoscenza; le indicazioni dell’intervento definiscono il lavoro da eseguire. È qui che si colloca il nostro compito: organizzare e svolgere le attività affidate a TEDESCHI, dando seguito sul campo a quanto è stato stabilito. La precisione comincia anche da questo confine, tra ciò che deve essere accertato e ciò su cui siamo chiamati ad agire.</p>
+      </div>
     </div>
   </div>
-</section><section class="sezione--sm tema-cemento" aria-labelledby="lav-info">
+</section><section class="comp-sez sez sez--sm sez--carta" data-capitolo aria-labelledby="lav-info">
   <div class="container">
-    <div class="section-heading w3c-etichetta" data-reveal>
+    <div class="capitolo__rule comp-rule">
       <h2 class="section-heading__num" id="lav-info">02/ <span class="section-heading__etichetta">Informazioni specifiche</span></h2>
+      <span aria-hidden="true">Bonifiche ambientali</span>
     </div>
-    <div data-reveal>
-      
+    <div class="comp-griglia">
+      <span class="comp-numero" aria-hidden="true" data-parallax="-50">02</span>
+      <div class="comp-dati" data-reveal>
+        
 <div class="da-completare da-completare--testo" role="note" data-da-completare>
   <span class="da-completare__tipo">Testo e riscontri da compilare</span>
   <strong class="da-completare__titolo">Attività e caratteristiche da confermare</strong><p class="da-completare__testo">Attività effettivamente svolte, ambiti e responsabilità nell’intervento.</p>
 </div>
 
+      </div>
     </div>
   </div>
-</section><section class="sezione--sm" aria-labelledby="lav-prova">
+</section>
+<section class="capitolo sez capitolo--inchiostro comp-prova" data-capitolo aria-labelledby="lav-prova">
   <div class="container">
-    <div class="section-heading w3c-etichetta" data-reveal>
+    <div class="capitolo__rule comp-rule">
       <h2 class="section-heading__num" id="lav-prova">03/ <span class="section-heading__etichetta">Prova pertinente</span></h2>
+      <span aria-hidden="true">Bonifiche ambientali</span>
     </div>
-    <div class="split w3c-prova">
-      <div class="split__media" data-reveal>
-        <picture><source type="image/avif" srcset="/assets/img/bonifiche-ambientali-3-1024x768-1-480w.avif 480w, /assets/img/bonifiche-ambientali-3-1024x768-1-800w.avif 800w, /assets/img/bonifiche-ambientali-3-1024x768-1-1024w.avif 1024w" sizes="(min-width: 900px) 50vw, 100vw"><source type="image/webp" srcset="/assets/img/bonifiche-ambientali-3-1024x768-1-480w.webp 480w, /assets/img/bonifiche-ambientali-3-1024x768-1-800w.webp 800w, /assets/img/bonifiche-ambientali-3-1024x768-1-1024w.webp 1024w" sizes="(min-width: 900px) 50vw, 100vw"><img src="/assets/img/bonifiche-ambientali-3-1024x768-1-480w.jpeg" alt="Bonifiche ambientali, lavorazione in un cantiere Impresa Tedeschi" loading="lazy" decoding="async" width="1024" height="768" srcset="/assets/img/bonifiche-ambientali-3-1024x768-1-480w.jpeg 480w, /assets/img/bonifiche-ambientali-3-1024x768-1-800w.jpeg 800w, /assets/img/bonifiche-ambientali-3-1024x768-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 50vw, 100vw"></picture>
+    <div class="capitolo__layout">
+      <div class="capitolo__copy">
+        <h3 class="comp-prova__titolo">Fotografia o caso reale</h3>
+        <p class="comp-frase">Attività effettivamente svolte, ambiti e responsabilità nell’intervento.</p>
+        <ul class="lista-voci comp-voci comp-voci--solo">
+          <li><a class="voce" href="/cantieri/"><span>Titolo del cantiere pertinente</span><span class="comp-voce-freccia" aria-hidden="true">→</span></a></li>
+        </ul>
       </div>
-      <div class="u-flow" data-reveal>
-        
-<div class="da-completare da-completare--immagine" role="note" data-da-completare>
-  <span class="da-completare__tipo">Immagine, dato o caso da inserire</span>
-  <strong class="da-completare__titolo">Fotografia o caso reale</strong><p class="da-completare__testo">Attività effettivamente svolte, ambiti e responsabilità nell’intervento.</p>
-</div>
-<p>
-<a class="link-freccia" href="/cantieri/">Titolo del cantiere pertinente<span aria-hidden="true"> →</span></a>
-</p>
-      </div>
+      <figure class="capitolo__foto">
+        <div class="capitolo__finestra mask-reveal" data-parallax="60">
+          <picture><source type="image/avif" srcset="/assets/img/bonifiche-ambientali-3-1024x768-1-480w.avif 480w, /assets/img/bonifiche-ambientali-3-1024x768-1-800w.avif 800w, /assets/img/bonifiche-ambientali-3-1024x768-1-1024w.avif 1024w" sizes="(min-width: 900px) 60vw, 100vw"><source type="image/webp" srcset="/assets/img/bonifiche-ambientali-3-1024x768-1-480w.webp 480w, /assets/img/bonifiche-ambientali-3-1024x768-1-800w.webp 800w, /assets/img/bonifiche-ambientali-3-1024x768-1-1024w.webp 1024w" sizes="(min-width: 900px) 60vw, 100vw"><img src="/assets/img/bonifiche-ambientali-3-1024x768-1-480w.jpeg" alt="Pneumatici abbandonati raccolti in un prato durante una bonifica, escavatore sullo sfondo" loading="lazy" decoding="async" width="1024" height="768" srcset="/assets/img/bonifiche-ambientali-3-1024x768-1-480w.jpeg 480w, /assets/img/bonifiche-ambientali-3-1024x768-1-800w.jpeg 800w, /assets/img/bonifiche-ambientali-3-1024x768-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 60vw, 100vw"></picture>
+        </div>
+        <span class="capitolo__numero" aria-hidden="true" data-parallax="-80">03</span>
+      </figure>
     </div>
   </div>
-</section><section class="sezione--sm tema-cemento" aria-labelledby="lav-azione">
+</section><section class="comp-sez sez sez--sm" data-capitolo aria-labelledby="lav-azione">
   <div class="container">
-    <div class="section-heading w3c-etichetta" data-reveal>
+    <div class="capitolo__rule comp-rule">
       <h2 class="section-heading__num" id="lav-azione">04/ <span class="section-heading__etichetta">Azione principale</span></h2>
+      <span aria-hidden="true">Bonifiche ambientali</span>
     </div>
-    <p data-reveal>
-      
-<a class="btn btn--accent btn--big" href="/contatti/?rif=Bonifiche%20ambientali#intervento" data-cta-intervento data-rif="Bonifiche ambientali">Parliamo del tuo intervento</a>
+    <div class="comp-griglia">
+      <span class="comp-numero" aria-hidden="true" data-parallax="-50">04</span>
+      <p data-reveal>
+        
+<a class="btn btn--accent btn--big comp-cta" href="/contatti/?rif=Bonifiche%20ambientali#intervento" data-cta-intervento data-rif="Bonifiche ambientali"><span>Parliamo del tuo intervento</span></a>
 
-    </p>
-  </div>
-</section><section class="sezione--sm" aria-labelledby="lav-approfondimento">
-  <div class="container">
-    <div class="section-heading w3c-etichetta" data-reveal>
-      <h2 class="section-heading__num" id="lav-approfondimento">05/ <span class="section-heading__etichetta">Approfondimento facoltativo</span></h2>
+      </p>
     </div>
-    <ul class="w3c-area__lista" data-reveal>
-      <li>
-<a class="link-freccia" href="/impresa/#persone-e-metodo">Persone e metodo<span aria-hidden="true"> →</span></a>
-</li>
-      <li>
-<a class="link-freccia" href="/competenze/ambiente-e-completamento/">Torna a Ambiente e completamento<span aria-hidden="true"> →</span></a>
-</li>
-    </ul>
+  </div>
+</section><section class="comp-sez sez sez--sm comp-sez--ultima" data-capitolo aria-labelledby="lav-approfondimento">
+  <div class="container">
+    <div class="capitolo__rule comp-rule">
+      <h2 class="section-heading__num" id="lav-approfondimento">05/ <span class="section-heading__etichetta">Approfondimento facoltativo</span></h2>
+      <span aria-hidden="true">Bonifiche ambientali</span>
+    </div>
+    <div class="comp-griglia">
+      <span class="comp-numero" aria-hidden="true" data-parallax="-50">05</span>
+      <ul class="lista-voci comp-voci comp-voci--due" data-reveal>
+        <li><a class="voce" href="/impresa/#persone-e-metodo"><span>Persone e metodo</span><span class="comp-voce-freccia" aria-hidden="true">→</span></a></li>
+        <li><a class="voce" href="/competenze/ambiente-e-completamento/"><span>Torna a Ambiente e completamento</span><span class="comp-voce-freccia" aria-hidden="true">→</span></a></li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -497,7 +511,6 @@
         <p class="site-footer__title">Servizi</p>
         <ul>
           <li><a href="/contatti/#amministrazione">Amministrazione, fornitori</a></li>
-          <li><a href="/documentazione/">Documentazione</a></li>
           <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
           <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
           <li><a href="/documentazione/">Documentazione</a></li>
@@ -562,6 +575,10 @@
   })();
 </script>
 
-  <script type="module" src="/assets/js/main.js?v=cc8f6672"></script>
+  <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
+  <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina">Inizio</button>
+  <div class="cursore-orbita" data-cursore aria-hidden="true"></div>
+  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
+  <script type="module" src="/assets/js/main.js?v=ddf024a9"></script>
 </body>
 </html>
