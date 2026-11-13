@@ -187,21 +187,39 @@ function follow(value){
   api.following=true;
   if(!following){lastFollow=0;following=requestAnimationFrame(followStep);}
 }
+// Viaggio dopo un clic (CF-03, 13/11). Un passaggio di una sola epoca resta quello di Mattia: 4,6 s a
+// velocità costante. Un viaggio più lungo (1960 → Oggi) non supera mai 4,6 s: parte e arriva con una
+// curva morbida (Hermite cubica), e se il clic arriva a metà di un altro viaggio riparte dalla velocità
+// che la scena ha in quel momento, senza fermarsi di colpo. La curva è monotona: i rulli della data e la
+// tendina dei fondali vedono ogni epoca intermedia una sola volta, in ordine.
+const PASSAGGIO=4600;
+let travelSpeed=0; // epoche al millisecondo, con segno, del viaggio in corso
 function moveTo(to){
-  to=Math.max(0,Math.min(3,to));stop();
+  to=Math.max(0,Math.min(3,to));
+  const v0=travel?travelSpeed:0;
+  stop();travelSpeed=0;
   destination=to;
   if(reduced||!view||Math.abs(to-progress)<.0001){paint(to);return;}
-  const start=progress,delta=to-start;
-  travel={start,to};const duration=Math.max(360,Math.abs(delta)*4600);
-  let previousTime=null,elapsed=0;
+  const start=progress,delta=to-start,span=Math.abs(delta);
+  const lineare=span<=1.0001&&v0===0;
+  const duration=lineare?Math.max(360,span*PASSAGGIO):Math.min(PASSAGGIO,Math.max(360,span*PASSAGGIO));
+  // pendenza iniziale normalizzata: la velocità attuale se va nella stessa direzione, mai oltre 3 (niente rimbalzi)
+  const m0=lineare?0:Math.max(0,Math.min(3,v0*duration/delta));
+  const curva=u=>lineare?u:(-2*u*u*u+3*u*u)+m0*(u*u*u-2*u*u+u);
+  travel={start,to};
+  let previousTime=null,elapsed=0,lastP=start;
   function frame(now){
     if(!travel)return;
-    if(previousTime!==null)elapsed+=Math.min(now-previousTime,110);
+    let dt=0;
+    if(previousTime!==null){dt=Math.min(now-previousTime,110);elapsed+=dt;}
     previousTime=now;
     const u=Math.min(1,elapsed/duration);
-    paint(start+delta*u);
+    const p=start+delta*curva(u);
+    if(dt>0)travelSpeed=(p-lastP)/dt;
+    lastP=p;
+    paint(p);
     if(u<1)animationFrame=requestAnimationFrame(frame);
-    else{stop();paint(to);}
+    else{stop();travelSpeed=0;paint(to);}
   }
   playerState();animationFrame=requestAnimationFrame(frame);
 }
