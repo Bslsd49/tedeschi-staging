@@ -9,7 +9,9 @@
   <link rel="canonical" href="https://tedeschi.arcaagency.it/cantieri/">
   <meta name="theme-color" content="#000000">
   <meta name="generator" content="Eleventy">
-  <script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}}(document)</script>
+<script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}try{var a=JSON.parse(sessionStorage.getItem('tedeschi-arrivo'));sessionStorage.removeItem('tedeschi-arrivo');if(on&&a&&Date.now()-a.t<8000){if(!a.vt){h.classList.add('arrivo');setTimeout(function(){h.classList.remove('arrivo')},3000)}else if(a.u===location.pathname&&'onpagereveal'in window){var v=d.createElement('style');v.textContent='@view-transition{navigation:auto}.hero-interna__img{view-transition-name:cantiere-foto}';d.head.appendChild(v);addEventListener('pagereveal',function(e){var t=e.viewTransition;function via(){v.remove()}t?t.finished.then(via,via):via()},{once:true})}}}catch(e){}}(document)</script>
+<script>addEventListener('pagereveal',function(e){var t=e.viewTransition;t&&['ready','finished','updateCallbackDone'].forEach(function(k){t[k]&&t[k].catch(function(){})})})</script>
+<script>!function(h){try{if(!h.classList.contains('motion-off')||location.hash||!matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(localStorage.getItem('tedeschi-motion')!==null||localStorage.getItem('tedeschi-motion-invito'))return;h.classList.add('invito-pagina')}catch(e){}}(document.documentElement)</script>
   <meta name="author" content="TEDESCHI S.R.L.">
   <meta property="og:locale" content="it_IT">
   <meta property="og:site_name" content="Impresa Tedeschi">
@@ -18,6 +20,8 @@
   <meta property="og:description" content="Tutti i cantieri di Impresa Tedeschi. Filtra per area di competenza e per settore, apri la scheda più vicina al tuo intervento e parliamone.">
   <meta property="og:url" content="https://tedeschi.arcaagency.it/cantieri/">
   <meta property="og:image" content="https://tedeschi.arcaagency.it/assets/img/cantiere-01-silos-01-1600w.jpeg">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="1066">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cantieri a Cremona e provincia | Impresa Tedeschi">
   <meta name="twitter:description" content="Tutti i cantieri di Impresa Tedeschi. Filtra per area di competenza e per settore, apri la scheda più vicina al tuo intervento e parliamone.">
@@ -31,16 +35,18 @@
   <link rel="preload" as="style" href="https://use.typekit.net/hlp3tzz.css" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://use.typekit.net/hlp3tzz.css"></noscript>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/tedeschi.woff2" crossorigin>
-  <link rel="preload" as="image" type="image/webp" imagesrcset="/assets/img/cantiere-01-silos-01-480w-q66.webp 480w, /assets/img/cantiere-01-silos-01-800w-q66.webp 800w, /assets/img/cantiere-01-silos-01-1200w-q66.webp 1200w, /assets/img/cantiere-01-silos-01-1600w-q66.webp 1600w" imagesizes="(min-width: 601px) 58vw, 95vw">
+  <link rel="preload" as="image" href="/assets/img/cantiere-01-silos-01-1600w.jpeg" type="image/webp" imagesrcset="/assets/img/cantiere-01-silos-01-480w-q66.webp 480w, /assets/img/cantiere-01-silos-01-800w-q66.webp 800w, /assets/img/cantiere-01-silos-01-1200w-q66.webp 1200w, /assets/img/cantiere-01-silos-01-1600w-q66.webp 1600w" imagesizes="(min-width: 601px) 58vw, 95vw">
 
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/base.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/components.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/utilities.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/pagine-operativita-contatti.css?v=1cad0145">
-  <script type="application/ld+json">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/base.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/components.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/utilities.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/revisione-contenuti.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/pagine-operativita-contatti.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/motion.css?v=53387662">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -91,22 +97,30 @@
 </head>
 <body data-rif="Cantieri">
   <a class="skip-link" href="#contenuto">Salta al contenuto</a>
+  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
   <div class="progresso-pagina" aria-hidden="true"></div>
-
-  <header class="site-header" data-header>
+<header class="site-header" data-header>
   <div class="site-header__inner container">
     <a class="site-header__logo" href="/" aria-label="Impresa Tedeschi — torna alla home">
       <img class="site-header__logo-img" src="/assets/static/logo-tedeschi-dark.png" alt="Impresa Tedeschi — Edilizia &amp; Ambiente" width="181" height="95">
     </a>
 
+    <nav class="site-header__rapidi" aria-label="Accessi rapidi">
+      <ul>
+      <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
+      <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
+      <li><a href="/documentazione/">Documentazione</a></li>
+      </ul>
+    </nav>
+
     <nav class="site-nav" aria-label="Navigazione principale">
       <ul class="site-nav__list">
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/impresa/">Impresa</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-1" aria-label="Sottomenu Impresa">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel">
+          <div class="site-nav__panel" id="sottomenu-1">
             <ul class="site-nav__dropdown">
               <li><a href="/impresa/#storia">Storia</a></li>
               <li><a href="/impresa/#persone-e-metodo">Persone e metodo</a></li>
@@ -118,10 +132,10 @@
         </li>
         <li class="site-nav__item has-children has-mega" data-nav-item>
           <a class="site-nav__link" href="/competenze/">Competenze</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-2" aria-label="Sottomenu Competenze">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel site-nav__panel--mega">
+          <div class="site-nav__panel site-nav__panel--mega" id="sottomenu-2">
             <div class="mega">
               <div class="mega__col">
                 <a class="mega__hub" href="/competenze/coordinamento-progettuale/">Coordinamento Progettuale</a>
@@ -175,10 +189,10 @@
         </li>
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/operativita/">Operatività</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-4" aria-label="Sottomenu Operatività">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel">
+          <div class="site-nav__panel" id="sottomenu-4">
             <ul class="site-nav__dropdown">
               <li><a href="/operativita/parco-macchine/">Parco macchine</a></li>
               <li><a href="/operativita/tecnologie-di-precisione/">Tecnologie di precisione</a></li>
@@ -193,14 +207,6 @@
         <li class="site-nav__item" data-nav-item>
           <a class="site-nav__link" href="/contatti/">Contatti</a>
         </li>
-      </ul>
-    </nav>
-
-    <nav class="site-header__rapidi" aria-label="Accessi rapidi">
-      <ul>
-      <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
-      <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
-      <li><a href="/documentazione/">Documentazione</a></li>
       </ul>
     </nav>
 
@@ -286,8 +292,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-mobile__item">
-            <a class="nav-mobile__link" href="/cantieri/">Cantieri</a>
+          <li class="nav-mobile__item is-attiva">
+            <a class="nav-mobile__link" href="/cantieri/" aria-current="page">Cantieri</a>
           </li>
           <li class="nav-mobile__item">
             <div class="nav-mobile__row">
@@ -322,12 +328,15 @@
       <div class="nav-mobile__contatti">
         <a href="tel:+39037226760">+39 0372 26760</a>
         <a href="mailto:info@impresatedeschi.it">info@impresatedeschi.it</a>
+      </div><div class="nav-mobile__comandi">
+        <button class="motion-toggle motion-toggle--menu" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span class="motion-toggle__stato" data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
       </div>
     </div>
   </section>
 
 
   <main id="contenuto">
+    <section class="motion-invito motion-invito--in-pagina" data-invito-statico aria-label="Movimento della pagina"><p class="motion-invito__testo">Il tuo dispositivo chiede meno animazioni, quindi il sito è in versione ridotta. Se vuoi vederlo con il suo movimento, puoi attivarlo.</p><div class="motion-invito__azioni"><button type="button" class="motion-invito__si">Attiva il movimento</button><button type="button" class="motion-invito__no">No, grazie</button></div></section>
     <nav class="breadcrumb" aria-label="Percorso di navigazione">
   <div class="container">
     <ol class="breadcrumb__list">
@@ -361,7 +370,6 @@
 }
 </script>
 
-    
 
 
 
@@ -385,7 +393,7 @@
     <div class="filtri pg-filtri" data-filtri-cantieri>
       <div class="pg-filtri__testa">
         <h2 class="section-heading__num" id="cant-filtri">02/ <span class="section-heading__etichetta">Filtri</span></h2>
-        <p class="pg-filtri__conteggio" aria-live="polite"><span data-conteggio>12 cantieri</span></p>
+        <p class="pg-filtri__conteggio" aria-live="polite"><span data-conteggio>11 cantieri</span></p>
       </div>
       <div class="filtri__gruppo pg-filtri__gruppo"><label for="filtro-area">Filtro per area di competenza</label>
         <select id="filtro-area">
@@ -400,7 +408,6 @@
           <option value="Agricolo">Agricolo</option>
           <option value="Civile">Civile</option>
           <option value="Industriale">Industriale</option>
-          <option value="Residenziale">Residenziale</option>
         </select></div>
       <button class="filtri__reset voce pg-filtri__reset" type="button" data-filtri-reset>Visualizza tutti i cantieri</button>
     </div>
@@ -411,12 +418,10 @@
       <h2 class="section-heading__num" id="cant-opere">03/ <span class="section-heading__etichetta">Opere</span></h2>
     </div>
     <div class="pg-opere">
-      
-<article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Industriale">
+      <article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Industriale">
   <a class="card__link" href="/cantieri/cantiere-01-opere-calcestruzzo-impianto-silos/">
     <div class="card__media">
       <picture><source type="image/webp" srcset="/assets/img/cantiere-01-silos-01-480w-q66.webp 480w, /assets/img/cantiere-01-silos-01-800w-q66.webp 800w, /assets/img/cantiere-01-silos-01-1200w-q66.webp 1200w, /assets/img/cantiere-01-silos-01-1600w-q66.webp 1600w" sizes="(min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-01-silos-01-480w.jpeg" alt="Impianto con grandi silos metallici, in primo piano casseforme e ferri d'armatura di un'opera in calcestruzzo" loading="lazy" decoding="async" class="card__img" width="1600" height="1066" srcset="/assets/img/cantiere-01-silos-01-480w.jpeg 480w, /assets/img/cantiere-01-silos-01-800w.jpeg 800w, /assets/img/cantiere-01-silos-01-1200w.jpeg 1200w, /assets/img/cantiere-01-silos-01-1600w.jpeg 1600w" sizes="(min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">Titolo e dati da confermare</span>
       <span class="card__scopri" aria-hidden="true">Scopri</span>
     </div>
     <div class="card__body">
@@ -427,44 +432,38 @@
   </a>
 </article>
 
-      
-<article class="card card--cantiere" data-reveal data-area="terra-e-preparazione" data-settore="Agricolo">
-  <a class="card__link" href="/cantieri/cantiere-02-scavi-tubazioni-impianto-digestori/">
+      <article class="card card--cantiere" data-reveal data-area="terra-e-preparazione" data-settore="Agricolo">
+  <a class="card__link" href="/cantieri/cantiere-02-scavi-tubazioni-impianto-vasche-a-cupola/">
     <div class="card__media">
-      <picture><source type="image/webp" srcset="/assets/img/cantiere-02-digestori-02-480w-q66.webp 480w, /assets/img/cantiere-02-digestori-02-800w-q66.webp 800w, /assets/img/cantiere-02-digestori-02-1200w-q66.webp 1200w, /assets/img/cantiere-02-digestori-02-1600w-q66.webp 1600w" sizes="(min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-02-digestori-02-480w.jpeg" alt="Escavatore cingolato giallo scava la terra accanto a due digestori a cupola" loading="lazy" decoding="async" class="card__img" width="1600" height="1067" srcset="/assets/img/cantiere-02-digestori-02-480w.jpeg 480w, /assets/img/cantiere-02-digestori-02-800w.jpeg 800w, /assets/img/cantiere-02-digestori-02-1200w.jpeg 1200w, /assets/img/cantiere-02-digestori-02-1600w.jpeg 1600w" sizes="(min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">Titolo e dati da confermare</span>
+      <picture><source type="image/webp" srcset="/assets/img/cantiere-02-digestori-02-480w-q66.webp 480w, /assets/img/cantiere-02-digestori-02-800w-q66.webp 800w, /assets/img/cantiere-02-digestori-02-1200w-q66.webp 1200w, /assets/img/cantiere-02-digestori-02-1600w-q66.webp 1600w" sizes="(min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-02-digestori-02-480w.jpeg" alt="Escavatore cingolato giallo scava la terra accanto a due grandi vasche coperte a cupola" loading="lazy" decoding="async" class="card__img" width="1600" height="1067" srcset="/assets/img/cantiere-02-digestori-02-480w.jpeg 480w, /assets/img/cantiere-02-digestori-02-800w.jpeg 800w, /assets/img/cantiere-02-digestori-02-1200w.jpeg 1200w, /assets/img/cantiere-02-digestori-02-1600w.jpeg 1600w" sizes="(min-width: 600px) 50vw, 100vw"></picture>
       <span class="card__scopri" aria-hidden="true">Scopri</span>
     </div>
     <div class="card__body">
       <p class="card__meta"><span class="tag">Terra e preparazione</span><span class="tag">Agricolo</span>
       </p>
-      <h3 class="card__title">Scavi e posa di tubazioni presso un impianto con digestori</h3>
+      <h3 class="card__title">Scavi e posa di tubazioni in un impianto con vasche a cupola</h3>
     </div>
   </a>
 </article>
 
-      
-<article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Civile">
+      <article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Civile">
   <a class="card__link" href="/cantieri/cantiere-05-percorsi-pavimentazioni-edificio-storico/">
     <div class="card__media">
       <picture><source type="image/webp" srcset="/assets/img/cantiere-05-edificio-storico-10-480w-q66.webp 480w, /assets/img/cantiere-05-edificio-storico-10-800w-q66.webp 800w, /assets/img/cantiere-05-edificio-storico-10-1200w-q66.webp 1200w, /assets/img/cantiere-05-edificio-storico-10-1600w-q66.webp 1600w" sizes="(min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-05-edificio-storico-10-480w.jpeg" alt="Edificio storico in mattoni con ampia struttura vetrata e scala metallica, circondato dal verde" loading="lazy" decoding="async" class="card__img" width="1600" height="1066" srcset="/assets/img/cantiere-05-edificio-storico-10-480w.jpeg 480w, /assets/img/cantiere-05-edificio-storico-10-800w.jpeg 800w, /assets/img/cantiere-05-edificio-storico-10-1200w.jpeg 1200w, /assets/img/cantiere-05-edificio-storico-10-1600w.jpeg 1600w" sizes="(min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">Titolo e dati da confermare</span>
       <span class="card__scopri" aria-hidden="true">Scopri</span>
     </div>
     <div class="card__body">
       <p class="card__meta"><span class="tag">Infrastrutture e superfici</span><span class="tag">Civile</span>
       </p>
-      <h3 class="card__title">Percorsi e pavimentazioni esterne di un edificio storico recuperato</h3>
+      <h3 class="card__title">Percorsi e pavimentazioni esterne di un edificio storico</h3>
     </div>
   </a>
 </article>
 
-      
-<article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Civile">
+      <article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Civile">
   <a class="card__link" href="/cantieri/cantiere-06-parcheggio-con-pensiline/">
     <div class="card__media">
       <picture><source type="image/webp" srcset="/assets/img/cantiere-06-pensiline-01-480w-q66.webp 480w, /assets/img/cantiere-06-pensiline-01-800w-q66.webp 800w, /assets/img/cantiere-06-pensiline-01-1200w-q66.webp 1200w, /assets/img/cantiere-06-pensiline-01-1600w-q66.webp 1600w" sizes="(min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-06-pensiline-01-480w.jpeg" alt="Parcheggio con lunghe pensiline in acciaio, auto in sosta, prato e alberi sullo sfondo" loading="lazy" decoding="async" class="card__img" width="1600" height="1066" srcset="/assets/img/cantiere-06-pensiline-01-480w.jpeg 480w, /assets/img/cantiere-06-pensiline-01-800w.jpeg 800w, /assets/img/cantiere-06-pensiline-01-1200w.jpeg 1200w, /assets/img/cantiere-06-pensiline-01-1600w.jpeg 1600w" sizes="(min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">Titolo e dati da confermare</span>
       <span class="card__scopri" aria-hidden="true">Scopri</span>
     </div>
     <div class="card__body">
@@ -475,12 +474,10 @@
   </a>
 </article>
 
-      
-<article class="card card--cantiere" data-reveal data-area="terra-e-preparazione" data-settore="Agricolo">
+      <article class="card card--cantiere" data-reveal data-area="terra-e-preparazione" data-settore="Agricolo">
   <a class="card__link" href="/cantieri/cantiere-07-opere-in-calcestruzzo-su-canale/">
     <div class="card__media">
       <picture><source type="image/webp" srcset="/assets/img/cantiere-07-canale-03-480w-q66.webp 480w, /assets/img/cantiere-07-canale-03-800w-q66.webp 800w, /assets/img/cantiere-07-canale-03-1200w-q66.webp 1200w, /assets/img/cantiere-07-canale-03-1600w-q66.webp 1600w" sizes="(min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-07-canale-03-480w.jpeg" alt="Canale con sponde nuove in calcestruzzo e ponte ad arco in muratura, cascina in lontananza" loading="lazy" decoding="async" class="card__img" width="1600" height="1067" srcset="/assets/img/cantiere-07-canale-03-480w.jpeg 480w, /assets/img/cantiere-07-canale-03-800w.jpeg 800w, /assets/img/cantiere-07-canale-03-1200w.jpeg 1200w, /assets/img/cantiere-07-canale-03-1600w.jpeg 1600w" sizes="(min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">Titolo e dati da confermare</span>
       <span class="card__scopri" aria-hidden="true">Scopri</span>
     </div>
     <div class="card__body">
@@ -491,28 +488,24 @@
   </a>
 </article>
 
-      
-<article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Industriale">
+      <article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Industriale">
   <a class="card__link" href="/cantieri/cantiere-08-posa-condotte-pozzetti-area-produttiva/">
     <div class="card__media">
       <picture><source type="image/webp" srcset="/assets/img/cantiere-08-condotte-10-480w-q66.webp 480w, /assets/img/cantiere-08-condotte-10-800w-q66.webp 800w, /assets/img/cantiere-08-condotte-10-1200w-q66.webp 1200w, /assets/img/cantiere-08-condotte-10-1600w-q66.webp 1600w" sizes="(min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-08-condotte-10-480w.jpeg" alt="Tubo arancione sospeso alla benna viene posato nella trincea da operai in maglia arancione" loading="lazy" decoding="async" class="card__img" width="1600" height="1066" srcset="/assets/img/cantiere-08-condotte-10-480w.jpeg 480w, /assets/img/cantiere-08-condotte-10-800w.jpeg 800w, /assets/img/cantiere-08-condotte-10-1200w.jpeg 1200w, /assets/img/cantiere-08-condotte-10-1600w.jpeg 1600w" sizes="(min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">Titolo e dati da confermare</span>
       <span class="card__scopri" aria-hidden="true">Scopri</span>
     </div>
     <div class="card__body">
       <p class="card__meta"><span class="tag">Infrastrutture e superfici</span><span class="tag">Industriale</span>
       </p>
-      <h3 class="card__title">Posa di condotte e pozzetti in un&#39;area produttiva</h3>
+      <h3 class="card__title">Posa di condotte e pozzetti in un’area produttiva</h3>
     </div>
   </a>
 </article>
 
-      
-<article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Industriale">
+      <article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Industriale">
   <a class="card__link" href="/cantieri/cantiere-09-piazzale-calcestruzzo-stabilimento/">
     <div class="card__media">
       <picture><source type="image/webp" srcset="/assets/img/cantiere-09-stabilimento-03-480w-q66.webp 480w, /assets/img/cantiere-09-stabilimento-03-800w-q66.webp 800w, /assets/img/cantiere-09-stabilimento-03-1200w-q66.webp 1200w, /assets/img/cantiere-09-stabilimento-03-1600w-q66.webp 1600w" sizes="(min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-09-stabilimento-03-480w.jpeg" alt="Ampio piazzale in calcestruzzo davanti a un capannone industriale con tettoia" loading="lazy" decoding="async" class="card__img" width="1600" height="1066" srcset="/assets/img/cantiere-09-stabilimento-03-480w.jpeg 480w, /assets/img/cantiere-09-stabilimento-03-800w.jpeg 800w, /assets/img/cantiere-09-stabilimento-03-1200w.jpeg 1200w, /assets/img/cantiere-09-stabilimento-03-1600w.jpeg 1600w" sizes="(min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">Titolo e dati da confermare</span>
       <span class="card__scopri" aria-hidden="true">Scopri</span>
     </div>
     <div class="card__body">
@@ -523,12 +516,10 @@
   </a>
 </article>
 
-      
-<article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Industriale">
+      <article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Industriale">
   <a class="card__link" href="/cantieri/cantiere-10-pavimento-industriale-calcestruzzo/">
     <div class="card__media">
       <picture><source type="image/webp" srcset="/assets/img/cantiere-10-pavimento-03-480w-q66.webp 480w, /assets/img/cantiere-10-pavimento-03-800w-q66.webp 800w, /assets/img/cantiere-10-pavimento-03-1200w-q66.webp 1200w, /assets/img/cantiere-10-pavimento-03-1600w-q66.webp 1600w" sizes="(min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-10-pavimento-03-480w.jpeg" alt="Due operai in ginocchio con frattazzi lisciano la superficie del pavimento" loading="lazy" decoding="async" class="card__img" width="1600" height="1066" srcset="/assets/img/cantiere-10-pavimento-03-480w.jpeg 480w, /assets/img/cantiere-10-pavimento-03-800w.jpeg 800w, /assets/img/cantiere-10-pavimento-03-1200w.jpeg 1200w, /assets/img/cantiere-10-pavimento-03-1600w.jpeg 1600w" sizes="(min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">Titolo e dati da confermare</span>
       <span class="card__scopri" aria-hidden="true">Scopri</span>
     </div>
     <div class="card__body">
@@ -539,28 +530,10 @@
   </a>
 </article>
 
-      
-<article class="card card--cantiere" data-reveal data-area="terra-e-preparazione" data-settore="Residenziale">
-  <a class="card__link" href="/cantieri/cantiere-11-pavimentazione-giardino-abitazione/">
-    <div class="card__media">
-      <picture><source type="image/webp" srcset="/assets/img/cantiere-11-giardino-03-480w-q66.webp 480w, /assets/img/cantiere-11-giardino-03-800w-q66.webp 800w, /assets/img/cantiere-11-giardino-03-1200w-q66.webp 1200w, /assets/img/cantiere-11-giardino-03-1600w-q66.webp 1600w" sizes="(min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-11-giardino-03-480w.jpeg" alt="Portico con pilastri e travi in legno e piazzale pavimentato in elementi grigi, prato e siepe" loading="lazy" decoding="async" class="card__img" width="1600" height="1066" srcset="/assets/img/cantiere-11-giardino-03-480w.jpeg 480w, /assets/img/cantiere-11-giardino-03-800w.jpeg 800w, /assets/img/cantiere-11-giardino-03-1200w.jpeg 1200w, /assets/img/cantiere-11-giardino-03-1600w.jpeg 1600w" sizes="(min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">Titolo e dati da confermare</span>
-      <span class="card__scopri" aria-hidden="true">Scopri</span>
-    </div>
-    <div class="card__body">
-      <p class="card__meta"><span class="tag">Terra e preparazione</span><span class="tag">Residenziale</span>
-      </p>
-      <h3 class="card__title">Pavimentazione e giardino di un&#39;abitazione privata</h3>
-    </div>
-  </a>
-</article>
-
-      
-<article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Industriale">
+      <article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Industriale">
   <a class="card__link" href="/cantieri/cantiere-12-murature-casseforme-capannone/">
     <div class="card__media">
       <picture><source type="image/webp" srcset="/assets/img/cantiere-12-capannone-12-480w-q66.webp 480w, /assets/img/cantiere-12-capannone-12-800w-q66.webp 800w, /assets/img/cantiere-12-capannone-12-1200w-q66.webp 1200w, /assets/img/cantiere-12-capannone-12-1600w-q66.webp 1600w" sizes="(min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-12-capannone-12-480w.jpeg" alt="Capannone industriale nuovo con copertura blu e piazzale in calcestruzzo, autocarro in lontananza" loading="lazy" decoding="async" class="card__img" width="1600" height="1066" srcset="/assets/img/cantiere-12-capannone-12-480w.jpeg 480w, /assets/img/cantiere-12-capannone-12-800w.jpeg 800w, /assets/img/cantiere-12-capannone-12-1200w.jpeg 1200w, /assets/img/cantiere-12-capannone-12-1600w.jpeg 1600w" sizes="(min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">Titolo e dati da confermare</span>
       <span class="card__scopri" aria-hidden="true">Scopri</span>
     </div>
     <div class="card__body">
@@ -571,28 +544,24 @@
   </a>
 </article>
 
-      
-<article class="card card--cantiere" data-reveal data-area="demolizione-e-recupero" data-settore="Agricolo">
+      <article class="card card--cantiere" data-reveal data-area="demolizione-e-recupero" data-settore="Agricolo">
   <a class="card__link" href="/cantieri/cantiere-03-demolizione-strutture-azienda-agricola/">
     <div class="card__media">
       <picture><source type="image/webp" srcset="/assets/img/cantiere-03-demolizione-03-480w-q66.webp 480w, /assets/img/cantiere-03-demolizione-03-800w-q66.webp 800w, /assets/img/cantiere-03-demolizione-03-1200w-q66.webp 1200w, /assets/img/cantiere-03-demolizione-03-1600w-q66.webp 1600w" sizes="(min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-03-demolizione-03-480w.jpeg" alt="Escavatore gommato giallo con martellone demolitore che frantuma il calcestruzzo, nuvola di polvere" loading="lazy" decoding="async" class="card__img" width="1600" height="1066" srcset="/assets/img/cantiere-03-demolizione-03-480w.jpeg 480w, /assets/img/cantiere-03-demolizione-03-800w.jpeg 800w, /assets/img/cantiere-03-demolizione-03-1200w.jpeg 1200w, /assets/img/cantiere-03-demolizione-03-1600w.jpeg 1600w" sizes="(min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">Titolo e dati da confermare</span>
       <span class="card__scopri" aria-hidden="true">Scopri</span>
     </div>
     <div class="card__body">
       <p class="card__meta"><span class="tag">Demolizione e recupero</span><span class="tag">Agricolo</span>
       </p>
-      <h3 class="card__title">Demolizione di strutture in calcestruzzo in un&#39;azienda agricola</h3>
+      <h3 class="card__title">Demolizione di strutture in calcestruzzo in un’azienda agricola</h3>
     </div>
   </a>
 </article>
 
-      
-<article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Industriale">
+      <article class="card card--cantiere" data-reveal data-area="infrastrutture-e-superfici" data-settore="Industriale">
   <a class="card__link" href="/cantieri/cantiere-04-piazzale-recinzione-sede-produttiva/">
     <div class="card__media">
       <picture><source type="image/webp" srcset="/assets/img/cantiere-04-piazzale-01-480w-q66.webp 480w, /assets/img/cantiere-04-piazzale-01-800w-q66.webp 800w, /assets/img/cantiere-04-piazzale-01-1200w-q66.webp 1200w, /assets/img/cantiere-04-piazzale-01-1600w-q66.webp 1600w" sizes="(min-width: 600px) 50vw, 100vw"><img src="/assets/img/cantiere-04-piazzale-01-480w.jpeg" alt="Ampio piazzale asfaltato con camion in sosta davanti a un capannone in mattoni e a una recinzione scura" loading="lazy" decoding="async" class="card__img" width="1600" height="1066" srcset="/assets/img/cantiere-04-piazzale-01-480w.jpeg 480w, /assets/img/cantiere-04-piazzale-01-800w.jpeg 800w, /assets/img/cantiere-04-piazzale-01-1200w.jpeg 1200w, /assets/img/cantiere-04-piazzale-01-1600w.jpeg 1600w" sizes="(min-width: 600px) 50vw, 100vw"></picture>
-      <span class="card__demo">Titolo e dati da confermare</span>
       <span class="card__scopri" aria-hidden="true">Scopri</span>
     </div>
     <div class="card__body">
@@ -604,7 +573,7 @@
 </article>
 
     </div>
-    <div class="empty-state" data-empty-state><p class="empty-state__titolo">Nessun cantiere con questi filtri.</p><p>Usa “Visualizza tutti i cantieri” per tornare all'archivio completo.</p></div>
+    <div class="empty-state" data-empty-state><p class="empty-state__titolo">Nessun cantiere con questi filtri.</p><p>Usa “Visualizza tutti i cantieri” per tornare all’archivio completo.</p></div>
   </div>
 </section>
 
@@ -623,13 +592,13 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Scavi e posa di tubazioni presso un impianto con digestori",
-      "url": "https://tedeschi.arcaagency.it/cantieri/cantiere-02-scavi-tubazioni-impianto-digestori/"
+      "name": "Scavi e posa di tubazioni in un impianto con vasche a cupola",
+      "url": "https://tedeschi.arcaagency.it/cantieri/cantiere-02-scavi-tubazioni-impianto-vasche-a-cupola/"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Percorsi e pavimentazioni esterne di un edificio storico recuperato",
+      "name": "Percorsi e pavimentazioni esterne di un edificio storico",
       "url": "https://tedeschi.arcaagency.it/cantieri/cantiere-05-percorsi-pavimentazioni-edificio-storico/"
     },
     {
@@ -665,24 +634,18 @@
     {
       "@type": "ListItem",
       "position": 9,
-      "name": "Pavimentazione e giardino di un'abitazione privata",
-      "url": "https://tedeschi.arcaagency.it/cantieri/cantiere-11-pavimentazione-giardino-abitazione/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 10,
       "name": "Murature e casseforme in un capannone, piazzale esterno",
       "url": "https://tedeschi.arcaagency.it/cantieri/cantiere-12-murature-casseforme-capannone/"
     },
     {
       "@type": "ListItem",
-      "position": 11,
+      "position": 10,
       "name": "Demolizione di strutture in calcestruzzo in un'azienda agricola",
       "url": "https://tedeschi.arcaagency.it/cantieri/cantiere-03-demolizione-strutture-azienda-agricola/"
     },
     {
       "@type": "ListItem",
-      "position": 12,
+      "position": 11,
       "name": "Piazzale asfaltato, muro e recinzione per una sede produttiva",
       "url": "https://tedeschi.arcaagency.it/cantieri/cantiere-04-piazzale-recinzione-sede-produttiva/"
     }
@@ -725,6 +688,19 @@
           <li><a href="/accessibilita/">Accessibilità</a></li>
         </ul>
       </nav>
+    </div><nav class="site-footer__mappa" aria-label="Sezioni del sito">
+      <ul>
+        <li><a href="/impresa/">Impresa</a></li>
+        <li><a href="/competenze/">Competenze</a></li>
+        <li><a href="/cantieri/" aria-current="page">Cantieri</a></li>
+        <li><a href="/operativita/">Operatività</a></li>
+        <li><a href="/approfondimenti/">Approfondimenti</a></li>
+        <li><a href="/contatti/">Contatti</a></li>
+      </ul>
+    </nav>
+    <div class="site-footer__comandi">
+      <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span class="motion-toggle__stato" data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
+      <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina"><svg class="torna-su__freccia" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M6 10.5V1.8M1.8 6 6 1.8 10.2 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="torna-su__testo">Inizio</span></button>
     </div>
 
     <div class="site-footer__legal">
@@ -737,14 +713,14 @@
   <section class="cookie-banner" data-cookie-banner hidden aria-label="Gestione dei cookie">
   <div class="cookie-banner__inner">
     <div class="cookie-banner__text">
-      <p class="cookie-banner__title">Cookie, senza sorprese</p>
+      <p class="cookie-banner__title">Cookie</p>
       <p class="cookie-banner__testo">Solo cookie tecnici. La statistica parte soltanto se la accetti. <a href="/cookie-policy/">Cookie Policy</a></p>
     </div>
 
     <div class="cookie-banner__prefs" data-cookie-prefs hidden>
       <label class="cookie-banner__pref">
         <input type="checkbox" checked disabled>
-        <span><strong>Necessari</strong> — sempre attivi: servono al funzionamento del sito e a ricordare questa scelta.</span>
+        <span><strong>Necessari</strong>, sempre attivi. Servono al funzionamento del sito e a ricordare questa scelta.</span>
       </label>
       <label class="cookie-banner__pref">
         <input type="checkbox" data-consent-cat="statistica">
@@ -774,10 +750,9 @@
   })();
 </script>
 
-  <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
-  <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina">Inizio</button>
   <div class="cursore-orbita" data-cursore aria-hidden="true"></div>
-  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
-  <script type="module" src="/assets/js/main.js?v=1cad0145"></script>
+<script type="module" src="/assets/js/main.js?v=53387662"></script>
+<script type="module" src="/assets/js/motion.js?v=53387662"></script>
+<script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[download], [target=_blank], [href$='.pdf'], [href$='.php']"}}]},"eagerness":"moderate"}]}</script>
 </body>
 </html>

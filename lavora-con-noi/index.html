@@ -9,7 +9,9 @@
   <link rel="canonical" href="https://tedeschi.arcaagency.it/lavora-con-noi/">
   <meta name="theme-color" content="#000000">
   <meta name="generator" content="Eleventy">
-  <script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}}(document)</script>
+<script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}try{var a=JSON.parse(sessionStorage.getItem('tedeschi-arrivo'));sessionStorage.removeItem('tedeschi-arrivo');if(on&&a&&Date.now()-a.t<8000){if(!a.vt){h.classList.add('arrivo');setTimeout(function(){h.classList.remove('arrivo')},3000)}else if(a.u===location.pathname&&'onpagereveal'in window){var v=d.createElement('style');v.textContent='@view-transition{navigation:auto}.hero-interna__img{view-transition-name:cantiere-foto}';d.head.appendChild(v);addEventListener('pagereveal',function(e){var t=e.viewTransition;function via(){v.remove()}t?t.finished.then(via,via):via()},{once:true})}}}catch(e){}}(document)</script>
+<script>addEventListener('pagereveal',function(e){var t=e.viewTransition;t&&['ready','finished','updateCallbackDone'].forEach(function(k){t[k]&&t[k].catch(function(){})})})</script>
+<script>!function(h){try{if(!h.classList.contains('motion-off')||location.hash||!matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(localStorage.getItem('tedeschi-motion')!==null||localStorage.getItem('tedeschi-motion-invito'))return;h.classList.add('invito-pagina')}catch(e){}}(document.documentElement)</script>
   <meta name="author" content="TEDESCHI S.R.L.">
   <meta property="og:locale" content="it_IT">
   <meta property="og:site_name" content="Impresa Tedeschi">
@@ -18,6 +20,8 @@
   <meta property="og:description" content="Cerchiamo persone che prendano sul serio il proprio compito e quello degli altri. Indica l&#39;attività che ti interessa e invia la tua candidatura.">
   <meta property="og:url" content="https://tedeschi.arcaagency.it/lavora-con-noi/">
   <meta property="og:image" content="https://tedeschi.arcaagency.it/assets/img/cantiere-12-capannone-06-1600w.jpeg">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="1066">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Lavora con noi | Impresa Tedeschi, Cremona">
   <meta name="twitter:description" content="Cerchiamo persone che prendano sul serio il proprio compito e quello degli altri. Indica l&#39;attività che ti interessa e invia la tua candidatura.">
@@ -31,16 +35,18 @@
   <link rel="preload" as="style" href="https://use.typekit.net/hlp3tzz.css" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://use.typekit.net/hlp3tzz.css"></noscript>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/tedeschi.woff2" crossorigin>
-  <link rel="preload" as="image" type="image/webp" imagesrcset="/assets/img/cantiere-12-capannone-06-480w-q66.webp 480w, /assets/img/cantiere-12-capannone-06-800w-q66.webp 800w, /assets/img/cantiere-12-capannone-06-1200w-q66.webp 1200w, /assets/img/cantiere-12-capannone-06-1600w-q66.webp 1600w" imagesizes="(min-width: 601px) 58vw, 95vw">
+  <link rel="preload" as="image" href="/assets/img/cantiere-12-capannone-06-1600w.jpeg" type="image/webp" imagesrcset="/assets/img/cantiere-12-capannone-06-480w-q66.webp 480w, /assets/img/cantiere-12-capannone-06-800w-q66.webp 800w, /assets/img/cantiere-12-capannone-06-1200w-q66.webp 1200w, /assets/img/cantiere-12-capannone-06-1600w-q66.webp 1600w" imagesizes="(min-width: 601px) 58vw, 95vw">
 
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/base.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/components.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/utilities.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/pagine-home-impresa.css?v=1cad0145">
-  <script type="application/ld+json">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/base.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/components.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/utilities.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/revisione-contenuti.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/pagine-home-impresa.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/motion.css?v=53387662">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -91,22 +97,30 @@
 </head>
 <body data-rif="Lavora con noi">
   <a class="skip-link" href="#contenuto">Salta al contenuto</a>
+  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
   <div class="progresso-pagina" aria-hidden="true"></div>
-
-  <header class="site-header" data-header>
+<header class="site-header" data-header>
   <div class="site-header__inner container">
     <a class="site-header__logo" href="/" aria-label="Impresa Tedeschi — torna alla home">
       <img class="site-header__logo-img" src="/assets/static/logo-tedeschi-dark.png" alt="Impresa Tedeschi — Edilizia &amp; Ambiente" width="181" height="95">
     </a>
 
+    <nav class="site-header__rapidi" aria-label="Accessi rapidi">
+      <ul>
+      <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
+      <li><a href="/lavora-con-noi/" aria-current="page">Lavora con noi</a></li>
+      <li><a href="/documentazione/">Documentazione</a></li>
+      </ul>
+    </nav>
+
     <nav class="site-nav" aria-label="Navigazione principale">
       <ul class="site-nav__list">
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/impresa/">Impresa</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-1" aria-label="Sottomenu Impresa">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel">
+          <div class="site-nav__panel" id="sottomenu-1">
             <ul class="site-nav__dropdown">
               <li><a href="/impresa/#storia">Storia</a></li>
               <li><a href="/impresa/#persone-e-metodo">Persone e metodo</a></li>
@@ -118,10 +132,10 @@
         </li>
         <li class="site-nav__item has-children has-mega" data-nav-item>
           <a class="site-nav__link" href="/competenze/">Competenze</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-2" aria-label="Sottomenu Competenze">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel site-nav__panel--mega">
+          <div class="site-nav__panel site-nav__panel--mega" id="sottomenu-2">
             <div class="mega">
               <div class="mega__col">
                 <a class="mega__hub" href="/competenze/coordinamento-progettuale/">Coordinamento Progettuale</a>
@@ -175,10 +189,10 @@
         </li>
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/operativita/">Operatività</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-4" aria-label="Sottomenu Operatività">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel">
+          <div class="site-nav__panel" id="sottomenu-4">
             <ul class="site-nav__dropdown">
               <li><a href="/operativita/parco-macchine/">Parco macchine</a></li>
               <li><a href="/operativita/tecnologie-di-precisione/">Tecnologie di precisione</a></li>
@@ -193,14 +207,6 @@
         <li class="site-nav__item" data-nav-item>
           <a class="site-nav__link" href="/contatti/">Contatti</a>
         </li>
-      </ul>
-    </nav>
-
-    <nav class="site-header__rapidi" aria-label="Accessi rapidi">
-      <ul>
-      <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
-      <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
-      <li><a href="/documentazione/">Documentazione</a></li>
       </ul>
     </nav>
 
@@ -314,7 +320,7 @@
       <nav class="nav-mobile__rapidi" aria-label="Accessi rapidi del menu">
         <ul>
         <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
-        <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
+        <li><a href="/lavora-con-noi/" aria-current="page">Lavora con noi</a></li>
         <li><a href="/documentazione/">Documentazione</a></li>
         </ul>
       </nav>
@@ -322,12 +328,15 @@
       <div class="nav-mobile__contatti">
         <a href="tel:+39037226760">+39 0372 26760</a>
         <a href="mailto:info@impresatedeschi.it">info@impresatedeschi.it</a>
+      </div><div class="nav-mobile__comandi">
+        <button class="motion-toggle motion-toggle--menu" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span class="motion-toggle__stato" data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
       </div>
     </div>
   </section>
 
 
   <main id="contenuto">
+    <section class="motion-invito motion-invito--in-pagina" data-invito-statico aria-label="Movimento della pagina"><p class="motion-invito__testo">Il tuo dispositivo chiede meno animazioni, quindi il sito è in versione ridotta. Se vuoi vederlo con il suo movimento, puoi attivarlo.</p><div class="motion-invito__azioni"><button type="button" class="motion-invito__si">Attiva il movimento</button><button type="button" class="motion-invito__no">No, grazie</button></div></section>
     <nav class="breadcrumb" aria-label="Percorso di navigazione">
   <div class="container">
     <ol class="breadcrumb__list">
@@ -361,7 +370,6 @@
 }
 </script>
 
-    
 <div class="hero-interna hero-interna--img">
   <div class="hero-interna__media" aria-hidden="true" data-parallax="40">
     <picture><source type="image/webp" srcset="/assets/img/cantiere-12-capannone-06-480w-q66.webp 480w, /assets/img/cantiere-12-capannone-06-800w-q66.webp 800w, /assets/img/cantiere-12-capannone-06-1200w-q66.webp 1200w, /assets/img/cantiere-12-capannone-06-1600w-q66.webp 1600w" sizes="(min-width: 601px) 58vw, 95vw"><img src="/assets/img/cantiere-12-capannone-06-480w.jpeg" alt="Due operai con casco lavorano su un pilastro e sui casseri, vetrate sullo sfondo" loading="eager" decoding="async" fetchpriority="high" class="hero-interna__img" width="1600" height="1066" srcset="/assets/img/cantiere-12-capannone-06-480w.jpeg 480w, /assets/img/cantiere-12-capannone-06-800w.jpeg 800w, /assets/img/cantiere-12-capannone-06-1200w.jpeg 1200w, /assets/img/cantiere-12-capannone-06-1600w.jpeg 1600w" sizes="(min-width: 601px) 58vw, 95vw"></picture>
@@ -379,8 +387,7 @@
       <p class="intro-lead apertura__lead" data-split="words">In cantiere, il lavoro di una persona arriva sempre <span>nelle mani di un’altra.</span></p>
       <div class="apertura__testo">
         <p data-reveal>Per questo contano anche gesti che non finiscono nelle fotografie: lasciare in ordine ciò che si è usato, dire con chiarezza che cosa è stato fatto, chiedere un confronto quando qualcosa non torna. Cerchiamo persone che prendano sul serio il proprio compito e quello degli altri, capaci di lavorare con cura e di parlare con rispetto. Il mestiere si vede nell’esecuzione. Il carattere di una squadra si riconosce anche da come ci si comporta ogni giorno.</p>
-        
-<ul class="lista-voci lista-voci--fisse">
+        <ul class="lista-voci lista-voci--fisse">
   <li><a class="voce" href="/impresa/#persone-e-metodo">Persone e metodo</a></li>
 </ul>
 
@@ -400,18 +407,16 @@
   <div class="container">
     <div class="candidatura__griglia">
       <div class="candidatura__testa">
-        
-<div class="section-heading" data-reveal>
+        <div class="section-heading" data-reveal>
   <p class="section-heading__num" aria-hidden="true">02/ <span class="section-heading__etichetta">CANDIDATURA</span></p>
   <h2 class="section-heading__title">La tua candidatura</h2>
 </div>
 
-        <p data-reveal>Indica l’attività che ti interessa, le esperienze che hai maturato e il lavoro che cerchi. Puoi aggiungere il curriculum, se lo hai a disposizione.</p>
+        <p data-reveal>Indica l’attività che ti interessa, le esperienze che hai maturato e il lavoro che cerchi. Se hai un curriculum, puoi mandarcelo scrivendo a <a href="mailto:info@impresatedeschi.it">info@impresatedeschi.it</a>.</p>
       </div>
       <div class="candidatura__modulo">
         <p class="section-heading__num" aria-hidden="true">03/ <span class="section-heading__etichetta">MODULO</span></p>
-        
-<form class="form form--w03" name="candidatura" method="post" action="/contact.php" data-form data-form-mode="mailto" data-form-endpoint="" data-form-email="info@impresatedeschi.it" data-modulo="candidatura" novalidate>
+        <form class="form form--w03" name="candidatura" method="post" action="/contact.php" data-form data-form-mode="mailto" data-form-endpoint="" data-form-email="info@impresatedeschi.it" data-modulo="candidatura" novalidate>
   <input type="hidden" name="modulo" value="candidatura">
   <input type="hidden" name="_ritorno" value="/contatti/">
   <input type="hidden" name="_t" value="">
@@ -435,15 +440,10 @@
   </div>
   <div class="form-field form-field--full">
     <label for="campo-candidatura-richiesta">Il tuo messaggio <span class="form-field__req" aria-hidden="true">*</span></label>
-    <textarea id="campo-candidatura-richiesta" name="richiesta" rows="6" required aria-required="true"></textarea>
+<textarea id="campo-candidatura-richiesta" name="richiesta" rows="6" required aria-required="true"></textarea>
     <p class="form-field__error" data-error-for="richiesta" hidden></p>
   </div>
-  <div class="form-field form-field--full">
-<div class="da-completare da-completare--dato" role="note" data-da-completare>
-  <span class="da-completare__tipo">Dato da confermare</span>
-  <strong class="da-completare__titolo">Curriculum</strong><p class="da-completare__testo">Facoltativo; formati e dimensioni reali da indicare</p>
-</div>
-</div>
+
   <p class="form-privacy form-field--full">Prima di inviare la candidatura, leggi come vengono trattati i tuoi dati. <a href="/privacy-policy/">Privacy Policy</a></p>
   <p class="visually-hidden" role="status" aria-live="polite" data-form-live></p>
   <div class="form-field--full form-azioni">
@@ -493,6 +493,19 @@
           <li><a href="/accessibilita/">Accessibilità</a></li>
         </ul>
       </nav>
+    </div><nav class="site-footer__mappa" aria-label="Sezioni del sito">
+      <ul>
+        <li><a href="/impresa/">Impresa</a></li>
+        <li><a href="/competenze/">Competenze</a></li>
+        <li><a href="/cantieri/">Cantieri</a></li>
+        <li><a href="/operativita/">Operatività</a></li>
+        <li><a href="/approfondimenti/">Approfondimenti</a></li>
+        <li><a href="/contatti/">Contatti</a></li>
+      </ul>
+    </nav>
+    <div class="site-footer__comandi">
+      <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span class="motion-toggle__stato" data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
+      <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina"><svg class="torna-su__freccia" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M6 10.5V1.8M1.8 6 6 1.8 10.2 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="torna-su__testo">Inizio</span></button>
     </div>
 
     <div class="site-footer__legal">
@@ -505,14 +518,14 @@
   <section class="cookie-banner" data-cookie-banner hidden aria-label="Gestione dei cookie">
   <div class="cookie-banner__inner">
     <div class="cookie-banner__text">
-      <p class="cookie-banner__title">Cookie, senza sorprese</p>
+      <p class="cookie-banner__title">Cookie</p>
       <p class="cookie-banner__testo">Solo cookie tecnici. La statistica parte soltanto se la accetti. <a href="/cookie-policy/">Cookie Policy</a></p>
     </div>
 
     <div class="cookie-banner__prefs" data-cookie-prefs hidden>
       <label class="cookie-banner__pref">
         <input type="checkbox" checked disabled>
-        <span><strong>Necessari</strong> — sempre attivi: servono al funzionamento del sito e a ricordare questa scelta.</span>
+        <span><strong>Necessari</strong>, sempre attivi. Servono al funzionamento del sito e a ricordare questa scelta.</span>
       </label>
       <label class="cookie-banner__pref">
         <input type="checkbox" data-consent-cat="statistica">
@@ -542,10 +555,9 @@
   })();
 </script>
 
-  <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
-  <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina">Inizio</button>
   <div class="cursore-orbita" data-cursore aria-hidden="true"></div>
-  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
-  <script type="module" src="/assets/js/main.js?v=1cad0145"></script>
+<script type="module" src="/assets/js/main.js?v=53387662"></script>
+<script type="module" src="/assets/js/motion.js?v=53387662"></script>
+<script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[download], [target=_blank], [href$='.pdf'], [href$='.php']"}}]},"eagerness":"moderate"}]}</script>
 </body>
 </html>

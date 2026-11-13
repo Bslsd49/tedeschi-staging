@@ -9,7 +9,9 @@
   <link rel="canonical" href="https://tedeschi.arcaagency.it/competenze/coordinamento-progettuale/">
   <meta name="theme-color" content="#000000">
   <meta name="generator" content="Eleventy">
-  <script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}}(document)</script>
+<script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}try{var a=JSON.parse(sessionStorage.getItem('tedeschi-arrivo'));sessionStorage.removeItem('tedeschi-arrivo');if(on&&a&&Date.now()-a.t<8000){if(!a.vt){h.classList.add('arrivo');setTimeout(function(){h.classList.remove('arrivo')},3000)}else if(a.u===location.pathname&&'onpagereveal'in window){var v=d.createElement('style');v.textContent='@view-transition{navigation:auto}.hero-interna__img{view-transition-name:cantiere-foto}';d.head.appendChild(v);addEventListener('pagereveal',function(e){var t=e.viewTransition;function via(){v.remove()}t?t.finished.then(via,via):via()},{once:true})}}}catch(e){}}(document)</script>
+<script>addEventListener('pagereveal',function(e){var t=e.viewTransition;t&&['ready','finished','updateCallbackDone'].forEach(function(k){t[k]&&t[k].catch(function(){})})})</script>
+<script>!function(h){try{if(!h.classList.contains('motion-off')||location.hash||!matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(localStorage.getItem('tedeschi-motion')!==null||localStorage.getItem('tedeschi-motion-invito'))return;h.classList.add('invito-pagina')}catch(e){}}(document.documentElement)</script>
   <meta name="author" content="TEDESCHI S.R.L.">
   <meta property="og:locale" content="it_IT">
   <meta property="og:site_name" content="Impresa Tedeschi">
@@ -18,6 +20,8 @@
   <meta property="og:description" content="Coordinamento Progettuale di Impresa Tedeschi. Mettiamo in relazione i professionisti incaricati e allineiamo i contributi alle attività del cantiere.">
   <meta property="og:url" content="https://tedeschi.arcaagency.it/competenze/coordinamento-progettuale/">
   <meta property="og:image" content="https://tedeschi.arcaagency.it/assets/img/cantiere-01-silos-08-1600w.jpeg">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="1066">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Coordinamento Progettuale | Impresa Tedeschi">
   <meta name="twitter:description" content="Coordinamento Progettuale di Impresa Tedeschi. Mettiamo in relazione i professionisti incaricati e allineiamo i contributi alle attività del cantiere.">
@@ -31,16 +35,18 @@
   <link rel="preload" as="style" href="https://use.typekit.net/hlp3tzz.css" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://use.typekit.net/hlp3tzz.css"></noscript>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/tedeschi.woff2" crossorigin>
-  <link rel="preload" as="image" type="image/webp" imagesrcset="/assets/img/cantiere-01-silos-08-480w-q66.webp 480w, /assets/img/cantiere-01-silos-08-800w-q66.webp 800w, /assets/img/cantiere-01-silos-08-1200w-q66.webp 1200w, /assets/img/cantiere-01-silos-08-1600w-q66.webp 1600w" imagesizes="(min-width: 601px) 58vw, 95vw">
+  <link rel="preload" as="image" href="/assets/img/cantiere-01-silos-08-1600w.jpeg" type="image/webp" imagesrcset="/assets/img/cantiere-01-silos-08-480w-q66.webp 480w, /assets/img/cantiere-01-silos-08-800w-q66.webp 800w, /assets/img/cantiere-01-silos-08-1200w-q66.webp 1200w, /assets/img/cantiere-01-silos-08-1600w-q66.webp 1600w" imagesizes="(min-width: 1280px) 58vw, (min-width: 601px) max(58vw, 1010px), max(95vw, 850px)">
 
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/base.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/components.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/utilities.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/pagine-competenze.css?v=1cad0145">
-  <script type="application/ld+json">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/base.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/components.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/utilities.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/revisione-contenuti.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/pagine-competenze.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/motion.css?v=53387662">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -91,22 +97,30 @@
 </head>
 <body class="pg-comp" data-rif="Coordinamento Progettuale">
   <a class="skip-link" href="#contenuto">Salta al contenuto</a>
+  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
   <div class="progresso-pagina" aria-hidden="true"></div>
-
-  <header class="site-header" data-header>
+<header class="site-header" data-header>
   <div class="site-header__inner container">
     <a class="site-header__logo" href="/" aria-label="Impresa Tedeschi — torna alla home">
       <img class="site-header__logo-img" src="/assets/static/logo-tedeschi-dark.png" alt="Impresa Tedeschi — Edilizia &amp; Ambiente" width="181" height="95">
     </a>
 
+    <nav class="site-header__rapidi" aria-label="Accessi rapidi">
+      <ul>
+      <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
+      <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
+      <li><a href="/documentazione/">Documentazione</a></li>
+      </ul>
+    </nav>
+
     <nav class="site-nav" aria-label="Navigazione principale">
       <ul class="site-nav__list">
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/impresa/">Impresa</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-1" aria-label="Sottomenu Impresa">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel">
+          <div class="site-nav__panel" id="sottomenu-1">
             <ul class="site-nav__dropdown">
               <li><a href="/impresa/#storia">Storia</a></li>
               <li><a href="/impresa/#persone-e-metodo">Persone e metodo</a></li>
@@ -118,13 +132,13 @@
         </li>
         <li class="site-nav__item has-children has-mega" data-nav-item>
           <a class="site-nav__link is-active" href="/competenze/">Competenze</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-2" aria-label="Sottomenu Competenze">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel site-nav__panel--mega">
+          <div class="site-nav__panel site-nav__panel--mega" id="sottomenu-2">
             <div class="mega">
               <div class="mega__col">
-                <a class="mega__hub" href="/competenze/coordinamento-progettuale/">Coordinamento Progettuale</a>
+                <a class="mega__hub is-current" href="/competenze/coordinamento-progettuale/" aria-current="page">Coordinamento Progettuale</a>
                 <ul class="mega__list">
                   <li><a class="mega__link" href="/competenze/coordinamento-progettuale/#architettoniche">Progettazioni architettoniche</a></li>
                   <li><a class="mega__link" href="/competenze/coordinamento-progettuale/#strutturali">Progettazioni strutturali</a></li>
@@ -175,10 +189,10 @@
         </li>
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/operativita/">Operatività</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-4" aria-label="Sottomenu Operatività">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel">
+          <div class="site-nav__panel" id="sottomenu-4">
             <ul class="site-nav__dropdown">
               <li><a href="/operativita/parco-macchine/">Parco macchine</a></li>
               <li><a href="/operativita/tecnologie-di-precisione/">Tecnologie di precisione</a></li>
@@ -193,14 +207,6 @@
         <li class="site-nav__item" data-nav-item>
           <a class="site-nav__link" href="/contatti/">Contatti</a>
         </li>
-      </ul>
-    </nav>
-
-    <nav class="site-header__rapidi" aria-label="Accessi rapidi">
-      <ul>
-      <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
-      <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
-      <li><a href="/documentazione/">Documentazione</a></li>
       </ul>
     </nav>
 
@@ -232,7 +238,7 @@
               <li><a href="/impresa/#responsabilita-ambientale">Responsabilità ambientale</a></li>
             </ul>
           </li>
-          <li class="nav-mobile__item">
+          <li class="nav-mobile__item is-attiva">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/competenze/">Competenze</a>
               <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
@@ -241,7 +247,7 @@
             </div>
             <ul class="nav-mobile__sub" hidden>
               <li class="nav-mobile__group">
-                <a class="nav-mobile__group-link" href="/competenze/coordinamento-progettuale/">Coordinamento Progettuale</a>
+                <a class="nav-mobile__group-link" href="/competenze/coordinamento-progettuale/" aria-current="page">Coordinamento Progettuale</a>
                 <ul>
                   <li><a href="/competenze/coordinamento-progettuale/#architettoniche">Progettazioni architettoniche</a></li>
                   <li><a href="/competenze/coordinamento-progettuale/#strutturali">Progettazioni strutturali</a></li>
@@ -322,12 +328,15 @@
       <div class="nav-mobile__contatti">
         <a href="tel:+39037226760">+39 0372 26760</a>
         <a href="mailto:info@impresatedeschi.it">info@impresatedeschi.it</a>
+      </div><div class="nav-mobile__comandi">
+        <button class="motion-toggle motion-toggle--menu" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span class="motion-toggle__stato" data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
       </div>
     </div>
   </section>
 
 
   <main id="contenuto">
+    <section class="motion-invito motion-invito--in-pagina" data-invito-statico aria-label="Movimento della pagina"><p class="motion-invito__testo">Il tuo dispositivo chiede meno animazioni, quindi il sito è in versione ridotta. Se vuoi vederlo con il suo movimento, puoi attivarlo.</p><div class="motion-invito__azioni"><button type="button" class="motion-invito__si">Attiva il movimento</button><button type="button" class="motion-invito__no">No, grazie</button></div></section>
     <nav class="breadcrumb" aria-label="Percorso di navigazione">
   <div class="container">
     <ol class="breadcrumb__list">
@@ -370,10 +379,9 @@
 }
 </script>
 
-    
 <div class="hero-interna hero-interna--img">
   <div class="hero-interna__media" aria-hidden="true" data-parallax="40">
-    <picture><source type="image/webp" srcset="/assets/img/cantiere-01-silos-08-480w-q66.webp 480w, /assets/img/cantiere-01-silos-08-800w-q66.webp 800w, /assets/img/cantiere-01-silos-08-1200w-q66.webp 1200w, /assets/img/cantiere-01-silos-08-1600w-q66.webp 1600w" sizes="(min-width: 601px) 58vw, 95vw"><img src="/assets/img/cantiere-01-silos-08-480w.jpeg" alt="Primo piano di due operai in casco bianco chinati sui disegni di progetto" loading="eager" decoding="async" fetchpriority="high" class="hero-interna__img" width="1600" height="1066" srcset="/assets/img/cantiere-01-silos-08-480w.jpeg 480w, /assets/img/cantiere-01-silos-08-800w.jpeg 800w, /assets/img/cantiere-01-silos-08-1200w.jpeg 1200w, /assets/img/cantiere-01-silos-08-1600w.jpeg 1600w" sizes="(min-width: 601px) 58vw, 95vw"></picture>
+    <picture><source type="image/webp" srcset="/assets/img/cantiere-01-silos-08-480w-q66.webp 480w, /assets/img/cantiere-01-silos-08-800w-q66.webp 800w, /assets/img/cantiere-01-silos-08-1200w-q66.webp 1200w, /assets/img/cantiere-01-silos-08-1600w-q66.webp 1600w" sizes="(min-width: 1280px) 58vw, (min-width: 601px) max(58vw, 1010px), max(95vw, 850px)"><img src="/assets/img/cantiere-01-silos-08-480w.jpeg" alt="Primo piano di due operai in casco bianco chinati sui disegni di progetto" loading="eager" decoding="async" fetchpriority="high" class="hero-interna__img" width="1600" height="1066" srcset="/assets/img/cantiere-01-silos-08-480w.jpeg 480w, /assets/img/cantiere-01-silos-08-800w.jpeg 800w, /assets/img/cantiere-01-silos-08-1200w.jpeg 1200w, /assets/img/cantiere-01-silos-08-1600w.jpeg 1600w" sizes="(min-width: 1280px) 58vw, (min-width: 601px) max(58vw, 1010px), max(95vw, 850px)"></picture>
     <div class="hero-interna__overlay"></div>
   </div>
   <div class="container hero-interna__content">
@@ -399,8 +407,7 @@
       <p>I professionisti abilitati incaricati redigono, firmano e fatturano gli elaborati, assumendone la responsabilità professionale.</p>
       <p>TEDESCHI risponde del coordinamento concordato per l’intervento.</p>
     </div>
-    <p class="comp-azione" data-reveal>
-<a class="btn btn--accent btn--big comp-cta" href="/contatti/?rif=Coordinamento%20Progettuale#intervento" data-cta-intervento data-rif="Coordinamento Progettuale"><span>Parliamo del tuo intervento</span></a>
+    <p class="comp-azione" data-reveal><a class="btn btn--accent btn--big comp-cta" href="/contatti/?rif=Coordinamento%20Progettuale#intervento" data-cta-intervento data-rif="Coordinamento Progettuale"><span>Parliamo del tuo intervento</span></a>
 </p>
   </div>
 </section><section class="comp-sez sez sez--sm" data-capitolo aria-labelledby="coord-indice">
@@ -433,14 +440,13 @@
         <p class="comp-frase">Un accesso cambia il modo di entrare in un luogo. La disposizione degli ambienti cambia il modo di attraversarlo e di usarlo. Le scelte architettoniche portano con sé queste conseguenze concrete, che devono essere comprese anche da chi realizzerà gli spazi. Nel coordinamento teniamo in relazione le esigenze del committente, le indicazioni del professionista incaricato e le lavorazioni necessarie. Il confronto serve a mantenere leggibile il legame tra l’uso immaginato per un luogo e le scelte che gli daranno forma.</p>
         <div class="comp-azioni">
           <a class="voce" href="#ruoli"><span>Ruoli e responsabilità</span><span class="comp-voce-freccia comp-voce-freccia--su" aria-hidden="true">→</span></a>
-          
-<a class="btn btn--accent btn--big" href="/contatti/?rif=Coordinamento%20Progettuale%20%2F%20Progettazioni%20architettoniche#intervento" data-cta-intervento data-rif="Coordinamento Progettuale / Progettazioni architettoniche"><span>Parliamo del tuo intervento</span></a>
+          <a class="btn btn--accent btn--big" href="/contatti/?rif=Coordinamento%20Progettuale%20%2F%20Progettazioni%20architettoniche#intervento" data-cta-intervento data-rif="Coordinamento Progettuale / Progettazioni architettoniche"><span>Parliamo del tuo intervento</span></a>
 
         </div>
       </div>
       <figure class="capitolo__foto">
         <div class="capitolo__finestra mask-reveal" data-parallax="60">
-          <picture><source type="image/webp" srcset="/assets/img/cantiere-05-edificio-storico-10-480w-q66.webp 480w, /assets/img/cantiere-05-edificio-storico-10-800w-q66.webp 800w, /assets/img/cantiere-05-edificio-storico-10-1200w-q66.webp 1200w, /assets/img/cantiere-05-edificio-storico-10-1600w-q66.webp 1600w" sizes="(min-width: 900px) 60vw, 100vw"><img src="/assets/img/cantiere-05-edificio-storico-10-480w.jpeg" alt="Edificio storico in mattoni con ampia struttura vetrata e scala metallica, circondato dal verde" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/cantiere-05-edificio-storico-10-480w.jpeg 480w, /assets/img/cantiere-05-edificio-storico-10-800w.jpeg 800w, /assets/img/cantiere-05-edificio-storico-10-1200w.jpeg 1200w, /assets/img/cantiere-05-edificio-storico-10-1600w.jpeg 1600w" sizes="(min-width: 900px) 60vw, 100vw"></picture>
+          <picture><source type="image/webp" srcset="/assets/img/cantiere-05-edificio-storico-10-480w-q66.webp 480w, /assets/img/cantiere-05-edificio-storico-10-800w-q66.webp 800w, /assets/img/cantiere-05-edificio-storico-10-1200w-q66.webp 1200w, /assets/img/cantiere-05-edificio-storico-10-1600w-q66.webp 1600w" sizes="(min-width: 900px) min(73vw, 1560px), 150vw"><img src="/assets/img/cantiere-05-edificio-storico-10-480w.jpeg" alt="Edificio storico in mattoni con ampia struttura vetrata e scala metallica, circondato dal verde" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/cantiere-05-edificio-storico-10-480w.jpeg 480w, /assets/img/cantiere-05-edificio-storico-10-800w.jpeg 800w, /assets/img/cantiere-05-edificio-storico-10-1200w.jpeg 1200w, /assets/img/cantiere-05-edificio-storico-10-1600w.jpeg 1600w" sizes="(min-width: 900px) min(73vw, 1560px), 150vw"></picture>
         </div>
         <span class="capitolo__numero" aria-hidden="true" data-parallax="-80">03</span>
       </figure>
@@ -457,14 +463,13 @@
         <p class="comp-frase">Le parti che sostengono un’opera hanno un posto preciso anche nella sequenza del lavoro. Una lavorazione prepara le condizioni per quella successiva e il loro rapporto deve essere letto alla luce delle indicazioni strutturali. Nel coordinamento colleghiamo gli elaborati del professionista incaricato alle fasi interessate, facendo emergere queste dipendenze. Una scelta viene così considerata anche per ciò che richiede al cantiere: quali attività coinvolge, quali condizioni devono precederla e quando entra in relazione con le altre parti dell’opera.</p>
         <div class="comp-azioni">
           <a class="voce" href="#ruoli"><span>Ruoli e responsabilità</span><span class="comp-voce-freccia comp-voce-freccia--su" aria-hidden="true">→</span></a>
-          
-<a class="btn btn--accent btn--big" href="/contatti/?rif=Coordinamento%20Progettuale%20%2F%20Progettazioni%20strutturali#intervento" data-cta-intervento data-rif="Coordinamento Progettuale / Progettazioni strutturali"><span>Parliamo del tuo intervento</span></a>
+          <a class="btn btn--accent btn--big" href="/contatti/?rif=Coordinamento%20Progettuale%20%2F%20Progettazioni%20strutturali#intervento" data-cta-intervento data-rif="Coordinamento Progettuale / Progettazioni strutturali"><span>Parliamo del tuo intervento</span></a>
 
         </div>
       </div>
       <figure class="capitolo__foto">
         <div class="capitolo__finestra mask-reveal" data-parallax="60">
-          <picture><source type="image/webp" srcset="/assets/img/cantiere-01-silos-03-480w-q66.webp 480w, /assets/img/cantiere-01-silos-03-800w-q66.webp 800w, /assets/img/cantiere-01-silos-03-1200w-q66.webp 1200w, /assets/img/cantiere-01-silos-03-1600w-q66.webp 1600w" sizes="(min-width: 900px) 60vw, 100vw"><img src="/assets/img/cantiere-01-silos-03-480w.jpeg" alt="Casseforme gialle e in legno con ferri d'armatura per una vasca in calcestruzzo, sullo sfondo i silos" loading="lazy" decoding="async" width="1600" height="1067" srcset="/assets/img/cantiere-01-silos-03-480w.jpeg 480w, /assets/img/cantiere-01-silos-03-800w.jpeg 800w, /assets/img/cantiere-01-silos-03-1200w.jpeg 1200w, /assets/img/cantiere-01-silos-03-1600w.jpeg 1600w" sizes="(min-width: 900px) 60vw, 100vw"></picture>
+          <picture><source type="image/webp" srcset="/assets/img/cantiere-01-silos-03-480w-q66.webp 480w, /assets/img/cantiere-01-silos-03-800w-q66.webp 800w, /assets/img/cantiere-01-silos-03-1200w-q66.webp 1200w, /assets/img/cantiere-01-silos-03-1600w-q66.webp 1600w" sizes="(min-width: 900px) min(73vw, 1560px), 150vw"><img src="/assets/img/cantiere-01-silos-03-480w.jpeg" alt="Casseforme gialle e in legno con ferri d'armatura per una vasca in calcestruzzo, sullo sfondo i silos" loading="lazy" decoding="async" width="1600" height="1067" srcset="/assets/img/cantiere-01-silos-03-480w.jpeg 480w, /assets/img/cantiere-01-silos-03-800w.jpeg 800w, /assets/img/cantiere-01-silos-03-1200w.jpeg 1200w, /assets/img/cantiere-01-silos-03-1600w.jpeg 1600w" sizes="(min-width: 900px) min(73vw, 1560px), 150vw"></picture>
         </div>
         <span class="capitolo__numero" aria-hidden="true" data-parallax="-80">04</span>
       </figure>
@@ -481,14 +486,13 @@
         <p class="comp-frase">Il calore che attraversa una parete e il rumore che passa da un ambiente all’altro riguardano il modo in cui uno spazio viene vissuto. Le valutazioni termotecniche e acustiche mettono in relazione impianti, materiali e parti costruite: elementi che devono essere considerati insieme anche quando appartengono a lavorazioni diverse. Manteniamo il confronto fra gli specialisti incaricati e le altre discipline, portando le loro indicazioni nelle scelte dell’intervento. L’attenzione si concentra sui punti di incontro, dove il lavoro su una parte può influire sul comportamento dell’insieme.</p>
         <div class="comp-azioni">
           <a class="voce" href="#ruoli"><span>Ruoli e responsabilità</span><span class="comp-voce-freccia comp-voce-freccia--su" aria-hidden="true">→</span></a>
-          
-<a class="btn btn--accent btn--big" href="/contatti/?rif=Coordinamento%20Progettuale%20%2F%20Progettazioni%20termotecniche%20e%20acustiche#intervento" data-cta-intervento data-rif="Coordinamento Progettuale / Progettazioni termotecniche e acustiche"><span>Parliamo del tuo intervento</span></a>
+          <a class="btn btn--accent btn--big" href="/contatti/?rif=Coordinamento%20Progettuale%20%2F%20Progettazioni%20termotecniche%20e%20acustiche#intervento" data-cta-intervento data-rif="Coordinamento Progettuale / Progettazioni termotecniche e acustiche"><span>Parliamo del tuo intervento</span></a>
 
         </div>
       </div>
       <figure class="capitolo__foto">
         <div class="capitolo__finestra mask-reveal" data-parallax="60">
-          <picture><source type="image/webp" srcset="/assets/img/cantiere-12-capannone-04-480w-q66.webp 480w, /assets/img/cantiere-12-capannone-04-800w-q66.webp 800w, /assets/img/cantiere-12-capannone-04-1200w-q66.webp 1200w, /assets/img/cantiere-12-capannone-04-1600w-q66.webp 1600w" sizes="(min-width: 900px) 60vw, 100vw"><img src="/assets/img/cantiere-12-capannone-04-480w.jpeg" alt="Operaio posa blocchi di muratura tra i puntelli metallici" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/cantiere-12-capannone-04-480w.jpeg 480w, /assets/img/cantiere-12-capannone-04-800w.jpeg 800w, /assets/img/cantiere-12-capannone-04-1200w.jpeg 1200w, /assets/img/cantiere-12-capannone-04-1600w.jpeg 1600w" sizes="(min-width: 900px) 60vw, 100vw"></picture>
+          <picture><source type="image/webp" srcset="/assets/img/cantiere-12-capannone-04-480w-q66.webp 480w, /assets/img/cantiere-12-capannone-04-800w-q66.webp 800w, /assets/img/cantiere-12-capannone-04-1200w-q66.webp 1200w, /assets/img/cantiere-12-capannone-04-1600w-q66.webp 1600w" sizes="(min-width: 900px) min(73vw, 1560px), 150vw"><img src="/assets/img/cantiere-12-capannone-04-480w.jpeg" alt="Operaio posa blocchi di muratura tra i puntelli metallici" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/cantiere-12-capannone-04-480w.jpeg 480w, /assets/img/cantiere-12-capannone-04-800w.jpeg 800w, /assets/img/cantiere-12-capannone-04-1200w.jpeg 1200w, /assets/img/cantiere-12-capannone-04-1600w.jpeg 1600w" sizes="(min-width: 900px) min(73vw, 1560px), 150vw"></picture>
         </div>
         <span class="capitolo__numero" aria-hidden="true" data-parallax="-80">05</span>
       </figure>
@@ -505,14 +509,13 @@
         <p class="comp-frase">Dietro il punto in cui un’attrezzatura viene collegata c’è un percorso che attraversa lo spazio e incontra altre opere. Tracciati e ingombri dell’impianto elettrico devono trovare corrispondenza nella disposizione degli ambienti e nelle lavorazioni che li accolgono. Coordiniamo il confronto tra il professionista incaricato, le altre discipline e chi esegue il lavoro, perché questi passaggi siano riconoscibili prima di intervenire sulle parti interessate. Il disegno dell’impianto entra così in relazione con lo spazio concreto nel quale dovrà essere realizzato.</p>
         <div class="comp-azioni">
           <a class="voce" href="#ruoli"><span>Ruoli e responsabilità</span><span class="comp-voce-freccia comp-voce-freccia--su" aria-hidden="true">→</span></a>
-          
-<a class="btn btn--accent btn--big" href="/contatti/?rif=Coordinamento%20Progettuale%20%2F%20Progettazioni%20di%20impianti%20elettrici#intervento" data-cta-intervento data-rif="Coordinamento Progettuale / Progettazioni di impianti elettrici"><span>Parliamo del tuo intervento</span></a>
+          <a class="btn btn--accent btn--big" href="/contatti/?rif=Coordinamento%20Progettuale%20%2F%20Progettazioni%20di%20impianti%20elettrici#intervento" data-cta-intervento data-rif="Coordinamento Progettuale / Progettazioni di impianti elettrici"><span>Parliamo del tuo intervento</span></a>
 
         </div>
       </div>
       <figure class="capitolo__foto">
         <div class="capitolo__finestra mask-reveal" data-parallax="60">
-          <picture><source type="image/webp" srcset="/assets/img/cantiere-01-silos-17-480w-q66.webp 480w, /assets/img/cantiere-01-silos-17-800w-q66.webp 800w, /assets/img/cantiere-01-silos-17-1200w-q66.webp 1200w, /assets/img/cantiere-01-silos-17-1600w-q66.webp 1600w" sizes="(min-width: 900px) 60vw, 100vw"><img src="/assets/img/cantiere-01-silos-17-480w.jpeg" alt="Taglio nella pavimentazione in calcestruzzo con tubazione arancione in vista, particolare di uno scavo per sottoservizi" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/cantiere-01-silos-17-480w.jpeg 480w, /assets/img/cantiere-01-silos-17-800w.jpeg 800w, /assets/img/cantiere-01-silos-17-1200w.jpeg 1200w, /assets/img/cantiere-01-silos-17-1600w.jpeg 1600w" sizes="(min-width: 900px) 60vw, 100vw"></picture>
+          <picture><source type="image/webp" srcset="/assets/img/cantiere-01-silos-17-480w-q66.webp 480w, /assets/img/cantiere-01-silos-17-800w-q66.webp 800w, /assets/img/cantiere-01-silos-17-1200w-q66.webp 1200w, /assets/img/cantiere-01-silos-17-1600w-q66.webp 1600w" sizes="(min-width: 900px) min(73vw, 1560px), 150vw"><img src="/assets/img/cantiere-01-silos-17-480w.jpeg" alt="Taglio nella pavimentazione in calcestruzzo con tubazione arancione in vista, particolare di uno scavo per sottoservizi" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/cantiere-01-silos-17-480w.jpeg 480w, /assets/img/cantiere-01-silos-17-800w.jpeg 800w, /assets/img/cantiere-01-silos-17-1200w.jpeg 1200w, /assets/img/cantiere-01-silos-17-1600w.jpeg 1600w" sizes="(min-width: 900px) min(73vw, 1560px), 150vw"></picture>
         </div>
         <span class="capitolo__numero" aria-hidden="true" data-parallax="-80">06</span>
       </figure>
@@ -529,35 +532,16 @@
         <p class="comp-frase">Un luogo porta con sé condizioni che vanno comprese prima di decidere come trasformarlo. Le caratteristiche del terreno e dei materiali possono richiedere valutazioni ambientali specifiche, dalle quali dipendono le possibilità e i vincoli dell’intervento. Mettiamo in relazione le indicazioni dello specialista incaricato con le scelte progettuali e operative interessate. Il coordinamento aiuta a riconoscere quali decisioni possono essere affrontate e quali richiedono ancora elementi di valutazione, mantenendo il lavoro entro le condizioni individuate dal contributo professionale.</p>
         <div class="comp-azioni">
           <a class="voce" href="#ruoli"><span>Ruoli e responsabilità</span><span class="comp-voce-freccia comp-voce-freccia--su" aria-hidden="true">→</span></a>
-          
-<a class="btn btn--accent btn--big" href="/contatti/?rif=Coordinamento%20Progettuale%20%2F%20Progettazioni%20ambientali#intervento" data-cta-intervento data-rif="Coordinamento Progettuale / Progettazioni ambientali"><span>Parliamo del tuo intervento</span></a>
+          <a class="btn btn--accent btn--big" href="/contatti/?rif=Coordinamento%20Progettuale%20%2F%20Progettazioni%20ambientali#intervento" data-cta-intervento data-rif="Coordinamento Progettuale / Progettazioni ambientali"><span>Parliamo del tuo intervento</span></a>
 
         </div>
       </div>
       <figure class="capitolo__foto">
         <div class="capitolo__finestra mask-reveal" data-parallax="60">
-          <picture><source type="image/webp" srcset="/assets/img/cantiere-07-canale-02-480w-q66.webp 480w, /assets/img/cantiere-07-canale-02-800w-q66.webp 800w, /assets/img/cantiere-07-canale-02-1200w-q66.webp 1200w, /assets/img/cantiere-07-canale-02-1600w-q66.webp 1600w" sizes="(min-width: 900px) 60vw, 100vw"><img src="/assets/img/cantiere-07-canale-02-480w.jpeg" alt="Sponde in calcestruzzo di un canale che attraversa la campagna, ponticello sullo sfondo" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/cantiere-07-canale-02-480w.jpeg 480w, /assets/img/cantiere-07-canale-02-800w.jpeg 800w, /assets/img/cantiere-07-canale-02-1200w.jpeg 1200w, /assets/img/cantiere-07-canale-02-1600w.jpeg 1600w" sizes="(min-width: 900px) 60vw, 100vw"></picture>
+          <picture><source type="image/webp" srcset="/assets/img/cantiere-07-canale-02-480w-q66.webp 480w, /assets/img/cantiere-07-canale-02-800w-q66.webp 800w, /assets/img/cantiere-07-canale-02-1200w-q66.webp 1200w, /assets/img/cantiere-07-canale-02-1600w-q66.webp 1600w" sizes="(min-width: 900px) min(73vw, 1560px), 150vw"><img src="/assets/img/cantiere-07-canale-02-480w.jpeg" alt="Sponde in calcestruzzo di un canale che attraversa la campagna, ponticello sullo sfondo" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/cantiere-07-canale-02-480w.jpeg 480w, /assets/img/cantiere-07-canale-02-800w.jpeg 800w, /assets/img/cantiere-07-canale-02-1200w.jpeg 1200w, /assets/img/cantiere-07-canale-02-1600w.jpeg 1600w" sizes="(min-width: 900px) min(73vw, 1560px), 150vw"></picture>
         </div>
         <span class="capitolo__numero" aria-hidden="true" data-parallax="-80">07</span>
       </figure>
-    </div>
-  </div>
-</section><section class="comp-sez sez" data-capitolo aria-labelledby="coord-riscontro">
-  <div class="container">
-    <div class="capitolo__rule comp-rule">
-      <h2 class="section-heading__num" id="coord-riscontro">08/ <span class="section-heading__etichetta">Riscontro reale</span></h2>
-      <span aria-hidden="true">Coordinamento Progettuale</span>
-    </div>
-    <div class="comp-griglia">
-      <span class="comp-numero" aria-hidden="true" data-parallax="-50">08</span>
-      <div data-reveal>
-        
-<div class="da-completare da-completare--immagine" role="note" data-da-completare>
-  <span class="da-completare__tipo">Immagine, dato o caso da inserire</span>
-  <strong class="da-completare__titolo">Esempio di coordinamento</strong><p class="da-completare__testo">Contributi coinvolti, raccordo gestito da TEDESCHI e responsabilità distinte.</p>
-</div>
-
-      </div>
     </div>
   </div>
 </section>
@@ -611,6 +595,19 @@
           <li><a href="/accessibilita/">Accessibilità</a></li>
         </ul>
       </nav>
+    </div><nav class="site-footer__mappa" aria-label="Sezioni del sito">
+      <ul>
+        <li><a href="/impresa/">Impresa</a></li>
+        <li><a href="/competenze/">Competenze</a></li>
+        <li><a href="/cantieri/">Cantieri</a></li>
+        <li><a href="/operativita/">Operatività</a></li>
+        <li><a href="/approfondimenti/">Approfondimenti</a></li>
+        <li><a href="/contatti/">Contatti</a></li>
+      </ul>
+    </nav>
+    <div class="site-footer__comandi">
+      <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span class="motion-toggle__stato" data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
+      <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina"><svg class="torna-su__freccia" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M6 10.5V1.8M1.8 6 6 1.8 10.2 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="torna-su__testo">Inizio</span></button>
     </div>
 
     <div class="site-footer__legal">
@@ -623,14 +620,14 @@
   <section class="cookie-banner" data-cookie-banner hidden aria-label="Gestione dei cookie">
   <div class="cookie-banner__inner">
     <div class="cookie-banner__text">
-      <p class="cookie-banner__title">Cookie, senza sorprese</p>
+      <p class="cookie-banner__title">Cookie</p>
       <p class="cookie-banner__testo">Solo cookie tecnici. La statistica parte soltanto se la accetti. <a href="/cookie-policy/">Cookie Policy</a></p>
     </div>
 
     <div class="cookie-banner__prefs" data-cookie-prefs hidden>
       <label class="cookie-banner__pref">
         <input type="checkbox" checked disabled>
-        <span><strong>Necessari</strong> — sempre attivi: servono al funzionamento del sito e a ricordare questa scelta.</span>
+        <span><strong>Necessari</strong>, sempre attivi. Servono al funzionamento del sito e a ricordare questa scelta.</span>
       </label>
       <label class="cookie-banner__pref">
         <input type="checkbox" data-consent-cat="statistica">
@@ -660,10 +657,9 @@
   })();
 </script>
 
-  <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
-  <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina">Inizio</button>
   <div class="cursore-orbita" data-cursore aria-hidden="true"></div>
-  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
-  <script type="module" src="/assets/js/main.js?v=1cad0145"></script>
+<script type="module" src="/assets/js/main.js?v=53387662"></script>
+<script type="module" src="/assets/js/motion.js?v=53387662"></script>
+<script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[download], [target=_blank], [href$='.pdf'], [href$='.php']"}}]},"eagerness":"moderate"}]}</script>
 </body>
 </html>

@@ -6,6 +6,8 @@ ErrorDocument 404 /404.html
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 </IfModule>
 
 # Cache asset statici
@@ -24,34 +26,67 @@ ErrorDocument 404 /404.html
   ExpiresByType image/x-icon "access plus 1 year"
 </IfModule>
 
+# Componente 3D del parco macchine: i moduli JS si importano fra loro senza ?v=, quindi js, css e html di quella
+# cartella hanno cache breve con rivalidazione (le texture in media/ e immagini/ restano a scadenza lunga).
+# ExpiresActive Off dentro If evita che mod_expires ridia la scadenza lunga a js e css.
+# Le texture (png, jpg, webp) non hanno l'hash nel nome: scadenza di un mese, non di un anno, così una
+# sostituzione con lo stesso nome arriva ai visitatori entro 30 giorni.
+<If "%{REQUEST_URI} =~ m#^/assets/static/parco-macchine-3d/(.*\.(js|css|html))?$#">
+  <IfModule mod_expires.c>
+    ExpiresActive Off
+  </IfModule>
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=600, must-revalidate"
+  </IfModule>
+</If>
+
+<If "%{REQUEST_URI} =~ m#^/assets/static/parco-macchine-3d/.*\.(png|jpe?g|webp)$#">
+  <IfModule mod_expires.c>
+    ExpiresActive Off
+  </IfModule>
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=2592000"
+  </IfModule>
+</If>
+
 # Compressione
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript application/json application/xml text/xml text/plain application/manifest+json image/svg+xml
 </IfModule>
 
 # Riorganizzazione wireframe 03 (Impresa unica, Operatività, Contatti a sezioni)
+# Redirect fa corrispondenza per prefisso e vince la prima regola che combacia: si ordina per percorso
+# decrescente, così /mezzi-e-tecnologie/parco-macchine/ viene prima di /mezzi-e-tecnologie/.
 RewriteEngine On
-Redirect 301 /impresa/chi-siamo/ /impresa/
-Redirect 301 /impresa/storia/ /impresa/#storia
-Redirect 301 /impresa/persone-e-metodo/ /impresa/#persone-e-metodo
-Redirect 301 /impresa/qualita-sicurezza-certificazioni/ /impresa/#qualita
-Redirect 301 /impresa/ambiente-e-recupero/ /impresa/#responsabilita-ambientale
-Redirect 301 /impresa/lavora-con-noi/ /lavora-con-noi/
-Redirect 301 /competenze/demolizione-e-recupero/recupero-materiali-inerti/ /operativita/centro-di-recupero/#conferimento
-Redirect 301 /mezzi-e-tecnologie/ /operativita/
-Redirect 301 /mezzi-e-tecnologie/parco-macchine/ /operativita/parco-macchine/
 Redirect 301 /mezzi-e-tecnologie/tecnologie-di-precisione/ /operativita/tecnologie-di-precisione/
+Redirect 301 /mezzi-e-tecnologie/parco-macchine/ /operativita/parco-macchine/
 Redirect 301 /mezzi-e-tecnologie/logistica-e-autonomia-operativa/ /operativita/logistica-e-autonomia-operativa/
 Redirect 301 /mezzi-e-tecnologie/centro-di-recupero/ /operativita/centro-di-recupero/
-Redirect 301 /contatti/parliamo-del-tuo-intervento/ /contatti/#intervento
-Redirect 301 /contatti/richiesta-informazioni/ /contatti/#intervento
-Redirect 301 /contatti/contatti-generali/ /contatti/#amministrazione
+Redirect 301 /mezzi-e-tecnologie/ /operativita/
+Redirect 301 /impresa/storia/ /impresa/#storia
+Redirect 301 /impresa/qualita-sicurezza-certificazioni/ /impresa/#qualita
+Redirect 301 /impresa/persone-e-metodo/ /impresa/#persone-e-metodo
+Redirect 301 /impresa/lavora-con-noi/ /lavora-con-noi/
+Redirect 301 /impresa/chi-siamo/ /impresa/
+Redirect 301 /impresa/ambiente-e-recupero/ /impresa/#responsabilita-ambientale
 Redirect 301 /contatti/sede-e-indicazioni/ /contatti/#amministrazione
-Redirect 301 /cantieri/bonifica-sito-produttivo-dismesso/ /cantieri/
-Redirect 301 /cantieri/demolizione-fabbricato-industriale/ /cantieri/
-Redirect 301 /cantieri/movimento-terra-impianto-sportivo/ /cantieri/
-Redirect 301 /cantieri/piazzale-asfaltatura-polo-logistico/ /cantieri/
-Redirect 301 /cantieri/sistemazione-verde-parco-urbano/ /cantieri/
+Redirect 301 /contatti/richiesta-informazioni/ /contatti/#intervento
+Redirect 301 /contatti/parliamo-del-tuo-intervento/ /contatti/#intervento
+Redirect 301 /contatti/contatti-generali/ /contatti/#amministrazione
+Redirect 301 /competenze/demolizione-e-recupero/recupero-materiali-inerti/ /operativita/centro-di-recupero/#conferimento
 Redirect 301 /cantieri/urbanizzazione-area-produttiva/ /cantieri/
+Redirect 301 /cantieri/sistemazione-verde-parco-urbano/ /cantieri/
+Redirect 301 /cantieri/piazzale-asfaltatura-polo-logistico/ /cantieri/
+Redirect 301 /cantieri/movimento-terra-impianto-sportivo/ /cantieri/
+Redirect 301 /cantieri/demolizione-fabbricato-industriale/ /cantieri/
+Redirect 301 /cantieri/cantiere-11-pavimentazione-giardino-abitazione/ /cantieri/
+Redirect 301 /cantieri/cantiere-02-scavi-tubazioni-impianto-digestori/ /cantieri/cantiere-02-scavi-tubazioni-impianto-vasche-a-cupola/
+Redirect 301 /cantieri/bonifica-sito-produttivo-dismesso/ /cantieri/
+Redirect 301 /approfondimenti/vita-di-impresa/ /approfondimenti/?argomento=vita-di-impresa#app-contributi
+Redirect 301 /approfondimenti/tedeschi-in-pista/ /approfondimenti/
+Redirect 301 /approfondimenti/press-e-territorio/ /approfondimenti/?argomento=press-e-territorio#app-contributi
+Redirect 301 /approfondimenti/macchine-edili-ci-ha-dedicato-un-servizio-2012/ /approfondimenti/
+Redirect 301 /approfondimenti/articoli-e-competenze/ /approfondimenti/?argomento=articoli-e-competenze#app-contributi
+Redirect 301 /approfondimenti/aggiornamenti-dai-cantieri/ /approfondimenti/?argomento=aggiornamenti-dai-cantieri#app-contributi
 Redirect 301 /approfondimenti/60-anni-a-dare-forma-alla-terra/ /approfondimenti/dal-1966-a-dare-forma-alla-terra/
 

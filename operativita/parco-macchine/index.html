@@ -9,7 +9,9 @@
   <link rel="canonical" href="https://tedeschi.arcaagency.it/operativita/parco-macchine/">
   <meta name="theme-color" content="#000000">
   <meta name="generator" content="Eleventy">
-  <script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}}(document)</script>
+<script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}try{var a=JSON.parse(sessionStorage.getItem('tedeschi-arrivo'));sessionStorage.removeItem('tedeschi-arrivo');if(on&&a&&Date.now()-a.t<8000){if(!a.vt){h.classList.add('arrivo');setTimeout(function(){h.classList.remove('arrivo')},3000)}else if(a.u===location.pathname&&'onpagereveal'in window){var v=d.createElement('style');v.textContent='@view-transition{navigation:auto}.hero-interna__img{view-transition-name:cantiere-foto}';d.head.appendChild(v);addEventListener('pagereveal',function(e){var t=e.viewTransition;function via(){v.remove()}t?t.finished.then(via,via):via()},{once:true})}}}catch(e){}}(document)</script>
+<script>addEventListener('pagereveal',function(e){var t=e.viewTransition;t&&['ready','finished','updateCallbackDone'].forEach(function(k){t[k]&&t[k].catch(function(){})})})</script>
+<script>!function(h){try{if(!h.classList.contains('motion-off')||location.hash||!matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(localStorage.getItem('tedeschi-motion')!==null||localStorage.getItem('tedeschi-motion-invito'))return;h.classList.add('invito-pagina')}catch(e){}}(document.documentElement)</script>
   <meta name="author" content="TEDESCHI S.R.L.">
   <meta property="og:locale" content="it_IT">
   <meta property="og:site_name" content="Impresa Tedeschi">
@@ -17,11 +19,13 @@
   <meta property="og:title" content="Parco macchine | Impresa Tedeschi, Cremona">
   <meta property="og:description" content="Il parco macchine di Impresa Tedeschi, le dotazioni e il loro impiego nelle lavorazioni. Consulta il documento del parco e parliamo del tuo intervento.">
   <meta property="og:url" content="https://tedeschi.arcaagency.it/operativita/parco-macchine/">
-  <meta property="og:image" content="https://tedeschi.arcaagency.it/assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.jpeg">
+  <meta property="og:image" content="https://tedeschi.arcaagency.it/assets/img/cantiere-03-demolizione-06-1600w.jpeg">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="1067">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Parco macchine | Impresa Tedeschi, Cremona">
   <meta name="twitter:description" content="Il parco macchine di Impresa Tedeschi, le dotazioni e il loro impiego nelle lavorazioni. Consulta il documento del parco e parliamo del tuo intervento.">
-  <meta name="twitter:image" content="https://tedeschi.arcaagency.it/assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.jpeg">
+  <meta name="twitter:image" content="https://tedeschi.arcaagency.it/assets/img/cantiere-03-demolizione-06-1600w.jpeg">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -31,16 +35,18 @@
   <link rel="preload" as="style" href="https://use.typekit.net/hlp3tzz.css" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://use.typekit.net/hlp3tzz.css"></noscript>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/tedeschi.woff2" crossorigin>
-  <link rel="preload" as="image" type="image/avif" imagesrcset="/assets/img/parco-macchine-movimento-terra-4-1024x768-1-480w.avif 480w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-800w.avif 800w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.avif 1024w" imagesizes="(min-width: 601px) 58vw, 95vw">
+  <link rel="preload" as="image" href="/assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.avif" type="image/avif" imagesrcset="/assets/img/parco-macchine-movimento-terra-4-1024x768-1-480w.avif 480w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-800w.avif 800w, /assets/img/parco-macchine-movimento-terra-4-1024x768-1-1024w.avif 1024w" imagesizes="(min-width: 601px) 58vw, 95vw">
 
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/base.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/components.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/utilities.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/evoluzione.css?v=1cad0145">
-  <script type="application/ld+json">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/base.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/components.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/utilities.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/revisione-contenuti.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/parco-3d.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/motion.css?v=53387662">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -91,22 +97,30 @@
 </head>
 <body data-rif="Parco macchine">
   <a class="skip-link" href="#contenuto">Salta al contenuto</a>
+  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
   <div class="progresso-pagina" aria-hidden="true"></div>
-
-  <header class="site-header" data-header>
+<header class="site-header" data-header>
   <div class="site-header__inner container">
     <a class="site-header__logo" href="/" aria-label="Impresa Tedeschi — torna alla home">
       <img class="site-header__logo-img" src="/assets/static/logo-tedeschi-dark.png" alt="Impresa Tedeschi — Edilizia &amp; Ambiente" width="181" height="95">
     </a>
 
+    <nav class="site-header__rapidi" aria-label="Accessi rapidi">
+      <ul>
+      <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
+      <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
+      <li><a href="/documentazione/">Documentazione</a></li>
+      </ul>
+    </nav>
+
     <nav class="site-nav" aria-label="Navigazione principale">
       <ul class="site-nav__list">
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/impresa/">Impresa</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-1" aria-label="Sottomenu Impresa">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel">
+          <div class="site-nav__panel" id="sottomenu-1">
             <ul class="site-nav__dropdown">
               <li><a href="/impresa/#storia">Storia</a></li>
               <li><a href="/impresa/#persone-e-metodo">Persone e metodo</a></li>
@@ -118,10 +132,10 @@
         </li>
         <li class="site-nav__item has-children has-mega" data-nav-item>
           <a class="site-nav__link" href="/competenze/">Competenze</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-2" aria-label="Sottomenu Competenze">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel site-nav__panel--mega">
+          <div class="site-nav__panel site-nav__panel--mega" id="sottomenu-2">
             <div class="mega">
               <div class="mega__col">
                 <a class="mega__hub" href="/competenze/coordinamento-progettuale/">Coordinamento Progettuale</a>
@@ -175,12 +189,12 @@
         </li>
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link is-active" href="/operativita/">Operatività</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-4" aria-label="Sottomenu Operatività">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel">
+          <div class="site-nav__panel" id="sottomenu-4">
             <ul class="site-nav__dropdown">
-              <li><a href="/operativita/parco-macchine/">Parco macchine</a></li>
+              <li><a class="is-current" aria-current="page" href="/operativita/parco-macchine/">Parco macchine</a></li>
               <li><a href="/operativita/tecnologie-di-precisione/">Tecnologie di precisione</a></li>
               <li><a href="/operativita/logistica-e-autonomia-operativa/">Logistica e autonomia operativa</a></li>
               <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
@@ -193,14 +207,6 @@
         <li class="site-nav__item" data-nav-item>
           <a class="site-nav__link" href="/contatti/">Contatti</a>
         </li>
-      </ul>
-    </nav>
-
-    <nav class="site-header__rapidi" aria-label="Accessi rapidi">
-      <ul>
-      <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
-      <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
-      <li><a href="/documentazione/">Documentazione</a></li>
       </ul>
     </nav>
 
@@ -289,7 +295,7 @@
           <li class="nav-mobile__item">
             <a class="nav-mobile__link" href="/cantieri/">Cantieri</a>
           </li>
-          <li class="nav-mobile__item">
+          <li class="nav-mobile__item is-attiva">
             <div class="nav-mobile__row">
               <a class="nav-mobile__link" href="/operativita/">Operatività</a>
               <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
@@ -297,7 +303,7 @@
               </button>
             </div>
             <ul class="nav-mobile__sub" hidden>
-              <li><a href="/operativita/parco-macchine/">Parco macchine</a></li>
+              <li><a href="/operativita/parco-macchine/" aria-current="page">Parco macchine</a></li>
               <li><a href="/operativita/tecnologie-di-precisione/">Tecnologie di precisione</a></li>
               <li><a href="/operativita/logistica-e-autonomia-operativa/">Logistica e autonomia operativa</a></li>
               <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
@@ -322,12 +328,15 @@
       <div class="nav-mobile__contatti">
         <a href="tel:+39037226760">+39 0372 26760</a>
         <a href="mailto:info@impresatedeschi.it">info@impresatedeschi.it</a>
+      </div><div class="nav-mobile__comandi">
+        <button class="motion-toggle motion-toggle--menu" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span class="motion-toggle__stato" data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
       </div>
     </div>
   </section>
 
 
   <main id="contenuto">
+    <section class="motion-invito motion-invito--in-pagina" data-invito-statico aria-label="Movimento della pagina"><p class="motion-invito__testo">Il tuo dispositivo chiede meno animazioni, quindi il sito è in versione ridotta. Se vuoi vederlo con il suo movimento, puoi attivarlo.</p><div class="motion-invito__azioni"><button type="button" class="motion-invito__si">Attiva il movimento</button><button type="button" class="motion-invito__no">No, grazie</button></div></section>
     <nav class="breadcrumb" aria-label="Percorso di navigazione">
   <div class="container">
     <ol class="breadcrumb__list">
@@ -370,7 +379,6 @@
 }
 </script>
 
-    
 
 
 
@@ -388,10 +396,9 @@
   <div class="container">
     <div class="section-heading w3o-etichetta" data-reveal>
       <h2 class="section-heading__num" id="pm-apertura">01/ <span class="section-heading__etichetta">Apertura</span></h2>
-    </div>
-    <div class="gallery" data-reveal>
+    </div><div class="gallery" data-reveal>
       <figure class="gallery__item">
-        <picture><source type="image/avif" srcset="/assets/img/parco-macchine-isuzu-f-14-576x1024-1-480w.avif" sizes="(min-width: 900px) 33vw, 100vw"><source type="image/webp" srcset="/assets/img/parco-macchine-isuzu-f-14-576x1024-1-480w.webp" sizes="(min-width: 900px) 33vw, 100vw"><img src="/assets/img/parco-macchine-isuzu-f-14-576x1024-1-480w.jpeg" alt="Autocarro ISUZU con cassone scarrabile del parco Impresa Tedeschi" loading="lazy" decoding="async" class="gallery__img" width="480" height="853"></picture>
+        <picture><source type="image/avif" srcset="/assets/img/parco-macchine-isuzu-f-14-576x1024-1-480w.avif" sizes="(min-width: 900px) 33vw, 100vw"><source type="image/webp" srcset="/assets/img/parco-macchine-isuzu-f-14-576x1024-1-480w.webp" sizes="(min-width: 900px) 33vw, 100vw"><img src="/assets/img/parco-macchine-isuzu-f-14-576x1024-1-480w.jpeg" alt="Autocarro ISUZU con cassone scarrabile del parco Impresa Tedeschi" loading="eager" decoding="async" fetchpriority="high" class="gallery__img" width="480" height="853"></picture>
       </figure>
       <figure class="gallery__item">
         <picture><source type="image/avif" srcset="/assets/img/parco-macchine-renault-premium-1024x768-1-480w.avif 480w, /assets/img/parco-macchine-renault-premium-1024x768-1-800w.avif 800w, /assets/img/parco-macchine-renault-premium-1024x768-1-1024w.avif 1024w" sizes="(min-width: 900px) 33vw, 100vw"><source type="image/webp" srcset="/assets/img/parco-macchine-renault-premium-1024x768-1-480w.webp 480w, /assets/img/parco-macchine-renault-premium-1024x768-1-800w.webp 800w, /assets/img/parco-macchine-renault-premium-1024x768-1-1024w.webp 1024w" sizes="(min-width: 900px) 33vw, 100vw"><img src="/assets/img/parco-macchine-renault-premium-1024x768-1-480w.jpeg" alt="Autocarro RENAULT Premium del parco Impresa Tedeschi" loading="lazy" decoding="async" class="gallery__img" width="1024" height="768" srcset="/assets/img/parco-macchine-renault-premium-1024x768-1-480w.jpeg 480w, /assets/img/parco-macchine-renault-premium-1024x768-1-800w.jpeg 800w, /assets/img/parco-macchine-renault-premium-1024x768-1-1024w.jpeg 1024w" sizes="(min-width: 900px) 33vw, 100vw"></picture>
@@ -400,186 +407,74 @@
         <picture><source type="image/avif" srcset="/assets/img/parco-macchine-man-4-assi-500-944x1024-1-480w.avif 480w, /assets/img/parco-macchine-man-4-assi-500-944x1024-1-800w.avif 800w" sizes="(min-width: 900px) 33vw, 100vw"><source type="image/webp" srcset="/assets/img/parco-macchine-man-4-assi-500-944x1024-1-480w.webp 480w, /assets/img/parco-macchine-man-4-assi-500-944x1024-1-800w.webp 800w" sizes="(min-width: 900px) 33vw, 100vw"><img src="/assets/img/parco-macchine-man-4-assi-500-944x1024-1-480w.jpeg" alt="Autocarro MAN 4 assi del parco Impresa Tedeschi" loading="lazy" decoding="async" class="gallery__img" width="800" height="867" srcset="/assets/img/parco-macchine-man-4-assi-500-944x1024-1-480w.jpeg 480w, /assets/img/parco-macchine-man-4-assi-500-944x1024-1-800w.jpeg 800w" sizes="(min-width: 900px) 33vw, 100vw"></picture>
       </figure>
     </div>
-    <div class="u-mt-5" data-reveal>
-      
-<div class="da-completare da-completare--immagine" role="note" data-da-completare>
-  <span class="da-completare__tipo">Immagine, dato o caso da inserire</span>
-  <strong class="da-completare__titolo">Fotografia reale del parco o di un mezzo</strong><p class="da-completare__testo">Didascalia con mezzo e funzione, solo con dati confermati.</p>
-</div>
 
-    </div>
   </div>
-</section><section class="evo" id="evoluzione-mezzi" aria-labelledby="evo-titolo" data-evo>
-  <script type="application/json" data-evo-dati>{"_nota":"Modulo 'La forza si evolve' (parco macchine). Il parco si accresce: ogni macchina arriva e le precedenti arretrano nel piazzale. Testi delle 4 ere VERBATIM dal sito modello di Mattia. 'nelParco' viene dal documento del parco attrezzature di ottobre 2020 (escavatori a lancio, Cisa e Canale dalla storia sul vecchio sito): mai date o numeri non documentati. 'anno': lo schizzo di Mattia dice 1960/1980/1990/2000, il modello 1960/1980/2000/OGGI, si cambia solo la riga.","kicker":"L’evoluzione del parco macchine","titolo":"LA FORZA SI EVOLVE","didascalia":"Ricostruzioni illustrative delle epoche. Le macchine citate vengono dal documento del parco attrezzature di ottobre 2020.","pulsanti":{"avanti":"Vai all’era successiva","fine":"Continua la pagina","scegli":"Scegli un’epoca"},"ere":[{"id":"1960","anno":"1960","nome":"Anni ’60","breve":"La meccanica","kicker":"La forza meccanica","titolo":"La forza prende forma.","testo":"Acciaio, cavi e leve. La potenza meccanica incontra l’esperienza di chi conosce la terra.","paesaggio":"cava","alt":"Ricostruzione illustrativa di un escavatore a cavi degli anni Sessanta","mezzo":"/assets/static/evoluzione-mezzi/escavatore-1960.webp","nelParcoTitolo":"Da dove siamo partiti","nelParco":"I primi escavatori a lancio, sull’Autostrada della Cisa e poi sul Canale Navigabile di Cremona."},{"id":"1980","anno":"1980","nome":"Anni ’80","breve":"L’idraulica","kicker":"Il controllo idraulico","titolo":"La forza diventa controllo.","testo":"L’idraulica trasforma il gesto: movimenti più continui, una risposta più precisa, nuove possibilità di lavoro.","paesaggio":"capannoni","alt":"Ricostruzione illustrativa di un escavatore idraulico degli anni Ottanta","mezzo":"/assets/static/evoluzione-mezzi/escavatore-1980.webp","nelParcoTitolo":"Nel parco","nelParco":"Escavatori cingolati da CAT 320 a CAT 325, gommati CAT e Komatsu, pinze e martelloni idraulici."},{"id":"2000","anno":"2000","nome":"Primi 2000","breve":"L’elettronica","kicker":"La precisione elettronica","titolo":"La macchina impara a leggere.","testo":"L’elettronica entra a bordo. Controlli e sensori mettono in relazione potenza, precisione ed efficienza.","paesaggio":"alberi","alt":"Ricostruzione illustrativa di un escavatore con controlli elettronici dei primi anni Duemila","mezzo":"/assets/static/evoluzione-mezzi/escavatore-2000.webp","nelParcoTitolo":"Nel parco","nelParco":"Livellatrice a controllo laser, vibrofinitrici CAT AP 300 e AP 500 per il lavoro stradale."},{"id":"oggi","anno":"OGGI","nome":"Oggi","breve":"L’intelligenza","kicker":"L’intelligenza connessa","titolo":"L’ingegno muove il futuro.","testo":"Sistemi digitali, connessioni e nuove motorizzazioni aprono la strada a un movimento terra sempre più consapevole.","paesaggio":"citta","alt":"Ricostruzione illustrativa di un escavatore connesso di oggi","mezzo":"/assets/static/evoluzione-mezzi/escavatore-oggi.webp","nelParcoTitolo":"Nel parco","nelParco":"Dozer CAT D6 con GPS, frantoio e vaglio per il recupero degli inerti, dal mini escavatore CAT 300.9 al CAT 325."}],"minuteria":"/assets/static/evoluzione-mezzi/minuteria.webp","scena":{"_nota":"Geometria dell'esploso, unità = larghezza del mezzo completo (1.0, altezza 2/3). 'box' = dove sta il pezzo nel mezzo assemblato (frazioni dell'immagine completa), 'uv' = ritaglio nello sprite dei pezzi, 'esplodi' = spostamento a esplosione piena, 'ruota' = gradi a esplosione piena, 'spessore' = volume finto. 'etichetta' = direzione e distanza (px) del testo dal pezzo.","parti":["cingoli","motore","cabina","braccio","avambraccio","benna"],"esplodi":{"cingoli":{"pos":[0,-0.12,0.04],"rot":[9,0,0],"spessore":0.03,"etichetta":[0,1,54]},"motore":{"pos":[-0.2,0,0.1],"rot":[0,-22,-4],"spessore":0.045,"etichetta":[-1,-0.6,70]},"cabina":{"pos":[-0.03,0.13,0.18],"rot":[5,18,0],"spessore":0.04,"etichetta":[-1,-1,60]},"braccio":{"pos":[0.05,0.07,-0.14],"rot":[0,-12,4],"spessore":0.03,"etichetta":[0.2,-1,58]},"avambraccio":{"pos":[0.17,0.04,0.08],"rot":[0,16,9],"spessore":0.03,"etichetta":[1,-0.3,54]},"benna":{"pos":[0.16,-0.1,0.2],"rot":[-9,26,12],"spessore":0.05,"etichetta":[1,0.8,56]}},"box":{"1960":{"cingoli":[0.065,0.538,0.57,0.304],"motore":[0.12,0.398,0.3,0.343],"cabina":[0.34,0.362,0.18,0.337],"braccio":[0.42,0.014,0.38,0.551],"avambraccio":[0.77,0.221,0.14,0.398],"benna":[0.71,0.537,0.2,0.285]},"1980":{"cingoli":[0.065,0.551,0.57,0.279],"motore":[0.12,0.413,0.3,0.314],"cabina":[0.34,0.379,0.18,0.302],"braccio":[0.42,0.033,0.38,0.513],"avambraccio":[0.77,0.264,0.14,0.313],"benna":[0.71,0.53,0.2,0.299]},"2000":{"cingoli":[0.065,0.532,0.57,0.315],"motore":[0.12,0.419,0.3,0.301],"cabina":[0.34,0.384,0.18,0.291],"braccio":[0.42,0.075,0.38,0.431],"avambraccio":[0.77,0.239,0.14,0.363],"benna":[0.71,0.542,0.2,0.275]},"oggi":{"cingoli":[0.065,0.529,0.57,0.321],"motore":[0.12,0.42,0.3,0.3],"cabina":[0.34,0.379,0.18,0.301],"braccio":[0.42,0.026,0.38,0.529],"avambraccio":[0.77,0.195,0.14,0.451],"benna":[0.71,0.549,0.2,0.262]}},"uv":{"1960":{"cingoli":[0.0078,0.6553,0.5384,0.2871],"motore":[0.0189,0.0811,0.3424,0.3916],"cabina":[0.3809,0.0488,0.2344,0.4385],"braccio":[0.6504,0.0127,0.334,0.4844],"avambraccio":[0.543,0.498,0.168,0.4775],"benna":[0.7025,0.5273,0.2884,0.4111]},"1980":{"cingoli":[0.0059,0.668,0.5547,0.2715],"motore":[0.0104,0.1182,0.3477,0.3643],"cabina":[0.3887,0.0723,0.2448,0.4102],"braccio":[0.6549,0.0322,0.3411,0.4609],"avambraccio":[0.5332,0.5068,0.1953,0.4365],"benna":[0.7311,0.5459,0.263,0.3936]},"2000":{"cingoli":[0.0137,0.6885,0.4753,0.2627],"motore":[0.0234,0.1211,0.3353,0.3369],"cabina":[0.3783,0.0635,0.2546,0.4121],"braccio":[0.6471,0.0879,0.3411,0.3867],"avambraccio":[0.4674,0.5029,0.1816,0.4707],"benna":[0.6816,0.54,0.3021,0.416]},"oggi":{"cingoli":[0.0052,0.6504,0.5182,0.292],"motore":[0.0078,0.1289,0.3529,0.3525],"cabina":[0.3743,0.0479,0.2689,0.4502],"braccio":[0.6562,0.0293,0.3398,0.4727],"avambraccio":[0.5371,0.5127,0.1426,0.459],"benna":[0.7005,0.5752,0.2917,0.3818]}},"minuteriaUv":[[0.0163,0.0225,0.2298,0.2275],[0.2819,0.0273,0.2051,0.2227],[0.5456,0.0137,0.1556,0.2363],[0.765,0.0215,0.2194,0.2285],[0.0234,0.25,0.2207,0.2471],[0.3001,0.25,0.1562,0.2354],[0.5404,0.25,0.1667,0.2393],[0.8112,0.25,0.1393,0.2461],[0.0163,0.5117,0.2272,0.2383],[0.2741,0.5186,0.2174,0.2314],[0.5293,0.5039,0.1966,0.2461],[0.7767,0.5,0.1947,0.25],[0.0241,0.75,0.2253,0.2109],[0.2754,0.75,0.2057,0.2158],[0.5482,0.75,0.151,0.2207],[0.7708,0.75,0.2038,0.2188]]}}</script>
-
-  <div class="evo-sticky" data-evo-sticky>
-    <div class="evo-paesaggi" data-evo-paesaggi aria-hidden="true">
-      <div class="evo-paesaggio is-attivo" data-evo-paesaggio="0"><svg class="evo-p evo-p--cava" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
-  <g class="evo-p__l"><path d="M0 440C140 330 360 300 560 372S900 322 1120 384 1400 330 1600 392V600H0Z"/></g>
-  <g class="evo-p__m"><path d="M520 440l60-46h180l44-34h150l40-30h210l50 36h130l56 74Z"/><path d="M1160 442l230-110 10 8-230 110Z"/><path d="M1372 322h60v38l-30 18-30-18Z"/><path d="M1476 440V356h44v84Z"/><path d="M60 440C120 404 220 392 330 414S470 400 520 440Z"/></g>
-  <g class="evo-p__v"><path d="M1040 456c30-26 70-30 110-12s64 18 96 6l28 22H1040Z"/><path d="M1300 462c26-20 60-24 92-10s48 12 72 2l22 18h-186Z"/><path d="M700 464c60-30 150-34 230-10l30 12H700Z"/></g>
-</svg></div>
-      <div class="evo-paesaggio" data-evo-paesaggio="1"><svg class="evo-p evo-p--capannoni" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
-  <g class="evo-p__l"><path d="M0 440C300 400 600 410 900 430S1300 398 1600 436V600H0Z"/><path d="M1086 218h26v222h-26Z"/><path d="M1080 212h38v12h-38Z"/><path d="M1500 300a30 30 0 0 1 60 0v30h-60Z"/><path d="M1522 330h16v110h-16Z"/></g>
-  <g class="evo-p__m"><path d="M480 448V336l54-44 18 44 54-44 18 44 54-44 18 44 54-44 18 44 54-44 18 44 54-44 18 44v112Z"/><path d="M1100 448V380l46-36 16 36 46-36 16 36 46-36 16 36 46-36 16 36v68Z"/><path d="M1420 448V330a38 38 0 0 1 76 0v118Z"/><path d="M1510 448V340a34 34 0 0 1 68 0v108Z"/><path d="M940 448V392h140v56Z"/></g>
-  <g class="evo-p__v"><rect x="1240" y="408" width="8" height="48"/><rect x="1320" y="408" width="8" height="48"/><rect x="1400" y="408" width="8" height="48"/><rect x="1480" y="408" width="8" height="48"/><rect x="1240" y="420" width="248" height="4"/><rect x="1240" y="436" width="248" height="4"/><path d="M760 456h300v10H760Z"/></g>
-</svg></div>
-      <div class="evo-paesaggio" data-evo-paesaggio="2"><svg class="evo-p evo-p--alberi" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
-  <g class="evo-p__l"><circle cx="1160" cy="286" r="84"/><path d="M0 446C260 396 560 412 860 430S1300 396 1600 444V600H0Z"/></g>
-  <g class="evo-p__m"><path d="M300 448V282a26 72 0 0 1 52 0v166Z"/><path d="M372 448V256a30 84 0 0 1 60 0v192Z"/><path d="M452 448V292a24 64 0 0 1 48 0v156Z"/><path d="M520 448V270a28 78 0 0 1 56 0v178Z"/><circle cx="900" cy="364" r="56"/><rect x="892" y="410" width="16" height="38"/><circle cx="1010" cy="346" r="64"/><rect x="1001" y="400" width="18" height="48"/><circle cx="1330" cy="376" r="46"/><rect x="1324" y="412" width="12" height="36"/><circle cx="1420" cy="362" r="54"/><rect x="1412" y="406" width="16" height="42"/></g>
-  <g class="evo-p__v"><path d="M1100 456c40-18 80-22 120-10s80 14 120 2 80-20 120-6 80 18 120 4l20 10h-500Z"/><path d="M760 460c14-14 30-14 44 0Z"/><path d="M820 462c12-12 26-12 38 0Z"/><path d="M700 462c10-10 22-10 32 0Z"/></g>
-</svg></div>
-      <div class="evo-paesaggio" data-evo-paesaggio="3"><svg class="evo-p evo-p--citta" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
-  <g class="evo-p__l"><path d="M100 448V300h70v148Zm90 0V220h50v228Zm70 0V280h100v168Zm130 0V170h60v278Zm90 0V250h80v198Zm120 0V130h40v318Zm70 0V300h120v148Zm160 0V220h70v228Zm110 0V280h90v168Zm130 0V200h50v248Zm80 0V320h100v128Zm140 0V260h60v188Z"/><rect x="698" y="90" width="4" height="40"/></g>
-  <g class="evo-p__m"><path d="M40 452V380h130v72Zm180 0V330h80v122Zm1030 0V350h100v102Zm140 0V320h70v132Zm110 0V280h50v172Z"/><rect x="1120" y="170" width="8" height="282"/><rect x="960" y="176" width="340" height="7"/><rect x="955" y="183" width="18" height="44"/><rect x="1230" y="183" width="5" height="110"/><rect x="1224" y="290" width="16" height="14"/><rect x="620" y="150" width="8" height="302"/><rect x="510" y="156" width="290" height="7"/><rect x="505" y="163" width="16" height="40"/><rect x="720" y="163" width="5" height="130"/><rect x="714" y="290" width="16" height="14"/></g>
-  <g class="evo-p__v"><rect x="960" y="420" width="640" height="5"/><rect x="1000" y="410" width="6" height="40"/><rect x="1160" y="410" width="6" height="40"/><rect x="1320" y="410" width="6" height="40"/><rect x="1480" y="410" width="6" height="40"/><rect x="960" y="440" width="640" height="3"/></g>
-</svg></div>
+</section><section class="p3d" id="parco-nel-tempo" aria-labelledby="p3d-titolo" data-p3d>
+  <div class="container p3d-testa">
+    <p class="p3d-kicker">L’evoluzione del parco macchine</p>
+    <h2 class="p3d-titolo" id="p3d-titolo">La forza si evolve</h2>
+    <p class="p3d-nota">Ricostruzioni originali, realizzate per osservazione. L’esploso è una coreografia divulgativa in scala relativa.</p>
+  </div><div class="p3d-scena" data-p3d-scena data-src="/assets/static/parco-macchine-3d/index.html">
+    <div class="p3d-attesa" data-p3d-attesa aria-hidden="true">
+      <div class="p3d-attesa__quadro">
+        <img class="p3d-attesa__fondale" src="/assets/static/parco-macchine-3d/immagini/fondale-1960-800.webp" srcset="/assets/static/parco-macchine-3d/immagini/fondale-1960-800.webp 800w, /assets/static/parco-macchine-3d/immagini/fondale-1960-1600.webp 1600w" sizes="100vw" width="1600" height="901" alt="" loading="lazy" decoding="async">
+        <span class="p3d-attesa__ombra"></span>
+        <span class="p3d-attesa__vista"><img src="/assets/static/parco-macchine-3d/immagini/macchina-1960-800.webp" srcset="/assets/static/parco-macchine-3d/immagini/macchina-1960-800.webp 800w, /assets/static/parco-macchine-3d/immagini/macchina-1960-1600.webp 1600w" sizes="(max-width: 640px) 100vw, 70vw" width="1600" height="900" alt="" loading="lazy" decoding="async"></span>
+      </div>
+      <div class="p3d-attesa__barra"></div>
     </div>
-    <div class="evo-orizzonte" aria-hidden="true"></div>
-
-    <div class="evo-anno" aria-hidden="true">
-      <span class="evo-anno__rullo" data-evo-rullo><b class="evo-anno__v" data-evo-anno="0">1960</b><b class="evo-anno__v" data-evo-anno="1">1980</b><b class="evo-anno__v" data-evo-anno="2">2000</b><b class="evo-anno__v" data-evo-anno="3">OGGI</b></span>
+  </div><div class="p3d-statico" data-p3d-statico>
+    <p class="p3d-statico__avviso" data-p3d-avviso hidden>Per vedere e ruotare gli escavatori, apri questa pagina in un browser con WebGL attivo.</p><div class="p3d-manuale">
+      <button class="p3d-manuale__tasto" type="button" data-p3d-manuale aria-expanded="false" aria-controls="p3d-manuale-box" hidden><span class="p3d-manuale__segno" aria-hidden="true">⟲</span><span data-p3d-manuale-label>Apri il modello 3D</span></button>
+      <div class="p3d-manuale__box" id="p3d-manuale-box" data-p3d-manuale-box hidden></div>
     </div>
-
-    <div class="evo-area" data-evo-area role="img" aria-label="Ricostruzione illustrativa di un escavatore a cavi degli anni Sessanta">
-      <div class="evo-m" data-evo-m="0">
-        <span class="evo-m__ombra" aria-hidden="true"></span>
-        <img class="evo-m__img" src="/assets/static/evoluzione-mezzi/escavatore-1960.webp" width="1536" height="1024" alt="" loading="lazy" decoding="async">
-      </div>
-      <div class="evo-m" data-evo-m="1">
-        <span class="evo-m__ombra" aria-hidden="true"></span><span class="evo-m__polvere" data-evo-polvere aria-hidden="true"><i></i><i></i><i></i></span>
-        <img class="evo-m__img" src="/assets/static/evoluzione-mezzi/escavatore-1980.webp" width="1536" height="1024" alt="" loading="lazy" decoding="async">
-      </div>
-      <div class="evo-m" data-evo-m="2">
-        <span class="evo-m__ombra" aria-hidden="true"></span><span class="evo-m__polvere" data-evo-polvere aria-hidden="true"><i></i><i></i><i></i></span>
-        <img class="evo-m__img" src="/assets/static/evoluzione-mezzi/escavatore-2000.webp" width="1536" height="1024" alt="" loading="lazy" decoding="async">
-      </div>
-      <div class="evo-m" data-evo-m="3">
-        <span class="evo-m__ombra" aria-hidden="true"></span><span class="evo-m__polvere" data-evo-polvere aria-hidden="true"><i></i><i></i><i></i></span>
-        <img class="evo-m__img" src="/assets/static/evoluzione-mezzi/escavatore-oggi.webp" width="1536" height="1024" alt="" loading="lazy" decoding="async">
-      </div>
-    </div>
-
-    <header class="evo-testa">
-      <p class="evo-kicker">L’evoluzione del parco macchine</p>
-      <h2 class="evo-titolo" id="evo-titolo">LA FORZA SI EVOLVE</h2>
-      <p class="evo-fase" data-evo-fase aria-hidden="true">01 / 04 · La forza meccanica</p>
-    </header>
-
-    <div class="evo-narrativa" data-evo-narrativa>
-      <article class="evo-copia is-attiva" data-evo-copia="0">
-        <p class="evo-copia__kicker">La forza meccanica</p>
-        <h3 class="evo-copia__titolo" data-evo-parole>La forza prende forma.</h3>
-        <p class="evo-copia__testo" data-evo-parole>Acciaio, cavi e leve. La potenza meccanica incontra l’esperienza di chi conosce la terra.</p>
-        <p class="evo-parco"><b>Da dove siamo partiti</b> I primi escavatori a lancio, sull’Autostrada della Cisa e poi sul Canale Navigabile di Cremona.</p>
-      </article>
-      <article class="evo-copia" data-evo-copia="1" inert>
-        <p class="evo-copia__kicker">Il controllo idraulico</p>
-        <h3 class="evo-copia__titolo" data-evo-parole>La forza diventa controllo.</h3>
-        <p class="evo-copia__testo" data-evo-parole>L’idraulica trasforma il gesto: movimenti più continui, una risposta più precisa, nuove possibilità di lavoro.</p>
-        <p class="evo-parco"><b>Nel parco</b> Escavatori cingolati da CAT 320 a CAT 325, gommati CAT e Komatsu, pinze e martelloni idraulici.</p>
-      </article>
-      <article class="evo-copia" data-evo-copia="2" inert>
-        <p class="evo-copia__kicker">La precisione elettronica</p>
-        <h3 class="evo-copia__titolo" data-evo-parole>La macchina impara a leggere.</h3>
-        <p class="evo-copia__testo" data-evo-parole>L’elettronica entra a bordo. Controlli e sensori mettono in relazione potenza, precisione ed efficienza.</p>
-        <p class="evo-parco"><b>Nel parco</b> Livellatrice a controllo laser, vibrofinitrici CAT AP 300 e AP 500 per il lavoro stradale.</p>
-      </article>
-      <article class="evo-copia" data-evo-copia="3" inert>
-        <p class="evo-copia__kicker">L’intelligenza connessa</p>
-        <h3 class="evo-copia__titolo" data-evo-parole>L’ingegno muove il futuro.</h3>
-        <p class="evo-copia__testo" data-evo-parole>Sistemi digitali, connessioni e nuove motorizzazioni aprono la strada a un movimento terra sempre più consapevole.</p>
-        <p class="evo-parco"><b>Nel parco</b> Dozer CAT D6 con GPS, frantoio e vaglio per il recupero degli inerti, dal mini escavatore CAT 300.9 al CAT 325.</p>
-      </article>
-    </div>
-
-    <button type="button" class="evo-avanti" data-evo-avanti aria-label="Vai all’era successiva">
-      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M5 12h13M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-
-    <p class="evo-didascalia">Ricostruzioni illustrative delle epoche. Le macchine citate vengono dal documento del parco attrezzature di ottobre 2020.</p>
-
-    <nav class="evo-nav" aria-label="Scegli un’epoca">
-      <div class="evo-righello" aria-hidden="true"><i data-evo-barra></i><b data-evo-cursore></b></div>
-      <ol class="evo-ere">
-        <li><button type="button" class="evo-era" data-evo-era="0" aria-pressed="true"><span class="evo-era__n" aria-hidden="true">01</span><strong class="evo-era__nome">Anni ’60</strong><span class="evo-era__breve">La meccanica</span></button></li>
-        <li><button type="button" class="evo-era" data-evo-era="1" aria-pressed="false"><span class="evo-era__n" aria-hidden="true">02</span><strong class="evo-era__nome">Anni ’80</strong><span class="evo-era__breve">L’idraulica</span></button></li>
-        <li><button type="button" class="evo-era" data-evo-era="2" aria-pressed="false"><span class="evo-era__n" aria-hidden="true">03</span><strong class="evo-era__nome">Primi 2000</strong><span class="evo-era__breve">L’elettronica</span></button></li>
-        <li><button type="button" class="evo-era" data-evo-era="3" aria-pressed="false"><span class="evo-era__n" aria-hidden="true">04</span><strong class="evo-era__nome">Oggi</strong><span class="evo-era__breve">L’intelligenza</span></button></li>
-      </ol>
-    </nav>
-    <p class="evo-sr" aria-live="polite" data-evo-stato></p>
-  </div><ol class="evo-storyboard" data-evo-storyboard>
-    <li class="evo-scena">
-      <div class="evo-scena__quadro">
-        <svg class="evo-p evo-p--cava evo-scena__p" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
-  <g class="evo-p__l"><path d="M0 440C140 330 360 300 560 372S900 322 1120 384 1400 330 1600 392V600H0Z"/></g>
-  <g class="evo-p__m"><path d="M520 440l60-46h180l44-34h150l40-30h210l50 36h130l56 74Z"/><path d="M1160 442l230-110 10 8-230 110Z"/><path d="M1372 322h60v38l-30 18-30-18Z"/><path d="M1476 440V356h44v84Z"/><path d="M60 440C120 404 220 392 330 414S470 400 520 440Z"/></g>
-  <g class="evo-p__v"><path d="M1040 456c30-26 70-30 110-12s64 18 96 6l28 22H1040Z"/><path d="M1300 462c26-20 60-24 92-10s48 12 72 2l22 18h-186Z"/><path d="M700 464c60-30 150-34 230-10l30 12H700Z"/></g>
-</svg>
-        <img class="evo-scena__mezzo" src="/assets/static/evoluzione-mezzi/escavatore-1960.webp" width="1536" height="1024" alt="Ricostruzione illustrativa di un escavatore a cavi degli anni Sessanta" loading="lazy" decoding="async">
-        <span class="evo-scena__anno" aria-hidden="true">1960</span>
-      </div>
-      <div class="evo-scena__testo">
-        <p class="evo-copia__kicker">La forza meccanica</p>
-        <h3 class="evo-copia__titolo">La forza prende forma.</h3>
-        <p class="evo-copia__testo">Acciaio, cavi e leve. La potenza meccanica incontra l’esperienza di chi conosce la terra.</p>
-        <p class="evo-parco"><b>Da dove siamo partiti</b> I primi escavatori a lancio, sull’Autostrada della Cisa e poi sul Canale Navigabile di Cremona.</p>
-      </div>
-    </li>
-    <li class="evo-scena">
-      <div class="evo-scena__quadro">
-        <svg class="evo-p evo-p--capannoni evo-scena__p" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
-  <g class="evo-p__l"><path d="M0 440C300 400 600 410 900 430S1300 398 1600 436V600H0Z"/><path d="M1086 218h26v222h-26Z"/><path d="M1080 212h38v12h-38Z"/><path d="M1500 300a30 30 0 0 1 60 0v30h-60Z"/><path d="M1522 330h16v110h-16Z"/></g>
-  <g class="evo-p__m"><path d="M480 448V336l54-44 18 44 54-44 18 44 54-44 18 44 54-44 18 44 54-44 18 44 54-44 18 44v112Z"/><path d="M1100 448V380l46-36 16 36 46-36 16 36 46-36 16 36 46-36 16 36v68Z"/><path d="M1420 448V330a38 38 0 0 1 76 0v118Z"/><path d="M1510 448V340a34 34 0 0 1 68 0v108Z"/><path d="M940 448V392h140v56Z"/></g>
-  <g class="evo-p__v"><rect x="1240" y="408" width="8" height="48"/><rect x="1320" y="408" width="8" height="48"/><rect x="1400" y="408" width="8" height="48"/><rect x="1480" y="408" width="8" height="48"/><rect x="1240" y="420" width="248" height="4"/><rect x="1240" y="436" width="248" height="4"/><path d="M760 456h300v10H760Z"/></g>
-</svg>
-        <img class="evo-scena__mezzo" src="/assets/static/evoluzione-mezzi/escavatore-1980.webp" width="1536" height="1024" alt="Ricostruzione illustrativa di un escavatore idraulico degli anni Ottanta" loading="lazy" decoding="async">
-        <span class="evo-scena__anno" aria-hidden="true">1980</span>
-      </div>
-      <div class="evo-scena__testo">
-        <p class="evo-copia__kicker">Il controllo idraulico</p>
-        <h3 class="evo-copia__titolo">La forza diventa controllo.</h3>
-        <p class="evo-copia__testo">L’idraulica trasforma il gesto: movimenti più continui, una risposta più precisa, nuove possibilità di lavoro.</p>
-        <p class="evo-parco"><b>Nel parco</b> Escavatori cingolati da CAT 320 a CAT 325, gommati CAT e Komatsu, pinze e martelloni idraulici.</p>
-      </div>
-    </li>
-    <li class="evo-scena">
-      <div class="evo-scena__quadro">
-        <svg class="evo-p evo-p--alberi evo-scena__p" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
-  <g class="evo-p__l"><circle cx="1160" cy="286" r="84"/><path d="M0 446C260 396 560 412 860 430S1300 396 1600 444V600H0Z"/></g>
-  <g class="evo-p__m"><path d="M300 448V282a26 72 0 0 1 52 0v166Z"/><path d="M372 448V256a30 84 0 0 1 60 0v192Z"/><path d="M452 448V292a24 64 0 0 1 48 0v156Z"/><path d="M520 448V270a28 78 0 0 1 56 0v178Z"/><circle cx="900" cy="364" r="56"/><rect x="892" y="410" width="16" height="38"/><circle cx="1010" cy="346" r="64"/><rect x="1001" y="400" width="18" height="48"/><circle cx="1330" cy="376" r="46"/><rect x="1324" y="412" width="12" height="36"/><circle cx="1420" cy="362" r="54"/><rect x="1412" y="406" width="16" height="42"/></g>
-  <g class="evo-p__v"><path d="M1100 456c40-18 80-22 120-10s80 14 120 2 80-20 120-6 80 18 120 4l20 10h-500Z"/><path d="M760 460c14-14 30-14 44 0Z"/><path d="M820 462c12-12 26-12 38 0Z"/><path d="M700 462c10-10 22-10 32 0Z"/></g>
-</svg>
-        <img class="evo-scena__mezzo" src="/assets/static/evoluzione-mezzi/escavatore-2000.webp" width="1536" height="1024" alt="Ricostruzione illustrativa di un escavatore con controlli elettronici dei primi anni Duemila" loading="lazy" decoding="async">
-        <span class="evo-scena__anno" aria-hidden="true">2000</span>
-      </div>
-      <div class="evo-scena__testo">
-        <p class="evo-copia__kicker">La precisione elettronica</p>
-        <h3 class="evo-copia__titolo">La macchina impara a leggere.</h3>
-        <p class="evo-copia__testo">L’elettronica entra a bordo. Controlli e sensori mettono in relazione potenza, precisione ed efficienza.</p>
-        <p class="evo-parco"><b>Nel parco</b> Livellatrice a controllo laser, vibrofinitrici CAT AP 300 e AP 500 per il lavoro stradale.</p>
-      </div>
-    </li>
-    <li class="evo-scena">
-      <div class="evo-scena__quadro">
-        <svg class="evo-p evo-p--citta evo-scena__p" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
-  <g class="evo-p__l"><path d="M100 448V300h70v148Zm90 0V220h50v228Zm70 0V280h100v168Zm130 0V170h60v278Zm90 0V250h80v198Zm120 0V130h40v318Zm70 0V300h120v148Zm160 0V220h70v228Zm110 0V280h90v168Zm130 0V200h50v248Zm80 0V320h100v128Zm140 0V260h60v188Z"/><rect x="698" y="90" width="4" height="40"/></g>
-  <g class="evo-p__m"><path d="M40 452V380h130v72Zm180 0V330h80v122Zm1030 0V350h100v102Zm140 0V320h70v132Zm110 0V280h50v172Z"/><rect x="1120" y="170" width="8" height="282"/><rect x="960" y="176" width="340" height="7"/><rect x="955" y="183" width="18" height="44"/><rect x="1230" y="183" width="5" height="110"/><rect x="1224" y="290" width="16" height="14"/><rect x="620" y="150" width="8" height="302"/><rect x="510" y="156" width="290" height="7"/><rect x="505" y="163" width="16" height="40"/><rect x="720" y="163" width="5" height="130"/><rect x="714" y="290" width="16" height="14"/></g>
-  <g class="evo-p__v"><rect x="960" y="420" width="640" height="5"/><rect x="1000" y="410" width="6" height="40"/><rect x="1160" y="410" width="6" height="40"/><rect x="1320" y="410" width="6" height="40"/><rect x="1480" y="410" width="6" height="40"/><rect x="960" y="440" width="640" height="3"/></g>
-</svg>
-        <img class="evo-scena__mezzo" src="/assets/static/evoluzione-mezzi/escavatore-oggi.webp" width="1536" height="1024" alt="Ricostruzione illustrativa di un escavatore connesso di oggi" loading="lazy" decoding="async">
-        <span class="evo-scena__anno" aria-hidden="true">OGGI</span>
-      </div>
-      <div class="evo-scena__testo">
-        <p class="evo-copia__kicker">L’intelligenza connessa</p>
-        <h3 class="evo-copia__titolo">L’ingegno muove il futuro.</h3>
-        <p class="evo-copia__testo">Sistemi digitali, connessioni e nuove motorizzazioni aprono la strada a un movimento terra sempre più consapevole.</p>
-        <p class="evo-parco"><b>Nel parco</b> Dozer CAT D6 con GPS, frantoio e vaglio per il recupero degli inerti, dal mini escavatore CAT 300.9 al CAT 325.</p>
-      </div>
-    </li>
-    <li class="evo-scena evo-scena--nota"><p class="evo-didascalia">Ricostruzioni illustrative delle epoche. Le macchine citate vengono dal documento del parco attrezzature di ottobre 2020.</p></li>
-  </ol>
+    <ol class="p3d-ere">
+      <li class="p3d-era">
+        <figure class="p3d-era__quadro">
+          <img src="/assets/static/parco-macchine-3d/immagini/era-1960-800.webp" srcset="/assets/static/parco-macchine-3d/immagini/era-1960-800.webp 800w, /assets/static/parco-macchine-3d/immagini/era-1960-1600.webp 1600w" sizes="(min-width: 900px) 58vw, 100vw" width="1600" height="900" alt="Ricostruzione 3D, escavatore a funi, anni sessanta" loading="lazy" decoding="async">
+        </figure>
+        <div class="p3d-era__testo">
+          <p class="p3d-era__anno" aria-hidden="true">1960</p>
+          <p class="p3d-era__sottotitolo"><span class="visually-hidden">1960, </span>Escavatore a funi</p>
+          <h3 class="p3d-era__titolo" tabindex="-1">Lo scavo frontale</h3>
+          <p class="p3d-era__corpo">L’asta spinge la benna nel terreno. La fune passa sulle pulegge e la solleva.</p>
+        </div>
+      </li>
+      <li class="p3d-era">
+        <figure class="p3d-era__quadro">
+          <img src="/assets/static/parco-macchine-3d/immagini/era-1980-800.webp" srcset="/assets/static/parco-macchine-3d/immagini/era-1980-800.webp 800w, /assets/static/parco-macchine-3d/immagini/era-1980-1600.webp 1600w" sizes="(min-width: 900px) 58vw, 100vw" width="1600" height="900" alt="Ricostruzione 3D, escavatore idraulico, anni ottanta" loading="lazy" decoding="async">
+        </figure>
+        <div class="p3d-era__testo">
+          <p class="p3d-era__anno" aria-hidden="true">1980</p>
+          <p class="p3d-era__sottotitolo"><span class="visually-hidden">1980, </span>Escavatore idraulico</p>
+          <h3 class="p3d-era__titolo" tabindex="-1">Il braccio articolato</h3>
+          <p class="p3d-era__corpo">I cilindri sollevano il braccio. I tubi flessibili seguono il bilanciere mentre la benna si chiude.</p>
+        </div>
+      </li>
+      <li class="p3d-era">
+        <figure class="p3d-era__quadro">
+          <img src="/assets/static/parco-macchine-3d/immagini/era-2000-800.webp" srcset="/assets/static/parco-macchine-3d/immagini/era-2000-800.webp 800w, /assets/static/parco-macchine-3d/immagini/era-2000-1600.webp 1600w" sizes="(min-width: 900px) 58vw, 100vw" width="1600" height="900" alt="Ricostruzione 3D, escavatore a carro lungo, primi duemila" loading="lazy" decoding="async">
+        </figure>
+        <div class="p3d-era__testo">
+          <p class="p3d-era__anno" aria-hidden="true">2000</p>
+          <p class="p3d-era__sottotitolo"><span class="visually-hidden">2000, </span>Escavatore a carro lungo</p>
+          <h3 class="p3d-era__titolo" tabindex="-1">La benna da finitura</h3>
+          <p class="p3d-era__corpo">La benna ha un bordo liscio per stendere il terreno. I due cingoli larghi sostengono la macchina durante lo scavo.</p>
+        </div>
+      </li>
+      <li class="p3d-era">
+        <figure class="p3d-era__quadro">
+          <img src="/assets/static/parco-macchine-3d/immagini/era-2026-800.webp" srcset="/assets/static/parco-macchine-3d/immagini/era-2026-800.webp 800w, /assets/static/parco-macchine-3d/immagini/era-2026-1600.webp 1600w" sizes="(min-width: 900px) 58vw, 100vw" width="1600" height="900" alt="Ricostruzione 3D, escavatore elettroidraulico, oggi" loading="lazy" decoding="async">
+        </figure>
+        <div class="p3d-era__testo">
+          <p class="p3d-era__anno" aria-hidden="true">2026</p>
+          <p class="p3d-era__sottotitolo"><span class="visually-hidden">2026, </span>Escavatore elettroidraulico</p>
+          <h3 class="p3d-era__titolo" tabindex="-1">Il controllo di scavo</h3>
+          <p class="p3d-era__corpo">Dalla cabina panoramica si vedono la benna e i raccordi esterni del bilanciere.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
 </section>
 <section class="sez sez--inchiostro pm-sez" id="pm-dotazioni-sez" aria-labelledby="pm-dotazioni">
   <div class="container">
@@ -591,7 +486,7 @@
       <article class="pm-cat" data-reveal>
         <h3 class="pm-cat__nome">Escavatori cingolati</h3>
         <div class="pm-cat__mezzi">
-          <p class="pm-cat__gruppo">CAT 320, CAT 321 All-round, CAT 323 D, CAT 323 E, CAT 323 F, CAT 325 C, CAT 325 D UHD</p>
+          <p class="pm-cat__gruppo">CAT 320, CAT 321 <span class="pm-unito">All-⁠round</span>, CAT 323 D, CAT 323 E, CAT 323 F, CAT 325 C, CAT 325 D UHD</p>
         </div>
         <ul class="pm-cat__lavori">
           <li><a class="voce" href="/competenze/terra-e-preparazione/movimento-terra/">Movimento terra</a></li>
@@ -612,7 +507,7 @@
       <article class="pm-cat" data-reveal>
         <h3 class="pm-cat__nome">Escavatori gommati</h3>
         <div class="pm-cat__mezzi">
-          <p class="pm-cat__gruppo">CAT M 315 F, CAT M 313 D, Komatsu PW 95 R-2</p>
+          <p class="pm-cat__gruppo">CAT M 315 F, CAT M 313 D, Komatsu PW 95 <span class="pm-unito">R-⁠2</span></p>
         </div>
         <ul class="pm-cat__lavori">
           <li><a class="voce" href="/competenze/infrastrutture-e-superfici/urbanizzazioni/">Urbanizzazioni</a></li>
@@ -625,7 +520,7 @@
           <p class="pm-cat__gruppo"><b>Pale cingolate</b> CAT 963, CAT 289 C, Takeuchi TL 130, Takeuchi TL 240, Takeuchi TL 250, Fiat FL 10 C</p>
           <p class="pm-cat__gruppo"><b>Pale gommate</b> CAT 950 H Evolution, CAT 966 MXE, CAT 226 D</p>
           <p class="pm-cat__gruppo"><b>Pale compatte</b> Komatsu SK07 J, Komatsu SK07 J2, Komatsu SK05 J2, Ghel SL 3635</p>
-          <p class="pm-cat__gruppo"><b>Terne</b> CAT 432 F, Komatsu WB 97 S-2</p>
+          <p class="pm-cat__gruppo"><b>Terne</b> CAT 432 F, Komatsu WB 97 <span class="pm-unito">S-⁠2</span></p>
           <p class="pm-cat__gruppo"><b>Livellamento</b> Dozer cingolato CAT D6 con sistema GPS, Livellatrice a controllo laser</p>
           <p class="pm-cat__gruppo"><b>Sollevamento</b> Sollevatore telescopico CAT TH 360 B</p>
         </div>
@@ -637,12 +532,12 @@
       <article class="pm-cat" data-reveal>
         <h3 class="pm-cat__nome">Trasporto</h3>
         <div class="pm-cat__mezzi">
-          <p class="pm-cat__gruppo"><b>Autocarri a 2 assi</b> Iveco Daily, Iveco 145-17 con gru, Iveco 109-14, Isuzu F 11 210, Isuzu F 14 240 scarrabile, DAF LF 55.280</p>
+          <p class="pm-cat__gruppo"><b>Autocarri a 2 assi</b> Iveco Daily, Iveco <span class="pm-unito">145-⁠17</span> con gru, Iveco <span class="pm-unito">109-⁠14</span>, Isuzu F 11 210, Isuzu F 14 240 scarrabile, DAF LF 55.280</p>
           <p class="pm-cat__gruppo"><b>Autocarri a 3 assi</b> Renault Premium 320.26, MAN 33.372, MAN 33.440, DAF CF 85.460 scarrabile, Iveco Stralis 260 S</p>
           <p class="pm-cat__gruppo"><b>Autocarri a 4 assi</b> MAN TGS 41.480, MAN TGS 41.500, MAN DF 44.464, DAF CF 85.460</p>
           <p class="pm-cat__gruppo"><b>Bilico e rimorchi</b> DAF XF 105.460 da 44 t, De Angelis a rampa singola, De Angelis a rampa doppia</p>
           <p class="pm-cat__gruppo"><b>Autogru</b> Hiab 24.500/17</p>
-          <p class="pm-cat__gruppo"><b>Furgoni</b> MAN TGE 3.140, Volkswagen Crafter TDI, Toyota Hilux 3.0 pick-up, Iveco Daily C 35.10 HPI, Iveco Daily C 35.8</p>
+          <p class="pm-cat__gruppo"><b>Furgoni</b> MAN TGE 3.140, Volkswagen Crafter TDI, Toyota Hilux 3.0 <span class="pm-unito">pick-⁠up</span>, Iveco Daily C 35.10 HPI, Iveco Daily C 35.8</p>
         </div>
         <ul class="pm-cat__lavori">
           <li><a class="voce" href="/operativita/logistica-e-autonomia-operativa/">Logistica e autonomia operativa</a></li>
@@ -653,7 +548,7 @@
       <article class="pm-cat" data-reveal>
         <h3 class="pm-cat__nome">Compattazione</h3>
         <div class="pm-cat__mezzi">
-          <p class="pm-cat__gruppo"><b>Rulli</b> Bomag BW 211 D-4, CAT da 10 t, CAT da 5 t, Ammann AV 20-2, Bitelli Bora, Bitelli Paperino</p>
+          <p class="pm-cat__gruppo"><b>Rulli</b> Bomag BW 211 <span class="pm-unito">D-⁠4</span>, CAT da 10 t, CAT da 5 t, Ammann AV <span class="pm-unito">20-⁠2</span>, Bitelli Bora, Bitelli Paperino</p>
           <p class="pm-cat__gruppo"><b>Piastre e costipatori</b> Piastra Bomag, Piastra Wacker, Vibrocostipatore Wacker</p>
         </div>
         <ul class="pm-cat__lavori">
@@ -702,15 +597,16 @@
     <div class="section-heading w3o-etichetta" data-reveal>
       <h2 class="section-heading__num" id="pm-applicazione">03/ <span class="section-heading__etichetta">Applicazione</span></h2>
     </div>
-    <div data-reveal>
-      
-<div class="da-completare da-completare--immagine" role="note" data-da-completare>
-  <span class="da-completare__tipo">Immagine, dato o caso da inserire</span>
-  <strong class="da-completare__titolo">Un mezzo nel suo contesto di lavoro</strong><p class="da-completare__testo">Foto e didascalia riferite a un intervento reale.</p>
-</div>
-
+<div class="pm-documento" data-reveal>
+      <div class="pm-documento__corpo">
+        <h3 class="pm-documento__titolo">Parco attrezzature</h3>
+        <p class="pm-documento__meta">Elenco dei mezzi e delle attrezzature dell’impresa · PDF</p>
+      </div>
+      <div class="pm-documento__azioni">
+        <a class="btn btn--accent" href="/assets/documenti/parco-attrezzature-1.pdf" target="_blank" rel="noopener"><span>Apri il documento del parco</span></a>
+        <a class="voce" href="/documentazione/">Tutti i documenti</a>
+      </div>
     </div>
-    <p class="u-mt-5" data-reveal><a class="voce" href="/assets/documenti/parco-attrezzature-1.pdf" target="_blank" rel="noopener">Parco attrezzature, apri il documento</a></p>
   </div>
 </section><section class="sez sez--inchiostro sez--taglio-inv pm-sez" id="pm-collegamenti-sez" aria-labelledby="pm-collegamenti">
   <div class="container">
@@ -718,12 +614,10 @@
       <h2 class="section-heading__num" id="pm-collegamenti">04/ <span class="section-heading__etichetta">Collegamenti</span></h2>
     </div>
     <ul class="w3o-collegamenti" data-reveal>
-      <li>
-<a class="link-freccia" href="/operativita/tecnologie-di-precisione/">Tecnologie di precisione<span aria-hidden="true"> →</span></a>
+      <li><a class="link-freccia" href="/operativita/tecnologie-di-precisione/">Tecnologie di precisione<span aria-hidden="true"> →</span></a>
 </li>
     </ul>
-    <p class="w3o-cta" data-reveal>
-<a class="btn btn--accent btn--big" href="/contatti/?rif=Parco%20macchine#intervento" data-cta-intervento data-rif="Parco macchine"><span>Parliamo del tuo intervento</span></a>
+    <p class="w3o-cta" data-reveal><a class="btn btn--accent btn--big" href="/contatti/?rif=Parco%20macchine#intervento" data-cta-intervento data-rif="Parco macchine"><span>Parliamo del tuo intervento</span></a>
 </p>
   </div>
 </section>
@@ -763,6 +657,19 @@
           <li><a href="/accessibilita/">Accessibilità</a></li>
         </ul>
       </nav>
+    </div><nav class="site-footer__mappa" aria-label="Sezioni del sito">
+      <ul>
+        <li><a href="/impresa/">Impresa</a></li>
+        <li><a href="/competenze/">Competenze</a></li>
+        <li><a href="/cantieri/">Cantieri</a></li>
+        <li><a href="/operativita/">Operatività</a></li>
+        <li><a href="/approfondimenti/">Approfondimenti</a></li>
+        <li><a href="/contatti/">Contatti</a></li>
+      </ul>
+    </nav>
+    <div class="site-footer__comandi">
+      <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span class="motion-toggle__stato" data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
+      <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina"><svg class="torna-su__freccia" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M6 10.5V1.8M1.8 6 6 1.8 10.2 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="torna-su__testo">Inizio</span></button>
     </div>
 
     <div class="site-footer__legal">
@@ -775,14 +682,14 @@
   <section class="cookie-banner" data-cookie-banner hidden aria-label="Gestione dei cookie">
   <div class="cookie-banner__inner">
     <div class="cookie-banner__text">
-      <p class="cookie-banner__title">Cookie, senza sorprese</p>
+      <p class="cookie-banner__title">Cookie</p>
       <p class="cookie-banner__testo">Solo cookie tecnici. La statistica parte soltanto se la accetti. <a href="/cookie-policy/">Cookie Policy</a></p>
     </div>
 
     <div class="cookie-banner__prefs" data-cookie-prefs hidden>
       <label class="cookie-banner__pref">
         <input type="checkbox" checked disabled>
-        <span><strong>Necessari</strong> — sempre attivi: servono al funzionamento del sito e a ricordare questa scelta.</span>
+        <span><strong>Necessari</strong>, sempre attivi. Servono al funzionamento del sito e a ricordare questa scelta.</span>
       </label>
       <label class="cookie-banner__pref">
         <input type="checkbox" data-consent-cat="statistica">
@@ -812,11 +719,10 @@
   })();
 </script>
 
-  <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
-  <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina">Inizio</button>
   <div class="cursore-orbita" data-cursore aria-hidden="true"></div>
-  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
-  <script type="module" src="/assets/js/main.js?v=1cad0145"></script>
-  <script type="module" src="/assets/js/evoluzione.js?v=1cad0145"></script>
+<script type="module" src="/assets/js/main.js?v=53387662"></script>
+<script type="module" src="/assets/js/motion.js?v=53387662"></script>
+<script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[download], [target=_blank], [href$='.pdf'], [href$='.php']"}}]},"eagerness":"moderate"}]}</script>
+<script type="module" src="/assets/js/parco-3d.js?v=53387662"></script>
 </body>
 </html>

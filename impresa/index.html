@@ -9,7 +9,9 @@
   <link rel="canonical" href="https://tedeschi.arcaagency.it/impresa/">
   <meta name="theme-color" content="#000000">
   <meta name="generator" content="Eleventy">
-  <script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}}(document)</script>
+<script>!function(d){var h=d.documentElement;h.classList.add('js');var s=null;try{s=localStorage.getItem('tedeschi-motion')}catch(e){}var q=(location.search.match(/[?&]motion=(force|on|off)/)||[])[1];var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var on=q?q!=='off':(s!==null?s==='on':!r);h.classList.add(on?'motion-on':'motion-off');if(on){setTimeout(function(){if(!window.__tedeschiMotion){h.classList.remove('motion-on');h.classList.add('motion-off');h.dataset.motionRipristino='1'}},4000)}try{var a=JSON.parse(sessionStorage.getItem('tedeschi-arrivo'));sessionStorage.removeItem('tedeschi-arrivo');if(on&&a&&Date.now()-a.t<8000){if(!a.vt){h.classList.add('arrivo');setTimeout(function(){h.classList.remove('arrivo')},3000)}else if(a.u===location.pathname&&'onpagereveal'in window){var v=d.createElement('style');v.textContent='@view-transition{navigation:auto}.hero-interna__img{view-transition-name:cantiere-foto}';d.head.appendChild(v);addEventListener('pagereveal',function(e){var t=e.viewTransition;function via(){v.remove()}t?t.finished.then(via,via):via()},{once:true})}}}catch(e){}}(document)</script>
+<script>addEventListener('pagereveal',function(e){var t=e.viewTransition;t&&['ready','finished','updateCallbackDone'].forEach(function(k){t[k]&&t[k].catch(function(){})})})</script>
+<script>!function(h){try{if(!h.classList.contains('motion-off')||location.hash||!matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(localStorage.getItem('tedeschi-motion')!==null||localStorage.getItem('tedeschi-motion-invito'))return;h.classList.add('invito-pagina')}catch(e){}}(document.documentElement)</script>
   <meta name="author" content="TEDESCHI S.R.L.">
   <meta property="og:locale" content="it_IT">
   <meta property="og:site_name" content="Impresa Tedeschi">
@@ -18,6 +20,8 @@
   <meta property="og:description" content="Storia, rapporto con il committente, formazione interna, qualità e sicurezza, responsabilità ambientale. L&#39;impresa TEDESCHI di Cremona in una pagina.">
   <meta property="og:url" content="https://tedeschi.arcaagency.it/impresa/">
   <meta property="og:image" content="https://tedeschi.arcaagency.it/assets/img/cantiere-07-canale-05-1600w.jpeg">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="1067">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Impresa, storia, persone e certificazioni | Impresa Tedeschi">
   <meta name="twitter:description" content="Storia, rapporto con il committente, formazione interna, qualità e sicurezza, responsabilità ambientale. L&#39;impresa TEDESCHI di Cremona in una pagina.">
@@ -31,17 +35,19 @@
   <link rel="preload" as="style" href="https://use.typekit.net/hlp3tzz.css" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://use.typekit.net/hlp3tzz.css"></noscript>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/tedeschi.woff2" crossorigin>
-  <link rel="preload" as="image" type="image/webp" imagesrcset="/assets/img/cantiere-07-canale-05-480w-q66.webp 480w, /assets/img/cantiere-07-canale-05-800w-q66.webp 800w, /assets/img/cantiere-07-canale-05-1200w-q66.webp 1200w, /assets/img/cantiere-07-canale-05-1600w-q66.webp 1600w" imagesizes="(min-width: 601px) 58vw, 95vw">
+  <link rel="preload" as="image" href="/assets/img/cantiere-07-canale-05-1600w.jpeg" type="image/webp" imagesrcset="/assets/img/cantiere-07-canale-05-480w-q66.webp 480w, /assets/img/cantiere-07-canale-05-800w-q66.webp 800w, /assets/img/cantiere-07-canale-05-1200w-q66.webp 1200w, /assets/img/cantiere-07-canale-05-1600w-q66.webp 1600w" imagesizes="(min-width: 601px) 58vw, 95vw">
 
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/base.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/components.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/utilities.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/storia.css?v=1cad0145">
-  <link rel="stylesheet" href="/assets/css/pagine-home-impresa.css?v=1cad0145">
-  <script type="application/ld+json">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/base.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/components.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/utilities.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/w03-home-impresa.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/w03-cantieri-operativita.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/revisione-contenuti.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/storia.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/pagine-home-impresa.css?v=53387662">
+  <link rel="stylesheet" href="/assets/css/motion.css?v=53387662">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -92,22 +98,30 @@
 </head>
 <body data-rif="Impresa">
   <a class="skip-link" href="#contenuto">Salta al contenuto</a>
+  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
   <div class="progresso-pagina" aria-hidden="true"></div>
-
-  <header class="site-header" data-header>
+<header class="site-header" data-header>
   <div class="site-header__inner container">
     <a class="site-header__logo" href="/" aria-label="Impresa Tedeschi — torna alla home">
       <img class="site-header__logo-img" src="/assets/static/logo-tedeschi-dark.png" alt="Impresa Tedeschi — Edilizia &amp; Ambiente" width="181" height="95">
     </a>
 
+    <nav class="site-header__rapidi" aria-label="Accessi rapidi">
+      <ul>
+      <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
+      <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
+      <li><a href="/documentazione/">Documentazione</a></li>
+      </ul>
+    </nav>
+
     <nav class="site-nav" aria-label="Navigazione principale">
       <ul class="site-nav__list">
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link is-active" href="/impresa/" aria-current="page">Impresa</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-1" aria-label="Sottomenu Impresa">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel">
+          <div class="site-nav__panel" id="sottomenu-1">
             <ul class="site-nav__dropdown">
               <li><a href="/impresa/#storia">Storia</a></li>
               <li><a href="/impresa/#persone-e-metodo">Persone e metodo</a></li>
@@ -119,10 +133,10 @@
         </li>
         <li class="site-nav__item has-children has-mega" data-nav-item>
           <a class="site-nav__link" href="/competenze/">Competenze</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Competenze">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-2" aria-label="Sottomenu Competenze">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel site-nav__panel--mega">
+          <div class="site-nav__panel site-nav__panel--mega" id="sottomenu-2">
             <div class="mega">
               <div class="mega__col">
                 <a class="mega__hub" href="/competenze/coordinamento-progettuale/">Coordinamento Progettuale</a>
@@ -176,10 +190,10 @@
         </li>
         <li class="site-nav__item has-children" data-nav-item>
           <a class="site-nav__link" href="/operativita/">Operatività</a>
-          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Operatività">
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="sottomenu-4" aria-label="Sottomenu Operatività">
             <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
-          <div class="site-nav__panel">
+          <div class="site-nav__panel" id="sottomenu-4">
             <ul class="site-nav__dropdown">
               <li><a href="/operativita/parco-macchine/">Parco macchine</a></li>
               <li><a href="/operativita/tecnologie-di-precisione/">Tecnologie di precisione</a></li>
@@ -197,14 +211,6 @@
       </ul>
     </nav>
 
-    <nav class="site-header__rapidi" aria-label="Accessi rapidi">
-      <ul>
-      <li><a href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
-      <li><a href="/lavora-con-noi/">Lavora con noi</a></li>
-      <li><a href="/documentazione/">Documentazione</a></li>
-      </ul>
-    </nav>
-
     <a class="btn btn--accent site-header__cta" href="/contatti/#intervento" data-cta-intervento data-provenienza><span>Parliamo del tuo intervento</span></a>
 
     <button class="site-header__burger" type="button" data-nav-open aria-expanded="false" aria-controls="nav-mobile" aria-label="Apri il menu">
@@ -218,9 +224,9 @@
     <div class="nav-mobile__inner">
       <nav aria-label="Navigazione principale mobile">
         <ul class="nav-mobile__list">
-          <li class="nav-mobile__item">
+          <li class="nav-mobile__item is-attiva">
             <div class="nav-mobile__row">
-              <a class="nav-mobile__link" href="/impresa/">Impresa</a>
+              <a class="nav-mobile__link" href="/impresa/" aria-current="page">Impresa</a>
               <button class="nav-mobile__toggle" type="button" aria-expanded="false" aria-label="Sottomenu Impresa">
                 <svg width="12" height="8" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
               </button>
@@ -323,12 +329,15 @@
       <div class="nav-mobile__contatti">
         <a href="tel:+39037226760">+39 0372 26760</a>
         <a href="mailto:info@impresatedeschi.it">info@impresatedeschi.it</a>
+      </div><div class="nav-mobile__comandi">
+        <button class="motion-toggle motion-toggle--menu" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span class="motion-toggle__stato" data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
       </div>
     </div>
   </section>
 
 
   <main id="contenuto">
+    <section class="motion-invito motion-invito--in-pagina" data-invito-statico aria-label="Movimento della pagina"><p class="motion-invito__testo">Il tuo dispositivo chiede meno animazioni, quindi il sito è in versione ridotta. Se vuoi vederlo con il suo movimento, puoi attivarlo.</p><div class="motion-invito__azioni"><button type="button" class="motion-invito__si">Attiva il movimento</button><button type="button" class="motion-invito__no">No, grazie</button></div></section>
     <nav class="breadcrumb" aria-label="Percorso di navigazione">
   <div class="container">
     <ol class="breadcrumb__list">
@@ -362,22 +371,20 @@
 }
 </script>
 
-    
 <div class="hero-interna hero-interna--img">
   <div class="hero-interna__media" aria-hidden="true" data-parallax="40">
     <picture><source type="image/webp" srcset="/assets/img/cantiere-07-canale-05-480w-q66.webp 480w, /assets/img/cantiere-07-canale-05-800w-q66.webp 800w, /assets/img/cantiere-07-canale-05-1200w-q66.webp 1200w, /assets/img/cantiere-07-canale-05-1600w-q66.webp 1600w" sizes="(min-width: 601px) 58vw, 95vw"><img src="/assets/img/cantiere-07-canale-05-480w.jpeg" alt="Muro in calcestruzzo a vista del canale con la scritta TEDESCHI incisa e l'erba in primo piano" loading="eager" decoding="async" fetchpriority="high" class="hero-interna__img" width="1600" height="1066" srcset="/assets/img/cantiere-07-canale-05-480w.jpeg 480w, /assets/img/cantiere-07-canale-05-800w.jpeg 800w, /assets/img/cantiere-07-canale-05-1200w.jpeg 1200w, /assets/img/cantiere-07-canale-05-1600w.jpeg 1600w" sizes="(min-width: 601px) 58vw, 95vw"></picture>
     <div class="hero-interna__overlay"></div>
   </div>
   <div class="container hero-interna__content">
-    <p class="hero-interna__kicker body-reveal">01/ Indice interno</p>
+    <p class="hero-interna__kicker body-reveal">01/ In questa pagina</p>
     <h1 class="hero-interna__title" data-split="words">Impresa</h1>
   </div>
 </div>
 
 <section class="sezione--sm indice-impresa">
   <div class="container">
-    
-<nav class="indice-ancore" aria-label="Sezioni della pagina Impresa" data-reveal>
+    <nav class="indice-ancore" aria-label="Sezioni della pagina Impresa" data-reveal>
   <ul class="lista-voci">
     <li><a class="voce" href="#storia">Storia</a></li>
     <li><a class="voce" href="#persone-e-metodo">Persone e metodo</a></li>
@@ -406,8 +413,7 @@
     <ol class="storia__tappe">
       <li class="storia__tappa storia__tappa--storica" id="storia-1966" data-tappa="0" data-data="1966" data-precisa="si">
         <figure class="storia__foto">
-          <div class="storia__lastra">
-            <picture><source type="image/avif" srcset="/assets/img/storia-anni-sessanta-cava-willeme-cat-480w.avif 480w, /assets/img/storia-anni-sessanta-cava-willeme-cat-800w.avif 800w, /assets/img/storia-anni-sessanta-cava-willeme-cat-1200w.avif 1200w, /assets/img/storia-anni-sessanta-cava-willeme-cat-1600w.avif 1600w" sizes="100vw"><source type="image/webp" srcset="/assets/img/storia-anni-sessanta-cava-willeme-cat-480w.webp 480w, /assets/img/storia-anni-sessanta-cava-willeme-cat-800w.webp 800w, /assets/img/storia-anni-sessanta-cava-willeme-cat-1200w.webp 1200w, /assets/img/storia-anni-sessanta-cava-willeme-cat-1600w.webp 1600w" sizes="100vw"><img src="/assets/img/storia-anni-sessanta-cava-willeme-cat-480w.jpeg" alt="Foto d'archivio, autocarro Willème e pala Caterpillar 966 in cava nei primi anni dell'impresa" loading="lazy" decoding="async" width="1600" height="739" srcset="/assets/img/storia-anni-sessanta-cava-willeme-cat-480w.jpeg 480w, /assets/img/storia-anni-sessanta-cava-willeme-cat-800w.jpeg 800w, /assets/img/storia-anni-sessanta-cava-willeme-cat-1200w.jpeg 1200w, /assets/img/storia-anni-sessanta-cava-willeme-cat-1600w.jpeg 1600w" sizes="100vw"></picture>
+          <div class="storia__lastra"><picture><source type="image/avif" srcset="/assets/img/storia-anni-sessanta-cava-willeme-cat-480w.avif 480w, /assets/img/storia-anni-sessanta-cava-willeme-cat-800w.avif 800w, /assets/img/storia-anni-sessanta-cava-willeme-cat-1200w.avif 1200w, /assets/img/storia-anni-sessanta-cava-willeme-cat-1600w.avif 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><source type="image/webp" srcset="/assets/img/storia-anni-sessanta-cava-willeme-cat-480w.webp 480w, /assets/img/storia-anni-sessanta-cava-willeme-cat-800w.webp 800w, /assets/img/storia-anni-sessanta-cava-willeme-cat-1200w.webp 1200w, /assets/img/storia-anni-sessanta-cava-willeme-cat-1600w.webp 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><img src="/assets/img/storia-anni-sessanta-cava-willeme-cat-480w.jpeg" alt="Foto d'archivio, autocarro Willème e pala Caterpillar 966 in cava nei primi anni dell'impresa" loading="lazy" decoding="async" width="1600" height="739" srcset="/assets/img/storia-anni-sessanta-cava-willeme-cat-480w.jpeg 480w, /assets/img/storia-anni-sessanta-cava-willeme-cat-800w.jpeg 800w, /assets/img/storia-anni-sessanta-cava-willeme-cat-1200w.jpeg 1200w, /assets/img/storia-anni-sessanta-cava-willeme-cat-1600w.jpeg 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"></picture>
           </div>
           <span class="storia__grana" aria-hidden="true"></span>
           <span class="storia__velo" aria-hidden="true"></span>
@@ -418,90 +424,80 @@
           <p class="storia__data storia__data--anno">1966</p>
           <div class="storia__corpo">
             <h3 class="storia__titolo">Un uomo e il pallino delle macchine</h3>
-            <p class="storia__desc">Umberto Tedeschi, parmense di Fontanellato, fonda l&#39;impresa individuale che porta il suo nome. La passione per le macchine operatrici è da subito il tratto distintivo, con i primi escavatori a lancio.</p>
+            <p class="storia__desc">Umberto Tedeschi, parmense di Fontanellato, fonda l’impresa individuale che porta il suo nome. La passione per le macchine operatrici è da subito il tratto distintivo, con i primi escavatori a lancio.</p>
           </div>
         </div>
       </li>
       <li class="storia__tappa" id="storia-primi-cantieri" data-tappa="1" data-data="I primi cantieri" data-precisa="no">
         <figure class="storia__foto">
-          <div class="storia__lastra">
-            <picture><source type="image/avif" srcset="/assets/img/storia-tappa-02-cantiere-2-dsc5578-480w.avif 480w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-800w.avif 800w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-1200w.avif 1200w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-1600w.avif 1600w" sizes="100vw"><source type="image/webp" srcset="/assets/img/storia-tappa-02-cantiere-2-dsc5578-480w.webp 480w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-800w.webp 800w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-1200w.webp 1200w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-1600w.webp 1600w" sizes="100vw"><img src="/assets/img/storia-tappa-02-cantiere-2-dsc5578-480w.jpeg" alt="Escavatore Impresa Tedeschi durante uno scavo in campo aperto" loading="lazy" decoding="async" width="1600" height="1067" srcset="/assets/img/storia-tappa-02-cantiere-2-dsc5578-480w.jpeg 480w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-800w.jpeg 800w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-1200w.jpeg 1200w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-1600w.jpeg 1600w" sizes="100vw"></picture>
+          <div class="storia__lastra"><picture><source type="image/avif" srcset="/assets/img/storia-tappa-02-cantiere-2-dsc5578-480w.avif 480w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-800w.avif 800w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-1200w.avif 1200w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-1600w.avif 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><source type="image/webp" srcset="/assets/img/storia-tappa-02-cantiere-2-dsc5578-480w.webp 480w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-800w.webp 800w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-1200w.webp 1200w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-1600w.webp 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><img src="/assets/img/storia-tappa-02-cantiere-2-dsc5578-480w.jpeg" alt="Escavatore Impresa Tedeschi durante uno scavo in campo aperto" loading="lazy" decoding="async" width="1600" height="1067" srcset="/assets/img/storia-tappa-02-cantiere-2-dsc5578-480w.jpeg 480w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-800w.jpeg 800w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-1200w.jpeg 1200w, /assets/img/storia-tappa-02-cantiere-2-dsc5578-1600w.jpeg 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"></picture>
           </div>
           <span class="storia__velo" aria-hidden="true"></span>
-          <span class="storia__ombra" aria-hidden="true"></span>
-          <figcaption class="storia__nota">Immagine storica da fornire</figcaption>
+          <span class="storia__ombra" aria-hidden="true"></span><figcaption class="storia__nota">Foto di un cantiere recente</figcaption>
         </figure>
         <div class="storia__testo">
           <span class="storia__num" aria-hidden="true">02 / 07</span>
           <p class="storia__data">I primi cantieri</p>
           <div class="storia__corpo">
-            <h3 class="storia__titolo">L&#39;Autostrada della Cisa</h3>
-            <p class="storia__desc">Le opere propedeutiche all&#39;Autostrada della Cisa, sul versante toscano. Terreni difficili e pendenze vere, la scuola migliore per un&#39;impresa giovane.</p>
+            <h3 class="storia__titolo">L’Autostrada della Cisa</h3>
+            <p class="storia__desc">Le opere propedeutiche all’Autostrada della Cisa, sul versante toscano.</p>
           </div>
         </div>
       </li>
       <li class="storia__tappa" id="storia-cremona" data-tappa="2" data-data="Cremona" data-precisa="no">
         <figure class="storia__foto">
-          <div class="storia__lastra">
-            <picture><source type="image/avif" srcset="/assets/img/storia-tappa-03-cantiere-7-dsc6074-480w.avif 480w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-800w.avif 800w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-1200w.avif 1200w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-1600w.avif 1600w" sizes="100vw"><source type="image/webp" srcset="/assets/img/storia-tappa-03-cantiere-7-dsc6074-480w.webp 480w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-800w.webp 800w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-1200w.webp 1200w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-1600w.webp 1600w" sizes="100vw"><img src="/assets/img/storia-tappa-03-cantiere-7-dsc6074-480w.jpeg" alt="Canale in calcestruzzo realizzato da Impresa Tedeschi nella campagna cremonese" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/storia-tappa-03-cantiere-7-dsc6074-480w.jpeg 480w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-800w.jpeg 800w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-1200w.jpeg 1200w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-1600w.jpeg 1600w" sizes="100vw"></picture>
+          <div class="storia__lastra"><picture><source type="image/avif" srcset="/assets/img/storia-tappa-03-cantiere-7-dsc6074-480w.avif 480w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-800w.avif 800w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-1200w.avif 1200w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-1600w.avif 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><source type="image/webp" srcset="/assets/img/storia-tappa-03-cantiere-7-dsc6074-480w.webp 480w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-800w.webp 800w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-1200w.webp 1200w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-1600w.webp 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><img src="/assets/img/storia-tappa-03-cantiere-7-dsc6074-480w.jpeg" alt="Canale in calcestruzzo realizzato da Impresa Tedeschi nella campagna cremonese" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/storia-tappa-03-cantiere-7-dsc6074-480w.jpeg 480w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-800w.jpeg 800w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-1200w.jpeg 1200w, /assets/img/storia-tappa-03-cantiere-7-dsc6074-1600w.jpeg 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"></picture>
           </div>
           <span class="storia__velo" aria-hidden="true"></span>
-          <span class="storia__ombra" aria-hidden="true"></span>
-          <figcaption class="storia__nota">Immagine storica da fornire</figcaption>
+          <span class="storia__ombra" aria-hidden="true"></span><figcaption class="storia__nota">Foto di un cantiere recente</figcaption>
         </figure>
         <div class="storia__testo">
           <span class="storia__num" aria-hidden="true">03 / 07</span>
           <p class="storia__data">Cremona</p>
           <div class="storia__corpo">
             <h3 class="storia__titolo">Il Canale Navigabile</h3>
-            <p class="storia__desc">Con la sede a Cremona arrivano gli scavi del Canale Navigabile, l&#39;opera che doveva portare per via fluviale la produzione di Milano fino all&#39;Adriatico. Il canale resta incompiuto, il legame con questa terra no.</p>
+            <p class="storia__desc">Con la sede a Cremona arrivano gli scavi del Canale Navigabile, l’opera che doveva portare per via fluviale la produzione di Milano fino all’Adriatico. Il canale è rimasto incompiuto.</p>
           </div>
         </div>
       </li>
       <li class="storia__tappa" id="storia-1993" data-tappa="3" data-data="1993" data-precisa="si">
         <figure class="storia__foto">
-          <div class="storia__lastra">
-            <picture><source type="image/avif" srcset="/assets/img/storia-tappa-04-cantiere-1-dsc5477-480w.avif 480w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-800w.avif 800w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-1200w.avif 1200w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-1600w.avif 1600w" sizes="100vw"><source type="image/webp" srcset="/assets/img/storia-tappa-04-cantiere-1-dsc5477-480w.webp 480w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-800w.webp 800w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-1200w.webp 1200w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-1600w.webp 1600w" sizes="100vw"><img src="/assets/img/storia-tappa-04-cantiere-1-dsc5477-480w.jpeg" alt="Due tecnici Impresa Tedeschi leggono i disegni di cantiere su un tavolo giallo" loading="lazy" decoding="async" width="1600" height="1047" srcset="/assets/img/storia-tappa-04-cantiere-1-dsc5477-480w.jpeg 480w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-800w.jpeg 800w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-1200w.jpeg 1200w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-1600w.jpeg 1600w" sizes="100vw"></picture>
+          <div class="storia__lastra"><picture><source type="image/avif" srcset="/assets/img/storia-tappa-04-cantiere-1-dsc5477-480w.avif 480w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-800w.avif 800w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-1200w.avif 1200w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-1600w.avif 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><source type="image/webp" srcset="/assets/img/storia-tappa-04-cantiere-1-dsc5477-480w.webp 480w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-800w.webp 800w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-1200w.webp 1200w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-1600w.webp 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><img src="/assets/img/storia-tappa-04-cantiere-1-dsc5477-480w.jpeg" alt="Due tecnici Impresa Tedeschi leggono i disegni di cantiere su un tavolo giallo" loading="lazy" decoding="async" width="1600" height="1047" srcset="/assets/img/storia-tappa-04-cantiere-1-dsc5477-480w.jpeg 480w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-800w.jpeg 800w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-1200w.jpeg 1200w, /assets/img/storia-tappa-04-cantiere-1-dsc5477-1600w.jpeg 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"></picture>
           </div>
           <span class="storia__velo" aria-hidden="true"></span>
-          <span class="storia__ombra" aria-hidden="true"></span>
-          <figcaption class="storia__nota">Immagine storica da fornire</figcaption>
+          <span class="storia__ombra" aria-hidden="true"></span><figcaption class="storia__nota">Foto di un cantiere recente</figcaption>
         </figure>
         <div class="storia__testo">
           <span class="storia__num" aria-hidden="true">04 / 07</span>
           <p class="storia__data storia__data--anno">1993</p>
           <div class="storia__corpo">
             <h3 class="storia__titolo">Da un uomo a una famiglia</h3>
-            <p class="storia__desc">Alla scomparsa del fondatore l&#39;impresa individuale diventa società di persone, con la moglie e i due figli. Il cognome sui mezzi resta lo stesso, e con lui il modo di lavorare.</p>
+            <p class="storia__desc">Alla scomparsa del fondatore l’impresa individuale diventa società di persone, con la moglie e i due figli.</p>
           </div>
         </div>
       </li>
       <li class="storia__tappa" id="storia-crescita" data-tappa="4" data-data="La crescita" data-precisa="no">
         <figure class="storia__foto">
-          <div class="storia__lastra">
-            <picture><source type="image/avif" srcset="/assets/img/storia-tappa-05-cantiere-10-dsc6210-480w.avif 480w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-800w.avif 800w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-1200w.avif 1200w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-1600w.avif 1600w" sizes="100vw"><source type="image/webp" srcset="/assets/img/storia-tappa-05-cantiere-10-dsc6210-480w.webp 480w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-800w.webp 800w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-1200w.webp 1200w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-1600w.webp 1600w" sizes="100vw"><img src="/assets/img/storia-tappa-05-cantiere-10-dsc6210-480w.jpeg" alt="Squadra Impresa Tedeschi al lavoro su una pavimentazione industriale" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/storia-tappa-05-cantiere-10-dsc6210-480w.jpeg 480w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-800w.jpeg 800w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-1200w.jpeg 1200w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-1600w.jpeg 1600w" sizes="100vw"></picture>
+          <div class="storia__lastra"><picture><source type="image/avif" srcset="/assets/img/storia-tappa-05-cantiere-10-dsc6210-480w.avif 480w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-800w.avif 800w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-1200w.avif 1200w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-1600w.avif 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><source type="image/webp" srcset="/assets/img/storia-tappa-05-cantiere-10-dsc6210-480w.webp 480w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-800w.webp 800w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-1200w.webp 1200w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-1600w.webp 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><img src="/assets/img/storia-tappa-05-cantiere-10-dsc6210-480w.jpeg" alt="Squadra Impresa Tedeschi al lavoro su una pavimentazione industriale" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/storia-tappa-05-cantiere-10-dsc6210-480w.jpeg 480w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-800w.jpeg 800w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-1200w.jpeg 1200w, /assets/img/storia-tappa-05-cantiere-10-dsc6210-1600w.jpeg 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"></picture>
           </div>
           <span class="storia__velo" aria-hidden="true"></span>
-          <span class="storia__ombra" aria-hidden="true"></span>
-          <figcaption class="storia__nota">Immagine storica da fornire</figcaption>
+          <span class="storia__ombra" aria-hidden="true"></span><figcaption class="storia__nota">Foto di un cantiere recente</figcaption>
         </figure>
         <div class="storia__testo">
           <span class="storia__num" aria-hidden="true">05 / 07</span>
           <p class="storia__data">La crescita</p>
           <div class="storia__corpo">
             <h3 class="storia__titolo">Oltre il movimento terra</h3>
-            <p class="storia__desc">Il mercato cambia e l&#39;impresa si diversifica senza snaturarsi, dal movimento terra al campo stradale, dall&#39;edilizia industriale e sportiva alle pavimentazioni. Il filo conduttore resta uno, la qualità.</p>
+            <p class="storia__desc">Il mercato cambia e l’impresa si diversifica, dal movimento terra al campo stradale, dall’edilizia industriale e sportiva alle pavimentazioni. Il filo conduttore resta uno, la qualità.</p>
           </div>
         </div>
       </li>
       <li class="storia__tappa" id="storia-centro-di-recupero" data-tappa="5" data-data="Gli ultimi anni" data-precisa="no">
         <figure class="storia__foto">
-          <div class="storia__lastra">
-            <picture><source type="image/avif" srcset="/assets/img/storia-tappa-06-cantiere-3-dsc5789-480w.avif 480w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-800w.avif 800w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-1200w.avif 1200w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-1600w.avif 1600w" sizes="100vw"><source type="image/webp" srcset="/assets/img/storia-tappa-06-cantiere-3-dsc5789-480w.webp 480w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-800w.webp 800w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-1200w.webp 1200w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-1600w.webp 1600w" sizes="100vw"><img src="/assets/img/storia-tappa-06-cantiere-3-dsc5789-480w.jpeg" alt="Escavatore Impresa Tedeschi con martello demolitore fra le macerie di una demolizione" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/storia-tappa-06-cantiere-3-dsc5789-480w.jpeg 480w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-800w.jpeg 800w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-1200w.jpeg 1200w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-1600w.jpeg 1600w" sizes="100vw"></picture>
+          <div class="storia__lastra"><picture><source type="image/avif" srcset="/assets/img/storia-tappa-06-cantiere-3-dsc5789-480w.avif 480w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-800w.avif 800w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-1200w.avif 1200w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-1600w.avif 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><source type="image/webp" srcset="/assets/img/storia-tappa-06-cantiere-3-dsc5789-480w.webp 480w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-800w.webp 800w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-1200w.webp 1200w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-1600w.webp 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><img src="/assets/img/storia-tappa-06-cantiere-3-dsc5789-480w.jpeg" alt="Escavatore Impresa Tedeschi con martello demolitore fra le macerie di una demolizione" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/storia-tappa-06-cantiere-3-dsc5789-480w.jpeg 480w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-800w.jpeg 800w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-1200w.jpeg 1200w, /assets/img/storia-tappa-06-cantiere-3-dsc5789-1600w.jpeg 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"></picture>
           </div>
           <span class="storia__velo" aria-hidden="true"></span>
-          <span class="storia__ombra" aria-hidden="true"></span>
-          <figcaption class="storia__nota">Immagine storica da fornire</figcaption>
+          <span class="storia__ombra" aria-hidden="true"></span><figcaption class="storia__nota">Foto di un cantiere recente</figcaption>
         </figure>
         <div class="storia__testo">
           <span class="storia__num" aria-hidden="true">06 / 07</span>
@@ -514,12 +510,10 @@
       </li>
       <li class="storia__tappa" id="storia-2026" data-tappa="6" data-data="2026" data-precisa="si">
         <figure class="storia__foto">
-          <div class="storia__lastra">
-            <picture><source type="image/avif" srcset="/assets/img/storia-tappa-07-cantiere-8-dsc6134-480w.avif 480w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-800w.avif 800w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-1200w.avif 1200w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-1600w.avif 1600w" sizes="100vw"><source type="image/webp" srcset="/assets/img/storia-tappa-07-cantiere-8-dsc6134-480w.webp 480w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-800w.webp 800w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-1200w.webp 1200w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-1600w.webp 1600w" sizes="100vw"><img src="/assets/img/storia-tappa-07-cantiere-8-dsc6134-480w.jpeg" alt="Squadra Impresa Tedeschi con escavatore durante la posa di una condotta" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/storia-tappa-07-cantiere-8-dsc6134-480w.jpeg 480w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-800w.jpeg 800w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-1200w.jpeg 1200w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-1600w.jpeg 1600w" sizes="100vw"></picture>
+          <div class="storia__lastra"><picture><source type="image/avif" srcset="/assets/img/storia-tappa-07-cantiere-8-dsc6134-480w.avif 480w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-800w.avif 800w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-1200w.avif 1200w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-1600w.avif 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><source type="image/webp" srcset="/assets/img/storia-tappa-07-cantiere-8-dsc6134-480w.webp 480w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-800w.webp 800w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-1200w.webp 1200w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-1600w.webp 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"><img src="/assets/img/storia-tappa-07-cantiere-8-dsc6134-480w.jpeg" alt="Squadra Impresa Tedeschi con escavatore durante la posa di una condotta" loading="lazy" decoding="async" width="1600" height="1066" srcset="/assets/img/storia-tappa-07-cantiere-8-dsc6134-480w.jpeg 480w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-800w.jpeg 800w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-1200w.jpeg 1200w, /assets/img/storia-tappa-07-cantiere-8-dsc6134-1600w.jpeg 1600w" sizes="(max-width: 760px) max(100vw, 200vh), max(100vw, 125vh)"></picture>
           </div>
           <span class="storia__velo" aria-hidden="true"></span>
-          <span class="storia__ombra" aria-hidden="true"></span>
-          <figcaption class="storia__nota">Immagine storica da fornire</figcaption>
+          <span class="storia__ombra" aria-hidden="true"></span><figcaption class="storia__nota">Foto di un cantiere recente</figcaption>
         </figure>
         <div class="storia__testo">
           <span class="storia__num" aria-hidden="true">07 / 07</span>
@@ -555,12 +549,9 @@
     </div>
   </div>
 </section>
-
-
-<div class="sezione--sm dopo-storia">
+<div class="sez sez--sm sez--inchiostro storia-segue">
   <div class="container">
-    
-<ul class="lista-voci lista-voci--fisse">
+    <ul class="lista-voci lista-voci--fisse">
   <li><a class="voce" href="#persone-e-metodo">Persone e metodo</a></li>
 </ul>
 
@@ -573,8 +564,7 @@
       <h2 class="capitolo__titolo cap__titolo">Persone e metodo</h2>
       <div class="cap__corpo">
         <p class="cap__lead" data-reveal>Quando affidi un’opera, il lavoro continua a riguardarti anche mentre sono altri a realizzarlo. Vuoi sapere a che punto è, comprendere una scelta, poter parlare con qualcuno che conosca la situazione. Per questo manteniamo un riferimento stabile e condividiamo le informazioni che servono a seguire l’intervento. Gli avanzamenti vengono raccontati con chiarezza; le decisioni che richiedono il tuo coinvolgimento vengono portate al confronto con gli elementi necessari per valutarle. Il rapporto accompagna il lavoro fino alla sua conclusione, quando ci si ritrova a verificare quanto realizzato e a chiudere con ordine ciò che era stato affidato.</p>
-        <p class="cap__azione">
-<a class="btn btn--accent btn--big" href="/contatti/?rif=Persone%20e%20metodo#intervento" data-cta-intervento data-rif="Persone e metodo"><span>Parliamo del tuo intervento</span></a>
+        <p class="cap__azione"><a class="btn btn--accent btn--big" href="/contatti/?rif=Persone%20e%20metodo#intervento" data-cta-intervento data-rif="Persone e metodo"><span>Parliamo del tuo intervento</span></a>
 </p>
       </div>
       <figure class="capitolo__foto cap__foto">
@@ -583,14 +573,8 @@
         </div>
         <span class="capitolo__numero" aria-hidden="true" data-parallax="-30">03</span>
       </figure>
-      <div class="cap__nota">
-        
-<div class="da-completare da-completare--immagine" role="note" data-da-completare>
-  <span class="da-completare__tipo">Immagine, dato o caso da inserire</span>
-  <strong class="da-completare__titolo">Persone, ruoli e confronto con il committente</strong><p class="da-completare__testo">Esempio e fotografia reali; nomi solo se pubblicabili.</p>
-</div>
 
-      </div>
+
     </div>
   </div>
 </section>
@@ -601,8 +585,7 @@
       <h2 class="capitolo__titolo cap__titolo">Formazione e competenze condivise</h2>
       <div class="cap__corpo">
         <p class="cap__lead" data-reveal>Ci sono gesti che si imparano guardando e ragioni che diventano chiare quando qualcuno trova il tempo di spiegarle. È in questo passaggio che l’esperienza di una persona comincia a diventare competenza di una squadra. La formazione interna dà continuità a questo scambio: mette in comune ciò che si è imparato sul campo, aggiorna le conoscenze e rende comprensibili metodi e responsabilità. Anche un errore, quando viene esaminato e discusso, può insegnare qualcosa a tutti. Per noi far crescere le persone significa questo: dare a ciascuno gli strumenti per comprendere il proprio lavoro e contribuire, con maggiore consapevolezza, a quello degli altri.</p>
-        
-<ul class="lista-voci lista-voci--fisse">
+        <ul class="lista-voci lista-voci--fisse">
   <li><a class="voce" href="/lavora-con-noi/">Lavora con noi</a></li>
 </ul>
 
@@ -613,14 +596,8 @@
         </div>
         <span class="capitolo__numero" aria-hidden="true" data-parallax="-30">04</span>
       </figure>
-      <div class="cap__nota">
-        
-<div class="da-completare da-completare--immagine" role="note" data-da-completare>
-  <span class="da-completare__tipo">Immagine, dato o caso da inserire</span>
-  <strong class="da-completare__titolo">Un’attività di formazione interna</strong><p class="da-completare__testo">Conoscenza condivisa, persone coinvolte e riscontro concreto.</p>
-</div>
 
-      </div>
+
     </div>
   </div>
 </section>
@@ -631,8 +608,7 @@
       <h2 class="capitolo__titolo cap__titolo">Qualità, sicurezza e certificazioni</h2>
       <div class="cap__corpo">
         <p class="cap__lead" data-reveal>Un dettaglio eseguito bene, una prescrizione rispettata, le condizioni in cui una persona può svolgere il proprio compito: qualità e sicurezza si misurano anche qui. Richiedono attenzione durante le lavorazioni e verifiche su ciò che viene realizzato, in rapporto a quanto previsto. I controlli aiutano a riconoscere gli scostamenti e a riportarli al confronto con chi ne ha responsabilità. A questo lavoro sul campo si affianca la documentazione dell’impresa: le certificazioni rendono consultabili gli ambiti riconosciuti e le relative condizioni di validità. Sono riferimenti precisi, da leggere per ciò che attestano.</p>
-        
-<ul class="lista-voci lista-voci--fisse">
+        <ul class="lista-voci lista-voci--fisse">
   <li><a class="voce" href="/documentazione/">Documentazione</a></li>
 </ul>
 
@@ -652,24 +628,20 @@
           <li class="credenziale" data-reveal>
             <span class="contatto-rapido__label">Certificazione ISO 9001</span>
             <span class="credenziale__sigla">ISO 9001</span>
-            <span class="testo-secondario">Cert. C2025-06440, valida fino al 11.11.2028</span>
+            <span class="testo-secondario">Cert. C2025-⁠06440, valida fino all'11.11.2028</span>
           </li>
           <li class="credenziale" data-reveal>
             <span class="contatto-rapido__label">Certificazione ISO 45001</span>
             <span class="credenziale__sigla">ISO 45001</span>
-            <span class="credenziale__stato">Estremi aggiornati da confermare</span>
+            <a class="credenziale__stato credenziale__richiesta" href="/documentazione/#richiedere-un-documento">Estremi aggiornati su richiesta</a>
           </li>
           <li class="credenziale" data-reveal>
-            <span class="contatto-rapido__label">Albo Gestori Ambientali — Categoria 9 (bonifiche)</span>
-            <span class="credenziale__sigla">Albo Cat. 9</span>
-            <span class="testo-secondario">Categoria 9</span>
+            <span class="contatto-rapido__label">Albo Gestori Ambientali, bonifiche</span>
+            <span class="credenziale__sigla">Categoria 9</span>
+            <span class="testo-secondario"></span>
           </li>
         </ul>
-        
-<div class="da-completare da-completare--dato" role="note" data-da-completare>
-  <span class="da-completare__tipo">Dato da confermare</span>
-  <strong class="da-completare__titolo">Certificazioni e controllo effettivo</strong><p class="da-completare__testo">Titolo, ambito e validità verificati. Ogni documento collega il proprio file.</p>
-</div>
+
 
       </div>
     </div>
@@ -682,8 +654,7 @@
       <h2 class="capitolo__titolo cap__titolo">Responsabilità ambientale</h2>
       <div class="cap__corpo">
         <p class="cap__lead" data-reveal>Il lavoro lascia una traccia nel luogo in cui viene eseguito. La lascia anche nelle risorse che impiega e nei materiali che sposta. Assumersi questa responsabilità significa considerare le conseguenze delle scelte: che cosa occorre utilizzare, che cosa viene rimosso e quale destinazione può avere. Il rispetto delle regole e l’impiego consapevole dei materiali entrano così nelle decisioni del cantiere. È un’attenzione che guarda oltre la conclusione delle attività, perché il territorio sul quale interveniamo e le risorse che abbiamo a disposizione continuano ad avere un valore anche dopo il nostro passaggio.</p>
-        
-<ul class="lista-voci lista-voci--fisse">
+        <ul class="lista-voci lista-voci--fisse">
   <li><a class="voce" href="/operativita/centro-di-recupero/">Centro di Recupero</a></li>
 </ul>
 
@@ -694,14 +665,8 @@
         </div>
         <span class="capitolo__numero" aria-hidden="true" data-parallax="-30">06</span>
       </figure>
-      <div class="cap__nota">
-        
-<div class="da-completare da-completare--immagine" role="note" data-da-completare>
-  <span class="da-completare__tipo">Immagine, dato o caso da inserire</span>
-  <strong class="da-completare__titolo">Una scelta documentata di gestione dei materiali</strong><p class="da-completare__testo">Informazione diversa dalle condizioni operative del Centro.</p>
-</div>
 
-      </div>
+
     </div>
   </div>
 </section>
@@ -741,6 +706,19 @@
           <li><a href="/accessibilita/">Accessibilità</a></li>
         </ul>
       </nav>
+    </div><nav class="site-footer__mappa" aria-label="Sezioni del sito">
+      <ul>
+        <li><a href="/impresa/" aria-current="page">Impresa</a></li>
+        <li><a href="/competenze/">Competenze</a></li>
+        <li><a href="/cantieri/">Cantieri</a></li>
+        <li><a href="/operativita/">Operatività</a></li>
+        <li><a href="/approfondimenti/">Approfondimenti</a></li>
+        <li><a href="/contatti/">Contatti</a></li>
+      </ul>
+    </nav>
+    <div class="site-footer__comandi">
+      <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span class="motion-toggle__stato" data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
+      <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina"><svg class="torna-su__freccia" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M6 10.5V1.8M1.8 6 6 1.8 10.2 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="torna-su__testo">Inizio</span></button>
     </div>
 
     <div class="site-footer__legal">
@@ -753,14 +731,14 @@
   <section class="cookie-banner" data-cookie-banner hidden aria-label="Gestione dei cookie">
   <div class="cookie-banner__inner">
     <div class="cookie-banner__text">
-      <p class="cookie-banner__title">Cookie, senza sorprese</p>
+      <p class="cookie-banner__title">Cookie</p>
       <p class="cookie-banner__testo">Solo cookie tecnici. La statistica parte soltanto se la accetti. <a href="/cookie-policy/">Cookie Policy</a></p>
     </div>
 
     <div class="cookie-banner__prefs" data-cookie-prefs hidden>
       <label class="cookie-banner__pref">
         <input type="checkbox" checked disabled>
-        <span><strong>Necessari</strong> — sempre attivi: servono al funzionamento del sito e a ricordare questa scelta.</span>
+        <span><strong>Necessari</strong>, sempre attivi. Servono al funzionamento del sito e a ricordare questa scelta.</span>
       </label>
       <label class="cookie-banner__pref">
         <input type="checkbox" data-consent-cat="statistica">
@@ -790,11 +768,10 @@
   })();
 </script>
 
-  <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"><span class="motion-toggle__punto" aria-hidden="true"></span><span data-motion-label>Movimento attivo</span><span class="motion-toggle__azione" data-motion-azione aria-hidden="true">Riduci</span></button>
-  <button class="torna-su" type="button" data-torna-su aria-label="Torna all'inizio della pagina">Inizio</button>
   <div class="cursore-orbita" data-cursore aria-hidden="true"></div>
-  <div class="transizione-pagina" data-transizione aria-hidden="true"></div>
-  <script type="module" src="/assets/js/main.js?v=1cad0145"></script>
-  <script type="module" src="/assets/js/storia.js?v=1cad0145"></script>
+<script type="module" src="/assets/js/main.js?v=53387662"></script>
+<script type="module" src="/assets/js/motion.js?v=53387662"></script>
+<script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[download], [target=_blank], [href$='.pdf'], [href$='.php']"}}]},"eagerness":"moderate"}]}</script>
+<script type="module" src="/assets/js/storia.js?v=53387662"></script>
 </body>
 </html>
