@@ -287,6 +287,7 @@ let markReady;
 const api={ready:new Promise(resolve=>{markReady=resolve;}),eras,following:false,
   seek(value){stop();paint(Number(value)||0);},
   follow(value){follow(Number(value)||0);},
+  halt(){if(travel)stop();},
   seekIntro(value){stop();paint(0,true);finishIntro();caption.show(0);},
   get canvas(){return view?.canvas;},get progress(){return progress;},get metrics(){return metrics;}};
 let metrics=null;

@@ -162,6 +162,9 @@ export function connectPageScroll(api) {
       if(ready) send('ready',{reduced:getMotionReduction()||disabled});
     } else if(connected&&ready&&m.type==='position'&&Number.isFinite(m.value)) {
       if(!getMotionReduction()&&!disabled) apply(m.value);
+    } else if(connected&&m.type==='hand') {
+      // la mano del visitatore sulla pagina vince sul viaggio animato partito da un clic
+      api.halt?.();
     } else if(connected&&m.type==='mode'&&typeof m.active==='boolean') {
       setHint(m.active);
     }
@@ -194,4 +197,10 @@ export function mountScrollFrame(track) {
     if(m.type==='manual' && Number.isFinite(m.value)) driver.manual(m.value);
   });
   iframe.addEventListener('load',()=>send('connect'));
+  // rotella, dito o tasti di scorrimento sulla pagina: il viaggio animato in corso si ferma subito
+  const hand=e=>{
+    if(e.type==='keydown'&&!['ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' '].includes(e.key))return;
+    if(track.hasAttribute('data-td3-active'))send('hand');
+  };
+  for(const type of ['wheel','touchstart','keydown'])window.addEventListener(type,hand,{passive:true});
 }
