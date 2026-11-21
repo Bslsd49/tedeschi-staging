@@ -294,26 +294,49 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
   const sideViews=[.18,-.40,-.755,-.42],heights=[.035,.105,.038,.108];
   const frameFill=[.955,.920,.924,.923];
   let frameRevision=0;
+  // Appoggio a terra (telefono e scena impilata, giro 21/11): nella vista stretta la larghezza decide
+  // la distanza e in altezza resta spazio. Centrata, la macchina finiva all'altezza dell'orizzonte della
+  // foto e sembrava sospesa. Con grounding>0 lo spazio libero va sopra: la macchina scende verso il
+  // fondo della vista, sul terreno della foto. 0 = composizione di sempre (desktop, tablet orizzontale).
+  let grounding=T.MathUtils.clamp(options.grounding||0,0,1);
+  // Vista impilata (telefono): quando la vista è alta (larghezza/altezza ≤ IMPILATA_ASPETTO) è la larghezza
+  // a decidere la grandezza della macchina; un poco più di tre quarti (stackYaw) accorcia il mezzo in
+  // orizzontale e lo fa crescere (390×844: altezza +23/36/24/28%). In una vista bassa (390×664 con le
+  // barre del browser, 320×568) la stessa rotazione lo rimpicciolirebbe: lì resta l'angolo di sempre.
+  // La regola dipende solo dalla forma della vista, così la pagina ospite sceglie lo stesso segnaposto
+  // (parco-3d.js, immagini macchina-AAAA-tel). options.forzaYaw: foto del segnaposto (statiche.mjs).
+  const stackYaw=[-.8,-.45,-.2,-.4];
+  const IMPILATA_ASPETTO=1.3,forzaYaw=Boolean(options.forzaYaw);
+  function fit(index,yaw,elevation,kx,ky){
+    const f=framing[index],sy=Math.sin(yaw),cy=Math.cos(yaw),se=Math.sin(elevation),ce=Math.cos(elevation);
+    let xhi=-Infinity,xlo=Infinity,yhi=-Infinity,ylo=Infinity;
+    const p=f.points,c=f.center;
+    for(let i=0;i<p.length;i+=3){
+      const x=p[i]-c.x,y=p[i+1]-c.y,z=p[i+2]-c.z;
+      const flat=sy*x+cy*z,back=ce*flat+se*y;
+      const right=cy*x-sy*z,up=ce*y-se*flat;
+      xhi=Math.max(xhi,right+kx*back);xlo=Math.min(xlo,right-kx*back);
+      yhi=Math.max(yhi,up+ky*back);ylo=Math.min(ylo,up-ky*back);
+    }
+    return {xhi,xlo,yhi,ylo,distance:Math.max((xhi-xlo)/(2*kx),(yhi-ylo)/(2*ky))+.03};
+  }
   function frameModel(index){
       const f=framing[index];
       if(f.revision===frameRevision)return f;
       f.revision=frameRevision;
       const halfField=Math.tan(camera.fov*Math.PI/360);
       const ky=halfField*frameFill[index],kx=ky*camera.aspect;
-      f.yaw=(sideViews[index]??0)+orbitYaw;f.elevation=T.MathUtils.clamp((heights[index]??.10)+orbitElevation,-.025,.66);
+      const base=heights[index]??.10;
+      const extra=forzaYaw||(grounding>0&&camera.aspect<=IMPILATA_ASPETTO)?stackYaw[index]:0;
+      f.yaw=(sideViews[index]??0)+extra+orbitYaw;f.elevation=T.MathUtils.clamp(base+orbitElevation,-.025,.66);
       const sy=Math.sin(f.yaw),cy=Math.cos(f.yaw),se=Math.sin(f.elevation),ce=Math.cos(f.elevation);
-      let xhi=-Infinity,xlo=Infinity,yhi=-Infinity,ylo=Infinity;
-      const p=f.points,c=f.center;
-      for(let i=0;i<p.length;i+=3){
-        const x=p[i]-c.x,y=p[i+1]-c.y,z=p[i+2]-c.z;
-        const flat=sy*x+cy*z,back=ce*flat+se*y;
-        const right=cy*x-sy*z,up=ce*y-se*flat;
-        xhi=Math.max(xhi,right+kx*back);xlo=Math.min(xlo,right-kx*back);
-        yhi=Math.max(yhi,up+ky*back);ylo=Math.min(ylo,up-ky*back);
-      }
+      const {xhi,xlo,yhi,ylo,distance}=fit(index,f.yaw,f.elevation,kx,ky);
+      const c=f.center;
       // Solve the left/right and top/bottom perspective-frustum inequalities.
-      const ox=(xhi+xlo)*.5,oy=(yhi+ylo)*.5;
-      f.distance=Math.max((xhi-xlo)/(2*kx),(yhi-ylo)/(2*ky))+.03;
+      const ox=(xhi+xlo)*.5;let oy=(yhi+ylo)*.5;
+      f.distance=distance;
+      // oy al massimo ylo+ky·distanza mette il punto più basso sul bordo basso: si usa una frazione
+      if(grounding>0)oy+=grounding*(ylo+ky*f.distance-oy);
       f.focus.set(c.x+ox*cy-oy*sy*se,c.y+oy*ce,c.z-ox*sy-oy*cy*se);
       return f;
   }
@@ -570,6 +593,11 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
       if(a===first&&b===second&&t===phase)return;
       lastShowAt=performance.now();first=a;second=b;phase=t;scene.environment=lightProbes[t<.5?a:b].texture;setCamera();draw();},
     setReducedMotion(value){reduceOrbit=Boolean(value);},
+    setGrounding(value){
+      const g=T.MathUtils.clamp(Number(value)||0,0,1);
+      if(g===grounding)return;
+      grounding=g;frameRevision++;setCamera();draw();
+    },
     reset(animate=false){
       if(animate&&!reduceOrbit){pointCamera(0,0);return;}
       if(orbitFrame)cancelAnimationFrame(orbitFrame);

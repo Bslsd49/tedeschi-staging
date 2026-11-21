@@ -21,6 +21,9 @@ button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px so
 .motion-switch[aria-pressed=true] .switch-shape::after{transform:translateX(11px);background:var(--yellow)}
 .scene{height:clamp(450px,calc(100svh - 256px),790px);min-height:445px;isolation:isolate;position:relative;overflow:hidden;background:#625f54;color:white;
   container-type:size;
+  /* riga della foto da tenere sotto i cingoli nella composizione impilata (frazione dell'altezza della foto;
+     il terreno comincia a 0,52-0,575 nelle quattro foto) */
+  --p3d-terra:.64;
   /* colonna dei testi = zona protetta: la vista 3D comincia dopo, la macchina non la tocca mai */
   --story-x:clamp(21px,4cqi,68px);
   --date-size:min(clamp(80px,12.4cqi,222px),25cqb);
@@ -89,7 +92,10 @@ button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px so
 .transport{gap:7px}
 .transport button{border:1px solid #b9baaf;background:transparent;color:var(--ink);width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:19px;line-height:1;transition:background-color .18s,border-color .18s,color .18s,transform .12s}
 .transport .play{background:var(--ink);color:white;border-color:var(--ink);border-radius:20px;width:auto;min-width:118px;font-size:13px;font-weight:700;gap:8px;padding:0 16px}
-#play-symbol{font-size:10px}
+/* simbolo Riproduci/Pausa disegnato, non un carattere (giro 21/11): iOS rendeva il triangolo U+25B6 come emoji blu.
+   Lo stato viene da aria-pressed, che app.js già cambia; il colore segue il tasto (currentColor). */
+#play-symbol{display:block;flex:none;width:9px;height:10px;background:currentColor;clip-path:polygon(0 0,100% 50%,0 100%)}
+.play[aria-pressed="true"] #play-symbol{width:8px;clip-path:none;background:linear-gradient(90deg,currentColor 0 35%,transparent 35% 65%,currentColor 65% 100%)}
 .transport button:hover:not(:disabled),.inspect:hover,.scene-tools .motion-switch:hover{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
 .transport button:active:not(:disabled),.inspect:active,.stop:active{transform:translateY(1px)}
 .transport button:disabled{opacity:.34;cursor:default}
@@ -153,6 +159,15 @@ button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px so
                linear-gradient(90deg,rgba(8,12,9,.44),transparent 72%);
   }
   .view{left:1%;right:1%;top:2%;height:calc(var(--story-top,53%) - 2% - 10px);bottom:auto}
+  /* Appoggio a terra (giro 21/11): la riga --p3d-terra della foto cade sotto i cingoli. La macchina sta
+     in fondo alla vista (renderer.js, grounding), cioè poco sopra --story-top; se la foto alta quanto la
+     scena mette il terreno più in basso, la foto si ingrandisce e sale quanto basta. Solo dimensioni e
+     posizione dello sfondo: nessun lavoro per fotogramma, la tendina non cambia. */
+  .photoscene>i{
+    --p3d-g:calc(var(--story-top,53cqb) - 20px);
+    --p3d-h:max(100cqb,calc((100cqb - var(--p3d-g))/(1 - var(--p3d-terra))));
+    background-size:auto var(--p3d-h);
+    background-position:50% min(0px,calc(var(--p3d-g) - var(--p3d-terra)*var(--p3d-h)))}
   .story{
     top:var(--story-top,53%);left:clamp(16px,4vw,25px);width:calc(100% - clamp(16px,4vw,25px)*2);
     --subtitle-size:13px;
@@ -219,12 +234,25 @@ html.td3-manuale .motion-switch{display:none!important}
   /* Riproduci diventa un tasto tondo col solo simbolo (il nome resta per i lettori di schermo) */
   .transport .play{width:44px;min-width:44px;padding:0;gap:0}
   .transport .play #play-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
-  #play-symbol{font-size:13px}
+  #play-symbol{width:11px;height:13px;margin-left:2px}
+  .play[aria-pressed="true"] #play-symbol{width:10px;margin-left:0}
   .timeline{padding-top:8px;padding-bottom:10px}
   .scrub{margin:4px 0 0}
   .illustration-note{margin-top:4px}
 }
 @media(min-width:761px){.scene-tools{top:auto;bottom:clamp(14px,2.4cqb,28px)}}
+/* Telefono e scena impilata (giro 21/11): i tasti non stanno più sopra la macchina. Scendono sulla riga
+   dell'anno, a destra, sul fondo scuro dei testi (dove l'anno lascia spazio). «Vista iniziale» c'è solo
+   dopo che il visitatore ha girato la vista (classe ruotata, app.js); con poco spazio, mentre c'è, il
+   nome di «Movimento ridotto» resta solo per i lettori di schermo. */
+@media(max-width:640.98px){
+  .scene .scene-tools{top:calc(var(--story-top,53%) + var(--date-size)/2);bottom:auto;right:clamp(16px,4vw,25px);transform:translateY(-50%)}
+  .scene:not(.ruotata) .scene-tools .inspect{display:none}
+}
+@container (max-width:479px){
+  .scene.ruotata .scene-tools .motion-switch span:last-child{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+  .scene.ruotata .scene-tools .motion-switch{padding:6px 9px}
+}
 @media(max-width:360px){
   /* sui telefoni più stretti il tasto resta, col solo interruttore: il nome è per i lettori di schermo */
   .scene-tools .motion-switch span:last-child{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
@@ -239,6 +267,11 @@ html.td3-manuale .motion-switch{display:none!important}
                linear-gradient(90deg,rgba(8,12,9,.44),transparent 72%);
   }
   .scene.impilata .view{left:2%;right:2%;top:2%;height:calc(var(--story-top,55%) - 2% - 14px);bottom:auto;-webkit-mask-image:none;mask-image:none}
+  .scene.impilata .photoscene>i{
+    --p3d-g:calc(var(--story-top,55cqb) - 24px);
+    --p3d-h:max(100cqb,calc((100cqb - var(--p3d-g))/(1 - var(--p3d-terra))));
+    background-size:auto var(--p3d-h);
+    background-position:50% min(0px,calc(var(--p3d-g) - var(--p3d-terra)*var(--p3d-h)))}
   .scene.impilata .story{
     top:var(--story-top,55%);left:var(--story-x);width:min(calc(100% - var(--story-x)*2),680px);
     --title-size:clamp(20px,3.4cqi,34px);--title-track:calc(var(--title-size)*1.1);
@@ -248,7 +281,8 @@ html.td3-manuale .motion-switch{display:none!important}
   .scene.impilata .curtain-thread{
     -webkit-mask-image:linear-gradient(to bottom,#000 calc(var(--story-top,55%) - 34px),transparent calc(var(--story-top,55%) - 8px));
     mask-image:linear-gradient(to bottom,#000 calc(var(--story-top,55%) - 34px),transparent calc(var(--story-top,55%) - 8px))}
-  .scene.impilata .scene-tools{top:clamp(14px,3.1cqi,45px);bottom:auto}
+  .scene.impilata .scene-tools{top:calc(var(--story-top,55%) + var(--date-size)/2);bottom:auto;right:var(--story-x);transform:translateY(-50%)}
+  .scene.impilata:not(.ruotata) .scene-tools .inspect{display:none}
 }
 /* dentro il sito la scena va da bordo a bordo anche oltre i 2200 px */
 html.td3-embedded .exhibit{max-width:none}

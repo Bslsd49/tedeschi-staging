@@ -30,7 +30,7 @@ if(manual)document.documentElement.classList.add('td3-manuale');
 
 const $=id=>document.getElementById(id);
 // elementi toccati a ogni fotogramma: cercati una volta sola
-const ui={scrub:$('scrub'),previous:$('previous'),next:$('next'),play:$('play'),playSymbol:$('play-symbol'),playLabel:$('play-label'),
+const ui={scrub:$('scrub'),previous:$('previous'),next:$('next'),play:$('play'),playLabel:$('play-label'),
   count:$('era-count'),current:$('current-era'),backdrops:$('backdrops')};
 const backgrounds=[],stops=[];
 const caption=createCaption($('story'));
@@ -134,7 +134,7 @@ let wasPlaying=null;
 function playerState(){
   const playing=Boolean(travel);
   if(playing!==wasPlaying){
-    ui.playSymbol.textContent=playing?'Ⅱ':'▶';ui.playLabel.textContent=playing?'Pausa':'Riproduci';
+    ui.playLabel.textContent=playing?'Pausa':'Riproduci';
     ui.play.setAttribute('aria-label',playing?'Metti in pausa':'Riproduci la transizione');
     ui.play.setAttribute('aria-pressed',String(playing));
     wasPlaying=playing;
@@ -295,11 +295,15 @@ function inkRight(el){
   let right=0;for(const q of r.getClientRects())right=Math.max(right,q.right);
   return right;
 }
+// appoggio a terra nella vista impilata (renderer.js, grounding): la macchina scende sul terreno della foto
+const APPOGGIO=.8;
+let impilataOra=false;
 function layout(){
   scene.style.removeProperty('--story-top');scene.style.removeProperty('--zona');
   const h=scene.clientHeight;if(!h)return;
   // impilata: telefono, oppure scena più alta che larga (tablet in verticale)
   const stacked=innerWidth<=640||h>scene.clientWidth*.82;
+  impilataOra=stacked;view?.setGrounding(stacked?APPOGGIO:0);
   scene.classList.toggle('impilata',stacked&&innerWidth>640);
   const pp=probe.querySelector('.period'),pt=probe.querySelector('.era-title'),pb=probe.querySelector('p');
   let tallest=0,right=0;
@@ -385,7 +389,7 @@ async function boot(){
     }
     performance.mark('parco:modelli');
     const lightSamples=await samplesReady;
-    view=createMachineView(THREE,$('view'),models,createTransition,lightSamples,{first:Math.round(startAt),onOrbit:parallax});
+    view=createMachineView(THREE,$('view'),models,createTransition,lightSamples,{first:Math.round(startAt),onOrbit:parallax,grounding:impilataOra?APPOGGIO:0,forzaYaw:params.has('impilata')});
     view.setReducedMotion(reduced);
     performance.mark('parco:vista');
     metrics={partCounts:models.map(m=>m.parts.length),bounds:view.bounds.map(b=>[b.min.toArray(),b.max.toArray()]),webgl:true};
@@ -423,7 +427,16 @@ async function boot(){
   enterFirstEra();
 }
 // un tocco di parallasse: il fondale scorre appena in verso opposto alla rotazione del modello
+// vista girata dal visitatore: su telefono e scena impilata «Vista iniziale» compare solo in questo caso
+let ruotataOra=false;
 function parallax(yaw,elevation){
+  const girata=Math.abs(yaw)+Math.abs(elevation)>.002;
+  if(girata!==ruotataOra){
+    ruotataOra=girata;
+    // il tasto sparisce a vista ripristinata: se aveva il fuoco, il fuoco passa al tasto Movimento
+    if(!girata&&document.activeElement===$('recenter'))$('motion-switch').focus({preventScroll:true});
+    scene.classList.toggle('ruotata',girata);
+  }
   const s=1+Math.min(.04,Math.abs(yaw)*.03+Math.abs(elevation)*.05);
   ui.backdrops.style.transform=Math.abs(yaw)+Math.abs(elevation)<1e-4?'':'translate3d('+(-yaw*14).toFixed(2)+'px,'+(elevation*8).toFixed(2)+'px,0) scale('+s.toFixed(4)+')';
 }
