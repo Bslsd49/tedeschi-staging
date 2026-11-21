@@ -57,7 +57,6 @@ ErrorDocument 404 /404.html
 # Riorganizzazione wireframe 03 (Impresa unica, Operatività, Contatti a sezioni)
 # Redirect fa corrispondenza per prefisso e vince la prima regola che combacia: si ordina per percorso
 # decrescente, così /mezzi-e-tecnologie/parco-macchine/ viene prima di /mezzi-e-tecnologie/.
-RewriteEngine On
 Redirect 301 /mezzi-e-tecnologie/tecnologie-di-precisione/ /operativita/tecnologie-di-precisione/
 Redirect 301 /mezzi-e-tecnologie/parco-macchine/ /operativita/parco-macchine/
 Redirect 301 /mezzi-e-tecnologie/logistica-e-autonomia-operativa/ /operativita/logistica-e-autonomia-operativa/

@@ -9,7 +9,12 @@
 // Le cifre sono testo vero in New Science Bold (kit Adobe del sito).
 const years=['1960','1980','2000','2026'];
 const PITCH=1.25;            // passo fra due cifre, in em: a riposo le vicine non affiorano
-const STEP_MS=150, MAX_MS=980, STAGGER_MS=70;
+// Due ritmi (giro 20/11, terzo passaggio). L'apertura è quella della GIF di Mattia, uno scatto ogni
+// 150 ms. Il cambio di epoca, invece, deve chiudersi entro 400 ms anche dopo un salto (scelta
+// dell'epoca, cursore, tasto Fine, ritorno con Indietro): ogni rullo dura al massimo 240 ms e parte al
+// più 60 ms dopo il primo; con l'inseguimento dello scroll (il cambio d'epoca arriva entro ~60 ms dal
+// salto) a 400 ms anno e testi sono sempre quelli dell'epoca corrente.
+const PACE={apertura:{step:150,max:980,stagger:70,extra:160},cambio:{step:80,max:240,stagger:20,extra:100}};
 const easeStep=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2; // ogni scatto: parte, porta, si posa
 
 function createCounter(element) {
@@ -48,7 +53,7 @@ function createCounter(element) {
     }
     if(busy)frame=requestAnimationFrame(tick);
   }
-  function set(year,animate,direction){
+  function set(year,animate,direction,pace=PACE.cambio){
     const digits=[...year].map(Number);
     native.textContent=year;
     if(frame){cancelAnimationFrame(frame);frame=0;}
@@ -61,40 +66,70 @@ function createCounter(element) {
       let steps=direction>0?((target-base+10)%10):-((base-target+10)%10);
       if(steps===0&&Math.abs(cur-Math.round(cur))<1e-4){c.value=target;c.dur=0;place(c);return;}
       c.from=cur;c.to=Math.round(cur)+steps;c.start=now;
-      c.dur=Math.min(MAX_MS,STEP_MS*Math.max(1,Math.abs(steps))+160);c.delay=order++*STAGGER_MS;
-      if(steps===0){c.to=Math.round(cur);c.dur=200;}
+      c.dur=Math.min(pace.max,pace.step*Math.max(1,Math.abs(steps))+pace.extra);c.delay=order++*pace.stagger;
+      if(steps===0){c.to=Math.round(cur);c.dur=Math.min(200,pace.max);}
     });
     if(columns.some(c=>c.dur>0))frame=requestAnimationFrame(tick);
   }
   return {
-    show(index,{animate=false,direction=1}={}){
+    show(index,{animate=false,direction=1,pace}={}){
       const year=years[index]||years[0];
       if(shown===year&&!animate)return;
       const changed=shown!==year;shown=year;
-      if(changed||!animate)set(year,animate&&changed,direction);
+      if(changed||!animate)set(year,animate&&changed,direction,pace);
     },
     intro(play){
       // «19» già al suo posto, il terzo rullo sale da 0 a 6
       columns.forEach((c,i)=>{c.value=[1,9,0,0][i];c.dur=0;place(c);});
       shown=null;
-      if(play)this.show(0,{animate:true,direction:1});else this.show(0);
-    },
-    get busy(){return frame!==0;}
+      if(play)this.show(0,{animate:true,direction:1,pace:PACE.apertura});else this.show(0);
+    }
   };
 }
 
+// Cambio dei testi (giro 20/11). Prima sottotitolo, titolo e descrizione cambiavano nello stesso
+// fotogramma a metà passaggio: l'unico «scatto» rimasto nella corsa (misurato: differenza fra due
+// fotogrammi 8 volte quella dei vicini). Ora il blocco sfuma via, cambia mentre è invisibile e
+// rientra: le due versioni non sono mai a schermo insieme (mai testi sovrapposti), il blocco si
+// muove di 3 px al massimo nel verso dell'epoca. Un cambio che arriva a metà riparte dall'opacità
+// del momento. Senza animazione (movimento ridotto, scheda nascosta) il cambio resta immediato.
+const COPY_OUT_MS=110, COPY_IN_MS=200, COPY_SHIFT_PX=3; // 310 ms in tutto, dentro i 400 ms dopo un salto
 export function createCaption(story) {
   const counter=createCounter(story.querySelector('.year'));
-  const subtitle=story.querySelector('.period'),title=story.querySelector('.era-title');
-  const body=story.querySelector('p');
-  let current=null;
+  const copy=story.querySelector('.story-copy');
+  const subtitle=copy.querySelector('.period'),title=copy.querySelector('.era-title');
+  const body=copy.querySelector('p');
+  let current=null,written=null,fade=null;
+  function write(era){
+    if(era===written)return;
+    written=era;
+    subtitle.textContent=era.subtitle;title.textContent=era.title;body.textContent=era.body;
+  }
+  function settle(){
+    if(fade){fade.cancel();fade=null;}
+    if(current)write(current);
+  }
   return {
-    ...counter,
-    show:counter.show,intro:counter.intro,
-    change(era){
+    show:counter.show,intro:counter.intro,settle,
+    change(era,{animate=false,direction=1}={}){
       if(era===current)return;
       current=era;
-      subtitle.textContent=era.subtitle;title.textContent=era.title;body.textContent=era.body;
+      if(!animate||typeof copy.animate!=='function'||written===null){settle();return;}
+      // opacità di partenza: quella del momento, se un cambio precedente è ancora in corso
+      const from=fade?Number(getComputedStyle(copy).opacity):1;
+      if(fade)fade.cancel();
+      const shift=COPY_SHIFT_PX*Math.sign(direction||1);
+      const out=copy.animate([{opacity:from,transform:'translate3d(0,0,0)'},{opacity:0,transform:'translate3d(0,'+(-shift)+'px,0)'}],
+        {duration:COPY_OUT_MS*from,easing:'cubic-bezier(.4,0,1,1)',fill:'both'});
+      fade=out;
+      out.onfinish=()=>{
+        if(fade!==out)return;
+        write(current);
+        const back=copy.animate([{opacity:0,transform:'translate3d(0,'+shift+'px,0)'},{opacity:1,transform:'translate3d(0,0,0)'}],
+          {duration:COPY_IN_MS,easing:'cubic-bezier(0,0,.2,1)'});
+        out.cancel();fade=back;
+        back.onfinish=()=>{if(fade===back)fade=null;};
+      };
     }
   };
 }

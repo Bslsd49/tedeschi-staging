@@ -6,6 +6,7 @@ import {createMachineView} from './renderer.js';
 import {sampleBackdrops} from './lighting.js';
 import {connectPageScroll} from './scroll.js';
 import {createCaption} from './caption.js';
+import {SEGUI_MS,SALTO_EPOCHE,PASSAGGIO_MS,TENDINA_INIZIO,TENDINA_DURATA,LAMA,USCITA,easeLama,fase} from './corsa.js';
 
 const eras=[
   {year:'1960',label:'Anni Sessanta',short:'La meccanica',subtitle:'Escavatore a funi',title:'Lo scavo frontale',body:'L’asta spinge la benna nel terreno. La fune passa sulle pulegge e la solleva.',photo:'media/era-1960.jpg'},
@@ -28,14 +29,20 @@ const startAt=Math.max(0,Math.min(3,Number(params.get('inizio'))||0));
 if(manual)document.documentElement.classList.add('td3-manuale');
 
 const $=id=>document.getElementById(id);
+// elementi toccati a ogni fotogramma: cercati una volta sola
+const ui={scrub:$('scrub'),previous:$('previous'),next:$('next'),play:$('play'),playSymbol:$('play-symbol'),playLabel:$('play-label'),
+  count:$('era-count'),current:$('current-era'),backdrops:$('backdrops')};
 const backgrounds=[],stops=[];
 const caption=createCaption($('story'));
 let target=0,following=0,lastFollow=0;
+// chasing: l'avanzamento sta inseguendo lo scroll; anno e testi mostrano già l'epoca di arrivo, così
+// dopo un salto lungo sono giusti entro 400 ms anche se la scena ci arriva un attimo dopo
+let chasing=false;
 let view=null,progress=0,destination=0,travel=null,animationFrame=0,reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 try{const remembered=localStorage.getItem('tedeschi-3d-motion');if(remembered!==null)reduced=remembered==='ridotto';}catch{}
 if(manual)reduced=true;
 for (const [i,e] of eras.entries()){
-  const bg=document.createElement('div');bg.className='photoscene';$('backdrops').append(bg);backgrounds.push(bg);
+  const bg=document.createElement('div');bg.className='photoscene';bg.append(document.createElement('i'));$('backdrops').append(bg);backgrounds.push(bg);
   const button=document.createElement('button');button.type='button';button.className='stop';button.setAttribute('aria-label',e.label+', '+e.year+', '+e.short);
   const dot=document.createElement('span');dot.className='dot';dot.setAttribute('aria-hidden','true');
   const wrap=document.createElement('span'),b=document.createElement('strong'),small=document.createElement('small');
@@ -48,17 +55,53 @@ if(window.parent!==window||manual){
   tools.append($('motion-switch'),$('recenter'));
   document.querySelector('.scene').append(tools);
 }
-// il filo giallo sul bordo della tendina, come nei tagli del sito
-const thread=document.createElement('div');thread.className='curtain-thread';thread.hidden=true;$('backdrops').append(thread);
+// il filo giallo sul bordo della tendina, come nei tagli del sito: il contenitore porta la maschera
+// (fissa), la barra dentro si muove con una trasformazione
+const thread=document.createElement('div');thread.className='curtain-thread';thread.hidden=true;
+const threadBar=document.createElement('i');thread.append(threadBar);$('backdrops').append(thread);
 const loaded=new Set();
 function backdrop(i){
   if(loaded.has(i))return;loaded.add(i);
-  backgrounds[i].style.backgroundImage='url("'+backdropURL(i)+'")';
+  backgrounds[i].firstChild.style.backgroundImage='url("'+backdropURL(i)+'")';
 }
 function preloadBackdrop(i){
   if(loaded.has(i))return Promise.resolve();
   const img=new Image();img.src=backdropURL(i);
   return img.decode().catch(()=>{}).then(()=>backdrop(i));
+}
+// Tendina composta dalla GPU (giro 20/11, secondo passaggio). Prima era un clip-path riscritto a ogni
+// fotogramma: la traccia di Chrome su Intel UHD mostra ~10 ms di raster per fotogramma durante tutta la
+// tendina e 30-300 ms alla prima apertura. Ora la finestra (larga tre volte la scena) si inclina e si
+// sposta, la foto dentro fa il movimento inverso e resta ferma: stessa forma e stessa curva, zero raster.
+// x è il bordo alto della tendina in % della larghezza della scena; il bordo basso sta LAMA punti indietro.
+let stageW=1,stageH=1,skew=0;
+function measureStage(){
+  stageW=ui.backdrops.clientWidth||1;stageH=ui.backdrops.clientHeight||1;
+  skew=Math.atan(LAMA/100*stageW/stageH);
+}
+const OPEN=null;
+function placeCurtain(bg,x){
+  const win=bg.style,img=bg.firstChild.style;
+  if(x===OPEN){if(win.transform){win.transform='';img.transform='';}return;}
+  const tx=(x/100-1)*stageW;
+  win.transform='translate3d('+tx.toFixed(2)+'px,0,0) skewX('+(-skew).toFixed(5)+'rad)';
+  img.transform='skewX('+skew.toFixed(5)+'rad) translate3d('+(-tx).toFixed(2)+'px,0,0)';
+}
+function placeThread(x){
+  threadBar.style.transform='translate3d('+(x*stageW/100-4).toFixed(2)+'px,0,0) skewX('+(-skew).toFixed(5)+'rad)';
+}
+// Prima apertura: la prima volta che un fondale si vede Chrome carica la foto sulla GPU. Qui, a scena
+// ferma dopo il caricamento, ogni fondale e il filo si mostrano interi per due fotogrammi quasi
+// trasparenti (0,2%, meno di mezzo livello su 255) sopra la scena; poi si rimette lo stato vero.
+function prewarmBackdrops(){
+  if(reduced)return;
+  const warm=[...backgrounds.filter((bg,i)=>loaded.has(i)&&i!==Math.floor(progress)),thread];
+  for(const el of warm){el.hidden=false;el.style.opacity='.002';el.style.zIndex='3';if(el!==thread)placeCurtain(el,OPEN);}
+  placeThread(50);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    for(const el of warm){el.style.opacity='';el.style.zIndex='';}
+    thread.hidden=true;lastPair='';paint(progress,true);
+  }));
 }
 
 let lastEra=-1,shownYear=-1;
@@ -84,38 +127,23 @@ function enterFirstEra() {
 }
 function stop(){
   if(animationFrame)cancelAnimationFrame(animationFrame);animationFrame=0;travel=null;
-  if(following){cancelAnimationFrame(following);following=0;api.following=false;}
+  if(following){cancelAnimationFrame(following);following=0;api.following=false;chasing=false;}
   playerState();
 }
 let wasPlaying=null;
 function playerState(){
   const playing=Boolean(travel);
   if(playing!==wasPlaying){
-    $('play-symbol').textContent=playing?'Ⅱ':'▶';$('play-label').textContent=playing?'Pausa':'Riproduci';
-    $('play').setAttribute('aria-label',playing?'Metti in pausa':'Riproduci la transizione');
-    $('play').setAttribute('aria-pressed',String(playing));
+    ui.playSymbol.textContent=playing?'Ⅱ':'▶';ui.playLabel.textContent=playing?'Pausa':'Riproduci';
+    ui.play.setAttribute('aria-label',playing?'Metti in pausa':'Riproduci la transizione');
+    ui.play.setAttribute('aria-pressed',String(playing));
     wasPlaying=playing;
   }
   const atStart=progress<.0001&&!playing,atEnd=progress>2.9999&&!playing;
-  if($('previous').disabled!==atStart)$('previous').disabled=atStart;
-  if($('next').disabled!==atEnd)$('next').disabled=atEnd;
+  if(ui.previous.disabled!==atStart)ui.previous.disabled=atStart;
+  if(ui.next.disabled!==atEnd)ui.next.disabled=atEnd;
 }
-const clamp01=x=>Math.max(0,Math.min(1,x));
-// curva del taglio del sito (--ease-lama, cubic-bezier(.7,0,.2,1)), risolta in x
-function easeLama(x){
-  if(x<=0)return 0;if(x>=1)return 1;
-  const p1x=.7,p1y=0,p2x=.2,p2y=1;
-  let t=x;
-  for(let i=0;i<6;i++){
-    const cx=3*p1x,bx=3*(p2x-p1x)-cx,ax=1-cx-bx;
-    const fx=((ax*t+bx)*t+cx)*t-x,d=(3*ax*t+2*bx)*t+cx;
-    if(Math.abs(fx)<1e-5||!d)break;t-=fx/d;
-  }
-  t=clamp01(t);const cy=3*p1y,by=3*(p2y-p1y)-cy,ay=1-cy-by;
-  return ((ay*t+by)*t+cy)*t;
-}
-const LAMA=16; // inclinazione della tendina in % della larghezza, come --lama-x del sito
-let lastPair='',lastClip='',lastA11y='';
+let lastPair='',lastClip='',lastA11y='',lastAt='';
 function paint(value,force=false){
   const bounded=Math.max(0,Math.min(3,value));
   if(bounded===progress&&lastEra!==-1&&!force){playerState();return;}
@@ -124,67 +152,81 @@ function paint(value,force=false){
   const a=Math.floor(progress),b=Math.min(a+1,3),phase=progress-a;
   const nearest=Math.round(progress);
   const pair=a+'-'+b;
+  const visual=fase(phase); // punto della coreografia (corsa.js, RITMO)
   if(pair!==lastPair){
     for(let i=0;i<4;i++){
       const bg=backgrounds[i];bg.hidden=i!==a&&i!==b;
-      if(!bg.hidden){if(i===a||phase>.05)backdrop(i);bg.style.zIndex=i===a?'0':'1';bg.style.clipPath=i===a?'none':'polygon(0 0,0 0,0 100%,0 100%)';}
+      if(!bg.hidden){if(i===a||phase>.05)backdrop(i);bg.style.zIndex=i===a?'0':'1';placeCurtain(bg,i===a?OPEN:0);}
     }
     lastPair=pair;lastClip='';
   }
   if(b!==a){
-    const curtain=reduced?(phase>=.5?1:0):easeLama((phase-.33)/.38);
-    // tendina obliqua: il bordo alto precede quello basso di LAMA punti, il filo giallo lo segue
-    const x=curtain*(100+LAMA);
-    const clip=curtain<=0?'polygon(0 0,0 0,0 100%,0 100%)':curtain>=1?'none':
-      'polygon(0 0,'+x.toFixed(2)+'% 0,'+(x-LAMA).toFixed(2)+'% 100%,0 100%)';
-    if(clip!==lastClip){
-      backgrounds[b].style.clipPath=clip;lastClip=clip;
+    const curtain=reduced?(phase>=.5?1:0):easeLama((visual-TENDINA_INIZIO)/TENDINA_DURATA);
+    // tendina obliqua: il bordo alto precede quello basso di LAMA punti, il filo giallo lo segue.
+    // La corsa finisce OLTRE il bordo destro (USCITA): prima il filo, largo 4 px, si fermava col piede
+    // ancora dentro la scena (un triangolino giallo di circa 4×14 px nell'angolo in basso a destra) e
+    // spariva di colpo a fine tendina. Ora esce intero prima che la tendina si spenga, e rientra intero.
+    const x=curtain*(100+LAMA+USCITA);
+    const key=curtain<=0?'chiusa':curtain>=1?'aperta':x.toFixed(2);
+    if(key!==lastClip){
+      placeCurtain(backgrounds[b],curtain>=1?OPEN:curtain<=0?0:x);lastClip=key;
       const visible=curtain>0&&curtain<1&&!reduced;
       thread.hidden=!visible;
-      if(visible)thread.style.clipPath='polygon(calc('+x.toFixed(2)+'% - 4px) 0,'+x.toFixed(2)+'% 0,'+(x-LAMA).toFixed(2)+'% 100%,calc('+(x-LAMA).toFixed(2)+'% - 4px) 100%)';
+      if(visible)placeThread(x);
     }
   }else if(!thread.hidden)thread.hidden=true;
-  if(lastEra!==nearest){
+  const shown=chasing?Math.round(target):nearest; // epoca dei testi (vedi chasing)
+  if(lastEra!==shown){
     const from=lastEra;
-    lastEra=nearest;const era=eras[nearest];caption.change(era);
-    stops.forEach((btn,i)=>btn.setAttribute('aria-current',String(i===nearest)));
-    $('era-count').textContent=String(nearest+1).padStart(2,'0')+' / 04';
-    $('current-era').textContent=[era.year,era.subtitle,era.title,era.body].join('. ');
-    if(introDone&&from!==-1&&shownYear!==nearest){
-      caption.show(nearest,{animate:!reduced&&document.visibilityState==='visible',direction:nearest>from?1:-1});
-      shownYear=nearest;
-    }else if(introDone||from===-1){caption.show(nearest);shownYear=nearest;}
+    lastEra=shown;const era=eras[shown];
+    const animate=from!==-1&&!reduced&&document.visibilityState==='visible',direction=shown>from?1:-1;
+    caption.change(era,{animate,direction});
+    stops.forEach((btn,i)=>btn.setAttribute('aria-current',String(i===shown)));
+    ui.count.textContent=String(shown+1).padStart(2,'0')+' / 04';
+    ui.current.textContent=[era.year,era.subtitle,era.title,era.body].join('. ');
+    if(introDone&&from!==-1&&shownYear!==shown){
+      caption.show(shown,{animate,direction});
+      shownYear=shown;
+    }else if(introDone||from===-1){caption.show(shown);shownYear=shown;}
   }
   if(view){
-    if(reduced||phase<=.00001)view.show(nearest,nearest,0);else view.show(a,b,phase);
+    if(reduced||phase<=.00001)view.show(nearest,nearest,0);else view.show(a,b,visual);
   }
   // prossimo fondale in anticipo, prima che la tendina lo chieda
   if(phase>.05&&b!==a)backdrop(b);
   if(progress>before&&b+1<=3&&phase>.5)preloadBackdrop(b+1);
   if(progress<before&&a-1>=0&&phase<.5)preloadBackdrop(a-1);
-  $('scrub').value=String(progress);$('scrub').style.setProperty('--at',(progress*100/3).toFixed(3)+'%');
+  // il cursore e la sua traccia: si scrive solo quando la cifra mostrata cambia (scroll.js osserva
+  // lo style del cursore, ogni scrittura inutile gli costava un giro dell'osservatore)
+  const at=(progress*100/3).toFixed(3)+'%';
+  ui.scrub.value=String(progress);
+  if(at!==lastAt){ui.scrub.style.setProperty('--at',at);lastAt=at;}
   const valueText=phase>.02&&phase<.98?eras[a].label+' verso '+eras[b].label+', '+Math.round(phase*100)+'%':eras[nearest].year;
-  if(valueText!==lastA11y){$('scrub').setAttribute('aria-valuetext',valueText);lastA11y=valueText;}
+  if(valueText!==lastA11y){ui.scrub.setAttribute('aria-valuetext',valueText);lastA11y=valueText;}
   playerState();
 }
 // Lo scroll è la mano che smonta: risposta immediata ma senza gli scatti della rotella.
 // L'avanzamento segue la posizione della pagina con una costante di tempo breve; fermata la mano,
 // si ferma in meno di un decimo di secondo esattamente dove indica lo scroll.
 
-const TAU=78;
 function followStep(now){
   following=0;
   const dt=lastFollow?Math.min(64,now-lastFollow):16.7;lastFollow=now;
   const diff=target-progress;
-  if(reduced||Math.abs(diff)<.0006||Math.abs(diff)>1.6){paint(reduced?Math.round(target):target);lastFollow=0;api.following=false;return;}
-  paint(progress+diff*(1-Math.exp(-dt/TAU)));
+  if(reduced||Math.abs(diff)<.0006||Math.abs(diff)>SALTO_EPOCHE){paint(reduced?Math.round(target):target);lastFollow=0;api.following=false;chasing=false;return;}
+  paint(progress+diff*(1-Math.exp(-dt/SEGUI_MS)));
   following=requestAnimationFrame(followStep);
 }
+// dentro il sito, finché il segnaposto copre la scena, lo scroll si annota ma non muove la scena:
+// il segnaposto mostra la macchina ferma dell'epoca d'arrivo e la scena deve essere la stessa sotto di lui
+// (ricarica a metà corsa: senza questo la scena andava a metà passaggio e le due macchine si sdoppiavano)
+let held=window.parent!==window&&!manual,heldTarget=null;
 function follow(value){
+  if(held){heldTarget=Math.max(0,Math.min(3,value));return;}
   if(animationFrame){cancelAnimationFrame(animationFrame);animationFrame=0;travel=null;}
   target=Math.max(0,Math.min(3,value));
-  if(!view||document.hidden){if(following){cancelAnimationFrame(following);following=0;}api.following=false;paint(target);return;}
-  api.following=true;
+  if(!view||document.hidden){if(following){cancelAnimationFrame(following);following=0;}api.following=false;chasing=false;paint(target);return;}
+  api.following=true;chasing=true;
   if(!following){lastFollow=0;following=requestAnimationFrame(followStep);}
 }
 // Viaggio dopo un clic (CF-03, 13/11). Un passaggio di una sola epoca resta quello di Mattia: 4,6 s a
@@ -192,7 +234,6 @@ function follow(value){
 // curva morbida (Hermite cubica), e se il clic arriva a metà di un altro viaggio riparte dalla velocità
 // che la scena ha in quel momento, senza fermarsi di colpo. La curva è monotona: i rulli della data e la
 // tendina dei fondali vedono ogni epoca intermedia una sola volta, in ordine.
-const PASSAGGIO=4600;
 let travelSpeed=0; // epoche al millisecondo, con segno, del viaggio in corso
 function moveTo(to){
   to=Math.max(0,Math.min(3,to));
@@ -202,7 +243,7 @@ function moveTo(to){
   if(reduced||!view||Math.abs(to-progress)<.0001){paint(to);return;}
   const start=progress,delta=to-start,span=Math.abs(delta);
   const lineare=span<=1.0001&&v0===0;
-  const duration=lineare?Math.max(360,span*PASSAGGIO):Math.min(PASSAGGIO,Math.max(360,span*PASSAGGIO));
+  const duration=lineare?Math.max(360,span*PASSAGGIO_MS):Math.min(PASSAGGIO_MS,Math.max(360,span*PASSAGGIO_MS));
   // pendenza iniziale normalizzata: la velocità attuale se va nella stessa direzione, mai oltre 3 (niente rimbalzi)
   const m0=lineare?0:Math.max(0,Math.min(3,v0*duration/delta));
   const curva=u=>lineare?u:(-2*u*u*u+3*u*u)+m0*(u*u*u-2*u*u+u);
@@ -236,7 +277,7 @@ $('motion-switch').addEventListener('click',e=>{
     try{const hook=window.parent.tedeschiParcoMovimento;if(typeof hook==='function'){hook();return;}}catch{}
   }
   reduced=!reduced;stop();try{localStorage.setItem('tedeschi-3d-motion',reduced?'ridotto':'completo');}catch{}setMotion();
-  if(reduced){caption.show(Math.round(progress));finishIntro();}
+  if(reduced){caption.settle();caption.show(Math.round(progress));finishIntro();}
   paint(Math.round(progress),true);
 });
 $('recenter').addEventListener('click',()=>view?.reset(true));
@@ -278,17 +319,24 @@ function layout(){
   if(stacked)scene.style.setProperty('--story-top',Math.max(8,Math.floor(Math.max(h*.42,h-margin-need)))+'px');
   else if(top+need>h-margin)scene.style.setProperty('--story-top',Math.max(8,Math.floor(h-margin-need))+'px');
   scene.dataset.fit=String(story.offsetTop+need<=h-margin+1);
+  // la tendina dipende da larghezza e altezza della scena: a ogni cambio si ricalcola sul posto
+  measureStage();lastClip='';
+  if(lastEra!==-1)paint(progress,true);
 }
 new ResizeObserver(()=>layout()).observe(scene);
 layout();
 
 setMotion();paint(startAt,true);
-let markReady;
+let markReady,revealNow;
+const revealed=new Promise(r=>{revealNow=r;});
 const api={ready:new Promise(resolve=>{markReady=resolve;}),eras,following:false,
   seek(value){stop();paint(Number(value)||0);},
   follow(value){follow(Number(value)||0);},
   halt(){if(travel)stop();},
   seekIntro(value){stop();paint(0,true);finishIntro();caption.show(0);},
+  machineRect(){return view?.machineRect()??null;},
+  // la pagina ospite avvisa quando il segnaposto è sparito: solo allora partono rullo e testi d'apertura
+  revealed(){revealNow?.();},
   get canvas(){return view?.canvas;},get progress(){return progress;},get metrics(){return metrics;}};
 let metrics=null;
 window.tedeschiExperience=api;
@@ -345,6 +393,7 @@ async function boot(){
     // prima l'epoca da cui si parte, le altre in sottofondo
     const [finishState, groundReady]=await Promise.all([view.firstFinish, view.groundReady, view.warm()]);
     metrics.finishes=finishState;
+    metrics.quality=view.quality; // scheda integrata e densità di pixel scelta (renderer.js, densita.js)
     metrics.groundContact=groundReady;
     performance.mark('parco:finitura');
     paint(progress,true);
@@ -354,7 +403,10 @@ async function boot(){
     // le altre epoche si preparano dopo che la scena è già in mano al visitatore
     requestAnimationFrame(()=>view.prepareTransitions().catch(()=>{}).then(()=>performance.mark('parco:passaggi-pronti')));
     view.finishReady.then(state=>{metrics.finishes=state;});
-    for(let i=0;i<4;i++)if(!loaded.has(i))setTimeout(()=>preloadBackdrop(i),400+i*250);
+    // fondali in fila dopo la scena, poi la loro preparazione sulla GPU (vedi prewarmBackdrops)
+    // subito, non a scaglioni: chi scorre appena la scena compare deve trovarli già pronti (misurato:
+    // con la preparazione ancora in corso i primi passaggi avevano fotogrammi da 80-170 ms su Intel UHD)
+    Promise.all([0,1,2,3].map(preloadBackdrop)).then(()=>requestAnimationFrame(prewarmBackdrops));
   }catch(error){
     console.error('Visualizzatore 3D:',error);metrics={webgl:false,error:String(error)};
     $('loading').textContent='Per vedere e ruotare gli escavatori, apri questa pagina in un browser con WebGL attivo.';
@@ -362,11 +414,17 @@ async function boot(){
   }
   await Promise.race([lettering,new Promise(r=>setTimeout(r,1200))]);
   performance.mark('parco:pronta');
-  markReady(metrics);enterFirstEra();
+  markReady(metrics);
+  // dentro il sito l'apertura (rullo «19→6», testi) aspetta che il segnaposto se ne sia andato:
+  // partirebbe sotto di lui, a scena ancora semitrasparente; da sola parte subito
+  if(window.parent!==window&&!manual)await Promise.race([revealed,new Promise(r=>setTimeout(r,4000))]);
+  held=false;
+  if(heldTarget!==null&&Math.abs(heldTarget-progress)>.0006)follow(heldTarget);
+  enterFirstEra();
 }
 // un tocco di parallasse: il fondale scorre appena in verso opposto alla rotazione del modello
 function parallax(yaw,elevation){
   const s=1+Math.min(.04,Math.abs(yaw)*.03+Math.abs(elevation)*.05);
-  $('backdrops').style.transform=Math.abs(yaw)+Math.abs(elevation)<1e-4?'':'translate3d('+(-yaw*14).toFixed(2)+'px,'+(elevation*8).toFixed(2)+'px,0) scale('+s.toFixed(4)+')';
+  ui.backdrops.style.transform=Math.abs(yaw)+Math.abs(elevation)<1e-4?'':'translate3d('+(-yaw*14).toFixed(2)+'px,'+(elevation*8).toFixed(2)+'px,0) scale('+s.toFixed(4)+')';
 }
 boot();

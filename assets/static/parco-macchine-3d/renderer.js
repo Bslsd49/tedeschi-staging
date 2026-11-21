@@ -1,8 +1,12 @@
 import {createGroundContact} from './ground-contact.js';
 import {createLightProbes} from './lighting.js';
-import {createPhotographicFinish,createRestBuffer} from './photographic-finish.js';
+import {createPhotographicFinish,createPartTexture,partTextureSize} from './photographic-finish.js';
+import {gpuTier,densityFor} from './densita.js';
 // Depth of field is applied to the machine pass only. The photographs and type
 // live in a different layer and remain sharp throughout the change of era.
+// Densità di pixel della vista: tetti, pavimento e riconoscimento della scheda stanno in densita.js
+// (giro 20/11, terzo e quarto passaggio). Una misura del fotogramma al caricamento è stata provata e
+// scartata: con la GPU occupata dal caricamento la stessa Intel dava da 3,7 a 20 ms e la RTX fino a 6.
 export function createMachineView(T, host, machines, createTransition, lightSamples, options={}) {
   const onOrbit=options.onOrbit||(()=>{});
   const small = innerWidth <= 760;
@@ -13,7 +17,6 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
   // compileAsync prima del primo fotogramma (warm) e prima dei passaggi (prepareTransitions).
   renderer.debug.checkShaderErrors=false;
   let warmed=false;
-  renderer.setPixelRatio(Math.min(devicePixelRatio, small ? 1.35 : 1.65));
   renderer.outputColorSpace = T.SRGBColorSpace;
   renderer.toneMapping = T.ACESFilmicToneMapping;
   renderer.toneMappingExposure = .89;
@@ -21,6 +24,13 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
   renderer.shadowMap.type = T.PCFSoftShadowMap;
   renderer.shadowMap.autoUpdate=false;
   renderer.domElement.setAttribute('aria-hidden','true');
+  // ramo della scheda (densita.js): integrate note a bilancio ridotto, tutte le altre al pieno
+  const gpuName=(()=>{
+    try{const gl=renderer.getContext(),info=gl.getExtension('WEBGL_debug_renderer_info');
+      return info?String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)):'';}catch{return '';}
+  })();
+  const tier=gpuTier(gpuName);
+  const quality={tier,integrated:tier==='ridotto',pixelRatio:null};
   host.appendChild(renderer.domElement);
   const scene = new T.Scene();
   const camera = new T.PerspectiveCamera(30,1,.16,110);
@@ -37,12 +47,19 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
   const floor=new T.Mesh(new T.PlaneGeometry(120,120),new T.ShadowMaterial({color:0x171710,opacity:.31,depthWrite:false}));
   floor.rotation.x=-Math.PI/2;floor.position.y=-.018;floor.receiveShadow=true;floor.renderOrder=-2;scene.add(floor);
   const contact=createGroundContact(T,scene);
-  // All mechanical pieces sharing a primitive and finish are submitted together.
-  // Separate batch geometries hold the per-instance fade without leaking it into other materials.
+  // Una sola chiamata di disegno per materiale e per macchina (giro 20/11). Prima ogni coppia
+  // geometria-materiale era un InstancedMesh a sé: 350 maglie per la macchina del 1960, 700 chiamate con
+  // le ombre, e su una GPU integrata il costo del fotogramma andava quasi tutto in quelle chiamate
+  // (misurato: dimezzando le maglie il fotogramma scendeva del 40%). Ora le geometrie dei pezzi con lo
+  // stesso materiale stanno in un solo buffer; ogni vertice porta l'indice del suo pezzo (batchId) e la
+  // posa di ogni pezzo sta in una texture di matrici condivisa da tutti i materiali della macchina, lo
+  // schema di BatchedMesh di three (stessi shader, ombre comprese). Ogni pezzo resta indipendente.
+  // I pezzi fuori scena si saltano con il disegno multiplo (WEBGL_multi_draw); senza l'estensione si
+  // disegna tutto il buffer e un pezzo nascosto ha matrice nulla (nessun pixel).
   function applyFinish(material,finish) {
     material.onBeforeCompile=(s)=>{
-      s.vertexShader='attribute vec2 surfaceOffset;\n'+s.vertexShader;
       s.vertexShader=s.vertexShader.replace('#include <uv_vertex>',`#include <uv_vertex>
+        vec2 surfaceOffset=partData(3).xy;
         #ifdef USE_MAP
           vMapUv+=surfaceOffset;
         #endif
@@ -57,76 +74,119 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
         #endif`);
       finish.configure(s,material);
     };
-    material.customProgramCacheKey=()=> 'tedeschi-photographic-part-v2';
+    material.customProgramCacheKey=()=> 'tedeschi-photographic-part-v3';
+  }
+  const multiDraw=renderer.extensions.has('WEBGL_multi_draw');
+  // geometria unita dei pezzi di un materiale: posizione, normale, uv e indice del pezzo
+  function mergeParts(machine,indices){
+    let vertices=0,elements=0;
+    for(const i of indices){
+      const g=machine.parts[i].geometry,count=g.attributes.position.count;
+      vertices+=count;elements+=g.index?Math.min(g.index.count-g.drawRange.start,g.drawRange.count):count;
+    }
+    const position=new Float32Array(vertices*3),normal=new Float32Array(vertices*3),uv=new Float32Array(vertices*2);
+    const batchId=new Float32Array(vertices),index=new Uint32Array(elements);
+    const starts=new Int32Array(indices.length),counts=new Int32Array(indices.length);
+    let v=0,e=0;
+    indices.forEach((partIndex,k)=>{
+      const g=machine.parts[partIndex].geometry,a=g.attributes,count=a.position.count;
+      position.set(a.position.array.subarray(0,count*3),v*3);
+      if(a.normal)normal.set(a.normal.array.subarray(0,count*3),v*3);
+      if(a.uv)uv.set(a.uv.array.subarray(0,count*2),v*2);
+      batchId.fill(partIndex,v,v+count);
+      starts[k]=e;
+      if(g.index){
+        const from=g.drawRange.start,to=Math.min(g.index.count,from+g.drawRange.count),src=g.index.array;
+        for(let j=from;j<to;j++)index[e++]=src[j]+v;
+      }else for(let j=0;j<count;j++)index[e++]=v+j;
+      counts[k]=e-starts[k];
+      v+=count;
+    });
+    const geometry=new T.BufferGeometry();
+    geometry.setAttribute('position',new T.BufferAttribute(position,3));
+    geometry.setAttribute('normal',new T.BufferAttribute(normal,3));
+    geometry.setAttribute('uv',new T.BufferAttribute(uv,2));
+    geometry.setAttribute('batchId',new T.BufferAttribute(batchId,1));
+    geometry.setIndex(new T.BufferAttribute(index,1));
+    return {geometry,starts,counts,elements};
   }
   const models=machines.map((machine,modelIndex)=>{
-    const finish=createPhotographicFinish(T,modelIndex,renderer.toneMappingExposure);
+    const n=machine.parts.length,size=partTextureSize(n);
+    const poses=new T.DataTexture(new Float32Array(size*size*4),size,size,T.RGBAFormat,T.FloatType);
+    const finish=createPhotographicFinish(T,modelIndex,renderer.toneMappingExposure,createPartTexture(T,machine));
     // Several machines share the same bare steel. Its photographic appearance
     // belongs to one assembly, while the underlying PBR maps remain shared.
-    const finishMaterials=new Map();
-    const groups=new Map(),refs=new Array(machine.parts.length);
+    const byMaterial=new Map();
     machine.parts.forEach((p,i)=>{
-      const k=p.geometry.uuid+'|'+p.material.uuid;
-      let group=groups.get(k);if(!group){group={p,indices:[]};groups.set(k,group);}group.indices.push(i);
+      let list=byMaterial.get(p.material);if(!list)byMaterial.set(p.material,list=[]);list.push(i);
     });
     const root=new T.Group();root.visible=false;scene.add(root);
-    const batches=[];
-    groups.forEach(({p,indices})=>{
-      // Reuse the immutable vertex/index buffers across material batches.
-      const geometry=new T.InstancedBufferGeometry();
-      geometry.setIndex(p.geometry.index);
-      for(const [name,attribute] of Object.entries(p.geometry.attributes))geometry.setAttribute(name,attribute);
-      geometry.setDrawRange(p.geometry.drawRange.start,p.geometry.drawRange.count);
-      // A bolted joint retains its surface pattern while moving. Repeated panels
-      // and tread shoes sample different places in the same physical finish.
-      const offsets=new Float32Array(indices.length*2);
-      indices.forEach((id,i)=>{
-        const a=(id+1)*.61803398875,b=(id+1)*.41421356237;
-        offsets[2*i]=a-Math.floor(a);offsets[2*i+1]=b-Math.floor(b);
-      });
-      const surfaceOffset=new T.InstancedBufferAttribute(offsets.slice(),2).setUsage(T.DynamicDrawUsage);
-      geometry.setAttribute('surfaceOffset',surfaceOffset);
-      const rest=createRestBuffer(T,machine,indices,geometry);
-      let material=finishMaterials.get(p.material);
-      if(!material){
-        material=p.material.clone();
-        applyFinish(material,finish);
-        finishMaterials.set(p.material,material);
-      }
-      const mesh=new T.InstancedMesh(geometry,material,indices.length);
-      mesh.instanceMatrix.setUsage(T.DynamicDrawUsage);
-      mesh.frustumCulled=false;
-      mesh.castShadow=!p.material.transparent;mesh.receiveShadow=!p.material.transparent;
+    const groups=[],groupOf=new Int32Array(n);
+    byMaterial.forEach((indices,source)=>{
+      const {geometry,starts,counts,elements}=mergeParts(machine,indices);
+      const material=source.clone();
+      applyFinish(material,finish);
+      const mesh=new T.Mesh(geometry,material);
+      // per three è un BatchedMesh: stessi shader (USE_BATCHING) e disegno multiplo, liste nostre
+      mesh.isBatchedMesh=true;mesh._matricesTexture=poses;
+      mesh._multiDrawStarts=new Int32Array(indices.length);mesh._multiDrawCounts=new Int32Array(indices.length);mesh._multiDrawCount=0;
+      mesh.frustumCulled=false;mesh.matrixAutoUpdate=false;
+      mesh.castShadow=!source.transparent;mesh.receiveShadow=!source.transparent;
       root.add(mesh);
-      const batch={mesh,surfaceOffset,rest,live:0,identities:Int32Array.from(indices),poses:Array(indices.length),min:Infinity,max:-1,restMin:Infinity,restMax:-1};
-      batches.push(batch);
-      indices.forEach((partIndex,i)=>refs[partIndex]={batch,restOffset:12*i,u:offsets[2*i],v:offsets[2*i+1]});
+      const group={mesh,parts:Int32Array.from(indices),starts,counts,elements,changed:true};
+      indices.forEach(i=>{groupOf[i]=groups.length;});
+      groups.push(group);
     });
-    return {root,refs,batches,finish};
+    return {root,groups,groupOf,poses,data:poses.image.data,shown:new Uint8Array(n),seen:new Uint32Array(n),pose:new Array(n),frame:0,dirty:false,finish};
   });
   performance.mark('r:batches');let yaw=0,elevation=0,orbitYaw=0,orbitElevation=0,distance=19;
   const focus=new T.Vector3(0,2.1,0);
-  let viewW=0,viewH=0, first=0, second=0, phase=0;
+  let viewW=0,viewH=0,viewDpr=0, first=0, second=0, phase=0;
   const motion=createTransition(T,machines,camera);performance.mark('r:transition');
-  function writeVisible(mi,pi,matrix,opacity,stable=false){
+  // Firma di motion.sample: (macchina, pezzo, matrice, opacità, sfocatura, posa stabile). La sfocatura
+  // per pezzo non serve (la profondità di campo è un passaggio di schermo). Una posa «stabile» (riposo,
+  // pezzo staccato in attesa) è sempre lo stesso oggetto Matrix4: se il pezzo era già lì non si riscrive.
+  function writePart(mi,pi,matrix,opacity,blur,stable=false){
     if(opacity<=.0001)return;
-    const {batch,restOffset,u,v}=models[mi].refs[pi];
-    const slot=batch.live++, changed=batch.identities[slot]!==pi;
-    if(changed){
-      batch.identities[slot]=pi;
-      batch.surfaceOffset.setXY(slot,u,v);
-      const rest=batch.rest;
-      for(let j=0;j<12;j++)rest.buffer.array[slot*12+j]=rest.positions[restOffset+j];
-      batch.restMin=Math.min(batch.restMin,slot);batch.restMax=Math.max(batch.restMax,slot);
-    }
-    if(!stable || changed || batch.poses[slot]!==matrix){
-      batch.mesh.setMatrixAt(slot,matrix);
-      batch.poses[slot]=stable?matrix:null;
-      batch.min=Math.min(batch.min,slot);batch.max=slot;
-    }
+    const m=models[mi];
+    m.seen[pi]=m.frame;
+    if(stable&&m.shown[pi]&&m.pose[pi]===matrix)return;
+    matrix.toArray(m.data,pi*16);
+    m.pose[pi]=stable?matrix:null;
+    if(!m.shown[pi]){m.shown[pi]=1;m.groups[m.groupOf[pi]].changed=true;}
+    m.dirty=true;
   }
-  function writePart(mi,pi,matrix,opacity,blur,stable){
-    writeVisible(mi,pi,matrix,opacity,stable);
+  // Dopo motion.sample: i pezzi non scritti in questo fotogramma escono di scena; per ogni materiale si
+  // rifà la lista dei tratti da disegnare (pezzi visibili contigui fusi in un tratto solo).
+  function settleModel(m){
+    for(let pi=0;pi<m.seen.length;pi++){
+      if(m.shown[pi]&&m.seen[pi]!==m.frame){
+        m.shown[pi]=0;m.pose[pi]=null;m.groups[m.groupOf[pi]].changed=true;
+        if(!multiDraw){m.data.fill(0,pi*16,pi*16+16);m.dirty=true;}
+      }
+    }
+    let any=false;
+    for(const g of m.groups){
+      if(g.changed){
+        g.changed=false;
+        const mesh=g.mesh,starts=mesh._multiDrawStarts,counts=mesh._multiDrawCounts;
+        let k=0,open=-1,end=0,live=0;
+        for(let j=0;j<g.parts.length;j++){
+          if(!m.shown[g.parts[j]]){open=-1;continue;}
+          live++;
+          if(!multiDraw)continue;
+          if(open>=0&&g.starts[j]===end){counts[open]+=g.counts[j];}
+          else{open=k++;starts[open]=g.starts[j]*4;counts[open]=g.counts[j];}
+          end=g.starts[j]+g.counts[j];
+        }
+        if(!multiDraw&&live){starts[0]=0;counts[0]=g.elements;k=1;}
+        mesh._multiDrawCount=live?k:0;
+        mesh.visible=live>0;
+      }
+      any=any||g.mesh.visible;
+    }
+    m.root.visible=any;
+    if(m.dirty){m.poses.needsUpdate=true;m.dirty=false;}
   }
   function machineTarget(samples){
     const buffer=new T.WebGLRenderTarget(1,1,{
@@ -140,7 +200,7 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
     }
     return buffer;
   }
-  const target=machineTarget(4), lightTarget=machineTarget(0);
+  const target=machineTarget(4);
   const blurTarget=new T.WebGLRenderTarget(1,1,{type:target.texture.type,depthBuffer:false,stencilBuffer:false});
   const postScene=new T.Scene(),postCamera=new T.OrthographicCamera(-1,1,1,-1,0,1);
   const uniforms={colorTex:{value:target.texture},depthTex:{value:target.depthTexture},blurTex:{value:blurTarget.texture},
@@ -204,7 +264,6 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
     }`});
   const quad=new T.Mesh(new T.PlaneGeometry(2,2),postMat);postScene.add(quad);
   const blurScene=new T.Scene();blurScene.add(new T.Mesh(quad.geometry,blurMat));
-  let slowFrames=0,previousFrame=0,recoveryFrames=0,economy=false,settleTimer=0;
   // Tight per-part support points, not a single eight-corner box around a
   // long angled boom. Keep actual vertices for large irregular components;
   // the corners of tiny hardware add at most a sub-pixel safety margin.
@@ -275,36 +334,16 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
   const activeModels=[];
   function updateParts(){
     const seated=first===second||phase===0?first:phase===1?second:-1;
-    // Panning an assembled machine changes the camera, not the instance matrices.
+    // Panning an assembled machine changes the camera, not the part matrices.
     if(seated>=0&&seated===lastSeated)return;
     lastSeated=seated;
     activeModels.length=0;
     for(let i=0;i<models.length;i++){
-      if(i===first||i===second)activeModels.push(models[i]);
+      if(i===first||i===second){activeModels.push(models[i]);models[i].frame++;}
       else models[i].root.visible=false;
     }
-    for(const m of activeModels)for(const b of m.batches){
-      b.live=0;b.min=Infinity;b.max=-1;b.restMin=Infinity;b.restMax=-1;
-    }
     motion.sample(first,second,phase,writePart,camera,true);
-    for(const m of activeModels){
-      m.root.visible=false;
-      for(const b of m.batches){
-        const mesh=b.mesh;
-        mesh.visible=b.live>0;mesh.count=b.live;
-        if(!mesh.visible)continue;
-        m.root.visible=true;
-        if(b.min<=b.max){
-          const attr=mesh.instanceMatrix;
-          attr.clearUpdateRanges();attr.addUpdateRange(b.min*16,(b.max-b.min+1)*16);attr.needsUpdate=true;
-        }
-        if(b.restMin<=b.restMax){
-          const count=b.restMax-b.restMin+1;
-          b.surfaceOffset.clearUpdateRanges();b.surfaceOffset.addUpdateRange(b.restMin*2,count*2);b.surfaceOffset.needsUpdate=true;
-          const rest=b.rest.buffer;rest.clearUpdateRanges();rest.addUpdateRange(b.restMin*12,count*12);rest.needsUpdate=true;
-        }
-      }
-    }
+    for(const m of activeModels)settleModel(m);
   }
   function draw(){
     if(!warmed)return;
@@ -322,43 +361,71 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
     const cast=contact.update(first,second,phase);
     floor.material.opacity=cast*(.22-.10*lensEnvelope);
     floor.visible=floor.material.opacity>.0001;
-    const buffer=moving&&economy?lightTarget:target;
-    uniforms.colorTex.value=buffer.texture;uniforms.depthTex.value=buffer.depthTexture;
-    renderer.setRenderTarget(buffer);renderer.render(scene,camera);
-    if(lensEnvelope>.001){renderer.setRenderTarget(blurTarget);renderer.render(blurScene,postCamera);}
+    // Una sola qualità, sempre la stessa (giro 20/11). Prima, dopo cinque fotogrammi lenti la scena
+    // passava a un buffer ridotto (76%, senza antialiasing) e tornava piena 160 ms dopo l'ultimo
+    // movimento: due cambi di nitidezza visibili come «scatti» (misurati nello screencast) senza un
+    // guadagno di tempo misurabile su Intel UHD.
+    // Le mipmap del colore restano generate a ogni fotogramma: three alloca i livelli solo se
+    // generateMipmaps è vero quando il buffer nasce (anche dopo ogni ridimensionamento), e spegnerle
+    // a lente chiusa lasciava il buffer incompleto, cioè un fotogramma nero all'accendersi della lente.
+    const lens=lensEnvelope>.001;
+    renderer.setRenderTarget(target);renderer.render(scene,camera);
+    if(lens){renderer.setRenderTarget(blurTarget);renderer.render(blurScene,postCamera);}
     renderer.setRenderTarget(null);
     renderer.render(postScene,postCamera);
-    renderer.autoClear=true;
-  }
-  function trackCadence(hint){
-    // Only continuous input establishes a frame budget. Isolated seeks stay at
-    // full quality, as do every assembled pose and all idle frames.
-    clearTimeout(settleTimer);
-    if(!hint){previousFrame=0;slowFrames=0;economy=false;return;}
-    const now=performance.now(),dt=now-previousFrame;previousFrame=now;
-    if(dt<5||dt>180){slowFrames=0;recoveryFrames=0;}
-    else {
-    slowFrames=dt>26?slowFrames+1:0;
-    recoveryFrames=dt<19?recoveryFrames+1:0;
-    if(slowFrames>=5)economy=true;
-    if(recoveryFrames>=48)economy=false;
-    }
-    if(economy){
-      settleTimer=setTimeout(()=>{economy=false;slowFrames=recoveryFrames=0;draw();},160);
-    }
   }
   function resize(){
     const w=Math.max(1,host.clientWidth),h=Math.max(1,host.clientHeight);
-    if(w===viewW&&h===viewH)return;
-    viewW=w;viewH=h;renderer.setSize(w,h,false);
+    const dpr=devicePixelRatio||1;
+    if(w===viewW&&h===viewH&&dpr===viewDpr)return;
+    viewW=w;viewH=h;viewDpr=dpr;
+    // densità decisa qui, al ridimensionamento o al cambio di schermo, mai durante la corsa (densita.js)
+    renderer.setPixelRatio(densityFor({dpr,w,h,small,tier}));
+    quality.pixelRatio=+renderer.getPixelRatio().toFixed(3);
+    renderer.setSize(w,h,false);
     const pr=renderer.getPixelRatio(),pw=Math.round(w*pr),ph=Math.round(h*pr);
     target.setSize(pw,ph);
-    lightTarget.setSize(Math.max(1,Math.round(pw*.76)),Math.max(1,Math.round(ph*.76)));
     blurTarget.setSize(Math.max(1,Math.ceil(pw*.5)),Math.max(1,Math.ceil(ph*.5)));
     uniforms.pixel.value.set(1/pw,1/ph);uniforms.maxRadius.value=small?9*pr:15*pr;
     camera.aspect=w/h;camera.updateProjectionMatrix();frameRevision++;setCamera();draw();
   }
   new ResizeObserver(resize).observe(host);
+  // Finestra portata su uno schermo con un'altra densità senza cambiare misura: il ResizeObserver non
+  // scatta. Si ascolta la densità attuale (la domanda si rifà a ogni cambio); se il cambio arriva a corsa
+  // in atto lo si applica a scena ferma, mai a metà di un movimento.
+  let densityQuery=null,densityPending=false,lastShowAt=0;
+  function watchDensity(){
+    densityQuery?.removeEventListener?.('change',onDensity);
+    try{densityQuery=matchMedia('(resolution: '+(devicePixelRatio||1)+'dppx)');densityQuery.addEventListener('change',onDensity);}catch{densityQuery=null;}
+  }
+  function onDensity(){
+    watchDensity();
+    densityPending=true;applyDensityWhenStill();
+  }
+  function applyDensityWhenStill(){
+    if(!densityPending)return;
+    // «ferma» = nessun fotogramma nuovo da 300 ms (non la fase: a riposo lo scroll lascia la scena a 1,001
+    // e una condizione sulla fase rimandava il ricalcolo per sempre, misurato 20/11)
+    if(performance.now()-lastShowAt<300){setTimeout(applyDensityWhenStill,200);return;}
+    densityPending=false;resize();
+  }
+  watchDensity();
+  // rete di sicurezza: l'evento change della query non arriva in ogni caso (misurato 20/11: con il DPR
+  // emulato da CDP non scatta né nella pagina né nell'iframe). Un confronto al secondo, una lettura sola.
+  setInterval(()=>{if(!densityPending&&viewW&&(devicePixelRatio||1)!==viewDpr)onDensity();},1000);
+  // Contesto WebGL perso (driver ripartito, scheda che si spegne): si chiede di riaverlo e, quando
+  // torna, si rifanno le cose che vivono solo sulla GPU e non si ricaricano da sole. Three ricrea
+  // programmi, buffer, texture (anche le matrici dei pezzi) e render target al primo disegno; le sonde
+  // di luce (render target riempiti una volta) si rigenerano, ombre e pose si ricalcolano. I fondali sono
+  // CSS e non sono toccati.
+  renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();},false);
+  renderer.domElement.addEventListener('webglcontextrestored',()=>{
+    const fresh=createLightProbes(T,renderer,lightSamples);
+    lightProbes.splice(0,lightProbes.length,...fresh);
+    scene.environment=lightProbes[phase<.5?first:second].texture;
+    for(const m of models)m.poses.needsUpdate=true;
+    lastShadow=NaN;lastSeated=-2;viewW=0;resize();draw();
+  },false);
   function rotate(dx,dy){
     orbitYaw=T.MathUtils.clamp(orbitYaw+dx,-1.15,1.15);orbitElevation=T.MathUtils.clamp(orbitElevation+dy,-.10,.52);
     frameRevision++;setCamera();draw();onOrbit(orbitYaw,orbitElevation);
@@ -403,7 +470,7 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
   function compileAll(all){
     const previous=renderer.getRenderTarget();
     const saved=[];
-    if(all)for(const m of models){saved.push([m.root,m.root.visible]);m.root.visible=true;for(const b of m.batches){saved.push([b.mesh,b.mesh.visible]);b.mesh.visible=true;}}
+    if(all)for(const m of models){saved.push([m.root,m.root.visible]);m.root.visible=true;for(const g of m.groups){saved.push([g.mesh,g.mesh.visible]);g.mesh.visible=true;}}
     const pending=[];
     try {
       renderer.setRenderTarget(target);
@@ -418,13 +485,52 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
     }
     return Promise.all(pending);
   }
-  function prepareTransitions(){return compileAll(true);}
+  // compileAsync collega i programmi, ma con ANGLE su Direct3D (Chrome su Windows) la traduzione finale
+  // degli shader, i buffer e le texture si preparano al primo disegno vero. Qui ogni epoca si disegna una
+  // volta fuori schermo, tutta, montata, ombre comprese, un'epoca per fotogramma, a scena ferma: il quadro
+  // a schermo non cambia (il prossimo disegno rifà buffer e ombre) e le pose si rimettono com'erano.
+  function primeModel(index){
+    const m=models[index],machine=machines[index];
+    const saved=[[floor,floor.visible]],environment=scene.environment,data=m.data.slice();
+    floor.visible=true; // l'ombra a terra si accende solo a metà passaggio: va preparata anche lei
+    for(const other of models){saved.push([other.root,other.root.visible]);other.root.visible=other===m;}
+    const lists=m.groups.map(g=>[g.mesh.visible,g.mesh._multiDrawCount,g.mesh._multiDrawStarts[0],g.mesh._multiDrawCounts[0]]);
+    const matrix=new T.Matrix4();
+    machine.parts.forEach((p,i)=>matrix.compose(p.position,p.quaternion,p.scale).toArray(m.data,i*16));
+    for(const g of m.groups){g.mesh.visible=true;g.mesh._multiDrawCount=1;g.mesh._multiDrawStarts[0]=0;g.mesh._multiDrawCounts[0]=g.elements;}
+    m.poses.needsUpdate=true;
+    const previous=renderer.getRenderTarget();
+    try{
+      scene.environment=lightProbes[index].texture;
+      renderer.shadowMap.needsUpdate=true;
+      renderer.setRenderTarget(target);renderer.render(scene,camera);
+      renderer.setRenderTarget(blurTarget);renderer.render(blurScene,postCamera);
+    }finally{
+      renderer.setRenderTarget(previous);scene.environment=environment;
+      for(const [o,v] of saved)o.visible=v;
+      m.groups.forEach((g,k)=>{[g.mesh.visible,g.mesh._multiDrawCount,g.mesh._multiDrawStarts[0],g.mesh._multiDrawCounts[0]]=lists[k];});
+      m.data.set(data);m.poses.needsUpdate=true;
+      lastShadow=NaN; // la mappa delle ombre ora contiene la prova: si rifà al prossimo disegno
+    }
+  }
+  async function prepareTransitions(){
+    await compileAll(true);
+    for(let i=0;i<models.length;i++){
+      await new Promise(requestAnimationFrame);
+      primeModel(i);
+    }
+  }
   // primo fotogramma: shader dell'epoca di partenza compilati in parallelo, poi il disegno
   async function warm(){
     lastSeated=-2;updateParts();setCamera();
     await compileAll(false);
     warmed=true;lastSeated=-2;draw();
   }
+  // Nella scena non si muove nessun oggetto: si muovono solo le istanze (matrici nei buffer) e la
+  // camera, che three aggiorna da sé. Le matrici del grafo si calcolano una volta qui invece che
+  // per ognuna delle ~700 maglie a ogni fotogramma (profilo su telefono emulato: ~3% del disegno).
+  scene.updateMatrixWorld(true);
+  scene.matrixWorldAutoUpdate=false;
   resize();performance.mark('r:primo-disegno');
   // L'epoca da cui si parte arriva per prima, le altre in fila in sottofondo; ogni texture
   // si carica sulla GPU appena arriva, così il primo passaggio non ha singhiozzi.
@@ -445,11 +551,24 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
   let chain=firstFinish;
   for(const index of order.slice(1))chain=loads[index]=chain.then(()=>loadFinish(index));
   const finishReady=Promise.all(loads);
-  return {canvas:renderer.domElement,bounds:worldBounds,view:renderer,draw,prepareTransitions,warm,finishReady,firstFinish,groundReady:contact.ready,
+  // Rettangolo della macchina a riposo sullo schermo (coordinate della finestra), dai punti di
+  // inquadratura della macchina in vista: serve alla pagina ospite per allineare il segnaposto alla
+  // scena prima della dissolvenza (parco-3d.js), così le due macchine coincidono e non si sdoppiano.
+  function machineRect(){
+    const f=framing[first],p=f.points,v=new T.Vector3(),r=host.getBoundingClientRect();
+    let l=Infinity,t=Infinity,rr=-Infinity,b=-Infinity;
+    camera.updateMatrixWorld();
+    for(let i=0;i<p.length;i+=3){
+      v.set(p[i],p[i+1],p[i+2]).project(camera);
+      const x=(v.x+1)/2*r.width,y=(1-v.y)/2*r.height;
+      if(x<l)l=x;if(x>rr)rr=x;if(y<t)t=y;if(y>b)b=y;
+    }
+    return {left:r.left+l,top:r.top+t,right:r.left+rr,bottom:r.top+b};
+  }
+  return {quality,machineRect,canvas:renderer.domElement,bounds:worldBounds,view:renderer,draw,prepareTransitions,warm,finishReady,firstFinish,groundReady:contact.ready,
     show(a,b,t){
       if(a===first&&b===second&&t===phase)return;
-      trackCadence(a!==b&&t>0&&t<1);
-      first=a;second=b;phase=t;scene.environment=lightProbes[t<.5?a:b].texture;setCamera();draw();},
+      lastShowAt=performance.now();first=a;second=b;phase=t;scene.environment=lightProbes[t<.5?a:b].texture;setCamera();draw();},
     setReducedMotion(value){reduceOrbit=Boolean(value);},
     reset(animate=false){
       if(animate&&!reduceOrbit){pointCamera(0,0);return;}

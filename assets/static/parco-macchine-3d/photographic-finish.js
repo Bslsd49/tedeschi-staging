@@ -10,8 +10,16 @@ const surfaces = years.map(y => [() => 'media/finitura-' + y + (innerWidth <= 76
 
 // Projection is evaluated in the assembled coordinate system of each part.
 // The model's animated transform cannot slide the photographic patina along it.
+// Dati fissi di ogni pezzo (giro 20/11): le tre righe della sua matrice a riposo e lo spostamento della
+// trama, in una texture accanto a quella delle pose (4 texel per pezzo, stesso schema di three per
+// batchingTexture). Si leggono con batchId, l'indice del pezzo scritto in ogni suo vertice.
 const vertexDeclarations = `
-attribute vec4 restRow0, restRow1, restRow2;
+uniform highp sampler2D finishRest;
+vec4 partData(const in int k) {
+  int size = textureSize(finishRest, 0).x;
+  int j = int(batchId) * 4 + k;
+  return texelFetch(finishRest, ivec2(j % size, j / size), 0);
+}
 uniform mat4 finishProjector;
 uniform vec3 finishEye;
 varying vec4 vFinishClip;
@@ -19,6 +27,7 @@ varying vec2 vFinishView;
 `;
 
 const vertexProjection = `
+vec4 restRow0 = partData(0), restRow1 = partData(1), restRow2 = partData(2);
 vec4 localPoint = vec4(transformed, 1.);
 vec3 restPoint = vec3(dot(restRow0,localPoint),dot(restRow1,localPoint),dot(restRow2,localPoint));
 vFinishClip = finishProjector * vec4(restPoint, 1.);
@@ -26,7 +35,7 @@ mat3 restBasis = mat3(
   normalize(vec3(restRow0.x,restRow1.x,restRow2.x)),
   normalize(vec3(restRow0.y,restRow1.y,restRow2.y)),
   normalize(vec3(restRow0.z,restRow1.z,restRow2.z)));
-mat4 liveModel = modelMatrix * instanceMatrix;
+mat4 liveModel = modelMatrix * batchingMatrix;
 mat3 liveBasis = mat3(normalize(liveModel[0].xyz),normalize(liveModel[1].xyz),normalize(liveModel[2].xyz));
 vec3 referenceRay = normalize(finishEye - restPoint) * restBasis;
 vec3 livePoint = (liveModel * localPoint).xyz;
@@ -78,9 +87,10 @@ if(finishAvailable > .5 && vFinishView.x > .46) {
 }
 `;
 
-export function createPhotographicFinish(T, modelIndex, exposure) {
+export function createPhotographicFinish(T, modelIndex, exposure, partTexture) {
   const c=calibrations[modelIndex];
   const uniforms={
+    finishRest:{value:partTexture},
     finishProjector:{value:new T.Matrix4().fromArray(c.matrix)},
     finishEye:{value:new T.Vector3().fromArray(c.camera)},
     finishPlanes:{value:new T.Vector2(c.near,c.far)},
@@ -92,8 +102,9 @@ export function createPhotographicFinish(T, modelIndex, exposure) {
     configure(shader,material) {
       Object.assign(shader.uniforms,uniforms);
       shader.uniforms.finishClearPane={value:material.transparent&&material.opacity<1 ? 1 : 0};
-      shader.vertexShader=vertexDeclarations+shader.vertexShader.replace(
-        '#include <project_vertex>', vertexProjection+'\n#include <project_vertex>');
+      shader.vertexShader=shader.vertexShader
+        .replace('#include <batching_pars_vertex>','#include <batching_pars_vertex>\n'+vertexDeclarations)
+        .replace('#include <project_vertex>', vertexProjection+'\n#include <project_vertex>');
       shader.fragmentShader=fragmentDeclarations+shader.fragmentShader.replace(
         '#include <opaque_fragment>', fragmentProjection+'\n#include <opaque_fragment>');
     },
@@ -114,19 +125,23 @@ export function createPhotographicFinish(T, modelIndex, exposure) {
   };
 }
 
-// Interleaving uses one small GPU upload when a compacted batch changes order.
-export function createRestBuffer(T,machine,indices,geometry) {
-  const positions=new Float32Array(indices.length*12);
+// Lato della texture per n pezzi a 4 texel ciascuno: multiplo di 4, così i 4 texel di un pezzo stanno
+// sulla stessa riga (lo schema che three usa per batchingTexture).
+export function partTextureSize(n) {
+  return Math.max(4, 4 * Math.ceil(Math.sqrt(4 * n) / 4));
+}
+// Per pezzo: righe 0-2 della matrice a riposo, poi lo spostamento della trama. Un bullone conserva il
+// suo disegno mentre si muove; pannelli ripetuti e pattini leggono punti diversi della stessa finitura.
+export function createPartTexture(T, machine) {
+  const n=machine.parts.length, size=partTextureSize(n), data=new Float32Array(size*size*4);
   const transform=new T.Matrix4();
-  indices.forEach((partIndex,slot)=>{
-    const p=machine.parts[partIndex];
-    const e=transform.compose(p.position,p.quaternion,p.scale).elements;
-    const at=slot*12;
-    for(let row=0;row<3;row++)for(let col=0;col<4;col++)
-      positions[at+4*row+col]=e[row+col*4];
+  machine.parts.forEach((p,i)=>{
+    const e=transform.compose(p.position,p.quaternion,p.scale).elements, at=16*i;
+    for(let row=0;row<3;row++)for(let col=0;col<4;col++)data[at+4*row+col]=e[row+col*4];
+    const a=(i+1)*.61803398875,b=(i+1)*.41421356237;
+    data[at+12]=a-Math.floor(a);data[at+13]=b-Math.floor(b);
   });
-  const buffer=new T.InstancedInterleavedBuffer(positions.slice(),12).setUsage(T.DynamicDrawUsage);
-  for(let row=0;row<3;row++)
-    geometry.setAttribute('restRow'+row,new T.InterleavedBufferAttribute(buffer,4,row*4));
-  return {buffer,positions};
+  const texture=new T.DataTexture(data,size,size,T.RGBAFormat,T.FloatType);
+  texture.needsUpdate=true;
+  return texture;
 }

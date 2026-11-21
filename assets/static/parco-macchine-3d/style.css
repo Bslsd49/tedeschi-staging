@@ -26,8 +26,12 @@ button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px so
   --date-size:min(clamp(80px,12.4cqi,222px),25cqb);
   --zona:max(35cqi,calc(var(--date-size)*2.9));
   --zona-gap:clamp(14px,2.2cqi,44px)}
-.backdrops,.photoscene,.shade{position:absolute;inset:0}
-.photoscene{background-size:cover;background-position:50% 54%;will-change:clip-path}
+.backdrops,.shade{position:absolute;inset:0}
+/* Tendina composta dalla GPU (giro 20/11): la finestra è larga tre volte la scena, inclinata e spostata
+   con una trasformazione; la foto dentro ha la trasformazione inversa e resta ferma. Nessun ridisegno
+   a ogni fotogramma (il ritaglio clip-path costava ~10 ms di raster per fotogramma su Intel UHD). */
+.photoscene{position:absolute;top:0;bottom:0;left:-200%;width:300%;overflow:hidden;transform-origin:66.6667% 0;will-change:transform}
+.photoscene>i{position:absolute;top:0;bottom:0;left:66.6667%;width:33.3333%;background-size:cover;background-position:50% 54%;transform-origin:0 0;will-change:transform}
 .shade{pointer-events:none;background:linear-gradient(90deg,rgba(10,13,10,.93) 0%,rgba(15,18,15,.81) 19%,rgba(18,21,18,.43) 40%,rgba(21,23,20,.03) 66%),linear-gradient(0deg,rgba(14,17,14,.42),transparent 24%);}
 .scene-head{position:absolute;top:clamp(22px,3.6vw,56px);left:clamp(21px,4vw,68px);display:flex;gap:12px;align-items:center;z-index:3}
 .scene-head h1{font-size:12px;font-weight:730;letter-spacing:.11em;text-transform:uppercase;margin:0}
@@ -107,7 +111,7 @@ button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px so
 .stop:hover{color:#10120e;background:#eaeae1}
 .sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 [hidden]{display:none!important}
-@media(max-width:760px){
+@media(max-width:760.98px){
  .mast{height:55px}.brand{gap:12px;font-size:12px}.brand img{width:64px;height:41px}.motion-switch{font-size:10.5px}
  .scene{height:clamp(455px,65svh,600px);min-height:455px}.scene-head{top:21px}.scene-head h1{font-size:10px}.yellow-rule{width:16px}
  .shade{background:linear-gradient(180deg,rgba(13,16,13,.74),rgba(17,20,17,.43) 33%,rgba(17,20,17,0) 65%,rgba(14,16,13,.47))}
@@ -130,7 +134,7 @@ button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px so
 .research a{color:#31492c;text-underline-offset:2px}
 
 .mobile-illustration-note{display:none}
-@media(max-width:760px){
+@media(max-width:760.98px){
   .scene .inspect{top:11px;right:14px;padding:4px 8px}
   .inspect span:last-child{display:none}
   .scene-foot{display:none}
@@ -139,11 +143,11 @@ button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px so
 
 .brand h1{margin:0;font:inherit;white-space:nowrap}
 .illustration-note{margin:8px 0 0;font-size:12px;line-height:1.35;color:#5d6054}
-@media(max-width:760px){.shade{background:linear-gradient(90deg,rgba(6,10,6,.87) 0%,rgba(12,16,12,.75) 27%,rgba(12,16,12,.46) 53%,rgba(15,20,15,.05) 86%),linear-gradient(0deg,rgba(10,12,10,.17),transparent 65%)}}
+@media(max-width:760.98px){.shade{background:linear-gradient(90deg,rgba(6,10,6,.87) 0%,rgba(12,16,12,.75) 27%,rgba(12,16,12,.46) 53%,rgba(15,20,15,.05) 86%),linear-gradient(0deg,rgba(10,12,10,.17),transparent 65%)}}
 
 /* A fixed block shares one baseline grid throughout all four eras. On a
    phone the model gets a full-width stage above that same editorial block. */
-@media(max-width:640px){
+@media(max-width:640.98px){
   .scene .shade{
     background:linear-gradient(0deg,rgba(10,13,11,.93),rgba(11,14,12,.83) 32%,rgba(13,15,12,.16) 60%,rgba(13,15,12,.05)),
                linear-gradient(90deg,rgba(8,12,9,.44),transparent 72%);
@@ -167,7 +171,7 @@ button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px so
   .story{top:var(--story-top,clamp(20px,12%,74px));--title-size:min(clamp(17px,2cqi,29px),6cqb);--subtitle-size:13px}
   .story-copy p{font-size:15px;line-height:1.34}
 }
-@media(max-width:640px){.scene{--date-size:clamp(48px,14.25cqi,84px)}}
+@media(max-width:640.98px){.scene{--date-size:clamp(48px,14.25cqi,84px)}}
 .td3-pin>#exhibit,html.td3-embedded #exhibit{grid-template-columns:minmax(0,1fr)}
 @media(max-width:365px){
   .timeline-name{min-width:0}
@@ -178,11 +182,12 @@ button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px so
 /* ---------- giro 13/11 (A5) ---------- */
 .story-probe{visibility:hidden;top:0!important;pointer-events:none}
 /* tendina: taglio obliquo col filo giallo, stessa inclinazione e curva dei tagli del sito */
-.curtain-thread{position:absolute;inset:0;z-index:2;background:var(--yellow);pointer-events:none;
+.curtain-thread>i{position:absolute;top:0;bottom:0;left:0;width:4px;background:var(--yellow);transform-origin:0 0;will-change:transform}
+.curtain-thread{position:absolute;inset:0;z-index:2;pointer-events:none;
   /* il filo non passa mai dietro i testi: si spegne prima della zona protetta */
   -webkit-mask-image:linear-gradient(to right,transparent calc(var(--story-x) + var(--zona)),#000 calc(var(--story-x) + var(--zona) + var(--zona-gap)));
   mask-image:linear-gradient(to right,transparent calc(var(--story-x) + var(--zona)),#000 calc(var(--story-x) + var(--zona) + var(--zona-gap)))}
-@media(max-width:640px){.curtain-thread{
+@media(max-width:640.98px){.curtain-thread{
   -webkit-mask-image:linear-gradient(to bottom,#000 calc(var(--story-top,53%) - 34px),transparent calc(var(--story-top,53%) - 8px));
   mask-image:linear-gradient(to bottom,#000 calc(var(--story-top,53%) - 34px),transparent calc(var(--story-top,53%) - 8px))}}
 .backdrops{transition:transform .5s cubic-bezier(.22,1,.36,1)}
@@ -193,7 +198,7 @@ button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px so
 .scene-tools .motion-switch:hover .switch-shape{border-color:var(--ink)}
 .scene-tools .motion-switch:hover .switch-shape::after{background:var(--ink)}
 html.td3-manuale .motion-switch{display:none!important}
-@media(max-width:760px){.scene-tools{top:11px;right:12px}.scene .scene-tools .inspect{padding:4px 10px}}
+@media(max-width:760.98px){.scene-tools{top:11px;right:12px}.scene .scene-tools .inspect{padding:4px 10px}}
 .scene-tools .motion-switch span:last-child{max-width:none;white-space:nowrap}
 /* telefono: la riga dei comandi non si sovrappone mai, le tappe stanno in una riga */
 .timeline-name{min-width:0;flex:1 1 auto}
@@ -249,7 +254,7 @@ html.td3-manuale .motion-switch{display:none!important}
 html.td3-embedded .exhibit{max-width:none}
 /* telefono e scena impilata: il titolo può andare su due righe (a 320 px "IL BRACCIO ARTICOLATO"
    non entra in una): la sua riga cresce col testo invece di sovrapporsi alla descrizione */
-@media(max-width:640px){
+@media(max-width:640.98px){
   .story{--title-size:min(clamp(16px,4.9cqi,27px),5.1cqi)}
   .story-copy{grid-template-rows:minmax(var(--subtitle-track),auto) auto auto}
 }

@@ -7,17 +7,32 @@
  * Moduli: intervento, materiali, collaborazione, candidatura (più informazioni/contatto per compatibilità).
  * Nessun consenso generico nel modulo: c'è solo il rimando alla Privacy Policy.
  *
- * Risposta:
- *  - con "Accept: application/json" (invio da main.js) JSON con codice HTTP vero (200 / 422 / 429 / 500),
- *    così il sito non mostra mai un falso "inviato";
- *  - senza JavaScript redirect 303 verso /grazie/ (o ?stato=errore-invio) oppure, se i dati non
- *    sono validi, di nuovo sul modulo con ?errore=campi.
+ * Ordine dei controlli (il primo che scatta risponde)
+ *  1. corpo oltre 64 KB                                  -> 422, KO
+ *  2. honeypot _hp compilato                              -> finta accettazione (200, /grazie/)
+ *  3. _t assente o vuoto, invio NATIVO (senza Accept: application/json), cioè modulo senza JavaScript
+ *                                                         -> 422, KO (mai un "grazie" che non lo è)
+ *  4. _t assente o vuoto con Accept JSON (script o bot)    -> finta accettazione
+ *     _t presente ma più recente di 2 s, o oltre un giorno nel futuro -> finta accettazione
+ *  5. oltre 5 invii in 10 minuti dallo stesso IP           -> 429, KO (Retry-After 600)
+ *  6. validazione dei campi (nome, recapito, email, telefono, richiesta) -> 422, KO
+ *  7. mail() fallita                                       -> 500, KO
+ *  8. tutto in regola                                      -> 200, /grazie/
  *
- * Difese (giro del 13/11/2026)
- *  - honeypot _hp;
- *  - time-trap con _t OBBLIGATORIO: assente, zero, più recente di 3 secondi o oltre un giorno nel futuro
- *    = scartato con la stessa finta accettazione dell'invio troppo rapido (main.js lo valorizza al
- *    caricamento e aspetta i 3 secondi prima di inviare, quindi un visitatore vero non lo incontra);
+ * Caso -> risposta (JSON = invio da main.js; nativo = modulo senza JavaScript, redirect 303)
+ *  | caso                                  | JSON                       | nativo                          |
+ *  | JS, tempo giusto, dati validi         | 200 ok                     | non si presenta (serve JS per _t)|
+ *  | JS, invio troppo rapido (_t < 2 s)    | 200 ok finto, nulla parte  | 303 /grazie/ finto, nulla parte |
+ *  | honeypot compilato                    | 200 ok finto               | 303 /grazie/ finto              |
+ *  | senza JavaScript (_t vuoto)           | 200 ok finto               | 303 /invio-non-riuscito/        |
+ *  | oltre il limite di frequenza          | 429                        | 303 /invio-non-riuscito/        |
+ *  | campi non validi                      | 422                        | 303 /invio-non-riuscito/        |
+ *  | errore di mail()                      | 500                        | 303 /invio-non-riuscito/        |
+ * main.js valorizza _t al caricamento e aspetta 3 s prima di inviare: un visitatore con JavaScript
+ * non incontra mai la finta accettazione. La finta accettazione resta solo dove serve a non far
+ * imparare nulla ai bot.
+ *
+ * Altre difese (giro del 13/11/2026)
  *  - limite di frequenza per IP senza database: un file temporaneo per visitatore, con lock, il cui
  *    nome è un hash con sale giornaliero (l'IP non viene scritto da nessuna parte), dentro solo i
  *    timestamp degli ultimi invii, 5 ogni 10 minuti, scadenza automatica;
@@ -29,10 +44,15 @@
 
 declare(strict_types=1);
 
+date_default_timezone_set('Europe/Rome');
+
 $DESTINATARIO = 'info@impresatedeschi.it';
 $dominio = strtolower(preg_replace('/^www\./i', '', (string) ($_SERVER['SERVER_NAME'] ?? 'impresatedeschi.it')));
 if (!preg_match('/^[a-z0-9.-]+$/', $dominio)) $dominio = 'impresatedeschi.it';
 $MITTENTE = 'sito@' . $dominio;
+
+// pagina statica per ogni esito negativo senza JavaScript (mai un "grazie" che non lo è)
+$KO = '/invio-non-riuscito/';
 
 $vuoleJson = stripos((string) ($_SERVER['HTTP_ACCEPT'] ?? ''), 'application/json') !== false;
 
@@ -139,7 +159,7 @@ $ritorno = explode('?', explode('#', $ritorno)[0])[0];
 
 // corpo della richiesta ragionevole (campi di testo, niente allegati)
 if ((int) ($_SERVER['CONTENT_LENGTH'] ?? 0) > 65536) {
-    rispondi($vuoleJson, 422, 'non-valido', $ritorno . '?errore=richiesta');
+    rispondi($vuoleJson, 422, 'non-valido', $KO);
 }
 
 // anti-spam: honeypot e time-trap (finta accettazione, i bot non imparano nulla)
@@ -147,17 +167,22 @@ if (!empty($_POST['_hp'] ?? '')) {
     rispondi($vuoleJson, 200, 'ok', '/grazie/');
 }
 $t = (int) ($_POST['_t'] ?? 0);
+// modulo inviato senza JavaScript: _t nasce vuoto e lo scrive solo main.js. Esito negativo vero, non la finta
+// accettazione (il visitatore deve sapere che la richiesta non è partita).
+if ($t <= 0 && !$vuoleJson) {
+    rispondi($vuoleJson, 422, 'serve-javascript', $KO);
+}
 $trascorsi = time() - $t;
-// _t obbligatorio: se manca vale come invio troppo rapido. Un _t nel futuro è tollerato solo entro un
+// _t obbligatorio: con Accept JSON, se manca vale come invio troppo rapido. Un _t nel futuro è tollerato solo entro un
 // giorno (orologio del visitatore sballato), oltre è un valore costruito per aggirare il controllo.
-if ($t <= 0 || ($trascorsi >= 0 && $trascorsi < 3) || $trascorsi < -86400) {
+if ($t <= 0 || ($trascorsi >= 0 && $trascorsi < 2) || $trascorsi < -86400) {
     rispondi($vuoleJson, 200, 'ok', '/grazie/');
 }
 
 // limite di frequenza per IP
 if (troppeRichieste()) {
     header('Retry-After: 600');
-    rispondi($vuoleJson, 429, 'troppe-richieste', '/grazie/?stato=errore-invio');
+    rispondi($vuoleJson, 429, 'troppe-richieste', $KO);
 }
 
 $modulo = strtolower(riga(pulisci((string) ($_POST['modulo'] ?? 'contatto'), 40)));
@@ -179,7 +204,7 @@ if ($telefono !== '' && !preg_match('/^[0-9+().\s\/-]{5,40}$/', $telefono)) $err
 if ($richiesta === '') $errori[] = 'richiesta';
 
 if ($errori) {
-    rispondi($vuoleJson, 422, 'non-valido', $ritorno . '?errore=' . rawurlencode(implode(',', array_unique($errori))));
+    rispondi($vuoleJson, 422, 'non-valido', $KO);
 }
 
 $oggetti = [
@@ -222,4 +247,4 @@ $inviata = @mail($DESTINATARIO, '=?UTF-8?B?' . base64_encode($oggetto) . '?=', $
 if ($inviata) {
     rispondi($vuoleJson, 200, 'ok', '/grazie/');
 }
-rispondi($vuoleJson, 500, 'errore-invio', '/grazie/?stato=errore-invio');
+rispondi($vuoleJson, 500, 'errore-invio', $KO);
