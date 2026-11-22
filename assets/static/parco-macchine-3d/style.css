@@ -96,7 +96,7 @@ button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px so
    Lo stato viene da aria-pressed, che app.js già cambia; il colore segue il tasto (currentColor). */
 #play-symbol{display:block;flex:none;width:9px;height:10px;background:currentColor;clip-path:polygon(0 0,100% 50%,0 100%)}
 .play[aria-pressed="true"] #play-symbol{width:8px;clip-path:none;background:linear-gradient(90deg,currentColor 0 35%,transparent 35% 65%,currentColor 65% 100%)}
-.transport button:hover:not(:disabled),.inspect:hover,.scene-tools .motion-switch:hover{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+.transport button:hover:not(:disabled),.inspect:hover{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
 .transport button:active:not(:disabled),.inspect:active,.stop:active{transform:translateY(1px)}
 .transport button:disabled{opacity:.34;cursor:default}
 .scrub{display:block;margin:9px 0 3px;height:22px}
@@ -206,15 +206,13 @@ button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px so
   -webkit-mask-image:linear-gradient(to bottom,#000 calc(var(--story-top,53%) - 34px),transparent calc(var(--story-top,53%) - 8px));
   mask-image:linear-gradient(to bottom,#000 calc(var(--story-top,53%) - 34px),transparent calc(var(--story-top,53%) - 8px))}}
 .backdrops{transition:transform .5s cubic-bezier(.22,1,.36,1)}
-/* comandi sul modello: vista iniziale e, dentro il sito, il tasto Movimento sempre a portata */
+/* comandi sul modello: vista iniziale (dentro il sito e nel modello manuale) */
 .scene-tools{position:absolute;z-index:5;right:clamp(20px,4cqi,68px);top:clamp(14px,3.1cqi,45px);display:flex;gap:8px;align-items:center}
 .scene-tools .inspect{position:static}
-.scene-tools .motion-switch{background:rgba(19,22,17,.78);color:#fff;padding:6px 14px;min-height:36px;border:1px solid #ffffff52;border-radius:25px;font-size:12px;font-weight:700;gap:8px;transition:background-color .18s,border-color .18s,color .18s}
-.scene-tools .motion-switch:hover .switch-shape{border-color:var(--ink)}
-.scene-tools .motion-switch:hover .switch-shape::after{background:var(--ink)}
 html.td3-manuale .motion-switch{display:none!important}
+/* v4.1.3: dentro il sito il tasto Movimento della scena è nascosto (app.js), ma resta nel documento */
+.motion-switch[hidden]{display:none!important}
 @media(max-width:760.98px){.scene-tools{top:11px;right:12px}.scene .scene-tools .inspect{padding:4px 10px}}
-.scene-tools .motion-switch span:last-child{max-width:none;white-space:nowrap}
 /* telefono: la riga dei comandi non si sovrappone mai, le tappe stanno in una riga */
 .timeline-name{min-width:0;flex:1 1 auto}
 .timeline-top{gap:10px}
@@ -223,10 +221,9 @@ html.td3-manuale .motion-switch{display:none!important}
   .stop small{display:none}
   .stop{min-height:44px;display:flex;align-items:center}
   .stop strong{font-size:13px}
-  .scene-tools .motion-switch{padding:6px 10px;font-size:12px}
 }
 @media(pointer:coarse){
-  .scene-tools .inspect,.scene-tools .motion-switch{min-height:44px;min-width:44px;justify-content:center}
+  .scene-tools .inspect{min-height:44px;min-width:44px;justify-content:center}
   .transport button{width:44px;height:44px}
   .scrub,.scrub input{height:32px}
 }
@@ -243,20 +240,11 @@ html.td3-manuale .motion-switch{display:none!important}
 @media(min-width:761px){.scene-tools{top:auto;bottom:clamp(14px,2.4cqb,28px)}}
 /* Telefono e scena impilata (giro 21/11): i tasti non stanno più sopra la macchina. Scendono sulla riga
    dell'anno, a destra, sul fondo scuro dei testi (dove l'anno lascia spazio). «Vista iniziale» c'è solo
-   dopo che il visitatore ha girato la vista (classe ruotata, app.js); con poco spazio, mentre c'è, il
-   nome di «Movimento ridotto» resta solo per i lettori di schermo. */
+   dopo che il visitatore ha girato la vista (classe ruotata, app.js). Dalla v4.1.3 il tasto Movimento
+   della scena non c'è più dentro il sito. */
 @media(max-width:640.98px){
   .scene .scene-tools{top:calc(var(--story-top,53%) + var(--date-size)/2);bottom:auto;right:clamp(16px,4vw,25px);transform:translateY(-50%)}
   .scene:not(.ruotata) .scene-tools .inspect{display:none}
-}
-@container (max-width:479px){
-  .scene.ruotata .scene-tools .motion-switch span:last-child{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
-  .scene.ruotata .scene-tools .motion-switch{padding:6px 9px}
-}
-@media(max-width:360px){
-  /* sui telefoni più stretti il tasto resta, col solo interruttore: il nome è per i lettori di schermo */
-  .scene-tools .motion-switch span:last-child{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
-  .scene-tools .motion-switch{padding:6px 9px}
 }
 /* tablet in verticale e finestre alte e strette: la composizione del telefono (modello sopra i testi),
    così la macchina non resta piccola in una colonna lunga (classe messa da app.js, layout()) */

@@ -48,11 +48,16 @@ for (const [i,e] of eras.entries()){
   const wrap=document.createElement('span'),b=document.createElement('strong'),small=document.createElement('small');
   b.textContent=e.label;small.textContent=e.short;wrap.append(b,small);button.append(dot,wrap);$('stops').append(button);stops.push(button);button.addEventListener('click',()=>moveTo(i));
 }
-// Dentro il sito la testata del componente si ritira: vista iniziale e tasto Movimento salgono
-// insieme sul modello, sempre raggiungibili col mouse, col dito e da tastiera.
+// Dentro il sito la testata del componente si ritira e «Vista iniziale» sale sul modello.
+// Giro 22/11, settimo turno (v4.1.3): dentro il sito la scena non ha più un suo tasto Movimento (il sito ha
+// già il suo, nel fondo pagina e nel menu). Il tasto resta nel documento, nascosto e fuori dal giro di Tab:
+// parco-3d.js lo aziona da codice (click) e scroll.js ne legge aria-pressed per restare allineato.
+const ospitata=window.parent!==window&&!manual;
+if(ospitata)$('motion-switch').hidden=true;
 if(window.parent!==window||manual){
   const tools=document.createElement('div');tools.className='scene-tools';
-  tools.append($('motion-switch'),$('recenter'));
+  if(manual)tools.append($('motion-switch'));
+  tools.append($('recenter'));
   document.querySelector('.scene').append(tools);
 }
 // il filo giallo sul bordo della tendina, come nei tagli del sito: il contenitore porta la maschera
@@ -577,8 +582,8 @@ function parallax(yaw,elevation){
   const girata=Math.abs(yaw)+Math.abs(elevation)>.002;
   if(girata!==ruotataOra){
     ruotataOra=girata;
-    // il tasto sparisce a vista ripristinata: se aveva il fuoco, il fuoco passa al tasto Movimento
-    if(!girata&&document.activeElement===$('recenter'))$('motion-switch').focus({preventScroll:true});
+    // il tasto sparisce a vista ripristinata: se aveva il fuoco, il fuoco passa a Riproduci
+    if(!girata&&document.activeElement===$('recenter'))$('play').focus({preventScroll:true});
     scene.classList.toggle('ruotata',girata);
   }
   const s=1+Math.min(.04,Math.abs(yaw)*.03+Math.abs(elevation)*.05);
