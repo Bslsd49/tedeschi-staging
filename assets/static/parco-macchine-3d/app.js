@@ -416,11 +416,9 @@ $('next').addEventListener('click',()=>moveTo(Math.min(3,Math.floor(progress+.00
 $('previous').addEventListener('click',()=>moveTo(Math.max(0,Math.ceil(progress-.001)-1)));
 $('play').addEventListener('click',()=>{if(travel){stop();return;}if(progress>=2.999){paint(0);moveTo(1);}else moveTo(Math.abs(progress-Math.round(progress))>.003&&Math.abs(destination-progress)>.001?destination:Math.min(3,Math.floor(progress+.002)+1));});
 function setMotion(){view?.setReducedMotion(reduced);const sw=$('motion-switch');sw.setAttribute('aria-pressed',String(reduced));}
-$('motion-switch').addEventListener('click',e=>{
-  // dentro il sito il tasto comanda il Movimento di tutto il sito (stesso effetto del tasto in testata)
-  if(e.isTrusted&&window.parent!==window){
-    try{const hook=window.parent.tedeschiParcoMovimento;if(typeof hook==='function'){hook();return;}}catch{}
-  }
+// v4.1.4: dentro il sito il tasto è nascosto (v4.1.3) e lo aziona solo parco-3d.js da codice; nel modello
+// manuale è nascosto dal CSS. Il clic dell'utente arriva solo sulla pagina del componente aperta da sola.
+$('motion-switch').addEventListener('click',()=>{
   reduced=!reduced;stop();try{localStorage.setItem('tedeschi-3d-motion',reduced?'ridotto':'completo');}catch{}setMotion();
   if(reduced){caption.settle();caption.show(Math.round(progress));finishIntro();}
   paint(Math.round(progress),true);

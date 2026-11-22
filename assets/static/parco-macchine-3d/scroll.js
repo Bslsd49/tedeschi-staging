@@ -81,7 +81,18 @@ function createDriver(track, pin, after, seek) {
   const resize = new ResizeObserver(queue);
   resize.observe(pin); resize.observe(track);
   after.addEventListener('focus', queue);
-  return {status,manual,refresh(){last=NaN;queue();}};
+  // v4.1.4: la pagina ospite può smontare la corsa e rimontarla (scena da rifare dopo un contesto WebGL perso
+  // o un caricamento fallito): via tutti gli ascoltatori, nessuna lettura in sospeso
+  function stop() {
+    window.removeEventListener('scroll', queue);
+    window.removeEventListener('resize', layout);
+    window.removeEventListener('pageshow', queue);
+    resize.disconnect();
+    after.removeEventListener('focus', queue);
+    if (frame) cancelAnimationFrame(frame);
+    frame = 0; ready = false;
+  }
+  return {status,manual,refresh(){last=NaN;queue();},stop};
 }
 
 function makeTrack(track, content) {
@@ -175,6 +186,16 @@ export function connectPageScroll(api) {
   });
 }
 
+// v4.1.4: smontaggio della corsa montata da mountScrollFrame (pin, iframe, uscita, ascoltatori). Il contenuto
+// che la pagina ospite ha messo nel pin (il segnaposto) va riportato fuori prima di chiamarlo.
+const smontaggi = new WeakMap();
+export function unmountScrollFrame(track) {
+  const smonta = smontaggi.get(track);
+  if (!smonta) return;
+  smontaggi.delete(track);
+  smonta();
+}
+
 export function mountScrollFrame(track) {
   if (track.dataset.td3Mounted) return;
   const src=new URL(track.getAttribute('data-tedeschi-3d'),document.baseURI);
@@ -188,19 +209,32 @@ export function mountScrollFrame(track) {
   const send=(type,extra={})=>iframe.contentWindow?.postMessage({channel:CHANNEL,type,...extra},origin);
   const driver=createDriver(track,pin,exit,value=>send('position',{value}));
   const mode=()=>send('mode',{active:track.hasAttribute('data-td3-active')});
-  new MutationObserver(mode).observe(track,{attributes:true,attributeFilter:['data-td3-active']});
-  window.addEventListener('message',e=>{
+  const osservatore=new MutationObserver(mode);
+  osservatore.observe(track,{attributes:true,attributeFilter:['data-td3-active']});
+  const messaggio=e=>{
     const m=e.data;
     if(e.origin!==origin || e.source!==iframe.contentWindow || m?.channel!==CHANNEL) return;
     if(m.type==='available') send('connect');
     if(m.type==='ready' && typeof m.reduced==='boolean') {driver.status(m.reduced);driver.refresh();mode();}
     if(m.type==='manual' && Number.isFinite(m.value)) driver.manual(m.value);
-  });
-  iframe.addEventListener('load',()=>send('connect'));
+  };
+  window.addEventListener('message',messaggio);
+  const connect=()=>send('connect');
+  iframe.addEventListener('load',connect);
   // rotella, dito o tasti di scorrimento sulla pagina: il viaggio animato in corso si ferma subito
   const hand=e=>{
     if(e.type==='keydown'&&!['ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' '].includes(e.key))return;
     if(track.hasAttribute('data-td3-active'))send('hand');
   };
   for(const type of ['wheel','touchstart','keydown'])window.addEventListener(type,hand,{passive:true});
+  smontaggi.set(track,()=>{
+    driver.stop(); osservatore.disconnect();
+    window.removeEventListener('message',messaggio);
+    iframe.removeEventListener('load',connect);
+    for(const type of ['wheel','touchstart','keydown'])window.removeEventListener(type,hand);
+    pin.remove(); exit.remove();
+    track.removeAttribute('data-td3-active');
+    track.classList.remove('td3-track');
+    delete track.dataset.td3Mounted;
+  });
 }
