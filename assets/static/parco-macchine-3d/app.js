@@ -6,7 +6,7 @@ import {createMachineView} from './renderer.js';
 import {sampleBackdrops} from './lighting.js';
 import {connectPageScroll} from './scroll.js';
 import {createCaption} from './caption.js';
-import {SEGUI_MS,SALTO_EPOCHE,PASSAGGIO_MS,TENDINA_INIZIO,TENDINA_DURATA,LAMA,USCITA,easeLama,fase} from './corsa.js';
+import {SEGUI_MS,SALTO_EPOCHE,PASSAGGIO_MS,TENDINA_INIZIO,TENDINA_DURATA,LAMA,USCITA,easeLama,fase,SOSTA,SOSTA_MS,faseSosta,pesoCorsa} from './corsa.js';
 
 const eras=[
   {year:'1960',label:'Anni Sessanta',short:'La meccanica',subtitle:'Escavatore a funi',title:'Lo scavo frontale',body:'L’asta spinge la benna nel terreno. La fune passa sulle pulegge e la solleva.',photo:'media/era-1960.jpg'},
@@ -125,7 +125,32 @@ function enterFirstEra() {
   },{threshold:.18});
   introObserver.observe($('view'));
 }
+// Vista impilata, giro 22/11 quarto turno (corsa.js, SOSTA): peso dell'inquadratura in corsa. Scorrendo
+// dipende dalla distanza dall'epoca più vicina; in un viaggio a tocco solo dalle epoche di partenza e di
+// arrivo (in quelle attraversate la camera resta larga e la macchina passa montata senza fermarsi). Quando
+// un viaggio si interrompe (mano sulla pagina, Pausa, altro tocco) il peso raggiunge quello nuovo in
+// RACCORDO_MS invece di saltare.
+// Giro 23/11, quinto turno: nei viaggi che attraversano epoche anche l'arretramento di metà tratto resta a
+// regime dal mezzo del primo tratto al mezzo dell'ultimo (apertura, renderer.js aperturaMin): prima tornava
+// a zero su ogni epoca attraversata e la camera pompava (5% per fotogramma a 390×844). Stesso raccordo.
+const RACCORDO_MS=450;
+let pesoMostrato=0,aperturaMostrata=0,raccordo=null,raccordoFrame=0;
+let interrotto=null,inerzia=null; // viaggio interrotto e sua velocità ereditata dall'inseguimento (followStep)
+// apertura del passaggio (renderer.js, opening) alla posizione s del tratto, e la posizione del suo culmine
+// (fase visiva .5), dove l'apertura vale 1
+function aperturaDi(s){const v=faseSosta(s);return 16*v*v*(1-v)*(1-v);}
+// culmine del passaggio: posizione nel tratto con fase visiva .5, dove l'apertura vale 1
+const CULMINE=(()=>{let a=0,b=1;for(let i=0;i<40;i++){const m=(a+b)/2;if(faseSosta(m)<.5)a=m;else b=m;}return (a+b)/2;})();
+const liscia=t=>t<=0?0:t>=1?1:t*t*t*(t*(t*6-15)+10);
+function passoRaccordo(){
+  raccordoFrame=0;if(!raccordo)return;
+  if(!travel&&!following)paint(progress,true);
+  if(raccordo)raccordoFrame=requestAnimationFrame(passoRaccordo);
+}
 function stop(){
+  if(travel&&(pesoMostrato>0||aperturaMostrata>0)){raccordo={da:pesoMostrato,daA:aperturaMostrata,t0:performance.now()};if(!raccordoFrame)raccordoFrame=requestAnimationFrame(passoRaccordo);}
+  // velocità del viaggio interrotto: se subito dopo arriva lo scroll, l'inseguimento parte da lì (follow)
+  if(travel)interrotto={v:travelSpeed,t:performance.now()};
   if(animationFrame)cancelAnimationFrame(animationFrame);animationFrame=0;travel=null;
   if(following){cancelAnimationFrame(following);following=0;api.following=false;chasing=false;}
   playerState();
@@ -152,7 +177,18 @@ function paint(value,force=false){
   const a=Math.floor(progress),b=Math.min(a+1,3),phase=progress-a;
   const nearest=Math.round(progress);
   const pair=a+'-'+b;
-  const visual=fase(phase); // punto della coreografia (corsa.js, RITMO)
+  // punto della coreografia (corsa.js, RITMO); nella vista impilata con le soste attorno alle epoche
+  const impilata=impilataOra&&!reduced;
+  const visual=impilata?faseSosta(phase):fase(phase);
+  let peso=0,apertura=0;
+  if(impilata&&b!==a){
+    const x=travel?Math.min(Math.abs(travel.to-progress),Math.abs(progress-travel.start)+travel.d0):Math.min(phase,1-phase);
+    peso=pesoCorsa(x);
+    // viaggio che attraversa epoche: a regime dal culmine del primo tratto a quello dell'ultimo (moveTo)
+    if(travel?.attraversa){const d=(progress-travel.start)*travel.dir;if(d>=travel.dIn-1e-9&&d<=travel.dOut+1e-9)apertura=travel.apL;}
+    if(raccordo){const u=liscia((performance.now()-raccordo.t0)/RACCORDO_MS);if(u>=1)raccordo=null;else{peso=raccordo.da+(peso-raccordo.da)*u;apertura=raccordo.daA+(apertura-raccordo.daA)*u;}}
+  }else raccordo=null;
+  pesoMostrato=peso;aperturaMostrata=apertura;
   if(pair!==lastPair){
     for(let i=0;i<4;i++){
       const bg=backgrounds[i];bg.hidden=i!==a&&i!==b;
@@ -190,7 +226,8 @@ function paint(value,force=false){
     }else if(introDone||from===-1){caption.show(shown);shownYear=shown;}
   }
   if(view){
-    if(reduced||phase<=.00001)view.show(nearest,nearest,0);else view.show(a,b,visual);
+    const continuo=Boolean(travel||chasing||raccordo); // viaggio, inseguimento dello scroll o raccordo
+    if(reduced||(phase<=.00001&&!(apertura>0)))view.show(nearest,nearest,0,0,0,continuo);else view.show(a,b,visual,peso,apertura,continuo);
   }
   // prossimo fondale in anticipo, prima che la tendina lo chieda
   if(phase>.05&&b!==a)backdrop(b);
@@ -209,12 +246,22 @@ function paint(value,force=false){
 // L'avanzamento segue la posizione della pagina con una costante di tempo breve; fermata la mano,
 // si ferma in meno di un decimo di secondo esattamente dove indica lo scroll.
 
+// Giro 23/11, quinto turno: se lo scroll arriva mentre un viaggio a tocco è in corsa (rotella all'indietro
+// durante Avanti), l'inseguimento eredita la velocità del viaggio e la passa all'inseguimento normale in
+// INERZIA_MS, invece di invertire la scena in un fotogramma.
+const INERZIA_MS=180;
 function followStep(now){
   following=0;
   const dt=lastFollow?Math.min(64,now-lastFollow):16.7;lastFollow=now;
   const diff=target-progress;
-  if(reduced||Math.abs(diff)<.0006||Math.abs(diff)>SALTO_EPOCHE){paint(reduced?Math.round(target):target);lastFollow=0;api.following=false;chasing=false;return;}
-  paint(progress+diff*(1-Math.exp(-dt/SEGUI_MS)));
+  if(reduced||Math.abs(diff)>SALTO_EPOCHE||(!inerzia&&Math.abs(diff)<.0006)){inerzia=null;paint(reduced?Math.round(target):target);lastFollow=0;api.following=false;chasing=false;return;}
+  let step=diff*(1-Math.exp(-dt/SEGUI_MS));
+  if(inerzia){
+    const k=liscia((performance.now()-inerzia.t0)/INERZIA_MS);
+    step=inerzia.v*dt+(step-inerzia.v*dt)*k;
+    if(k>=1)inerzia=null;
+  }
+  paint(progress+step);
   following=requestAnimationFrame(followStep);
 }
 // dentro il sito, finché il segnaposto copre la scena, lo scroll si annota ma non muove la scena:
@@ -223,7 +270,9 @@ function followStep(now){
 let held=window.parent!==window&&!manual,heldTarget=null;
 function follow(value){
   if(held){heldTarget=Math.max(0,Math.min(3,value));return;}
-  if(animationFrame){cancelAnimationFrame(animationFrame);animationFrame=0;travel=null;}
+  if(travel)stop(); // raccordo e velocità del viaggio interrotto (stop)
+  if(interrotto&&performance.now()-interrotto.t<120&&interrotto.v&&!following)inerzia={v:interrotto.v,t0:performance.now()};
+  interrotto=null;
   target=Math.max(0,Math.min(3,value));
   if(!view||document.hidden){if(following){cancelAnimationFrame(following);following=0;}api.following=false;chasing=false;paint(target);return;}
   api.following=true;chasing=true;
@@ -235,6 +284,59 @@ function follow(value){
 // che la scena ha in quel momento, senza fermarsi di colpo. La curva è monotona: i rulli della data e la
 // tendina dei fondali vedono ogni epoca intermedia una sola volta, in ordine.
 let travelSpeed=0; // epoche al millisecondo, con segno, del viaggio in corso
+// Vista impilata (corsa.js, SOSTA): il viaggio diviso in pezzi con la loro durata. La coreografia di ogni
+// tratto dura PASSAGGIO_MS (in un viaggio di più tratti tutte insieme non oltre PASSAGGIO_MS, come prima);
+// la sosta dell'epoca di partenza e quella di arrivo durano SOSTA_MS l'una (lì la camera passa dal riposo
+// alla corsa); le soste delle epoche attraversate scorrono alla velocità della coreografia (la macchina vi
+// passa montata per un attimo, la camera resta larga, il cursore non salta).
+// Giro 23/11, quinto turno: velocità continua. Dentro una sosta la posizione segue una cubica di Hermite
+// che parte (o arriva) ferma all'epoca e si raccorda alla velocità della coreografia dall'altro capo: prima
+// a s = .09 la velocità passava di colpo da .11 a .18 tratti al secondo mentre lo zoom era ancora in moto.
+// In un viaggio di più tratti la sosta si accorcia quanto serve perché la cubica resti monotona.
+// partenzaMobile: il viaggio riparte da un altro in corsa (velocità iniziale data dalla curva esterna).
+// Restituisce la durata totale, la densità iniziale (ms per tratto) e la posizione per ogni frazione 0-1.
+function pianoSoste(start,to,partenzaMobile){
+  const dir=Math.sign(to-start),lo=Math.min(start,to),hi=Math.max(start,to);
+  const tagli=[];
+  for(let k=Math.floor(lo)-1;k<=Math.ceil(hi)+1;k++)for(const c of [k-SOSTA,k+SOSTA])if(c>lo+1e-9&&c<hi-1e-9)tagli.push(c);
+  const xs=[start,...tagli.sort((x,y)=>(x-y)*dir),to];
+  const ks=Math.round(start),sostaPartenza=Math.abs(start-ks)<=SOSTA+1e-9?ks:null;
+  const pezzi=[];let coreografia=0;
+  for(let i=0;i<xs.length-1;i++){
+    const len=Math.abs(xs[i+1]-xs[i]),m=(xs[i]+xs[i+1])/2,k=Math.round(m),inSosta=Math.abs(m-k)<SOSTA;
+    const tipo=inSosta&&(k===to||k===sostaPartenza)?'s':'c';
+    const ms=tipo==='c'?len*PASSAGGIO_MS/(1-2*SOSTA):len*SOSTA_MS/SOSTA;
+    if(tipo==='c')coreografia+=ms;
+    if(len>1e-9)pezzi.push({da:xs[i],a:xs[i+1],tipo,ms,len});
+  }
+  const scala=coreografia>PASSAGGIO_MS?PASSAGGIO_MS/coreografia:1;
+  const vc=(1-2*SOSTA)/(PASSAGGIO_MS*scala); // velocità della coreografia, tratti al ms
+  for(const p of pezzi)if(p.tipo==='c')p.ms*=scala;
+  // velocità ai capi di ogni sosta: quella della coreografia accanto, zero all'epoca di partenza e di arrivo
+  pezzi.forEach((p,i)=>{
+    if(p.tipo!=='s')return;
+    const vIn=i>0?vc:partenzaMobile?vc:0,vOut=i<pezzi.length-1?vc:0;
+    p.ms=Math.min(p.ms,2.9*p.len/Math.max(vIn,vOut,1e-12)); // cubica monotona: pendenze normalizzate ≤ 2,9
+    p.m0=vIn*p.ms/p.len;p.m1=vOut*p.ms/p.len;
+  });
+  const totale=pezzi.reduce((t,p)=>t+p.ms,0);
+  const primo=pezzi[0];
+  const v0=!primo?0:primo.tipo==='c'?vc:partenzaMobile?vc:0;
+  return {totale,densita0:v0>0?1/v0:0,
+    posizione(f){
+      if(!(totale>0))return to;
+      let t=Math.max(0,Math.min(1,f))*totale;
+      for(const p of pezzi){
+        if(t<=p.ms||p===pezzi[pezzi.length-1]){
+          const u=p.ms>0?Math.min(1,t/p.ms):1;
+          const h=p.tipo==='s'?(u*u*u-2*u*u+u)*p.m0+(-2*u*u*u+3*u*u)+(u*u*u-u*u)*p.m1:u;
+          return p.da+(p.a-p.da)*h;
+        }
+        t-=p.ms;
+      }
+      return to;
+    }};
+}
 function moveTo(to){
   to=Math.max(0,Math.min(3,to));
   const v0=travel?travelSpeed:0;
@@ -243,24 +345,62 @@ function moveTo(to){
   if(reduced||!view||Math.abs(to-progress)<.0001){paint(to);return;}
   const start=progress,delta=to-start,span=Math.abs(delta);
   const lineare=span<=1.0001&&v0===0;
-  const duration=lineare?Math.max(360,span*PASSAGGIO_MS):Math.min(PASSAGGIO_MS,Math.max(360,span*PASSAGGIO_MS));
-  // pendenza iniziale normalizzata: la velocità attuale se va nella stessa direzione, mai oltre 3 (niente rimbalzi)
-  const m0=lineare?0:Math.max(0,Math.min(3,v0*duration/delta));
+  // vista impilata, giro 23/11 quinto turno: un viaggio di più tratti da fermo procede uniforme sulla corsa
+  // con partenza e arrivo morbidi (come in v4.1.1) e dura PASSAGGIO_MS + 2,5·SOSTA_MS (6,6 s): lo zoom delle
+  // soste di partenza e di arrivo cade nella parte lenta della curva, la camera resta entro l'1% per
+  // fotogramma. Gli altri viaggi seguono il piano a pezzi (pianoSoste).
+  const lungo=impilataOra&&span>1.0001&&v0===0;
+  const piano=impilataOra&&!lungo?pianoSoste(start,to,!lineare&&v0!==0):null;
+  let duration,m0;
+  if(lungo){duration=PASSAGGIO_MS+2.5*SOSTA_MS;m0=0;}
+  else if(!piano){
+    duration=lineare?Math.max(360,span*PASSAGGIO_MS):Math.min(PASSAGGIO_MS,Math.max(360,span*PASSAGGIO_MS));
+    // pendenza iniziale normalizzata: la velocità attuale se va nella stessa direzione, mai oltre 3 (niente rimbalzi)
+    m0=lineare?0:Math.max(0,Math.min(3,v0*duration/delta));
+  }else{
+    duration=Math.max(360,piano.totale);
+    m0=lineare?0:Math.max(0,Math.min(3,v0*Math.sign(delta)*piano.densita0*duration/piano.totale));
+  }
   const curva=u=>lineare?u:(-2*u*u*u+3*u*u)+m0*(u*u*u-2*u*u+u);
-  travel={start,to};
+  // giro 21/11, terzo turno: ogni viaggio riconosce solo sé stesso (un fotogramma di un viaggio vecchio non
+  // può far avanzare quello nuovo) e il fotogramma successivo si chiede anche se il disegno di questo
+  // dovesse fallire: il viaggio non resta mai acceso senza avanzare (tasto su Pausa, scena ferma)
+  const f0=start-Math.floor(start);
+  // il viaggio attraversa almeno un'epoca (non solo quella d'arrivo): arretramento a regime (paint)
+  const attraversa=Math.ceil(Math.min(start,to)+1e-6)<Math.max(start,to)-1e-6;
+  // a regime dal culmine del primo tratto a quello dell'ultimo; se il culmine del primo è già alle spalle,
+  // dalla partenza, al livello che l'apertura ha lì
+  // distanze lungo il viaggio: dIn inizio del regime, dOut sua fine, dFine arrivo; apL livello del regime
+  const dir=Math.sign(delta);
+  let dIn=0,dOut=0,apL=0;
+  if(attraversa){
+    const su=dir>0,segPrimo=su?Math.floor(start+1e-9):Math.ceil(start-1e-9)-1,segUltimo=su?Math.ceil(to-1e-9)-1:Math.floor(to+1e-9);
+    const ingresso=segPrimo+CULMINE,uscita=segUltimo+CULMINE; // culmini, nello stesso punto in salita e in discesa
+    const passato=(ingresso-start)*dir<=0;
+    apL=passato?Math.max(aperturaDi(start-Math.floor(start)),0):1;
+    dIn=passato?0:(ingresso-start)*dir;dOut=Math.max(dIn,(uscita-start)*dir);
+  }
+  const mine=travel={start,to,dir,d0:Math.min(f0,1-f0),attraversa,dIn,dOut,dFine:span,apL};
   let previousTime=null,elapsed=0,lastP=start;
-  function frame(now){
-    if(!travel)return;
+  function frame(){
+    if(travel!==mine)return;
+    // orologio della pagina, non l'ora del fotogramma: sotto carico Chrome può consegnare più fotogrammi
+    // con la stessa ora (o un'ora più vecchia) e il viaggio resterebbe fermo con il tasto su Pausa
+    const now=performance.now();
     let dt=0;
-    if(previousTime!==null){dt=Math.min(now-previousTime,110);elapsed+=dt;}
+    if(previousTime!==null){dt=Math.max(0,Math.min(now-previousTime,110));elapsed+=dt;}
     previousTime=now;
     const u=Math.min(1,elapsed/duration);
-    const p=start+delta*curva(u);
+    const p=piano?piano.posizione(curva(u)):start+delta*curva(u);
     if(dt>0)travelSpeed=(p-lastP)/dt;
     lastP=p;
-    paint(p);
-    if(u<1)animationFrame=requestAnimationFrame(frame);
-    else{stop();travelSpeed=0;paint(to);}
+    try{paint(p);}
+    finally{
+      if(travel===mine){
+        if(u<1)animationFrame=requestAnimationFrame(frame);
+        else{travelSpeed=0;paint(to);stop();}
+      }
+    }
   }
   playerState();animationFrame=requestAnimationFrame(frame);
 }
@@ -318,7 +458,9 @@ function layout(){
   if(right>storyLeft&&!stacked)scene.style.setProperty('--zona',Math.ceil(right-storyLeft)+'px');
   const copyTop=story.querySelector('.story-copy').offsetTop;
   const need=copyTop+tallest;
-  const top=story.offsetTop,margin=Math.max(10,h*.025);
+  // telefono basso (style.css, max-height 680): margine sotto i testi più stretto, lo spazio va alla macchina
+  const basso=matchMedia('(max-width:640.98px) and (max-height:680px)').matches;
+  const top=story.offsetTop,margin=basso?8:Math.max(10,h*.025);
   // su telefono il blocco dei testi si appoggia al fondo della scena: tutto lo spazio sopra va al modello
   if(stacked)scene.style.setProperty('--story-top',Math.max(8,Math.floor(Math.max(h*.42,h-margin-need)))+'px');
   else if(top+need>h-margin)scene.style.setProperty('--story-top',Math.max(8,Math.floor(h-margin-need))+'px');
@@ -389,7 +531,7 @@ async function boot(){
     }
     performance.mark('parco:modelli');
     const lightSamples=await samplesReady;
-    view=createMachineView(THREE,$('view'),models,createTransition,lightSamples,{first:Math.round(startAt),onOrbit:parallax,grounding:impilataOra?APPOGGIO:0,forzaYaw:params.has('impilata')});
+    view=createMachineView(THREE,$('view'),models,createTransition,lightSamples,{first:Math.round(startAt),onOrbit:parallax,grounding:impilataOra?APPOGGIO:0,forzaYaw:params.has('impilata'),assestaDopo:window.parent!==window&&!manual});
     view.setReducedMotion(reduced);
     performance.mark('parco:vista');
     metrics={partCounts:models.map(m=>m.parts.length),bounds:view.bounds.map(b=>[b.min.toArray(),b.max.toArray()]),webgl:true};
@@ -423,6 +565,8 @@ async function boot(){
   // partirebbe sotto di lui, a scena ancora semitrasparente; da sola parte subito
   if(window.parent!==window&&!manual)await Promise.race([revealed,new Promise(r=>setTimeout(r,4000))]);
   held=false;
+  // segnaposto sparito: la macchina lascia l'angolo delle foto del segnaposto per quello migliore (renderer.js)
+  view?.assesta?.(!reduced);
   if(heldTarget!==null&&Math.abs(heldTarget-progress)>.0006)follow(heldTarget);
   enterFirstEra();
 }

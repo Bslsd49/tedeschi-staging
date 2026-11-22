@@ -141,7 +141,7 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
   });
   performance.mark('r:batches');let yaw=0,elevation=0,orbitYaw=0,orbitElevation=0,distance=19;
   const focus=new T.Vector3(0,2.1,0);
-  let viewW=0,viewH=0,viewDpr=0, first=0, second=0, phase=0;
+  let viewW=0,viewH=0,viewDpr=0, first=0, second=0, phase=0, pesoCorsa=0, aperturaMin=0, morbida=false;
   const motion=createTransition(T,machines,camera);performance.mark('r:transition');
   // Firma di motion.sample: (macchina, pezzo, matrice, opacità, sfocatura, posa stabile). La sfocatura
   // per pezzo non serve (la profondità di campo è un passaggio di schermo). Una posa «stabile» (riposo,
@@ -299,14 +299,28 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
   // foto e sembrava sospesa. Con grounding>0 lo spazio libero va sopra: la macchina scende verso il
   // fondo della vista, sul terreno della foto. 0 = composizione di sempre (desktop, tablet orizzontale).
   let grounding=T.MathUtils.clamp(options.grounding||0,0,1);
-  // Vista impilata (telefono): quando la vista è alta (larghezza/altezza ≤ IMPILATA_ASPETTO) è la larghezza
-  // a decidere la grandezza della macchina; un poco più di tre quarti (stackYaw) accorcia il mezzo in
-  // orizzontale e lo fa crescere (390×844: altezza +23/36/24/28%). In una vista bassa (390×664 con le
-  // barre del browser, 320×568) la stessa rotazione lo rimpicciolirebbe: lì resta l'angolo di sempre.
-  // La regola dipende solo dalla forma della vista, così la pagina ospite sceglie lo stesso segnaposto
-  // (parco-3d.js, immagini macchina-AAAA-tel). options.forzaYaw: foto del segnaposto (statiche.mjs).
-  const stackYaw=[-.8,-.45,-.2,-.4];
-  const IMPILATA_ASPETTO=1.3,forzaYaw=Boolean(options.forzaYaw);
+  // Vista impilata (telefono, tablet in verticale), giro 21/11 secondo turno: per ogni epoca l'angolo
+  // (scarto di yaw rispetto alla vista di Mattia) che fa la macchina più grande nella forma reale della
+  // vista, cercato al layout fra -1 e +0,1 rad (stessa famiglia di tre quarti per tutte le epoche: nel
+  // passaggio fra epoche la camera non fa giri larghi), mai durante la corsa. Dentro il sito la scena nasce
+  // con l'angolo delle foto del segnaposto (stackYaw, immagini macchina-AAAA-tel) e, sparito il segnaposto,
+  // si posa in 0,7 s sull'angolo migliore (assesta): nel passaggio le due macchine coincidono sempre.
+  // Riquadro più pieno (STACK_FILL_X, STACK_FILL_Y): ai lati resta un margine di 1,7%, sopra e sotto del 2,7%.
+  const stackYaw=[-.8,-.45,-.2,-.4],STACK_FILL_X=.965,STACK_FILL_Y=.945,YAW_MIN=-1,YAW_MAX=.1,CORSA_X=.9,CORSA_MARGINE=.9,ARRETRA=.3;
+  const tmpA=new T.Vector3(),tmpB=new T.Vector3();
+  const forzaYaw=Boolean(options.forzaYaw);
+  let assetto=options.assestaDopo?0:1,assettoFrame=0,layoutRevision=0;
+  function migliore(index,kx,ky){
+    const f=framing[index],base=heights[index]??.10,side=sideViews[index]??0;
+    if(f.bestRevision===layoutRevision)return f.best;
+    let best=0,bestArea=-1;
+    for(let o=YAW_MIN;o<=YAW_MAX+1e-6;o+=.05){
+      const r=fit(index,side+o,base,kx,ky),area=((r.xhi-r.xlo)/(2*kx*r.distance))*((r.yhi-r.ylo)/(2*ky*r.distance));
+      if(area>bestArea+1e-4){bestArea=area;best=o;}
+    }
+    f.bestRevision=layoutRevision;f.best=best;
+    return best;
+  }
   function fit(index,yaw,elevation,kx,ky){
     const f=framing[index],sy=Math.sin(yaw),cy=Math.cos(yaw),se=Math.sin(elevation),ce=Math.cos(elevation);
     let xhi=-Infinity,xlo=Infinity,yhi=-Infinity,ylo=Infinity;
@@ -325,30 +339,113 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
       if(f.revision===frameRevision)return f;
       f.revision=frameRevision;
       const halfField=Math.tan(camera.fov*Math.PI/360);
-      const ky=halfField*frameFill[index],kx=ky*camera.aspect;
+      const stacked=grounding>0||forzaYaw;
+      const fy=stacked&&!forzaYaw?Math.max(frameFill[index],STACK_FILL_Y):frameFill[index];
+      const ky=halfField*fy,kx=halfField*(stacked&&!forzaYaw?Math.max(frameFill[index],STACK_FILL_X):frameFill[index])*camera.aspect;
       const base=heights[index]??.10;
-      const extra=forzaYaw||(grounding>0&&camera.aspect<=IMPILATA_ASPETTO)?stackYaw[index]:0;
+      let extra=0;
+      if(forzaYaw)extra=stackYaw[index];
+      else if(stacked)extra=stackYaw[index]+assetto*(migliore(index,kx,ky)-stackYaw[index]);
       f.yaw=(sideViews[index]??0)+extra+orbitYaw;f.elevation=T.MathUtils.clamp(base+orbitElevation,-.025,.66);
       const sy=Math.sin(f.yaw),cy=Math.cos(f.yaw),se=Math.sin(f.elevation),ce=Math.cos(f.elevation);
-      const {xhi,xlo,yhi,ylo,distance}=fit(index,f.yaw,f.elevation,kx,ky);
       const c=f.center;
-      // Solve the left/right and top/bottom perspective-frustum inequalities.
-      const ox=(xhi+xlo)*.5;let oy=(yhi+ylo)*.5;
-      f.distance=distance;
-      // oy al massimo ylo+ky·distanza mette il punto più basso sul bordo basso: si usa una frazione
-      if(grounding>0)oy+=grounding*(ylo+ky*f.distance-oy);
-      f.focus.set(c.x+ox*cy-oy*sy*se,c.y+oy*ce,c.z-ox*sy-oy*cy*se);
+      const place=(kx,ky,focus,dmin=0)=>{
+        const r=fit(index,f.yaw,f.elevation,kx,ky),{xhi,xlo,yhi,ylo}=r,distance=Math.max(r.distance,dmin);
+        // Solve the left/right and top/bottom perspective-frustum inequalities.
+        const ox=(xhi+xlo)*.5;let oy=(yhi+ylo)*.5;
+        // oy al massimo ylo+ky·distanza mette il punto più basso sul bordo basso: si usa una frazione
+        if(grounding>0)oy+=grounding*(ylo+ky*distance-oy);
+        focus.set(c.x+ox*cy-oy*sy*se,c.y+oy*ce,c.z-ox*sy-oy*cy*se);
+        return distance;
+      };
+      f.distance=place(kx,ky,f.focus);
+      // Inquadratura «in corsa» (giro 21/11, terzo turno; giro 22/11, quarto turno): nella vista impilata la
+      // macchina a riposo riempie la vista quasi fino ai bordi; prima che i pezzi partano (dentro la sosta,
+      // corsa.js) la camera si allontana piano a una distanza legata a quella della v4.1.1 (stessa vista,
+      // margini di sempre, angolo delle foto -tel), così i pezzi in smontaggio e rimontaggio non toccano i
+      // bordi più di allora. Stesso angolo di riposo, cambia solo la distanza. CORSA_MARGINE è il minimo
+      // misurato che tiene i bordi entro la v4.1.1 (giro 4: da 1,09 a 0,9, la macchina in corsa è più grande
+      // e il passaggio fra le due inquadrature più breve).
+      if(stacked&&!forzaYaw){
+        if(!f.focusCorsa)f.focusCorsa=new T.Vector3();
+        const largo=camera.aspect>1.2,kc=halfField*frameFill[index];
+        const yaw411=(sideViews[index]??0)+(camera.aspect<=1.3?stackYaw[index]:0)+orbitYaw;
+        const d411=fit(index,yaw411,f.elevation,kc*camera.aspect,kc).distance;
+        // margini laterali larghi solo nelle viste basse e larghe (lì la v4.1.1 era stretta in altezza e
+        // quindi stretta anche ai lati); nelle viste alte decide la distanza della v4.1.1 per CORSA_MARGINE
+        const cx=largo?CORSA_X:1;
+        f.distanceCorsa=Math.max(f.distance,place(kc*cx*camera.aspect,kc,f.focusCorsa,d411*CORSA_MARGINE));
+      }else{f.distanceCorsa=f.distance;f.focusCorsa=f.focus;}
       return f;
+  }
+  // Vista impilata, giro 23/11 quinto turno, stretto nel sesto: nel movimento continuo (viaggio a tocco,
+  // inseguimento dello scroll, raccordo) la grandezza della macchina sullo schermo non cambia per effetto della
+  // camera più di SCALA_MAX ogni 16,7 ms. Si misura come il cancello: altezza proiettata del riquadro della
+  // macchina di riferimento (gli 8 angoli del suo ingombro), con distanza, fuoco, giro e inclinazione insieme.
+  // Quando peso dell'inquadratura in corsa e arretramento cambiano più in fretta restano indietro insieme e la
+  // camera li raggiunge in qualche fotogramma. Un salto (seek, cursore, ricarica) arriva subito; il desktop non
+  // passa di qui.
+  const SCALA_MAX=.006; // col metodo del cancello i viaggi a più epoche misurano 0,59-0,97% per fotogramma
+  let pesoEff=NaN,aperturaEff=0,ultimaCamera=0,rincorsa=0;
+  const prima={focus:new T.Vector3(),yaw:0,elevation:0,distance:1,ok:false},prova={focus:new T.Vector3(),yaw:0,elevation:0,distance:1};
+  const camProva=camera.clone(),angolo=new T.Vector3();
+  function libera(){pesoEff=NaN;prima.ok=false;} // ridimensionamento, cambio di composizione: si riparte dal valore vero
+  function statoPer(a,b,blend,corsa,opening,out){
+    if(corsa>0){
+      tmpA.copy(a.focus).lerp(a.focusCorsa,corsa);tmpB.copy(b.focus).lerp(b.focusCorsa,corsa);
+      out.focus.copy(tmpA).lerp(tmpB,blend);
+    }else out.focus.copy(a.focus).lerp(b.focus,blend);
+    const da=T.MathUtils.lerp(a.distance,a.distanceCorsa,corsa),db=T.MathUtils.lerp(b.distance,b.distanceCorsa,corsa);
+    // vista impilata: nello smontaggio e nel rimontaggio la camera arretra di più (ARRETRA). Giro 23/11, quinto
+    // turno: da .75 a .3, il massimo che tiene la scala della camera entro il 3% per passo di scorrimento
+    // dell'1% e entro l'1% per fotogramma nei viaggi a tocco; i pezzi in volo al culmine dell'esploso
+    // escono dal quadro come in v4.1.1, con meno contatto totale ai bordi
+    out.distance=T.MathUtils.lerp(da,db,blend)*(1+(grounding>0?ARRETRA:.067)*opening);
+    out.yaw=T.MathUtils.lerp(a.yaw,b.yaw,blend)+.033*opening;
+    out.elevation=T.MathUtils.lerp(a.elevation,b.elevation,blend)+.027*opening;
+    return out;
+  }
+  function altezza(st,box){
+    const c=camProva,y=st.yaw,e=st.elevation,d=st.distance,f=st.focus;
+    if(c.aspect!==camera.aspect||c.fov!==camera.fov){c.aspect=camera.aspect;c.fov=camera.fov;c.updateProjectionMatrix();}
+    c.position.set(f.x+Math.sin(y)*Math.cos(e)*d,f.y+Math.sin(e)*d,f.z+Math.cos(y)*Math.cos(e)*d);
+    c.lookAt(f);c.updateMatrixWorld();c.matrixWorldInverse.copy(c.matrixWorld).invert();
+    let lo=Infinity,hi=-Infinity;
+    for(let k=0;k<8;k++){
+      angolo.set(k&1?box.max.x:box.min.x,k&2?box.max.y:box.min.y,k&4?box.max.z:box.min.z).project(c);
+      if(angolo.y<lo)lo=angolo.y;if(angolo.y>hi)hi=angolo.y;
+    }
+    return hi-lo;
   }
   function setCamera(){
     const blend=T.MathUtils.smootherstep(phase,0,1),a=frameModel(first),b=frameModel(second);
     // A small retreat opens space for the exploded assemblies. Both camera
     // velocity and the offset reach zero where a machine seats in its bearings.
-    const opening=first===second?0:16*phase*phase*(1-phase)*(1-phase);
-    focus.copy(a.focus).lerp(b.focus,blend);
-    distance=T.MathUtils.lerp(a.distance,b.distance,blend)*(1+.067*opening);
-    yaw=T.MathUtils.lerp(a.yaw,b.yaw,blend)+.033*opening;
-    elevation=T.MathUtils.lerp(a.elevation,b.elevation,blend)+.027*opening;
+    // nei viaggi a tocco che attraversano epoche app.js tiene l'arretramento a regime fra il mezzo del primo
+    // tratto e il mezzo dell'ultimo (aperturaMin): sull'epoca attraversata la camera non pompa
+    let opening=first===second?0:Math.max(16*phase*phase*(1-phase)*(1-phase),aperturaMin);
+    // peso dell'inquadratura in corsa, deciso da app.js (corsa.js, SOSTA): 0 a riposo, 1 fuori dalle soste
+    let corsa=first===second?0:pesoCorsa;
+    let st=statoPer(a,b,blend,corsa,opening,prova);
+    const now=performance.now();
+    if(morbida&&grounding>0&&!forzaYaw&&Number.isFinite(pesoEff)&&prima.ok){
+      const box=a.bounds,f=Math.max(0,Math.min(now-ultimaCamera,1000))/16.7;
+      const h0=altezza(prima,box),giu=h0*Math.pow(1-SCALA_MAX,f),su=h0*Math.pow(1+SCALA_MAX,f);
+      const fuori=h=>h<giu-1e-12||h>su+1e-12;
+      if(fuori(altezza(st,box))){
+        // il passo più lungo verso il valore vero che resta dentro la fascia (bisezione)
+        const pc=pesoEff,pa=aperturaEff;
+        let lo=0,hi=1;
+        if(fuori(altezza(statoPer(a,b,blend,pc,pa,prova),box)))hi=0;
+        else for(let it=0;it<10;it++){const m=(lo+hi)/2;if(fuori(altezza(statoPer(a,b,blend,pc+(corsa-pc)*m,pa+(opening-pa)*m,prova),box)))hi=m;else lo=m;}
+        corsa=pc+(corsa-pc)*lo;opening=pa+(opening-pa)*lo;
+        st=statoPer(a,b,blend,corsa,opening,prova);
+        if(!rincorsa)rincorsa=requestAnimationFrame(()=>{rincorsa=0;if(morbida){setCamera();draw();}});
+      }
+    }
+    pesoEff=corsa;aperturaEff=opening;ultimaCamera=now;
+    prima.focus.copy(st.focus);prima.yaw=st.yaw;prima.elevation=st.elevation;prima.distance=st.distance;prima.ok=true;
+    focus.copy(st.focus);distance=st.distance;yaw=st.yaw;elevation=st.elevation;
     camera.position.set(focus.x+Math.sin(yaw)*Math.cos(elevation)*distance,focus.y+Math.sin(elevation)*distance,focus.z+Math.cos(yaw)*Math.cos(elevation)*distance);
     camera.lookAt(focus);camera.updateMatrixWorld();uniforms.focal.value=distance;
   }
@@ -410,7 +507,7 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
     target.setSize(pw,ph);
     blurTarget.setSize(Math.max(1,Math.ceil(pw*.5)),Math.max(1,Math.ceil(ph*.5)));
     uniforms.pixel.value.set(1/pw,1/ph);uniforms.maxRadius.value=small?9*pr:15*pr;
-    camera.aspect=w/h;camera.updateProjectionMatrix();frameRevision++;setCamera();draw();
+    camera.aspect=w/h;camera.updateProjectionMatrix();frameRevision++;layoutRevision++;libera();setCamera();draw();
   }
   new ResizeObserver(resize).observe(host);
   // Finestra portata su uno schermo con un'altra densità senza cambiare misura: il ResizeObserver non
@@ -589,14 +686,25 @@ export function createMachineView(T, host, machines, createTransition, lightSamp
     return {left:r.left+l,top:r.top+t,right:r.left+rr,bottom:r.top+b};
   }
   return {quality,machineRect,canvas:renderer.domElement,bounds:worldBounds,view:renderer,draw,prepareTransitions,warm,finishReady,firstFinish,groundReady:contact.ready,
-    show(a,b,t){
-      if(a===first&&b===second&&t===phase)return;
-      lastShowAt=performance.now();first=a;second=b;phase=t;scene.environment=lightProbes[t<.5?a:b].texture;setCamera();draw();},
+    // m: movimento continuo (viaggio a tocco o inseguimento dello scroll), il solo caso in cui vale AVVICINA;
+    // un salto (seek, cursore, ricarica) arriva subito
+    show(a,b,t,w=0,o=0,m=false){
+      if(a===first&&b===second&&t===phase&&w===pesoCorsa&&o===aperturaMin)return;
+      lastShowAt=performance.now();first=a;second=b;phase=t;pesoCorsa=w;aperturaMin=o;morbida=m;scene.environment=lightProbes[t<.5?a:b].texture;setCamera();draw();},
     setReducedMotion(value){reduceOrbit=Boolean(value);},
+    // la scena lascia l'angolo delle foto del segnaposto per quello migliore della vista (0,7 s, morbido)
+    assesta(animate=true){
+      if(assetto>=1)return;
+      if(!animate||reduceOrbit){assetto=1;frameRevision++;setCamera();draw();return;}
+      const t0=performance.now(),from=assetto;
+      cancelAnimationFrame(assettoFrame);
+      const step=now=>{const u=Math.min(1,(now-t0)/700);assetto=from+(1-from)*T.MathUtils.smootherstep(u,0,1);frameRevision++;setCamera();draw();if(u<1)assettoFrame=requestAnimationFrame(step);};
+      assettoFrame=requestAnimationFrame(step);
+    },
     setGrounding(value){
       const g=T.MathUtils.clamp(Number(value)||0,0,1);
       if(g===grounding)return;
-      grounding=g;frameRevision++;setCamera();draw();
+      grounding=g;frameRevision++;layoutRevision++;libera();setCamera();draw();
     },
     reset(animate=false){
       if(animate&&!reduceOrbit){pointCamera(0,0);return;}

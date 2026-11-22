@@ -60,3 +60,26 @@ export function fase(s) {
   return (2 * t3 - 3 * t2 + 1) * RITMO[i] + (t3 - 2 * t2 + t) * h * TANGENTI[i]
     + (-2 * t3 + 3 * t2) * RITMO[i + 1] + (t3 - t2) * h * TANGENTI[i + 1];
 }
+
+// SOSTA (giro 22/11, quarto turno), solo nella vista impilata (telefono, tablet in verticale): per SOSTA
+// dello scorrimento di ogni tratto, ai due capi, la macchina è già (o ancora) tutta montata e si muove solo
+// la camera, che passa piano dall'inquadratura di riposo (grande) a quella in corsa (più larga, i pezzi in
+// volo non toccano i bordi). La coreografia di Mattia (pezzi, lente, tendina, testi) resta la stessa, solo
+// compressa nel resto del tratto: fase visiva = fase((s − SOSTA)/(1 − 2·SOSTA)).
+// Lo zoom va da ZOOM_DA a ZOOM_A: sotto ZOOM_DA la camera è ferma sull'inquadratura di riposo; finisce poco
+// dopo la sosta (ZOOM_A > SOSTA) perché a passo di scorrimento dell'1% nessun passo cambi l'altezza della
+// macchina di oltre il 3% (misurato, 7 viste telefono); nei primi 3 punti dopo la sosta i pezzi si sono
+// appena mossi e la camera ha già fatto quasi tutto il suo arretramento.
+// SOSTA_MS: durata di ogni sosta nel viaggio a tocco (frecce, tappe, Riproduci), in aggiunta ai
+// PASSAGGIO_MS della coreografia.
+export const SOSTA = .09, ZOOM_DA = .005, ZOOM_A = .12, SOSTA_MS = 800;
+const liscia = t => t <= 0 ? 0 : t >= 1 ? 1 : t * t * t * (t * (t * 6 - 15) + 10);
+// fase visiva della coreografia per la posizione s (0-1) dentro un tratto, con le soste
+export function faseSosta(s) {
+  return fase(Math.min(1, Math.max(0, (s - SOSTA) / (1 - 2 * SOSTA))));
+}
+// peso dell'inquadratura in corsa a distanza x (in tratti) dall'epoca più vicina: 0 a riposo, 1 da ZOOM_A,
+// velocità zero ai due capi
+export function pesoCorsa(x) {
+  return liscia((x - ZOOM_DA) / (ZOOM_A - ZOOM_DA));
+}
